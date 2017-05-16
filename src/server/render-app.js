@@ -7,10 +7,10 @@ const renderApp = (title) =>
   <head>
     <title>${title}</title>
     <link rel="stylesheet" href="${STATIC_PATH}/css/style.css">
+    <script defer src="${isProd ? STATIC_PATH : `http://localhost:${WDS_PORT}/dist`}/js/bundle.js"></script>
   </head>
   <body>
     <div class="${APP_CONTAINER_CLASS}"></div>
-    <script src="${isProd ? STATIC_PATH : `http://localhost:${WDS_PORT}/dist`}/js/bundle.js"></script>
   </body>
 </html>
 `;
