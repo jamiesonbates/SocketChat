@@ -6,18 +6,36 @@
   "author": "Jamieson Bates <jamiesonbates@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.17.1",
+    "babel-polyfill": "^6.23.0",
     "compression": "^1.6.2",
     "express": "^4.15.2",
-    "knex": "^0.13.0"
+    "knex": "^0.13.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
     "babel-jest": "^20.0.1",
+    "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.4.0",
-    "jest": "^20.0.1"
+    "cross-env": "^5.0.0",
+    "jest": "^20.0.1",
+    "nodemon": "^1.11.0",
+    "pm2": "^2.4.6",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "browserslist": [
     "> 1%"
-  ]
+  ],
+  "scripts": {
+    "start": "yarn dev:start",
+    "dev:start": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node src/server",
+    "dev:wds": "webpack-dev-server --progress",
+    "prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
+    "prod:start": "cross-env NODE_ENV=production pm2 start lib/server && pm2 logs",
+    "prod:stop": "pm2 delete server",
+    "test": "jest --coverage",
+  },
 }
