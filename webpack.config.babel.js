@@ -10,9 +10,9 @@ export default {
     './src/client',
   ],
   output: {
-    filename: 'js/bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: isProd ? '/static/' : `http://localhost:${WDS_PORT}/dist/`,
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist/js'),
+    publicPath: isProd ? '/static/' : `http://localhost:${WDS_PORT}/dist/js/`,
   },
   module: {
     rules: [
@@ -25,6 +25,7 @@ export default {
   },
   devServer: {
     port: WDS_PORT,
+    headers: { "Access-Control-Allow-Origin": "*" },
     hot: true
   },
   plugins: [
