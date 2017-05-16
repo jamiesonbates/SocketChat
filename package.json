@@ -1,0 +1,8 @@
+{
+  "name": "socketChat",
+  "version": "1.0.0",
+  "description": "A prototypical chat app.",
+  "main": "index.js",
+  "author": "Jamieson Bates <jamiesonbates@gmail.com>",
+  "license": "MIT"
+}
