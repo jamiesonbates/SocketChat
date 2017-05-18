@@ -21,9 +21,11 @@ A person with many friends needs an application that enables them to chat with i
 * Edit, delete messages.
 
 ## Technology Options
+* Webpack
 * React
 * Redis
 * Socket.io
+* Sass
 
 ### ERD (list form)
 
