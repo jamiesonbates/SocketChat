@@ -4,7 +4,7 @@
 A prototypical chat/messenger app using sockets. I want to build this so I can get experience using sockets.
 
 ## Problem
-People need a way to chat with one another that allows them to do so fast and simply, but also allows them to inventory significant messages the send or receive.
+People need a way to chat with one another that allows them to do so fast and simply, but also allows them to inventory significant messages they send or receive.
 
 ## Primary Use Case
 A person with many friends needs an application that enables them to chat with individuals and groups with as few barriers as possible.
