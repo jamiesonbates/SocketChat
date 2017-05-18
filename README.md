@@ -25,6 +25,7 @@ This app will be used when someone is browsing the internet and has something to
 * Store short histories locally.
 * Store messages to send when online.
 * Edit, delete messages.
+* Forgotten password
 
 ## Technology Options
 * Webpack
