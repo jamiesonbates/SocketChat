@@ -18,6 +18,7 @@ A person with many friends needs an application that enables them to chat with i
 * Different type of auth than cookies.
 * Store short histories locally.
 * Store messages to send when online.
+* Edit, delete messages.
 
 ## Technology Options
 * React
