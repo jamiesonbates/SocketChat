@@ -7,7 +7,7 @@ A prototypical chat/messenger app using sockets. I want to build this so I can g
 People need a way to chat with one another that allows them to do so fast and simply, but also allows them to inventory significant messages they send or receive.
 
 ## Primary Use Case
-A person with many friends needs an application that enables them to chat with individuals and groups with as few barriers as possible. This person loves sharing things with their friends that they find and would love a place to archive such things.
+A person with groups to chat with who sees things that they want to "store" for later. This might be something their friend said or shared, or something they said or shared.
 
 ## Context
 This app will be used when someone is browsing the internet and has something to share or discuss something with others. This "something" could be a new website they saw, political news, a place they went, etc..
