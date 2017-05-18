@@ -10,7 +10,7 @@ People need a way to chat with one another that allows them to do so fast and si
 A person with many friends needs an application that enables them to chat with individuals and groups with as few barriers as possible. This person loves sharing things with their friends that they find and would love a place to archive such things.
 
 ## Context
-This app will be used when someone is browsing the internet and has something to share with someone else. Most likely, the user will be using a laptop/desktop computer. They might be at work, at home, or working on a project with others.
+This app will be used when someone is browsing the internet and has something to share or discuss something with others. This "something" could be a new website they saw, political news, a place they went, etc..
 
 ## Potential Features
 * Real-time info - users will be able to see if someone is typing and who it is.
@@ -47,16 +47,11 @@ This app will be used when someone is browsing the internet and has something to
 * password (special?)
 * timestamps date
 
-#### Friends
-* id integer
-* user_id1 integer
-* user_id2 integer
-* timestamps date
-
 #### Chats_Users
 * id integer
 * user_id integer
 * chat_id integer
+* timestamps date
 
 #### Chats
 * id integer
@@ -69,15 +64,16 @@ This app will be used when someone is browsing the internet and has something to
 * user_id integer
 * timestamps date
 
-#### Starred
+#### Starred_Messages
 * id integer
 * category_id integer
 * user_id integer
 * message_id integer
 * timestamps date
 
-#### Category
+#### Starred_Categories
 * id integer
+* usei_id integer
 * name varchar(255)
 * timestamps date
   
