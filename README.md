@@ -27,37 +27,41 @@ A person with many friends needs an application that enables them to chat with i
 ### ERD (list form)
 
 #### Users
-* id
-* first_name
-* last_name
-* username
-* email
-* password
-* timestamps
+* id integer
+* first_name varchar(255)
+* last_name varchar(255)
+* username varchar(255)
+* email varchar(255)
+* password (special?)
+* timestamps date
 
 #### Friends
-* id
-* user_id1
-* user_id2
-* timestamps
+* id integer
+* user_id1 integer
+* user_id2 integer
+* timestamps date
+
+#### Chats_Users
+* id integer
+* user_id integer
+* chat_id integer
 
 #### Chats
-* id
-* user_id's
-* name
-* timestamps
+* id integer
+* name varchar(255)
+* timestamps date
 
 #### Messages
-* id
-* chat_id
-* user_id
-* timestamps
+* id integer
+* chat_id integer
+* user_id integer
+* timestamps date
 
 #### Starred
-* id
-* user_id
-* message_id
-* timestamps
+* id integer
+* user_id integer
+* message_id integer
+* timestamps date
 
 
   
