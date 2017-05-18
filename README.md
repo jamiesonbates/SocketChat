@@ -3,8 +3,14 @@
 ## About
 A prototypical chat/messenger app using sockets. I want to build this so I can get experience using sockets.
 
+## Problem
+People need a way to chat with one another that allows them to do so fast and simply, but also allows them to inventory significant messages the send or receive.
+
 ## Primary Use Case
 A person with many friends needs an application that enables them to chat with individuals and groups with as few barriers as possible.
+
+## Context
+This app will be used when someone is browsing the internet and has something to share with someone else. Most likely, the user will be using a laptop/desktop computer. They might be at work, at home, or working on a project with others.
 
 ## Potential Features
 * Real-time info - users will be able to see if someone is typing and who it is.
@@ -23,8 +29,10 @@ A person with many friends needs an application that enables them to chat with i
 ## Technology Options
 * Webpack
 * React
-* Redis
 * Socket.io
+
+#### Stretch
+* Redix
 * Sass
 
 ### ERD (list form)
