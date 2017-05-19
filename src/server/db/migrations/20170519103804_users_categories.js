@@ -3,8 +3,11 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('users_categories', (table) => {
     table.increments();
-    table.integer('user_id').references('id').inTable('users');
-    table.string('name');
+    table
+      .integer('user_id')
+      .references('id')
+      .inTable('users');
+    table.string('name').notNullable();
     table.timestamps(true, true);
   });
 };

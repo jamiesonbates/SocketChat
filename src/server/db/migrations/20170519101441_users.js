@@ -5,9 +5,15 @@ exports.up = function(knex, Promise) {
     table.increment();
     table.string('first_name');
     table.string('last_name');
-    table.string('username');
-    table.string('email');
-    table.string('h_pw');
+    table
+      .string('username')
+      .unique()
+      .notNullable();
+    table
+      .string('email')
+      .unique()
+      .notNullable();
+    table.string('h_pw').notNullable();
     table.timestamps(true, true);
   })
 };
