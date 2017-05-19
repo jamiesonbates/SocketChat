@@ -11,6 +11,9 @@ app.use(compression());
 app.use(STATIC_PATH, express.static('dist'));
 app.use(STATIC_PATH, express.static('public'));
 
+app.use('/api', require('./routes/users'));
+app.use('/api', require('./routes/token'));
+
 app.get('/', (req, res) => {
   res.send(renderApp(APP_NAME));
 });
