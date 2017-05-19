@@ -6,15 +6,18 @@ exports.up = function(knex, Promise) {
     table
       .integer('category_id')
       .references('id')
-      .inTable('users_categories');
+      .inTable('users_categories')
+      .onDelete('CASCADE');
     table
       .integer('user_id')
       .references('id')
-      .inTable('users');
+      .inTable('users')
+      .onDelete('CASCADE');
     table
       .integer('message_id')
       .references('id')
-      .inTable('messages');
+      .inTable('messages')
+      .onDelete('CASCADE');
     table.timestamps(true, true);
   });
 };

@@ -6,11 +6,13 @@ exports.up = function(knex, Promise) {
     table
       .integer('user_id')
       .references('id')
-      .inTable('users');
+      .inTable('users')
+      .onDelete('CASCADE');
     table
       .integer('chat_id')
       .references('id')
-      .inTable('chats');
+      .inTable('chats')
+      .onDelete('CASCADE');
     table.string('message').notNullable();
     table.timestamps(true, true);
   });
