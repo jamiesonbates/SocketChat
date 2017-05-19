@@ -2,11 +2,10 @@
 
 const bcrypt = require('bcrypt-as-promised');
 const boom = require('boom');
-const db = require('./db/connection');
+const db = require('../db/connection');
 const { camelizeKeys, decamelizeKeys } = require('humps');
-const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const util = require('./util');
+const router = require('express').Router();
 
 router.post('/token', (req, res, next) => {
   const { username, password } = req.body;
