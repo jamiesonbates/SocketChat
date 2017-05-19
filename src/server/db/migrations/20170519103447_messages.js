@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
       .integer('chat_id')
       .references('id')
       .inTable('chats');
+    table.string('message').notNullable();
     table.timestamps(true, true);
   });
 };
