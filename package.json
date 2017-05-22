@@ -11,14 +11,22 @@
     "boom": "^4.3.1",
     "compression": "^1.6.2",
     "express": "^4.15.2",
+    "http": "^0.0.0",
     "humps": "^2.0.0",
     "jsonwebtoken": "^7.4.1",
     "knex": "^0.13.0",
     "path": "^0.12.7",
     "pg": "^6.2.2",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-hot-loader": "next"
+    "react-hot-loader": "next",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^4.3.0",
+    "redux-thunk": "^2.2.0",
+    "socket.io": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

@@ -4,22 +4,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import App from './app';
+import Root from './components/Root';
+import store from './store';
 import { APP_CONTAINER_SELECTOR } from '../shared/config';
 
 const rootEl = document.querySelector(APP_CONTAINER_SELECTOR);
 
-const wrapApp = AppComponent =>
-  <AppContainer>
-    <AppComponent />
-  </AppContainer>
-
-ReactDOM.render(wrapApp(App), rootEl);
+ReactDOM.render(<Root store={store} />, rootEl);
 
 if (module.hot) {
-  module.hot.accept('./app', () => {
-    const NextApp = require('./app').default;
-    
-    ReactDOM.render(wrapApp(NextApp), rootEl);
+  module.hot.accept('./components/Root', () => {
+    const NextRoot = require('./components/Root').default;
+
+    ReactDOM.render(<NextRoot store={store} />, rootEl);
   });
 };

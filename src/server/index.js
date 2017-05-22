@@ -1,11 +1,17 @@
+'use strict';
+
 import compression from 'compression';
 import express from 'express';
+import { Server } from 'http';
+import socketIO from 'socket.io';
 
 import { APP_NAME, STATIC_PATH, WEB_PORT } from '../shared/config';
 import { isProd } from '../shared/util';
 import renderApp from './render-app';
 
 const app = express();
+const http = Server(app);
+const io = socketIO(http);
 
 app.use(compression());
 app.use(STATIC_PATH, express.static('dist'));
