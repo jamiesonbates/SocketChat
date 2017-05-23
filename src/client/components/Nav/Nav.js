@@ -1,0 +1,15 @@
+import React from 'react';
+
+import './Nav.css';
+
+class Nav {
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+}
+
+export default Nav;
