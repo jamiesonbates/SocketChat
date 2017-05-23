@@ -1,8 +1,6 @@
 import React, Component from 'react';
 import { connect } from 'react-redux';
 
-import './Auth.css';
-
 export default function(ComposedClass) {
   class AuthCheck extends React.Component {
     componentWillMount() {
