@@ -1,0 +1,84 @@
+.Signup-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Signup-form-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #EDE9ED;
+}
+
+.Signup-form {
+  height: 65%;
+  min-width: 300px;
+  width: 30vw;
+  display: flex;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #E0DDE0;
+  border-radius: 3px;
+  margin: 0;
+}
+
+.Signup-form h2 {
+  margin: 0;
+  font-family: 'Open Sans';
+  font-size: 2em;
+  color: #2B2B2B;
+}
+
+.Signup-input-container {
+  display: flex;
+  flex-direction: column;
+  height: 10%;
+  width: 100%;
+}
+
+.Signup-input-container input {
+  font-size: 1em;
+  padding: 7px;
+  border: 2px solid #E0DDE0;
+}
+
+.Signup-error {
+  padding: 10px;
+  background-color: white;
+}
+
+.Signup-error p {
+  margin: 0;
+  color: #BA1814;
+}
+
+.Signup-btn {
+  min-width: 160px;
+  border: 1px solid #BEC2BE;
+  padding: 12px 6px;
+  background-color: #E9EDE9;
+  border-radius: 5px;
+  line-height: 75%;
+  font-size: 1.5em;
+  font-family: 'Bree Serif';
+  color: #1BCC36;
+  text-decoration: none;
+}
+
+.Signup-btn:hover {
+  background-color: #1BCC36;
+  border: 1px solid #1BCC36;
+  color: white;
+  cursor: pointer;
+}
+
+.Signup-btn:focus {
+  outline: 0;
+}
