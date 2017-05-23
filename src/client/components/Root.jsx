@@ -12,9 +12,9 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Route path="/" component={authCheck(Dashboard)} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/" component={authCheck(Dashboard)} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/login" component={Login} />
       </div>
     </BrowserRouter>
   </Provider>

@@ -8,7 +8,8 @@ const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 const util = require('./util');
 
-router.get('/users', util.authorize, (req, res, next) => {
+router.get('/', util.authorize, (req, res, next) => {
+  console.log('here');
   knex('users')
     .where('id', req.claim.userId)
     .first()
@@ -26,7 +27,7 @@ router.get('/users', util.authorize, (req, res, next) => {
     });
 });
 
-router.post('/users', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const user = decamelizeKeys(req.body);
 
   bcrypt.hash(user.password, 12)

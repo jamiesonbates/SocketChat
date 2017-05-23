@@ -7,7 +7,7 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 
-router.post('/token', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const { username, password } = req.body;
   let user;
 

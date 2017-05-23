@@ -1,7 +1,6 @@
 'use strict';
 
 import bodyParser from 'body-parser';
-import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import morgan from 'morgan';
@@ -18,19 +17,18 @@ const http = Server(app);
 const io = socketIO(http);
 
 app.use(morgan('dev'));
-app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(compression());
+app.use(bodyParser.json());
 
-app.use('/api', require('./routes/users'));
-app.use('/api', require('./routes/token'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/token', require('./routes/token'));
 
 app.use((err, _req, res, _next) => {
   if (err.output && err.output.statusCode) {
     return res
-      .status(err.output.statusCode)
-      .set('Content-Type', 'text/plain')
-      .send(err.message);
+    .status(err.output.statusCode)
+    .set('Content-Type', 'text/plain')
+    .send(err.message);
   }
 
   console.error(err.stack);
@@ -43,6 +41,7 @@ app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
 app.get('*', (req, res) => {
   res.send(renderApp(APP_NAME));
 });
+
 
 app.listen(WEB_PORT, () => {
   console.log(`Server running on port ${WEB_PORT} ${isProd ? '(production)' :
