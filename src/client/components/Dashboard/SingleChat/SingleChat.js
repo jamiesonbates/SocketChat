@@ -6,7 +6,7 @@ class SingleChat {
   render() {
     return (
       <div>
-
+        <h2>SingleChat</h2>
       </div>
     )
   }

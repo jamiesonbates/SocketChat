@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
+import { BrowserHistory } from 'react-router-dom';
+
+import Dashboard from './Dashboard/Dashboard';
+import Login from './Login/Login';
+import SignUp from './SignUp/SignUp';
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <h1>Hello React!</h1>
+    <BrowserHistory>
+      <Route path="/signup" component={SignUp} />
+      <Route path="/login" component={Login} />
+      <Route path="/" component={Dashboard} />
+    </BrowserHistory>
   </Provider>
 )
 

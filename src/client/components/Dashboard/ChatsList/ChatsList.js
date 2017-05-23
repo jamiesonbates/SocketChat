@@ -6,7 +6,7 @@ class ChatsList {
   render() {
     return (
       <div>
-
+        <h2>ChatsList</h2>
       </div>
     )
   }
