@@ -6,14 +6,15 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Dashboard from './Dashboard/Dashboard';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
+import authCheck from './Auth/Auth';
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <BrowserRouter>
       <div>
+        <Route path="/" component={authCheck(Dashboard)} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/" component={Dashboard} />
       </div>
     </BrowserRouter>
   </Provider>

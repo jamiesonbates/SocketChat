@@ -6,6 +6,8 @@ import Nav from '../Nav/Nav';
 
 class Login extends React.Component {
   constructor() {
+    super();
+    
     this.state = {
       error: null
     }

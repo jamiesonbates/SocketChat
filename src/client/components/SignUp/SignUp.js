@@ -6,6 +6,8 @@ import Nav from '../Nav/Nav';
 
 class SignUp extends React.Component {
   constructor() {
+    super();
+    
     this.state = {
       error: null
     }
@@ -14,6 +16,8 @@ class SignUp extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    const firstName = this.refs.firstName.value;
+    const lastName = this.refs.lastName.value;
     const username = this.refs.username.value;
     const email = this.refs.email.value;
     const password = this.refs.password.value;
@@ -48,7 +52,7 @@ class SignUp extends React.Component {
       return;
     }
 
-    this.props.dispatch(userSignUp(username, email, password));
+    this.props.dispatch(userSignUp({ firstName, lastName, username, email, password }));
     this.refs.signupForm.reset();
   }
 
@@ -61,6 +65,14 @@ class SignUp extends React.Component {
           <h2>Sign Up</h2>
 
           <form onSubmit={this.handleSubmit.bind(this)} ref="signupForm" className="Signup-form">
+            <div className="Signup-input-container">
+              <input type="text" ref="firstName" placeHolder="First Name"/>
+            </div>
+
+            <div className="Signup-input-container">
+              <input type="text" ref="lastName" placeHolder="Last Name"/>
+            </div>
+
             <div className="Signup-input-container">
               <input type="text" ref="username" placeholder="Username"/>
             </div>

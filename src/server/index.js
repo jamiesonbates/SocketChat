@@ -1,7 +1,11 @@
 'use strict';
 
+import bodyParser from 'body-parser';
 import compression from 'compression';
+import cookieParser from 'cookie-parser';
 import express from 'express';
+import morgan from 'morgan';
+import path from 'path';
 import { Server } from 'http';
 import socketIO from 'socket.io';
 
@@ -13,14 +17,30 @@ const app = express();
 const http = Server(app);
 const io = socketIO(http);
 
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(compression());
-app.use(STATIC_PATH, express.static('dist'));
-app.use(STATIC_PATH, express.static('public'));
 
 app.use('/api', require('./routes/users'));
 app.use('/api', require('./routes/token'));
 
-app.get('/', (req, res) => {
+app.use((err, _req, res, _next) => {
+  if (err.output && err.output.statusCode) {
+    return res
+      .status(err.output.statusCode)
+      .set('Content-Type', 'text/plain')
+      .send(err.message);
+  }
+
+  console.error(err.stack);
+  res.sendStatus(500);
+});
+
+app.use(STATIC_PATH, express.static('public'));
+app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
+
+app.get('*', (req, res) => {
   res.send(renderApp(APP_NAME));
 });
 
