@@ -6,6 +6,7 @@
   "author": "Jamieson Bates <jamiesonbates@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-polyfill": "^6.23.0",
     "bcrypt-as-promised": "^1.1.0",
     "boom": "^4.3.1",

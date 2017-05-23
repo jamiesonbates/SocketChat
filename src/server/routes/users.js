@@ -7,6 +7,24 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 
+router.get('/users', authorize, (req, res, next) => {
+  knex('users')
+    .where('id', req.claim.userId)
+    .first()
+    .then((user) => {
+      if (!user) {
+        boom.create(404, 'User not found.');
+      }
+
+      delete user.h_pw;
+
+      res.send(camelizeKeys(user));
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.post('/users', (req, res, next) => {
   const user = decamelizeKeys(req.body);
 

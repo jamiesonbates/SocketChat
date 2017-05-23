@@ -17,7 +17,7 @@ export default function(ComposedClass) {
 
   function mapStateToProps(state) {
     return {
-      isAuthenticated: state.user.userAuthenticated
+      isAuthenticated: state.auth.userAuth
     }
   }
 
