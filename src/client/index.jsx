@@ -8,14 +8,14 @@ import Root from './components/Root';
 import store from './store';
 import { APP_CONTAINER_SELECTOR } from '../shared/config';
 
-const rootEl = document.querySelector(APP_CONTAINER_SELECTOR);
+const rootElement = document.querySelector(APP_CONTAINER_SELECTOR);
 
-ReactDOM.render(<Root store={store} />, rootEl);
+ReactDOM.render(<Root store={store} />, rootElement);
 
 if (module.hot) {
   module.hot.accept('./components/Root', () => {
-    const NextRoot = require('./components/Root').default;
+    const NextRoot = require('./components/Root');
 
-    ReactDOM.render(<NextRoot store={store} />, rootEl);
+    ReactDOM.render(<NextRoot store={store} />, NextRoot);
   });
 };

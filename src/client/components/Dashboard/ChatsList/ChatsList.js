@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ChatsList.css';
 
-class ChatsList {
+class ChatsList extends React.Component {
   render() {
     return (
       <div>

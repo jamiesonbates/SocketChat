@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Login.css';
 
-import Nav from './Nav/Nav';
+import Nav from '../Nav/Nav';
 
-class Login {
+class Login extends React.Component {
   render() {
     return (
       <div>

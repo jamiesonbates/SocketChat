@@ -2,7 +2,7 @@ import React from 'react'
 
 import './SingleChat.css';
 
-class SingleChat {
+class SingleChat extends React.Component {
   render() {
     return (
       <div>

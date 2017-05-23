@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Dashboard.css';
 
-import Nav from '../Nav/Nav.js';
+import Nav from '../Nav/Nav';
 import ChatsList from './ChatsList/ChatsList';
 import SingleChat from './SingleChat/SingleChat';
 

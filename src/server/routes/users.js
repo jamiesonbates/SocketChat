@@ -6,8 +6,9 @@ const db = require('../db/connection');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 const jwt = require('jsonwebtoken');
 const router = require('express').Router();
+const util = require('./util');
 
-router.get('/users', authorize, (req, res, next) => {
+router.get('/users', util.authorize, (req, res, next) => {
   knex('users')
     .where('id', req.claim.userId)
     .first()

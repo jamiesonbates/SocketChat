@@ -1,7 +1,7 @@
-import { userAuthSuccess } from '../../../shared/actionTypes';
+import { userAuthSuccess } from '../../shared/actionTypes';
 
-export default function reducer(state = {
-  userAuth
+export default function reducer(state={
+  userAuth: false
 }, action) {
   switch(action.type) {
     case userAuthSuccess:
@@ -10,4 +10,6 @@ export default function reducer(state = {
        userAuth: action.payload
      }
   }
+
+  return state;
 }
