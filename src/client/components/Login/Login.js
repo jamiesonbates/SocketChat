@@ -1,16 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './Login.css';
-
 import Nav from '../Nav/Nav';
+import { userLogin } from '../../actions/userActions';
+import { loginError } from '../../actions/errorActions';
 
 class Login extends React.Component {
   constructor() {
     super();
-    
-    this.state = {
-      error: null
-    }
   }
 
   handleSubmit(e) {
@@ -20,17 +18,13 @@ class Login extends React.Component {
     const password = this.refs.password.value;
 
     if (!email.includes('@')) {
-      this.setState({
-        error: 'Bad email or password.'
-      })
+      this.props.dispatch(loginError('Bad email or password.'));
 
       return;
     }
 
     if (password.length < 8) {
-      this.setState({
-        error: 'Bad email or password.'
-      })
+      this.props.dispatch(loginError('Bad email or password.'));
 
       return;
     }
@@ -56,9 +50,9 @@ class Login extends React.Component {
             </div>
 
             {
-              this.state.error || this.props.loginError ?
+              this.props.errors.login ?
                 <div className="Login-error">
-                  <p>{this.state.error || this.props.loginError}</p>
+                  <p>{this.props.errors.login}</p>
                 </div>
               : null
             }
@@ -75,4 +69,10 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = function(store) {
+  return {
+    errors: store.errors
+  }
+}
+
+export default connect(mapStateToProps)(Login);

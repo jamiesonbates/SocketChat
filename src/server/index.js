@@ -16,12 +16,24 @@ const app = express();
 const http = Server(app);
 const io = socketIO(http);
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/token', require('./routes/token'));
+
+
+app.use(STATIC_PATH, express.static('public'));
+app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
+
+app.get('*', (req, res) => {
+  res.send(renderApp(APP_NAME));
+});
 
 app.use((err, _req, res, _next) => {
   if (err.output && err.output.statusCode) {
@@ -34,14 +46,6 @@ app.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.sendStatus(500);
 });
-
-app.use(STATIC_PATH, express.static('public'));
-app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
-
-app.get('*', (req, res) => {
-  res.send(renderApp(APP_NAME));
-});
-
 
 app.listen(WEB_PORT, () => {
   console.log(`Server running on port ${WEB_PORT} ${isProd ? '(production)' :

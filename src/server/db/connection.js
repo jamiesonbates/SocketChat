@@ -1,5 +1,7 @@
+'use strict';
+
 const env = process.env.NODE_ENV || 'development';
 const config = require('../../../knexfile')[env];
-const connection = require('knex').config;
+const db = require('knex')(config);
 
-module.exports = connection;
+module.exports = db;

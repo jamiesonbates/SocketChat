@@ -9,10 +9,9 @@ const router = require('express').Router();
 const util = require('./util');
 
 router.get('/', util.authorize, (req, res, next) => {
-  console.log('here');
   knex('users')
     .where('id', req.claim.userId)
-    .first()
+    .returning('*')
     .then((user) => {
       if (!user) {
         boom.create(404, 'User not found.');

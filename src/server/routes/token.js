@@ -8,18 +8,18 @@ const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 
 router.post('/', (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   let user;
 
   db('users')
-    .where('username', username)
-    .first()
+    .where('email', email)
+    .returning('*')
     .then((row) => {
       if (!row) {
         throw boom.create(400, 'Bad email or password.');
       }
 
-      user = row;
+      user = row[0];
 
       return bcrypt.compare(password, user.h_pw)
     })
@@ -36,8 +36,10 @@ router.post('/', (req, res, next) => {
       });
 
       delete user.h_pw;
+      delete user.created_at;
+      delete user.updated_at;
 
-      res.send(user);
+      res.send(camelizeKeys(user));
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
       throw boom.create(400, 'Bad email or password');
