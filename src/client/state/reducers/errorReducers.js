@@ -1,4 +1,4 @@
-import { userLoginFailure } from '../../shared/actionTypes';
+import { userLoginFailure } from '../../../shared/actionTypes';
 
 export default function reducer(state={
   login: null

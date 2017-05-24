@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route, browserHistory } from 'react-router';
 
 import Dashboard from './Dashboard/Dashboard';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
-import authCheck from './Auth/Auth';
+import authCheck from '../containers/AuthCheck';
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <BrowserRouter>
-      <div>
-        <Route exact path="/" component={authCheck(Dashboard)} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/login" component={Login} />
-      </div>
-    </BrowserRouter>
+    <Router history={browserHistory}>
+      <Route path="/" component={authCheck(Dashboard)} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/login" component={Login} />
+    </Router>
   </Provider>
 );
 

@@ -1,4 +1,4 @@
-import { userLoginFailure } from '../../shared/actionTypes';
+import { userLoginFailure } from '../../../shared/actionTypes';
 
 export function loginError(msg) {
   return function(dispatch) {

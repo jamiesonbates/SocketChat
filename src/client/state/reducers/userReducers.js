@@ -1,7 +1,8 @@
 import {
   userAuthSuccess,
-  userAuthFailure
-} from '../../shared/actionTypes';
+  userLoginSuccess,
+  userAuthFailure,
+} from '../../../shared/actionTypes';
 
 export default function reducer(state={
   userAuth: false,
@@ -12,6 +13,7 @@ export default function reducer(state={
   username: null
 }, action) {
   switch (action.type) {
+    case userLoginSuccess:
     case userAuthSuccess:
       const { id, firstName, lastName, email, username } = action.payload;
 

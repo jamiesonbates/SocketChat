@@ -9,6 +9,7 @@ const router = require('express').Router();
 const util = require('./util');
 
 router.get('/', util.authorize, (req, res, next) => {
+  console.log(req.claim);
   knex('users')
     .where('id', req.claim.userId)
     .returning('*')

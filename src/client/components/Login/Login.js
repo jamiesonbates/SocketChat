@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import './Login.css';
 import Nav from '../Nav/Nav';
-import { userLogin } from '../../actions/userActions';
-import { loginError } from '../../actions/errorActions';
+import { userLogin } from '../../state/actions/userActions';
+import { loginError } from '../../state/actions/errorActions';
 
 class Login extends React.Component {
   constructor() {

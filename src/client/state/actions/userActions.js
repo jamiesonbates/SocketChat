@@ -4,9 +4,10 @@ import { browserHistory } from 'react-router';
 import {
   userAuthSuccess,
   userAuthFailure,
+  userLoginSuccess,
   userLoginFailure,
   userSignUpFailure
-} from '../../shared/actionTypes';
+} from '../../../shared/actionTypes';
 
 export function userAuth() {
   return function(dispatch) {
@@ -33,7 +34,7 @@ export function userLogin(email, password) {
     axios.post('/api/token', { email, password })
       .then((res) => {
         dispatch({
-          type: userAuthSuccess,
+          type: userLoginSuccess,
           payload: res.data
         });
         browserHistory.push('/');
