@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import './SignUp.css';
 
@@ -7,7 +8,7 @@ import Nav from '../Nav/Nav';
 class SignUp extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       error: null
     }
@@ -66,11 +67,11 @@ class SignUp extends React.Component {
 
           <form onSubmit={this.handleSubmit.bind(this)} ref="signupForm" className="Signup-form">
             <div className="Signup-input-container">
-              <input type="text" ref="firstName" placeHolder="First Name"/>
+              <input type="text" ref="firstName" placeholder="First Name"/>
             </div>
 
             <div className="Signup-input-container">
-              <input type="text" ref="lastName" placeHolder="Last Name"/>
+              <input type="text" ref="lastName" placeholder="Last Name"/>
             </div>
 
             <div className="Signup-input-container">
@@ -100,6 +101,8 @@ class SignUp extends React.Component {
               Start
             </button>
           </form>
+
+          <Link to='/login'>Login</Link>
         </div>
       </div>
     )

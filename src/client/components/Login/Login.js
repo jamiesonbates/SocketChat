@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import './Login.css';
 import Nav from '../Nav/Nav';
@@ -18,18 +19,18 @@ class Login extends React.Component {
     const password = this.refs.password.value;
 
     if (!email.includes('@')) {
-      this.props.dispatch(loginError('Bad email or password.'));
+      this.props.loginError('Bad email or password.');
 
       return;
     }
 
     if (password.length < 8) {
-      this.props.dispatch(loginError('Bad email or password.'));
+      this.props.loginError('Bad email or password.');
 
       return;
     }
 
-    this.props.dispatch(userLogin(email, password));
+    this.props.userLogin(email, password);
     this.refs.loginForm.reset();
   }
 
@@ -63,16 +64,12 @@ class Login extends React.Component {
               Login
             </button>
           </form>
+
+          <Link to='/signUp'>Sign Up</Link>
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = function(store) {
-  return {
-    errors: store.errors
-  }
-}
-
-export default connect(mapStateToProps)(Login);
+export default Login;
