@@ -1,9 +1,18 @@
-import { userLoginFailure } from '../../../shared/actionTypes';
+import { loginFailure, signupFailure } from '../actionTypes';
 
 export function loginError(msg) {
   return function(dispatch) {
     dispatch({
-      type: userLoginFailure,
+      type: loginFailure,
+      payload: msg
+    })
+  }
+}
+
+export function signupError(msg) {
+  return function(dispatch) {
+    dispatch({
+      type: signupFailure,
       payload: msg
     })
   }

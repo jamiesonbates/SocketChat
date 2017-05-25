@@ -9,8 +9,7 @@ const router = require('express').Router();
 const util = require('./util');
 
 router.get('/', util.authorize, (req, res, next) => {
-  console.log(req.claim);
-  knex('users')
+  db('users')
     .where('id', req.claim.userId)
     .returning('*')
     .then((user) => {
@@ -32,7 +31,10 @@ router.post('/', (req, res, next) => {
 
   bcrypt.hash(user.password, 12)
     .then((h_pw) => {
-      return db('users').insert(user);
+      delete user.password;
+      user.h_pw = h_pw;
+
+      return db('users').insert(user).returning('*');
     }, '*')
     .then((users) => {
       const newUser = users[0];

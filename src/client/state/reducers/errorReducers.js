@@ -1,13 +1,20 @@
-import { userLoginFailure } from '../../../shared/actionTypes';
+import { loginFailure, signupFailure } from '../actionTypes';
 
 export default function reducer(state={
-  login: null
+  login: null,
+  signup: null
 }, action) {
   switch (action.type) {
-    case userLoginFailure:
+    case loginFailure:
       return {
         ...state,
         login: action.payload
+      }
+
+    case signupFailure:
+      return {
+        ...state,
+        signup: action.payload
       }
   }
 

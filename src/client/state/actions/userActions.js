@@ -2,25 +2,26 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 import {
-  userAuthSuccess,
-  userAuthFailure,
-  userLoginSuccess,
-  userLoginFailure,
-  userSignUpFailure
-} from '../../../shared/actionTypes';
+  authSuccess,
+  authFailure,
+  loginSuccess,
+  loginFailure,
+  signupSuccess,
+  signupFailure
+} from '../actionTypes';
 
 export function userAuth() {
   return function(dispatch) {
     axios.get('/api/users')
       .then((res) => {
         dispatch({
-          type: userAuthSuccess,
+          type: authSuccess,
           payload: res.data
         })
       })
       .catch((err) => {
         dispatch({
-          type: userAuthFailure,
+          type: authFailure,
           payload: false
         })
 
@@ -34,14 +35,14 @@ export function userLogin(email, password) {
     axios.post('/api/token', { email, password })
       .then((res) => {
         dispatch({
-          type: userLoginSuccess,
+          type: loginSuccess,
           payload: res.data
         });
         browserHistory.push('/');
       })
       .catch((err) => {
         dispatch({
-          type: userLoginFailure,
+          type: loginFailure,
           payload: 'Bad email or password'
         })
       })
@@ -52,7 +53,11 @@ export function userSignUp(user) {
   return function(dispatch) {
     axios.post('/api/users', user)
       .then((res) => {
-        console.log(res.data);
+        dispatch({
+          type: signupSuccess,
+          payload: res.data
+        });
+        browserHistory.push('/');
       })
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { userLogin } from '../state/actions/userActions';
-import { loginError } from '../state/actions/errorActions';
+import { userLogin, userSignUp } from '../state/actions/userActions';
+import { loginError, signupError } from '../state/actions/errorActions';
 
 export default function(ComposedClass) {
   class WrapAuth extends React.Component {
@@ -24,6 +24,8 @@ export default function(ComposedClass) {
 
   return connect(mapStateToProps, {
     userLogin,
+    userSignUp,
+    signupError,
     loginError
   })(WrapAuth);
 }

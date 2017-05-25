@@ -2,16 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import './SignUp.css';
-
 import Nav from '../Nav/Nav';
 
 class SignUp extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      error: null
-    }
   }
 
   handleSubmit(e) {
@@ -24,36 +19,31 @@ class SignUp extends React.Component {
     const password = this.refs.password.value;
 
     if (username.length > 15) {
-      this.setState({
-        error: 'Username must be less than 15 characters.'
-      });
+      this.props.signupError('Username must be less than 15 characters.');
 
       return;
     }
 
-    if (password.length < 8) {
-      this.setState({
-        error: 'Password must be longer than 8 characters.'
-      });
-
-      return;
-    }
 
     if (!email) {
-      this.setState({
-        error: 'Email must not be blank.'
-      })
+      this.props.signupError('Email must not be blank.');
+
+      return;
     }
 
     if (!email.includes('@')) {
-      this.setState({
-        error: 'Must use valid email.'
-      })
+      this.props.signupError('Must use valid email.');
+
+      return;
+    }
+    
+    if (password.length < 8) {
+      this.props.signupError('Password must be longer than 8 characters.');
 
       return;
     }
 
-    this.props.dispatch(userSignUp({ firstName, lastName, username, email, password }));
+    this.props.userSignUp({ firstName, lastName, username, email, password });
     this.refs.signupForm.reset();
   }
 
@@ -87,9 +77,9 @@ class SignUp extends React.Component {
             </div>
 
             {
-              this.state.error || this.props.signUpError ?
+              this.props.errors.signup ?
                 <div className="Signup-error">
-                  <p>{this.state.error || this.props.signUpError}</p>
+                  <p>{this.props.errors.signup}</p>
                 </div>
               :
                 null
