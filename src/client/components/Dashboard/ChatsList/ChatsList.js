@@ -5,12 +5,12 @@ import './ChatsList.css';
 class ChatsList extends React.Component {
   render() {
     return (
-      <div>
+      <div className="ChatsList-container">
         <h2>ChatsList</h2>
           {
             this.props.chats
-              ? this.props.chats.map(chat => (
-                  <div>
+              ? this.props.chats.map((chat, i) => (
+                  <div key={i}>
                     <p>{chat.name}</p>
                   </div>
                 ))

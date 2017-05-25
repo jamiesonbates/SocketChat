@@ -60,6 +60,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('room', (data) => {
+    console.log(`user entered room: ${data.room}`);
     socket.join(data.room);
   })
 

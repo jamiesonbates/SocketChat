@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.handleRooms(nextProps, 'room');
+    this.handleRooms(nextProps.chats, 'room');
   }
 
   componentWillUnmount() {
@@ -36,16 +36,16 @@ class Dashboard extends React.Component {
   }
 
   handleRooms(chats, event) {
-    // for (const chat of chats) {
-    //   socket.emit(event, { room: chat.id });
-    // }
+    for (const chat of chats) {
+      socket.emit(event, { room: chat.id });
+    }
   }
 
   render() {
     return (
       <div>
         <Nav />
-        <div>
+        <div className="Dashboard-main-container">
           <ChatsList chats={this.props.chats} fetchChats={fetchChats}/>
           <SingleChat />
         </div>

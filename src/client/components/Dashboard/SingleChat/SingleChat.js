@@ -5,7 +5,7 @@ import './SingleChat.css';
 class SingleChat extends React.Component {
   render() {
     return (
-      <div>
+      <div className="SingleChat-container">
         <h2>SingleChat</h2>
       </div>
     )
