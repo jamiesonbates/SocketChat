@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/token', require('./routes/token'));
+app.use('/api/chats', require('./routes/chats'));
 
 
 app.use(STATIC_PATH, express.static('public'));
@@ -33,6 +34,22 @@ app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
 
 app.get('*', (req, res) => {
   res.send(renderApp(APP_NAME));
+});
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+  socket.on('room', (data) => {
+    socket.join(data.room);
+  })
+
+  socket.on('leave room', (data) => {
+    socket.leave(data.room);
+  })
 });
 
 app.use((err, _req, res, _next) => {
