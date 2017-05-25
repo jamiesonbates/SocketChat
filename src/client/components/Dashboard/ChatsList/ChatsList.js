@@ -7,14 +7,15 @@ class ChatsList extends React.Component {
     return (
       <div>
         <h2>ChatsList</h2>
-
-        {/* {
-          this.props.chats.map(chat => {
-            <div>
-              <h3>{chat.name}</h3>
-            </div>
-          })
-        } */}
+          {
+            this.props.chats
+              ? this.props.chats.map(chat => (
+                  <div>
+                    <p>{chat.name}</p>
+                  </div>
+                ))
+              : null
+          }
       </div>
     )
   }

@@ -15,12 +15,12 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchChats();
+    this.props.dispatch(fetchChats());
   }
 
   componentDidMount() {
     if (this.props.chats === null) {
-      this.props.fetchChats();
+      this.props.dispatch(fetchChats());
     }
     else {
       this.handleRooms(this.props.chats, 'room');
@@ -46,7 +46,7 @@ class Dashboard extends React.Component {
       <div>
         <Nav />
         <div>
-          <ChatsList />
+          <ChatsList chats={this.props.chats} fetchChats={fetchChats}/>
           <SingleChat />
         </div>
       </div>
@@ -56,10 +56,8 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = function(state) {
   return {
-    chats: state.chats
+    chats: state.chats.chats
   }
 }
 
-export default connect(mapStateToProps, {
-  fetchChats
-})(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
