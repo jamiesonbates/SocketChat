@@ -36,9 +36,9 @@ class Dashboard extends React.Component {
   }
 
   handleRooms(chats, event) {
-    for (const chat of chats) {
-      socket.emit(event, { room: chat.id });
-    }
+    // for (const chat of chats) {
+    //   socket.emit(event, { room: chat.id });
+    // }
   }
 
   render() {
@@ -56,7 +56,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = function(state) {
   return {
-
+    chats: state.chats
   }
 }
 

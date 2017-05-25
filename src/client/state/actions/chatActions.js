@@ -1,12 +1,20 @@
 import axios from 'axios';
 
+import { chatsSuccess } from '../actionTypes';
+
 export function fetchChats() {
   return function(dispatch, getState) {
-    const userId = getState().userInfo.id;
+    const state = getState();
+    const userId = state.userInfo.id;
 
     axios.get(`/api/chats/${userId}`)
       .then((res) => {
-        console.log(res);
-      });
+        let chats = res.data;
+
+        dispatch({
+          type: chatsSuccess,
+          payload: chats
+        })
+      })
   }
 }

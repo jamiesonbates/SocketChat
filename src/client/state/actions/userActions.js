@@ -16,7 +16,7 @@ export function userAuth() {
       .then((res) => {
         dispatch({
           type: authSuccess,
-          payload: res.data
+          payload: res.data[0]
         })
       })
       .catch((err) => {
@@ -34,7 +34,6 @@ export function userLogin(email, password) {
   return function(dispatch) {
     axios.post('/api/token', { email, password })
       .then((res) => {
-        console.log('here 1');
         dispatch({
           type: loginSuccess,
           payload: res.data
@@ -42,7 +41,6 @@ export function userLogin(email, password) {
         browserHistory.push('/');
       })
       .catch((err) => {
-        console.log('here 2', err);
         dispatch({
           type: loginFailure,
           payload: 'Bad email or password'

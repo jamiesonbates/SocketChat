@@ -26,7 +26,6 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/token', require('./routes/token'));
 app.use('/api/chats', require('./routes/chats'));
 
-
 app.use(STATIC_PATH, express.static('public'));
 app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
 
