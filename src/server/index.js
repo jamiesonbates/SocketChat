@@ -13,8 +13,6 @@ import { isProd } from '../shared/util';
 import renderApp from './render-app';
 
 const app = express();
-const http = Server(app);
-const io = socketIO(http);
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -36,6 +34,25 @@ app.get('*', (req, res) => {
   res.send(renderApp(APP_NAME));
 });
 
+app.use((err, _req, res, _next) => {
+  if (err.output && err.output.statusCode) {
+    return res
+    .status(err.output.statusCode)
+    .set('Content-Type', 'text/plain')
+    .send(err.message);
+  }
+
+  console.error(err.stack);
+  res.sendStatus(500);
+});
+
+const server = app.listen(WEB_PORT, () => {
+  console.log(`Server running on port ${WEB_PORT} ${isProd ? '(production)' :
+  '(development).\nKeep "yarn dev:wds" running in an other terminal'}.`);
+});
+
+const io = socketIO().listen(server);
+
 io.on('connection', (socket) => {
   console.log('a user connected');
 
@@ -50,21 +67,4 @@ io.on('connection', (socket) => {
   socket.on('leave room', (data) => {
     socket.leave(data.room);
   })
-});
-
-app.use((err, _req, res, _next) => {
-  if (err.output && err.output.statusCode) {
-    return res
-    .status(err.output.statusCode)
-    .set('Content-Type', 'text/plain')
-    .send(err.message);
-  }
-
-  console.error(err.stack);
-  res.sendStatus(500);
-});
-
-app.listen(WEB_PORT, () => {
-  console.log(`Server running on port ${WEB_PORT} ${isProd ? '(production)' :
-  '(development).\nKeep "yarn dev:wds" running in an other terminal'}.`);
 });

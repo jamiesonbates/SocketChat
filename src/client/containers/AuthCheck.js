@@ -19,7 +19,6 @@ export default function(ComposedClass) {
 
     checkAuth(props) {
       if (!props.isAuthenticated) {
-        console.log('dispatch userAuth');
         this.props.dispatch(userAuth());
       }
     }
