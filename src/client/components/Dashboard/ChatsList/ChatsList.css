@@ -1,4 +1,23 @@
 .ChatsList-container {
   width: 25%;
   border: 1px solid black;
+  flex: 1;
+}
+
+.ChatsList-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.ChatsList-chat {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.ChatsList-chat:hover {
+  background-color: #555657;
+  cursor: pointer;
 }

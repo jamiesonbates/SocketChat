@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="Dashboard-container">
         <Nav />
         <div className="Dashboard-main-container">
           <ChatsList chats={this.props.chats} fetchChats={fetchChats}/>

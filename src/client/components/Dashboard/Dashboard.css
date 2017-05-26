@@ -1,3 +1,10 @@
+.Dashboard-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .Dashboard-main-container {
   display: flex;
+  flex: 1;
 }
