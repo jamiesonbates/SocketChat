@@ -5,34 +5,58 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 const router = require('express').Router();
 
 router.get('/:userId', (req, res, next) => {
-  db('chats')
-    .innerJoin('users_chats', 'chats.id', 'users_chats.chat_id')
-    .where('users_chats.user_id', req.params.userId)
-    .select('chats.id', 'chats.name')
-    .then((chats) => {
-      const promises = [];
-
-      for (const chat of chats) {
-        promises.push(getMessages(chat));
-      }
-
-      return Promise.all(promises);
+  return db.raw(`
+    SELECT *
+    FROM (SELECT c1.id, c1.name,
+           (SELECT json_agg(msg)
+           FROM (
+             SELECT id, message, user_id
+             FROM messages
+             WHERE chat_id = c1.id
+           ) msg) as messages,
+           (SELECT json_agg(usr)
+           FROM (
+             SELECT u.id, first_name, last_name, email, username
+             FROM chats as c2
+             INNER JOIN users_chats as uc1 ON c2.id = uc1.chat_id
+             INNER JOIN users as u ON u.id = uc1.user_id
+             WHERE c2.id = c1.id
+           ) usr) as users
+         FROM chats as c1
+         INNER JOIN users_chats as uc2 ON c1.id = uc2.chat_id
+         WHERE uc2.user_id = ${req.params.userId}
+    ) as chats;`)
+    .then((query) => {
+      res.send(query.rows);
     })
-    .then((chats) => {
-      const promises = [];
-
-      for (const chat of chats) {
-        promises.push(getPeople(chat));
-      }
-
-      return Promise.all(promises);
-    })
-    .then((chats) => {
-      res.send(chats);
-    })
-    .catch((err) => {
-      next(err);
-    });
+  // db('chats')
+  //   .innerJoin('users_chats', 'chats.id', 'users_chats.chat_id')
+  //   .where('users_chats.user_id', req.params.userId)
+  //   .select('chats.id', 'chats.name')
+  //   .then((chats) => {
+  //     const promises = [];
+  //
+  //     for (const chat of chats) {
+  //       promises.push(getMessages(chat));
+  //     }
+  //
+  //     return Promise.all(promises);
+  //   })
+  //   .then((chats) => {
+  //     const promises = [];
+  //
+  //     for (const chat of chats) {
+  //       promises.push(getPeople(chat));
+  //     }
+  //
+  //     return Promise.all(promises);
+  //   })
+  //   .then((chats) => {
+  //     res.send(chats);
+  //   })
+  //   .catch((err) => {
+  //     next(err);
+  //   });
 });
 
 function getMessages(chat) {
@@ -46,9 +70,6 @@ function getMessages(chat) {
 
         resolve(chat);
       })
-      .catch((err) => {
-        next(err);
-      });
   });
 
   return promise;

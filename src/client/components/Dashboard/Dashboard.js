@@ -14,10 +14,6 @@ class Dashboard extends React.Component {
     super();
   }
 
-  componentWillMount() {
-    this.props.dispatch(fetchChats());
-  }
-
   componentDidMount() {
     if (this.props.chats === null) {
       this.props.dispatch(fetchChats());
