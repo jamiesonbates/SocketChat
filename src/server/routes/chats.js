@@ -29,6 +29,9 @@ router.get('/:userId', (req, res, next) => {
     .then((query) => {
       res.send(query.rows);
     })
+    .catch((err) => {
+      next(err);
+    });
   // db('chats')
   //   .innerJoin('users_chats', 'chats.id', 'users_chats.chat_id')
   //   .where('users_chats.user_id', req.params.userId)
@@ -59,44 +62,44 @@ router.get('/:userId', (req, res, next) => {
   //   });
 });
 
-function getMessages(chat) {
-  const promise = new Promise((resolve, reject) => {
-    return db('messages')
-      .where('chat_id', chat.id)
-      .limit(100)
-      .returning('*')
-      .then((messages) => {
-        chat.messages = messages;
-
-        resolve(chat);
-      })
-  });
-
-  return promise;
-}
-
-function getPeople(chat) {
-  const promise = new Promise((resolve, reject) => {
-    return db('chats')
-      .innerJoin('users_chats', 'chats.id', 'users_chats.chat_id')
-      .innerJoin('users', 'users_chats.user_id', 'users.id')
-      .where('chat_id', chat.id)
-      .distinct('users.email')
-      .select(
-        'users.id as userId',
-        'users.first_name',
-        'users.last_name',
-        'users.username',
-        'users.email',
-      )
-      .then((users) => {
-        chat.users = users;
-
-        resolve(chat);
-      });
-  })
-
-  return promise;
-}
+// function getMessages(chat) {
+//   const promise = new Promise((resolve, reject) => {
+//     return db('messages')
+//       .where('chat_id', chat.id)
+//       .limit(100)
+//       .returning('*')
+//       .then((messages) => {
+//         chat.messages = messages;
+//
+//         resolve(chat);
+//       })
+//   });
+//
+//   return promise;
+// }
+//
+// function getPeople(chat) {
+//   const promise = new Promise((resolve, reject) => {
+//     return db('chats')
+//       .innerJoin('users_chats', 'chats.id', 'users_chats.chat_id')
+//       .innerJoin('users', 'users_chats.user_id', 'users.id')
+//       .where('chat_id', chat.id)
+//       .distinct('users.email')
+//       .select(
+//         'users.id as userId',
+//         'users.first_name',
+//         'users.last_name',
+//         'users.username',
+//         'users.email',
+//       )
+//       .then((users) => {
+//         chat.users = users;
+//
+//         resolve(chat);
+//       });
+//   })
+//
+//   return promise;
+// }
 
 module.exports = router;
