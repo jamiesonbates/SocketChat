@@ -33,15 +33,18 @@ class SingleChat extends React.Component {
         <h2>SingleChat</h2>
           {
             this.props.singleChat ?
-              this.props.allChats.reduce((acc, chat) => {
-                if (chat.id === this.props.singleChat) {
-                  acc = chat;
-                }
+              this.props.allChats
+                .reduce((acc, chat) => {
+                  if (chat.id === this.props.singleChat) {
+                    acc = chat;
+                  }
 
-                return acc;
-              }).messages.map((message, i) => (
-                <p key={i}>{message.message}</p>
-              ))
+                  return acc.messages;
+                })
+                .messages
+                .map((message, i) => (
+                  <p key={i}>{message.message}</p>
+                ))
               : null
           }
         </div>
