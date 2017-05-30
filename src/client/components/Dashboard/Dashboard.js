@@ -7,7 +7,7 @@ import './Dashboard.css';
 import Nav from '../Nav/Nav';
 import ChatsList from './ChatsList/ChatsList';
 import SingleChat from './SingleChat/SingleChat';
-import { fetchChats } from '../../state/actions/chatActions';
+import { fetchChats, setChat } from '../../state/actions/chatActions';
 
 class Dashboard extends React.Component {
   constructor() {
@@ -42,7 +42,10 @@ class Dashboard extends React.Component {
       <div className="Dashboard-container">
         <Nav />
         <div className="Dashboard-main-container">
-          <ChatsList chats={this.props.chats} fetchChats={fetchChats}/>
+          <ChatsList
+            chats={this.props.chats}
+            fetchChats={fetchChats}
+            setChat={setChat} />
           <SingleChat />
         </div>
       </div>

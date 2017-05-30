@@ -1,8 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './ChatsList.css';
 
 class ChatsList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  openChat(id) {
+    this.props.dispatch(this.props.setChat(id));
+  }
+
   render() {
     return (
       <div className="ChatsList-container">
@@ -12,7 +20,10 @@ class ChatsList extends React.Component {
           {
             this.props.chats
               ? this.props.chats.map((chat, i) => (
-                  <div key={i} className="ChatsList-chat">
+                  <div
+                    key={i}
+                    className="ChatsList-chat"
+                    onClick={() => this.openChat(chat.id)}>
                     <p>{chat.name}</p>
                   </div>
                 ))
@@ -23,4 +34,10 @@ class ChatsList extends React.Component {
   }
 }
 
-export default ChatsList;
+const mapStateToProps = function(state) {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps)(ChatsList);
