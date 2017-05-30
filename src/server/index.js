@@ -2,6 +2,7 @@
 
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import { camelizeKeys, decamelizeKeys } from 'humps';
 import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
@@ -11,6 +12,7 @@ import socketIO from 'socket.io';
 import { APP_NAME, STATIC_PATH, WEB_PORT } from '../shared/config';
 import { isProd } from '../shared/util';
 import renderApp from './render-app';
+import dbActions from './dbActions';
 
 const app = express();
 
@@ -62,9 +64,19 @@ io.on('connection', (socket) => {
   socket.on('room', (data) => {
     console.log(`user entered room: ${data.room}`);
     socket.join(data.room);
-  })
+  });
 
   socket.on('leave room', (data) => {
     socket.leave(data.room);
+  });
+
+  socket.on('msg', (data) => {
+    dbActions.createMessage(data)
+      .then((msg) => {
+        msg = camelizeKeys(msg[0]);
+
+        socket.broadcast.to(msg.chatId).emit('new msg', msg);
+        console.log(`new message emitted to room ${msg.chatId}`);
+      })
   })
 });

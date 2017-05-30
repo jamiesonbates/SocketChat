@@ -12,6 +12,10 @@ import { fetchChats, setChat } from '../../state/actions/chatActions';
 class Dashboard extends React.Component {
   constructor() {
     super();
+
+    socket.on('new msg', (payload) => {
+      console.log(payload);
+    });
   }
 
   componentDidMount() {
@@ -48,6 +52,7 @@ class Dashboard extends React.Component {
             setChat={setChat}
           />
           <SingleChat
+            userId={this.props.userInfo.id}
             singleChat={this.props.singleChat}
           />
         </div>
@@ -59,7 +64,8 @@ class Dashboard extends React.Component {
 const mapStateToProps = function(state) {
   return {
     allChats: state.chats.allChats,
-    singleChat: state.chats.singleChat
+    singleChat: state.chats.singleChat,
+    userInfo: state.userInfo
   }
 }
 

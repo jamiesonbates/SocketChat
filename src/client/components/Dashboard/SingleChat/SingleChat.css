@@ -1,4 +1,31 @@
 .SingleChat-container {
   width: 75%;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.SingleChat-messages-container {
+  padding: 10px;
+  flex: 1;
+}
+
+.SingleChat-form-container {
+  flex: 0;
+}
+
+.SingleChat-form-container form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.SingleChat-form-container form input {
+  padding: 15px;
+  font-size: 15px;
+  flex: 1;
+}
+
+.SingleChat-form-container form button {
+  padding: 5px 10px;
 }
