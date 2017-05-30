@@ -9,11 +9,11 @@ export function fetchChats() {
 
     axios.get(`/api/chats/${userId}`)
       .then((res) => {
-        let chats = res.data;
+        let allChats = res.data;
 
         dispatch({
           type: chatsSuccess,
-          payload: chats
+          payload: allChats
         })
       })
   }
@@ -22,9 +22,9 @@ export function fetchChats() {
 export function setChat(id) {
   return function(dispatch, getState) {
     const state = getState();
-    const chats = state.chats.chats;
+    const allChats = state.chats.allChats;
 
-    const nextChat = findChat(chats, id);
+    const nextChat = findChat(allChats, id);
 
     dispatch({
       type: newSingleChat,

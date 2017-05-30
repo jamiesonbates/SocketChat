@@ -7,7 +7,7 @@ class ChatsList extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   openChat(id) {
     this.props.dispatch(this.props.setChat(id));
   }
@@ -19,8 +19,8 @@ class ChatsList extends React.Component {
           <h2>ChatsList</h2>
         </div>
           {
-            this.props.chats
-              ? this.props.chats.map((chat, i) => (
+            this.props.allChats
+              ? this.props.allChats.map((chat, i) => (
                   <div
                     key={i}
                     className="ChatsList-chat"

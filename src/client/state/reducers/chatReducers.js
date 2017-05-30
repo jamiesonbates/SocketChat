@@ -1,14 +1,14 @@
 import { chatsSuccess, newSingleChat } from '../actionTypes';
 
 export default function reducer(state={
-  chats: null,
+  allChats: null,
   singleChat: null
 }, action) {
   switch(action.type) {
     case chatsSuccess:
       return {
         ...state,
-        chats: action.payload
+        allChats: action.payload
       }
 
     case newSingleChat:

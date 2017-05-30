@@ -15,20 +15,20 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.chats === null) {
+    if (this.props.allChats === null) {
       this.props.dispatch(fetchChats());
     }
     else {
-      this.handleRooms(this.props.chats, 'room');
+      this.handleRooms(this.props.allChats, 'room');
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.handleRooms(nextProps.chats, 'room');
+    this.handleRooms(nextProps.allChats, 'room');
   }
 
   componentWillUnmount() {
-    this.handleRooms(this.props.chats, 'leave room');
+    this.handleRooms(this.props.allChats, 'leave room');
   }
 
   handleRooms(chats, event) {
@@ -43,10 +43,13 @@ class Dashboard extends React.Component {
         <Nav />
         <div className="Dashboard-main-container">
           <ChatsList
-            chats={this.props.chats}
+            allChats={this.props.allChats}
             fetchChats={fetchChats}
-            setChat={setChat} />
-          <SingleChat />
+            setChat={setChat}
+          />
+          <SingleChat
+            singleChat={this.props.singleChat}
+          />
         </div>
       </div>
     )
@@ -55,7 +58,8 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = function(state) {
   return {
-    chats: state.chats.chats
+    allChats: state.chats.allChats,
+    singleChat: state.chats.singleChat
   }
 }
 
