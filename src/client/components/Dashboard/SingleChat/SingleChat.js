@@ -14,11 +14,15 @@ class SingleChat extends React.Component {
     e.preventDefault();
     const message = this.refs.msg.value;
     const userId = this.props.userId;
-    const chatId = this.props.singleChat.id;
+    const chatId = this.props.singleChat;
 
     socket.emit('msg', { message, userId, chatId });
 
     this.refs.messageForm.reset();
+  }
+
+  componentWillReceiveProps(props) {
+    console.log(props);
   }
 
   render() {
@@ -29,7 +33,13 @@ class SingleChat extends React.Component {
         <h2>SingleChat</h2>
           {
             this.props.singleChat ?
-              this.props.singleChat.messages.map((message, i) => (
+              this.props.allChats.reduce((acc, chat) => {
+                if (chat.id === this.props.singleChat) {
+                  acc = chat;
+                }
+
+                return acc;
+              }).messages.map((message, i) => (
                 <p key={i}>{message.message}</p>
               ))
               : null

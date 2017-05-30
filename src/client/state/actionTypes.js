@@ -8,6 +8,8 @@ const signupSuccess = 'SIGNUP_SUCCESS';
 const signupFailure = 'SIGNUP_FAILURE';
 const chatsSuccess = 'CHATS_SUCCESS';
 const newSingleChat = 'NEW_SINGLE_CHAT';
+const addNewMessage = 'ADD_NEW_MESSAGE';
+const updateSingleChat = 'UPDATE_SINGLE_CHAT';
 
 export {
   authSuccess,
@@ -17,5 +19,7 @@ export {
   signupSuccess,
   signupFailure,
   chatsSuccess,
-  newSingleChat
+  newSingleChat,
+  addNewMessage,
+  updateSingleChat
 }

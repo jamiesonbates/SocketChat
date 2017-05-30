@@ -7,14 +7,14 @@ import './Dashboard.css';
 import Nav from '../Nav/Nav';
 import ChatsList from './ChatsList/ChatsList';
 import SingleChat from './SingleChat/SingleChat';
-import { fetchChats, setChat } from '../../state/actions/chatActions';
+import { fetchChats, setChat, updateChat } from '../../state/actions/chatActions';
 
 class Dashboard extends React.Component {
   constructor() {
     super();
 
     socket.on('new msg', (payload) => {
-      console.log(payload);
+      this.props.dispatch(updateChat(payload));
     });
   }
 
@@ -54,6 +54,7 @@ class Dashboard extends React.Component {
           <SingleChat
             userId={this.props.userInfo.id}
             singleChat={this.props.singleChat}
+            allChats={this.props.allChats}
           />
         </div>
       </div>

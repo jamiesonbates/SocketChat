@@ -1,4 +1,9 @@
-import { chatsSuccess, newSingleChat } from '../actionTypes';
+import {
+  chatsSuccess,
+  newSingleChat,
+  addNewMessage,
+  updateSingleChat
+} from '../actionTypes';
 
 export default function reducer(state={
   allChats: null,
@@ -12,6 +17,18 @@ export default function reducer(state={
       }
 
     case newSingleChat:
+      return {
+        ...state,
+        singleChat: action.payload
+      }
+
+    case addNewMessage:
+      return {
+        ...state,
+        allChats: action.payload
+      }
+
+    case updateSingleChat:
       return {
         ...state,
         singleChat: action.payload

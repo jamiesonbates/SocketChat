@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { chatsSuccess, newSingleChat } from '../actionTypes';
+import {
+  chatsSuccess,
+  newSingleChat,
+  addNewMessage,
+  updateSingleChat
+} from '../actionTypes';
 
 export function fetchChats() {
   return function(dispatch, getState) {
@@ -20,15 +25,24 @@ export function fetchChats() {
 }
 
 export function setChat(id) {
+  return function(dispatch) {
+    dispatch({
+      type: newSingleChat,
+      payload: id
+    })
+  }
+}
+
+export function updateChat(msg) {
   return function(dispatch, getState) {
     const state = getState();
     const allChats = state.chats.allChats;
 
-    const nextChat = findChat(allChats, id);
+    const nextChats = addMessageToChat(allChats, msg);
 
     dispatch({
-      type: newSingleChat,
-      payload: nextChat
+      type: addNewMessage,
+      payload: nextChats
     })
   }
 }
@@ -41,4 +55,16 @@ function findChat(chats, id) {
   }
 
   return null;
+}
+
+function addMessageToChat(chats, msg) {
+  const nextChats = chats.map(chat => {
+    if (chat.id === msg.chatId) {
+      chat.messages.push(msg);
+    }
+
+    return chat;
+  })
+
+  return nextChats;
 }

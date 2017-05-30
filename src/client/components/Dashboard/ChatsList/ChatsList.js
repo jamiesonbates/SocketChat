@@ -12,6 +12,10 @@ class ChatsList extends React.Component {
     this.props.dispatch(this.props.setChat(id));
   }
 
+  componentWillReceiveProps(props) {
+    console.log(props.allChats);
+  }
+
   render() {
     return (
       <div className="ChatsList-container">
