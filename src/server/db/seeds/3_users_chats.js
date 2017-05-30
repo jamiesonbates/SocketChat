@@ -26,6 +26,21 @@ exports.seed = function(knex, Promise) {
           id: 5,
           user_id: 3,
           chat_id: 2
+        },
+        {
+          id: 6,
+          user_id: 1,
+          chat_id: 3,
+        },
+        {
+          id: 7,
+          user_id: 2,
+          chat_id: 3
+        },
+        {
+          id: 8,
+          user_id: 3,
+          chat_id: 3
         }
       ]);
     })

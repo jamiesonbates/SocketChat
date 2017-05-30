@@ -1,8 +1,7 @@
 import {
   chatsSuccess,
   newSingleChat,
-  addNewMessage,
-  updateSingleChat
+  addNewMessage
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -26,12 +25,6 @@ export default function reducer(state={
       return {
         ...state,
         allChats: action.payload
-      }
-
-    case updateSingleChat:
-      return {
-        ...state,
-        singleChat: action.payload
       }
   }
 

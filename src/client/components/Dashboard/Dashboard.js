@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import io from 'socket.io-client';
 const socket = io();
 
@@ -41,6 +42,32 @@ class Dashboard extends React.Component {
     }
   }
 
+  msgTimeFromNow(time) {
+    const timeFromNow = moment(time).valueOf();
+
+    if (timeFromNow > moment(Date.now()).subtract(1, 'm').valueOf()) {
+      return 'Now';
+    }
+    else if (timeFromNow > moment(Date.now()).subtract(1, 'h').valueOf()) {
+      return `${moment(Date.now()).diff(timeFromNow, 'm')} min`;
+    }
+    else if (timeFromNow > moment(Date.now()).subtract(1, 'd').valueOf()) {
+      return `${moment(Date.now()).diff(timeFromNow, 'h')} hour`;
+    }
+    else if (timeFromNow > moment(Date.now()).subtract(2, 'd').valueOf()) {
+      return 'Yesterday';
+    }
+    // needs to be tested
+    else if (timeFromNow > moment(Date.now()).subtract(7, 'd').valueOf()) {
+      return moment(timeFromNow).format('ddd');
+    }
+    else {
+      return moment(timeFromNow).format('M/D/YY');
+    }
+
+    return timeFromNow;
+  }
+
   render() {
     return (
       <div className="Dashboard-container">
@@ -49,12 +76,15 @@ class Dashboard extends React.Component {
           <ChatsList
             allChats={this.props.allChats}
             fetchChats={fetchChats}
+            msgTimeFromNow={this.msgTimeFromNow}
             setChat={setChat}
           />
+
           <SingleChat
-            userId={this.props.userInfo.id}
-            singleChat={this.props.singleChat}
             allChats={this.props.allChats}
+            msgTimeFromNow={this.msgTimeFromNow}
+            singleChat={this.props.singleChat}
+            userId={this.props.userInfo.id}
           />
         </div>
       </div>

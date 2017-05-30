@@ -3,8 +3,7 @@ import axios from 'axios';
 import {
   chatsSuccess,
   newSingleChat,
-  addNewMessage,
-  updateSingleChat
+  addNewMessage
 } from '../actionTypes';
 
 export function fetchChats() {

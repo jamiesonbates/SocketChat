@@ -8,6 +8,28 @@
 .SingleChat-messages-container {
   padding: 10px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.SingleChat-message {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.SingleChat-message-currentUser {
+  display: flex;
+  align-self: flex-end;
+}
+
+.SingleChat-message-otherUser {
+  display: flex;
+  align-self: flex-start;
+}
+
+.SingleChat-message-currentUser p, .SingleChat-message-otherUser p {
+  padding: 5px;
 }
 
 .SingleChat-form-container {

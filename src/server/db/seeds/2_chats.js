@@ -9,6 +9,10 @@ exports.seed = function(knex, Promise) {
         {
           id: 2,
           name: 'Three Person Chat'
+        },
+        {
+          id: 3,
+          name: null
         }
       ]);
     })

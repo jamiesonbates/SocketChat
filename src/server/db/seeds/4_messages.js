@@ -61,6 +61,12 @@ exports.seed = function(knex, Promise) {
           user_id: 3,
           chat_id: 2,
           message: 'Whattup'
+        },
+        {
+          id: 11,
+          user_id: 1,
+          chat_id: 3,
+          message: 'Testing'
         }
       ]);
     })

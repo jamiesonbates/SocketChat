@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import './ChatsList.css';
 import wrapDash from '../../../containers/WrapDash';
@@ -10,10 +11,6 @@ class ChatsList extends React.Component {
 
   openChat(id) {
     this.props.dispatch(this.props.setChat(id));
-  }
-
-  componentWillReceiveProps(props) {
-    console.log(props.allChats);
   }
 
   render() {
@@ -29,7 +26,61 @@ class ChatsList extends React.Component {
                     key={i}
                     className="ChatsList-chat"
                     onClick={() => this.openChat(chat.id)}>
-                    <p>{chat.name}</p>
+                    {
+                      chat.name ?
+                        <div>
+                          <div>
+                            <p>{chat.name}</p>
+                            {
+                              <p className="ChatsList-last-message">
+                                {chat.messages[chat.messages.length - 1].message}
+                              </p>
+                            }
+                          </div>
+
+                          <div>
+                            {
+                              <p>
+                                {
+                                  this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].created_at)
+                                }
+                              </p>
+                            }
+                          </div>
+                        </div>
+                      :
+                        <div>
+                          <div>
+                            {
+                              chat.users.map((user, i) => (
+                                <span key={i}>
+                                  {user.first_name} {user.last_name}
+                                  {
+                                    i !== chat.users.length - 1 ?
+                                    <span>, </span>
+                                    : null
+                                  }
+                                </span>
+                              ))
+                            }
+
+                            {
+                              <p className="ChatsList-last-message">
+                                {chat.messages[chat.messages.length - 1].message}
+                              </p>
+                            }
+                          </div>
+
+                          <div>
+                            <p>
+                              {
+                                this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].created_at)
+                              }
+                            </p>
+                          </div>
+                        </div>
+
+                    }
                   </div>
                 ))
               : null

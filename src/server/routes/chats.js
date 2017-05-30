@@ -10,9 +10,10 @@ router.get('/:userId', (req, res, next) => {
     FROM (SELECT c1.id, c1.name,
            (SELECT json_agg(msg)
            FROM (
-             SELECT id, message, user_id
+             SELECT id, message, user_id, created_at
              FROM messages
              WHERE chat_id = c1.id
+             ORDER BY created_at ASC
            ) msg) as messages,
            (SELECT json_agg(usr)
            FROM (

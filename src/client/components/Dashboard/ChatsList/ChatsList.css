@@ -21,3 +21,7 @@
   background-color: #555657;
   cursor: pointer;
 }
+
+.ChatsList-last-message {
+  color: gray;
+}

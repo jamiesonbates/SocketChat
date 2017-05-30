@@ -21,10 +21,6 @@ class SingleChat extends React.Component {
     this.refs.messageForm.reset();
   }
 
-  componentWillReceiveProps(props) {
-    console.log(props);
-  }
-
   render() {
     return (
       <div className="SingleChat-container">
@@ -39,10 +35,37 @@ class SingleChat extends React.Component {
                     acc = chat;
                   }
 
-                  return acc.messages;
+                  return acc;
                 })
-                .map((message, i) => (
-                  <p key={i}>{message.message}</p>
+                .messages.map((message, i) => (
+                  <div className="SingleChat-message">
+                    {
+                      message.user_id === this.props.userId ?
+                        <div
+                          key={i}
+                          className="SingleChat-message-currentUser">
+                          <p>
+                            {this.props.msgTimeFromNow(message.created_at)}
+                          </p>
+
+                          <p>
+                            {message.message}
+                          </p>
+                        </div>
+                      :
+                        <div key={i} className="SingleChat-message-otherUser">
+                          <p key={i}>
+                            {message.message}
+                          </p>
+
+                          <p>
+                            {this.props.msgTimeFromNow(message.created_at)}
+                          </p>
+                        </div>
+
+                    }
+
+                  </div>
                 ))
               : null
           }
