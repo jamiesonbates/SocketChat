@@ -38,14 +38,12 @@ class SingleChat extends React.Component {
                   return acc;
                 })
                 .messages.map((message, i) => (
-                  <div className="SingleChat-message">
+                  <div key={i} className="SingleChat-message">
                     {
-                      message.user_id === this.props.userId ?
-                        <div
-                          key={i}
-                          className="SingleChat-message-currentUser">
+                      message.userId === this.props.userId ?
+                        <div className="SingleChat-message-currentUser">
                           <p>
-                            {this.props.msgTimeFromNow(message.created_at)}
+                            {this.props.msgTimeFromNow(message.createdAt)}
                           </p>
 
                           <p>
@@ -53,13 +51,13 @@ class SingleChat extends React.Component {
                           </p>
                         </div>
                       :
-                        <div key={i} className="SingleChat-message-otherUser">
-                          <p key={i}>
+                        <div className="SingleChat-message-otherUser">
+                          <p>
                             {message.message}
                           </p>
 
                           <p>
-                            {this.props.msgTimeFromNow(message.created_at)}
+                            {this.props.msgTimeFromNow(message.createdAt)}
                           </p>
                         </div>
 

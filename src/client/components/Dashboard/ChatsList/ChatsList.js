@@ -42,7 +42,7 @@ class ChatsList extends React.Component {
                             {
                               <p>
                                 {
-                                  this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].created_at)
+                                  this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].createdAt)
                                 }
                               </p>
                             }
@@ -54,7 +54,7 @@ class ChatsList extends React.Component {
                             {
                               chat.users.map((user, i) => (
                                 <span key={i}>
-                                  {user.first_name} {user.last_name}
+                                  {user.firstName} {user.lastName}
                                   {
                                     i !== chat.users.length - 1 ?
                                     <span>, </span>
@@ -74,7 +74,7 @@ class ChatsList extends React.Component {
                           <div>
                             <p>
                               {
-                                this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].created_at)
+                                this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].createdAt)
                               }
                             </p>
                           </div>

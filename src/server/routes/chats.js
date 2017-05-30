@@ -28,7 +28,7 @@ router.get('/:userId', (req, res, next) => {
          WHERE uc2.user_id = ${req.params.userId}
     ) as chats;`)
     .then((query) => {
-      res.send(query.rows);
+      res.send(camelizeKeys(query.rows));
     })
     .catch((err) => {
       next(err);
