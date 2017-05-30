@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './SingleChat.css';
+import wrapDash from '../../../containers/WrapDash';
 
 class SingleChat extends React.Component {
   render() {
@@ -12,4 +13,4 @@ class SingleChat extends React.Component {
   }
 }
 
-export default SingleChat;
+export default wrapDash(SingleChat);

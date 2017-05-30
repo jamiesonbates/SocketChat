@@ -1,12 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import './ChatsList.css';
+import wrapDash from '../../../containers/WrapDash';
 
 class ChatsList extends React.Component {
   constructor(props) {
     super(props);
   }
+  
   openChat(id) {
     this.props.dispatch(this.props.setChat(id));
   }
@@ -34,10 +35,4 @@ class ChatsList extends React.Component {
   }
 }
 
-const mapStateToProps = function(state) {
-  return {
-
-  }
-}
-
-export default connect(mapStateToProps)(ChatsList);
+export default wrapDash(ChatsList);

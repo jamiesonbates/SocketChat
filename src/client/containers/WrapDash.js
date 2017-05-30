@@ -13,12 +13,14 @@ export default function(ComposedClass) {
       )
     }
 
-    function mapStateToProps(state) {
-      return {
 
-      }
-    }
-
-    return connect(mapStateToProps)(WrapDash);
   }
+
+  function mapStateToProps(state) {
+    return {
+
+    }
+  }
+  
+  return connect(mapStateToProps)(WrapDash);
 }
