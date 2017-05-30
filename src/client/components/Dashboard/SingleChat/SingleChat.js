@@ -40,9 +40,7 @@ class SingleChat extends React.Component {
                   }
 
                   return acc.messages;
-                })
-                .messages
-                .map((message, i) => (
+                }).map((message, i) => (
                   <p key={i}>{message.message}</p>
                 ))
               : null
