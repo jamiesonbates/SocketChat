@@ -10,6 +10,8 @@ const chatsSuccess = 'CHATS_SUCCESS';
 const newSingleChat = 'NEW_SINGLE_CHAT';
 const addNewMessage = 'ADD_NEW_MESSAGE';
 const updateSingleChat = 'UPDATE_SINGLE_CHAT';
+const userNowOnline = 'USER_NOW_ONLINE';
+const userNowOffline = 'USER_NOW_OFFLINE';
 
 export {
   authSuccess,
@@ -21,5 +23,7 @@ export {
   chatsSuccess,
   newSingleChat,
   addNewMessage,
-  updateSingleChat
+  updateSingleChat,
+  userNowOnline,
+  userNowOffline
 }

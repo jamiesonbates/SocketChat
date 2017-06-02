@@ -38,7 +38,8 @@ class SingleChat extends React.Component {
 
                   return acc;
                 })
-                .messages.map((message, i) => (
+                .messages
+                .map((message, i) => (
                   <div key={i} className="SingleChat-message">
                     {
                       message.userId === this.props.userId ?
@@ -52,10 +53,9 @@ class SingleChat extends React.Component {
                           message={message.message}
                         />
                     }
-
                   </div>
                 ))
-              : null
+            : null
           }
         </div>
 

@@ -55,6 +55,7 @@ const server = app.listen(WEB_PORT, () => {
 const io = socketIO().listen(server);
 
 io.on('connection', (socket) => {
+  console.log(socket.id);
   console.log('a user connected');
 
   socket.on('disconnect', () => {
@@ -62,12 +63,32 @@ io.on('connection', (socket) => {
   });
 
   socket.on('room', (data) => {
-    console.log(`user entered room: ${data.room}`);
     socket.join(data.room);
   });
 
   socket.on('leave room', (data) => {
     socket.leave(data.room);
+  });
+
+  socket.on('user online', (data) => {
+    dbActions.updateOnlineUsers(data.userId, socket.id, true)
+      .then(() => {
+
+      });
+  });
+
+  socket.on('user offline', (data) => {
+    dbActions.updateOnlineUsers(data.userId, null, false)
+      .then(() => {
+        return dbActions.getCommonUsers(data.userId);
+      })
+      .then((users) => {
+        for (const user of users) {
+          if (user.online) {
+            socket.to(user.online).emit('common user now offline', data.id);
+          }
+        }
+      })
   });
 
   socket.on('msg', (data) => {

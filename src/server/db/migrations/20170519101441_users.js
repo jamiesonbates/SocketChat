@@ -14,6 +14,7 @@ exports.up = function(knex, Promise) {
       .unique()
       .notNullable();
     table.string('h_pw').notNullable();
+    table.string('online').defaultTo(null);
     table.timestamps(true, true);
   })
 };

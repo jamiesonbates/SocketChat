@@ -45,7 +45,7 @@ class ChatsList extends React.Component {
                                   {user.firstName} {user.lastName}
                                   {
                                     i !== chat.users.length - 1 ?
-                                    <span>, </span>
+                                      <span>, </span>
                                     : null
                                   }
                                 </span>

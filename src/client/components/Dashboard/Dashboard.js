@@ -8,7 +8,7 @@ import './Dashboard.css';
 import Nav from '../Nav/Nav';
 import ChatsList from './ChatsList/ChatsList';
 import SingleChat from './SingleChat/SingleChat';
-import { fetchChats, setChat, updateChat } from '../../state/actions/chatActions';
+import { fetchChats, setChat, updateChat, updateOnlineUsers } from '../../state/actions/chatActions';
 
 class Dashboard extends React.Component {
   constructor() {
@@ -17,6 +17,14 @@ class Dashboard extends React.Component {
     socket.on('new msg', (payload) => {
       this.props.dispatch(updateChat(payload));
     });
+
+    socket.on('user online', (payload) => { 
+      this.props.dispatch(updateOnlineUsers(payload, true));
+    });
+
+    socket.on('user offline', (payload) => {
+      this.props.dispatch(updateOnlineUsers(payload, false));
+    })
   }
 
   componentDidMount() {
@@ -33,12 +41,13 @@ class Dashboard extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log('here');
     this.handleRooms(this.props.allChats, 'leave room');
   }
 
   handleRooms(chats, event) {
     for (const chat of chats) {
-      socket.emit(event, { room: chat.id });
+      socket.emit(event, { room: chat.id, userId: this.props.userInfo.id });
     }
   }
 

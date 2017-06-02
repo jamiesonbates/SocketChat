@@ -3,7 +3,9 @@ import axios from 'axios';
 import {
   chatsSuccess,
   newSingleChat,
-  addNewMessage
+  addNewMessage,
+  userNowOnline,
+  userNowOffline
 } from '../actionTypes';
 
 export function fetchChats() {
@@ -43,6 +45,35 @@ export function updateChat(msg) {
       type: addNewMessage,
       payload: nextChats
     })
+  }
+}
+
+export function updateOnlineUsers(userId, isOnline) {
+  return function(dispatch, getState) {
+    const state = getState();
+    let nextUsersOnline = state.chats.usersOnline;
+
+    if (isOnline) {
+      nextUsersOnline.push(userId);
+
+      return dispatch({
+        type: userNowOnline,
+        payload: nextUsersOnline
+      })
+    }
+    else {
+      // TODO: what algo should I use here?
+      nextUsersOnline = nextUsersOnline.filter(curUser => {
+        if (curUser !== userId) {
+          return curUser;
+        }
+      });
+
+      return dispatch({
+        type: userNowOffline,
+        payload: nextUsersOnline
+      })
+    }
   }
 }
 
