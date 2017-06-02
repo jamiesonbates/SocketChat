@@ -4,6 +4,7 @@ const socket = io();
 
 import './SingleChat.css';
 import wrapDash from '../../../containers/WrapDash';
+import Message from './Message';
 
 class SingleChat extends React.Component {
   constructor(props) {
@@ -41,26 +42,15 @@ class SingleChat extends React.Component {
                   <div key={i} className="SingleChat-message">
                     {
                       message.userId === this.props.userId ?
-                        <div className="SingleChat-message-currentUser">
-                          <p>
-                            {this.props.msgTimeFromNow(message.createdAt)}
-                          </p>
-
-                          <p>
-                            {message.message}
-                          </p>
-                        </div>
+                        <Message
+                          messageClass={'SingleChat-message-currentUser'}
+                          message={message.message}
+                        />
                       :
-                        <div className="SingleChat-message-otherUser">
-                          <p>
-                            {message.message}
-                          </p>
-
-                          <p>
-                            {this.props.msgTimeFromNow(message.createdAt)}
-                          </p>
-                        </div>
-
+                        <Message
+                          messageClass={'SingleChat-message-otherUser'}
+                          message={message.message}
+                        />
                     }
 
                   </div>

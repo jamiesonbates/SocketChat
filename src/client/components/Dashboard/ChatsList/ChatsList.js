@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import './ChatsList.css';
 import wrapDash from '../../../containers/WrapDash';
+import LastMessage from './LastMessage';
 
 class ChatsList extends React.Component {
   constructor(props) {
@@ -31,11 +32,8 @@ class ChatsList extends React.Component {
                         <div>
                           <div>
                             <p>{chat.name}</p>
-                            {
-                              <p className="ChatsList-last-message">
-                                {chat.messages[chat.messages.length - 1].message}
-                              </p>
-                            }
+
+                            <LastMessage messages={chat.messages} />
                           </div>
                         </div>
                       :
@@ -54,11 +52,7 @@ class ChatsList extends React.Component {
                               ))
                             }
 
-                            {
-                              <p className="ChatsList-last-message">
-                                {chat.messages[chat.messages.length - 1].message}
-                              </p>
-                            }
+                            <LastMessage messages={chat.messages} />
                           </div>
                         </div>
 
