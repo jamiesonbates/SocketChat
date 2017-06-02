@@ -37,16 +37,6 @@ class ChatsList extends React.Component {
                               </p>
                             }
                           </div>
-
-                          <div>
-                            {
-                              <p>
-                                {
-                                  this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].createdAt)
-                                }
-                              </p>
-                            }
-                          </div>
                         </div>
                       :
                         <div>
@@ -69,14 +59,6 @@ class ChatsList extends React.Component {
                                 {chat.messages[chat.messages.length - 1].message}
                               </p>
                             }
-                          </div>
-
-                          <div>
-                            <p>
-                              {
-                                this.props.msgTimeFromNow(chat.messages[chat.messages.length - 1].createdAt)
-                              }
-                            </p>
                           </div>
                         </div>
 
