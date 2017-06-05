@@ -4,7 +4,7 @@ const db = require('./db/connection');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 
 function createMessage(message) {
-  return db('messages').insert(decamelizeKeys(message));
+  return db('messages').insert(decamelizeKeys(message)).returning('*');
 }
 
 function updateUserStatus(userId, socketId, isOnline) {

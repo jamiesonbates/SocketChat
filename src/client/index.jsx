@@ -10,12 +10,12 @@ import { APP_CONTAINER_SELECTOR } from '../shared/config';
 
 const rootElement = document.querySelector(APP_CONTAINER_SELECTOR);
 
-ReactDOM.render(<Root store={store} />, rootElement);
+ReactDOM.render(<Root store={store()} />, rootElement);
 
 if (module.hot) {
   module.hot.accept('./components/Root', () => {
     const NextRoot = require('./components/Root');
 
-    ReactDOM.render(<NextRoot store={store} />, NextRoot);
+    ReactDOM.render(<NextRoot store={store()} />, NextRoot);
   });
 };

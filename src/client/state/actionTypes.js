@@ -12,6 +12,10 @@ const addNewMessage = 'ADD_NEW_MESSAGE';
 const updateSingleChat = 'UPDATE_SINGLE_CHAT';
 const userNowOnline = 'USER_NOW_ONLINE';
 const userNowOffline = 'USER_NOW_OFFLINE';
+const connectType = 'CONNECT';
+const disconnectType = 'DISCONNECT';
+const manageRoomType = 'MANAGE_ROOM';
+const sendMessageType = 'SEND_MESSAGE';
 
 export {
   authSuccess,
@@ -25,5 +29,9 @@ export {
   addNewMessage,
   updateSingleChat,
   userNowOnline,
-  userNowOffline
+  userNowOffline,
+  connectType,
+  disconnectType,
+  manageRoomType,
+  sendMessageType
 }

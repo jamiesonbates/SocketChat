@@ -55,15 +55,15 @@ const server = app.listen(WEB_PORT, () => {
 const io = socketIO().listen(server);
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
   console.log('a user connected');
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 
-  socket.on('room', (data) => {
-    socket.join(data.room);
+  socket.on('join room', (data) => {
+    console.log(`a user joined room ${data}`);
+    socket.join(data);
   });
 
   socket.on('leave room', (data) => {
@@ -73,8 +73,15 @@ io.on('connection', (socket) => {
   socket.on('user online', (data) => {
     dbActions.updateOnlineUsers(data.userId, socket.id, true)
       .then(() => {
-
-      });
+        return dbActions.getCommonUsers(data.userId);
+      })
+      .then((users) => {
+        for (const user of users) {
+          if (user.online) {
+            socket.to(user.online).emit('common user now online', data.id);
+          }
+        }
+      })
   });
 
   socket.on('user offline', (data) => {
@@ -95,6 +102,7 @@ io.on('connection', (socket) => {
     dbActions.createMessage(data)
       .then((msg) => {
         msg = camelizeKeys(msg[0]);
+        console.log('chat id', msg.chatId);
 
         socket.broadcast.to(msg.chatId).emit('new msg', msg);
         console.log(`new message emitted to room ${msg.chatId}`);

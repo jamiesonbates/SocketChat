@@ -1,6 +1,4 @@
 import React from 'react';
-import io from 'socket.io-client';
-const socket = io();
 
 import './SingleChat.css';
 import wrapDash from '../../../containers/WrapDash';
@@ -17,8 +15,7 @@ class SingleChat extends React.Component {
     const userId = this.props.userId;
     const chatId = this.props.singleChat;
 
-    socket.emit('msg', { message, userId, chatId });
-
+    this.props.dispatch(this.props.sendMessage(message, userId, chatId));
     this.refs.messageForm.reset();
   }
 

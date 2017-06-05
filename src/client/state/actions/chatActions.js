@@ -5,8 +5,17 @@ import {
   newSingleChat,
   addNewMessage,
   userNowOnline,
-  userNowOffline
+  userNowOffline,
+  manageRoomType,
+  sendMessageType
 } from '../actionTypes';
+
+export function manageRoom(chatId, event) {
+  return {
+    type: manageRoomType,
+    payload: { chatId, event }
+  }
+}
 
 export function fetchChats() {
   return function(dispatch, getState) {
@@ -34,7 +43,7 @@ export function setChat(id) {
   }
 }
 
-export function updateChat(msg) {
+export function receiveMessage(msg) {
   return function(dispatch, getState) {
     const state = getState();
     const allChats = state.chats.allChats;
@@ -45,6 +54,13 @@ export function updateChat(msg) {
       type: addNewMessage,
       payload: nextChats
     })
+  }
+}
+
+export function sendMessage(message, userId, chatId) {
+  return {
+    type: sendMessageType,
+    payload: { message, userId, chatId }
   }
 }
 

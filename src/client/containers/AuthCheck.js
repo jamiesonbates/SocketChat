@@ -10,11 +10,11 @@ export default function(ComposedClass) {
     }
 
     componentWillMount() {
-      this.checkAuth(this.props)
+      this.checkAuth(this.props);
     }
 
     componentWillReceiveProps(nextProps) {
-      this.checkAuth(nextProps)
+      this.checkAuth(nextProps);
     }
 
     checkAuth(props) {
