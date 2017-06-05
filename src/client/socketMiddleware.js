@@ -14,6 +14,7 @@ import {
 
 const socketMiddleware = (function() {
   let socket = null;
+  const timeouts = [];
 
   const onReceive = (store, payload) => {
     store.dispatch(receiveMessage(payload));
@@ -37,7 +38,15 @@ const socketMiddleware = (function() {
   }
 
   const onSomeoneStartedTyping = (store, payload) => {
+    for (const timeout of timeouts) {
+      clearTimeout(timeout);
+    }
+
     store.dispatch(someoneStartedTyping(payload));
+
+    const timeout = setTimeout(() => store.dispatch(someoneStoppedTyping(payload)), 2000);
+
+    timeouts.push(timeout);
   }
 
   const onSomeoneStoppedTyping = (store, payload) => {

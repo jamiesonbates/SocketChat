@@ -23,6 +23,7 @@ class SingleChat extends React.Component {
     const chatId = this.props.singleChat;
 
     this.props.dispatch(this.props.sendMessage(message, userId, chatId));
+    this.props.dispatch(this.props.stoppedTyping(chatId));
     this.refs.messageForm.reset();
   }
 
@@ -35,12 +36,6 @@ class SingleChat extends React.Component {
     else {
       this.props.dispatch(this.props.stoppedTyping(chatId));
     }
-  }
-
-  componentWillReceiveProps(props) {
-    console.log(props.singleChat);
-    console.log(props.chatsWithTyping);
-    console.log(props.chatsWithTyping.includes(props.singleChat));
   }
 
   render() {
@@ -88,7 +83,12 @@ class SingleChat extends React.Component {
 
         <div className="SingleChat-form-container">
           <form onSubmit={this.sendMessage.bind(this)} ref="messageForm">
-            <input onChange={() => this.handleTyping(true)} type="text" ref="msg" placeholder="Send a message" />
+            <input
+              onBlur={() => this.handleTyping(false)}
+              onChange={() => this.handleTyping(true)}
+              type="text"
+              ref="msg"
+              placeholder="Send a message" />
             <button type="submit">Send</button>
           </form>
         </div>
