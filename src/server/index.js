@@ -105,6 +105,7 @@ io.on('connection', (socket) => {
         console.log('chat id', msg.chatId);
 
         socket.broadcast.to(msg.chatId).emit('new msg', msg);
+        socket.emit('new msg', msg);
         console.log(`new message emitted to room ${msg.chatId}`);
       })
   })
