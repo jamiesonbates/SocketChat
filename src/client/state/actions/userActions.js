@@ -14,13 +14,13 @@ export function userAuth() {
   return function(dispatch) {
     axios.get('/api/users')
       .then((res) => {
-        dispatch({
+        return dispatch({
           type: authSuccess,
           payload: res.data[0]
         })
       })
       .catch((err) => {
-        dispatch({
+        return dispatch({
           type: authFailure,
           payload: false
         })
@@ -34,14 +34,14 @@ export function userLogin(email, password) {
   return function(dispatch) {
     axios.post('/api/token', { email, password })
       .then((res) => {
-        dispatch({
+        return dispatch({
           type: loginSuccess,
           payload: res.data
         });
         browserHistory.push('/');
       })
       .catch((err) => {
-        dispatch({
+        return dispatch({
           type: loginFailure,
           payload: 'Bad email or password'
         })
@@ -53,7 +53,7 @@ export function userSignUp(user) {
   return function(dispatch) {
     axios.post('/api/users', user)
       .then((res) => {
-        dispatch({
+        return dispatch({
           type: signupSuccess,
           payload: res.data
         });
@@ -61,9 +61,3 @@ export function userSignUp(user) {
       })
   }
 }
-
-// export function userSignOut() {
-//   return function(dispatch) {
-//     axios.delete('/token')
-//   }
-// }

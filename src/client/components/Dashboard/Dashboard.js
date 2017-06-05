@@ -6,7 +6,14 @@ import './Dashboard.css';
 import Nav from '../Nav/Nav';
 import ChatsList from './ChatsList/ChatsList';
 import SingleChat from './SingleChat/SingleChat';
-import { fetchChats, setChat, manageRoom, sendMessage } from '../../state/actions/chatActions';
+import {
+  fetchChats,
+  setChat,
+  manageRoom,
+  sendMessage,
+  startedTyping,
+  stoppedTyping
+} from '../../state/actions/chatActions';
 import {
   connectSocket,
   disconnectSocket
@@ -40,10 +47,7 @@ class Dashboard extends React.Component {
 
   handleRooms(chats, event) {
     for (const chat of chats) {
-      this.props.dispatch(manageRoom(
-        chat.id,
-        event
-      ));
+      this.props.dispatch(manageRoom(chat.id, event));
     }
   }
 
@@ -58,11 +62,15 @@ class Dashboard extends React.Component {
             setChat={setChat}
           />
 
+          {/* Where should methods live and/or when should they be passed */}
           <SingleChat
             allChats={this.props.allChats}
             singleChat={this.props.singleChat}
             sendMessage={sendMessage}
             userId={this.props.userInfo.id}
+            startedTyping={startedTyping}
+            stoppedTyping={stoppedTyping}
+            chatsWithTyping={this.props.chatsWithTyping}
           />
         </div>
       </div>
@@ -74,7 +82,8 @@ const mapStateToProps = function(state) {
   return {
     allChats: state.chats.allChats,
     singleChat: state.chats.singleChat,
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
+    chatsWithTyping: state.chats.chatsWithTyping
   }
 }
 

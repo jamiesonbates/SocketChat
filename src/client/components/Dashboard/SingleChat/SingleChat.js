@@ -3,10 +3,17 @@ import React from 'react';
 import './SingleChat.css';
 import wrapDash from '../../../containers/WrapDash';
 import Message from './Message';
+import Typing from './Typing';
 
 class SingleChat extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleTyping = this.handleTyping.bind(this);
+
+    console.log(this.props.singleChat);
+    console.log(this.props.chatsWithTyping);
+    console.log(this.props.chatsWithTyping.includes(this.props.singleChat));
   }
 
   sendMessage(e) {
@@ -17,6 +24,23 @@ class SingleChat extends React.Component {
 
     this.props.dispatch(this.props.sendMessage(message, userId, chatId));
     this.refs.messageForm.reset();
+  }
+
+  handleTyping(isTyping) {
+    const chatId = this.props.singleChat;
+
+    if (isTyping) {
+      this.props.dispatch(this.props.startedTyping(chatId));
+    }
+    else {
+      this.props.dispatch(this.props.stoppedTyping(chatId));
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    console.log(props.singleChat);
+    console.log(props.chatsWithTyping);
+    console.log(props.chatsWithTyping.includes(props.singleChat));
   }
 
   render() {
@@ -56,9 +80,15 @@ class SingleChat extends React.Component {
           }
         </div>
 
+        {
+          this.props.chatsWithTyping.includes(this.props.singleChat) ?
+            <Typing />
+          : null
+        }
+
         <div className="SingleChat-form-container">
           <form onSubmit={this.sendMessage.bind(this)} ref="messageForm">
-            <input type="text" ref="msg" placeholder="Send a message" />
+            <input onChange={() => this.handleTyping(true)} type="text" ref="msg" placeholder="Send a message" />
             <button type="submit">Send</button>
           </form>
         </div>

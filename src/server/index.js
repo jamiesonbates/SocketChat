@@ -102,11 +102,19 @@ io.on('connection', (socket) => {
     dbActions.createMessage(data)
       .then((msg) => {
         msg = camelizeKeys(msg[0]);
-        console.log('chat id', msg.chatId);
 
         socket.broadcast.to(msg.chatId).emit('new msg', msg);
         socket.emit('new msg', msg);
-        console.log(`new message emitted to room ${msg.chatId}`);
       })
+  });
+
+  socket.on('started typing', (chatId) => {
+    console.log('started', chatId);
+    socket.broadcast.to(chatId).emit('someone started typing', chatId);
+  });
+
+  socket.on('stopped typing', (chatId) => {
+    console.log('stopped', chatId);
+    socket.broadcast.to(chatId).emit('someone stopped typing', chatId);
   })
 });

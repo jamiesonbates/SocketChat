@@ -1,15 +1,22 @@
 import io from 'socket.io-client';
 
-import { receiveMessage } from './state/actions/chatActions';
+import { receiveMessage, someoneStartedTyping, someoneStoppedTyping } from './state/actions/chatActions';
+import {
+  connectType,
+  disconnectType,
+  manageRoomType,
+  sendMessageType,
+  startedTypingType,
+  stoppedTypingType,
+  someoneStartedTypingType,
+  someoneStoppedTypingType
+} from './state/actionTypes';
 
 const socketMiddleware = (function() {
   let socket = null;
 
   const onReceive = (store, payload) => {
-    console.log('recieved message', payload);
-    const msg = payload;
-
-    store.dispatch(receiveMessage(msg));
+    store.dispatch(receiveMessage(payload));
   }
 
   const onManageRoom = (ws, payload) => {
@@ -21,19 +28,36 @@ const socketMiddleware = (function() {
     ws.emit('msg', payload);
   }
 
+  const onStartTyping = (ws, payload) => {
+    ws.emit('started typing', payload);
+  }
+
+  const onStopTyping = (ws, payload) => {
+    ws.emit('stopped typing', payload);
+  }
+
+  const onSomeoneStartedTyping = (store, payload) => {
+    store.dispatch(someoneStartedTyping(payload));
+  }
+
+  const onSomeoneStoppedTyping = (store, payload) => {
+    store.dispatch(someoneStoppedTyping(payload));
+  }
+
   return store => next => action => {
     switch(action.type) {
-      case 'CONNECT':
+      case connectType:
         if (socket != null) {
           socket.close();
         }
 
         socket = io();
         socket.on('new msg', (payload) => onReceive(store, payload));
+        socket.on('someone started typing', (payload) => onSomeoneStartedTyping(store, payload));
+        socket.on('someone stopped typing', (payload) => onSomeoneStoppedTyping(store, payload));
 
         break;
-
-      case 'DISCONNECT':
+      case disconnectType:
         if (socket != null) {
           socket.close();
         }
@@ -41,15 +65,22 @@ const socketMiddleware = (function() {
         socket = null;
 
         break;
-
-      case 'SEND_MESSAGE':
-        onSendMessage(socket, action.payload);
-
-       break;
-
-      case 'MANAGE_ROOM':
+      case manageRoomType:
         onManageRoom(socket, action.payload);
 
+        break;
+      case sendMessageType:
+        onSendMessage(socket, action.payload);
+
+        break;
+      case startedTypingType:
+        onStartTyping(socket, action.payload);
+
+        break;
+      case stoppedTypingType:
+        onStopTyping(socket, action.payload);
+
+        break;
       default:
         return next(action);
     }

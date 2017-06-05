@@ -3,13 +3,16 @@ import {
   newSingleChat,
   addNewMessage,
   userNowOnline,
-  userNowOffline
+  userNowOffline,
+  someoneStartedTypingType,
+  someoneStoppedTypingType
 } from '../actionTypes';
 
 export default function reducer(state={
   allChats: null,
   singleChat: null,
-  usersOnline: []
+  usersOnline: [],
+  chatsWithTyping: []
 }, action) {
   switch(action.type) {
     case chatsSuccess:
@@ -40,6 +43,18 @@ export default function reducer(state={
       return {
         ...state,
         usersOnline: action.payload
+      }
+
+    case someoneStartedTypingType:
+      return {
+        ...state,
+        chatsWithTyping: action.payload
+      }
+
+    case someoneStoppedTypingType:
+      return {
+        ...state,
+        chatsWithTyping: action.payload
       }
   }
 

@@ -16,6 +16,10 @@ const connectType = 'CONNECT';
 const disconnectType = 'DISCONNECT';
 const manageRoomType = 'MANAGE_ROOM';
 const sendMessageType = 'SEND_MESSAGE';
+const startedTypingType = 'STARTED_TYPING';
+const stoppedTypingType = 'STOPPED_TYPING';
+const someoneStartedTypingType = 'SOMEONE_STARTED_TYPING';
+const someoneStoppedTypingType = 'SOMEONE_STOPPED_TYPING';
 
 export {
   authSuccess,
@@ -33,5 +37,9 @@ export {
   connectType,
   disconnectType,
   manageRoomType,
-  sendMessageType
+  sendMessageType,
+  startedTypingType,
+  stoppedTypingType,
+  someoneStartedTypingType,
+  someoneStoppedTypingType
 }
