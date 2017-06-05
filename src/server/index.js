@@ -62,7 +62,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('join room', (data) => {
-    console.log(`a user joined room ${data}`);
     socket.join(data);
   });
 
@@ -109,12 +108,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('started typing', (chatId) => {
-    console.log('started', chatId);
     socket.broadcast.to(chatId).emit('someone started typing', chatId);
   });
 
   socket.on('stopped typing', (chatId) => {
-    console.log('stopped', chatId);
     socket.broadcast.to(chatId).emit('someone stopped typing', chatId);
   })
 });

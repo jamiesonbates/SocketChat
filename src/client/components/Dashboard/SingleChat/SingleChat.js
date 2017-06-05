@@ -10,10 +10,6 @@ class SingleChat extends React.Component {
     super(props);
 
     this.handleTyping = this.handleTyping.bind(this);
-
-    console.log(this.props.singleChat);
-    console.log(this.props.chatsWithTyping);
-    console.log(this.props.chatsWithTyping.includes(this.props.singleChat));
   }
 
   sendMessage(e) {

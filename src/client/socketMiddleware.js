@@ -14,39 +14,45 @@ import {
 
 const socketMiddleware = (function() {
   let socket = null;
-  const timeouts = [];
+  const typingTimeouts = [];
 
+  // good
   const onReceive = (store, payload) => {
     store.dispatch(receiveMessage(payload));
   }
 
+  // good
   const onManageRoom = (ws, payload) => {
     const { event, chatId } = payload;
     ws.emit(event, chatId);
   }
 
+  // good
   const onSendMessage = (ws, payload) => {
     ws.emit('msg', payload);
   }
 
+  // good
   const onStartTyping = (ws, payload) => {
     ws.emit('started typing', payload);
   }
 
+  // good
   const onStopTyping = (ws, payload) => {
     ws.emit('stopped typing', payload);
   }
 
+  // good
   const onSomeoneStartedTyping = (store, payload) => {
-    for (const timeout of timeouts) {
+    for (const timeout of typingTimeouts) {
       clearTimeout(timeout);
     }
 
     store.dispatch(someoneStartedTyping(payload));
 
-    const timeout = setTimeout(() => store.dispatch(someoneStoppedTyping(payload)), 2000);
+    const timeout = setTimeout(() =>    store.dispatch(someoneStoppedTyping(payload)), 2000);
 
-    timeouts.push(timeout);
+    typingTimeouts.push(timeout);
   }
 
   const onSomeoneStoppedTyping = (store, payload) => {
