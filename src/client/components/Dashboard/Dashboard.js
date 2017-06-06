@@ -74,6 +74,7 @@ class Dashboard extends React.Component {
             startedTyping={startedTyping}
             stoppedTyping={stoppedTyping}
             chatsWithTyping={this.props.chatsWithTyping}
+            usersOnline={this.props.usersOnline}
           />
         </div>
       </div>
@@ -86,7 +87,8 @@ const mapStateToProps = function(state) {
     allChats: state.chats.allChats,
     singleChat: state.chats.singleChat,
     userInfo: state.userInfo,
-    chatsWithTyping: state.chats.chatsWithTyping
+    chatsWithTyping: state.chats.chatsWithTyping,
+    usersOnline: state.chats.usersOnline
   }
 }
 

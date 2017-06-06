@@ -18,23 +18,48 @@
   padding: 2px;
 }
 
-.SingleChat-message-currentUser, .SingleChat-message-otherUser {
+.SingleChat-message-position-currentUser, .SingleChat-message-position-otherUser {
   display: flex;
-  border-radius: 10px;
-  padding: 3px;
+  flex-direction: column;
 }
 
-.SingleChat-message-currentUser {
+.SingleChat-message-color-currentUser, .SingleChat-message-color-otherUser {
+
+}
+
+.SingleChat-message-position-currentUser {
   align-self: flex-end;
+}
+
+.SingleChat-message-color-currentUser {
   background-color: lightblue;
 }
 
-.SingleChat-message-otherUser {
+.SingleChat-message-position-otherUser {
   align-self: flex-start;
+}
+
+.SingleChat-message-color-otherUser {
   background-color: lightgray;
 }
 
-.SingleChat-message-currentUser p, .SingleChat-message-otherUser p {
+.SingleChat-message-info {
+  display: flex;
+}
+
+.SingleChat-user {
+  font-size: 13px;
+}
+
+.SingleChat-userIsOnline {
+  background-color: green;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+}
+
+.SingleChat-message {
+  border-radius: 10px;
   padding: 5px;
   font-size: 20px;
 }

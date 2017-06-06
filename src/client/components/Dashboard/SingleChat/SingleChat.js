@@ -34,6 +34,37 @@ class SingleChat extends React.Component {
     }
   }
 
+  userIsOnline(userId) {
+    console.log(this.props.usersOnline);
+    const bool = this.props.usersOnline.reduce((acc, id) => {
+      console.log(id, '=', userId);
+      console.log(id === userId);
+      if (id === userId) {
+        acc = true;
+      }
+
+      return acc;
+    }, false);
+
+    console.log(bool);
+
+    return bool;
+  }
+
+  findUserName(userId) {
+    const user = this.props.singleChat.users.filter(user => {
+      if (user.id === userId) {
+        return true;
+      }
+
+      return false;
+    })[0];
+
+    console.log(user);
+
+    return user;
+  }
+
   render() {
     return (
       <div className="SingleChat-container">
@@ -42,27 +73,24 @@ class SingleChat extends React.Component {
         <h2>SingleChat</h2>
           {
             this.props.singleChat ?
-              this.props.allChats
-                .reduce((acc, chat) => {
-                  if (chat.id === this.props.singleChat.id) {
-                    acc = chat;
-                  }
-
-                  return acc;
-                }, {})
-                .messages
-                .map((message, i) => (
+                this.props.singleChat.messages.map((message, i) => (
                   <div key={i} className="SingleChat-message">
                     {
                       message.userId === this.props.userId ?
                         <Message
-                          messageClass={'SingleChat-message-currentUser'}
+                          messagePositionClass={'SingleChat-message-position-currentUser'}
+                          messageColorClass={'SingleChat-message-color-currentUser'}
                           message={message.message}
+                          user={null}
+                          userIsOnline={false}
                         />
                       :
                         <Message
-                          messageClass={'SingleChat-message-otherUser'}
+                          messagePositionClass={'SingleChat-message-position-otherUser'}
+                          messageColorClass={'SingleChat-message-color-otherUser'}
                           message={message.message}
+                          user={this.findUserName(message.userId)}
+                          userIsOnline={this.userIsOnline(message.userId)}
                         />
                     }
                   </div>
