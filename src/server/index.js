@@ -69,29 +69,31 @@ io.on('connection', (socket) => {
     socket.leave(data.room);
   });
 
-  socket.on('user online', (data) => {
-    dbActions.updateOnlineUsers(data.userId, socket.id, true)
+  socket.on('user online', (userId) => {
+    dbActions.updateUserStatus(userId, socket.id, true)
       .then(() => {
-        return dbActions.getCommonUsers(data.userId);
+        return dbActions.getCommonUsers(userId);
       })
-      .then((users) => {
+      .then((data) => {
+        const users = data.rows;
+        
         for (const user of users) {
           if (user.online) {
-            socket.to(user.online).emit('common user now online', data.id);
+            socket.to(user.online).emit('common user now online', user.id);
           }
         }
       })
   });
 
-  socket.on('user offline', (data) => {
-    dbActions.updateOnlineUsers(data.userId, null, false)
+  socket.on('user offline', (userId) => {
+    dbActions.updateUserStatus(userId, null, false)
       .then(() => {
-        return dbActions.getCommonUsers(data.userId);
+        return dbActions.getCommonUsers(userId);
       })
       .then((users) => {
         for (const user of users) {
           if (user.online) {
-            socket.to(user.online).emit('common user now offline', data.id);
+            socket.to(user.online).emit('common user now offline', user.id);
           }
         }
       })

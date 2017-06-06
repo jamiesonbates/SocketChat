@@ -20,6 +20,7 @@ const startedTypingType = 'STARTED_TYPING';
 const stoppedTypingType = 'STOPPED_TYPING';
 const someoneStartedTypingType = 'SOMEONE_STARTED_TYPING';
 const someoneStoppedTypingType = 'SOMEONE_STOPPED_TYPING';
+const notifyCommonUsersType = 'NOTIFY_COMMON_USERS';
 
 export {
   authSuccess,
@@ -41,5 +42,6 @@ export {
   startedTypingType,
   stoppedTypingType,
   someoneStartedTypingType,
-  someoneStoppedTypingType
+  someoneStoppedTypingType,
+  notifyCommonUsersType
 }

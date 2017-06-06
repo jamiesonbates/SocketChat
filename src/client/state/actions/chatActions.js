@@ -11,8 +11,21 @@ import {
   startedTypingType,
   stoppedTypingType,
   someoneStartedTypingType,
-  someoneStoppedTypingType
+  someoneStoppedTypingType,
+  notifyCommonUsersType
 } from '../actionTypes';
+
+export function notifyCommonUsers() {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
+
+    return dispatch({
+      type: notifyCommonUsersType,
+      payload: userId
+    })
+  }
+}
 
 export function manageRoom(chatId, event) {
   return {
@@ -126,10 +139,13 @@ export function sendMessage(message, userId, chatId) {
 export function updateOnlineUsers(userId, isOnline) {
   return function(dispatch, getState) {
     const state = getState();
-    let nextUsersOnline = state.chats.usersOnline;
+    let usersOnline = state.chats.usersOnline;
 
     if (isOnline) {
-      nextUsersOnline.push(userId);
+      const nextUsersOnline = [
+        ...usersOnline,
+        userId
+      ];
 
       return dispatch({
         type: userNowOnline,
@@ -138,7 +154,7 @@ export function updateOnlineUsers(userId, isOnline) {
     }
     else {
       // TODO: what algo should I use here?
-      nextUsersOnline = nextUsersOnline.filter(curUser => {
+      const nextUsersOnline = usersOnline.filter(curUser => {
         if (curUser !== userId) {
           return curUser;
         }

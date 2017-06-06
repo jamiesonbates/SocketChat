@@ -12,7 +12,8 @@ import {
   manageRoom,
   sendMessage,
   startedTyping,
-  stoppedTyping
+  stoppedTyping,
+  notifyCommonUsers
 } from '../../state/actions/chatActions';
 import {
   connectSocket,
@@ -35,6 +36,8 @@ class Dashboard extends React.Component {
     else {
       this.handleRooms(this.props.allChats, 'join room');
     }
+
+    this.props.dispatch(notifyCommonUsers());
   }
 
   componentWillReceiveProps(nextProps) {

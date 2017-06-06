@@ -1,6 +1,11 @@
 import io from 'socket.io-client';
 
-import { receiveMessage, someoneStartedTyping, someoneStoppedTyping } from './state/actions/chatActions';
+import {
+  receiveMessage,
+  someoneStartedTyping,
+  someoneStoppedTyping,
+  updateOnlineUsers }
+  from './state/actions/chatActions';
 import {
   connectType,
   disconnectType,
@@ -9,7 +14,8 @@ import {
   startedTypingType,
   stoppedTypingType,
   someoneStartedTypingType,
-  someoneStoppedTypingType
+  someoneStoppedTypingType,
+  notifyCommonUsersType
 } from './state/actionTypes';
 
 const socketMiddleware = (function() {
@@ -59,6 +65,18 @@ const socketMiddleware = (function() {
     store.dispatch(someoneStoppedTyping(payload));
   }
 
+  const onUserOnline = (store, payload) => {
+    store.dispatch(updateOnlineUsers(payload, true));
+  }
+
+  const onUserOffline = (store, payload) => {
+    store.dispatch(updateOnlineUsers(payload, false));
+  }
+
+  const onUserLogin = (ws, payload) => {
+    ws.emit('user online', payload);
+  }
+
   return store => next => action => {
     switch(action.type) {
       case connectType:
@@ -70,6 +88,8 @@ const socketMiddleware = (function() {
         socket.on('new msg', (payload) => onReceive(store, payload));
         socket.on('someone started typing', (payload) => onSomeoneStartedTyping(store, payload));
         socket.on('someone stopped typing', (payload) => onSomeoneStoppedTyping(store, payload));
+        socket.on('common user now online', (payload) => onUserOnline(store, payload));
+        socket.on('common user now offline', (payload) => onUserOffline(store, payload));
 
         break;
       case disconnectType:
@@ -78,6 +98,10 @@ const socketMiddleware = (function() {
         }
 
         socket = null;
+
+        break;
+      case notifyCommonUsersType:
+        onUserLogin(socket, action.payload);
 
         break;
       case manageRoomType:
