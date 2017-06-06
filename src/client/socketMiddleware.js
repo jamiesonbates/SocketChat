@@ -66,6 +66,7 @@ const socketMiddleware = (function() {
   }
 
   const onUserOnline = (store, payload) => {
+    console.log(payload);
     store.dispatch(updateOnlineUsers(payload, true));
   }
 
