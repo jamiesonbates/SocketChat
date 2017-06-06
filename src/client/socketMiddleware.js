@@ -1,11 +1,11 @@
 import io from 'socket.io-client';
 
+import { receiveMessage } from './state/actions/chatActions';
 import {
-  receiveMessage,
   someoneStartedTyping,
   someoneStoppedTyping,
-  updateOnlineUsers }
-  from './state/actions/chatActions';
+  updateOnlineUsers
+} from './state/actions/socketActions';
 import {
   connectType,
   disconnectType,

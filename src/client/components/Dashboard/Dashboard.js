@@ -9,16 +9,16 @@ import SingleChat from './SingleChat/SingleChat';
 import {
   fetchChats,
   setChat,
-  manageRoom,
-  sendMessage,
-  startedTyping,
-  stoppedTyping,
-  notifyCommonUsers
+  sendMessage
 } from '../../state/actions/chatActions';
 import {
   connectSocket,
-  disconnectSocket
-} from '../../state/actions/socketConnectActions';
+  disconnectSocket,
+  startedTyping,
+  stoppedTyping,
+  notifyCommonUsers,
+  manageRoom
+} from '../../state/actions/socketActions';
 
 class Dashboard extends React.Component {
   constructor() {
