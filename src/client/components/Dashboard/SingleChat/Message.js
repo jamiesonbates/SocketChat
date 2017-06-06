@@ -6,11 +6,7 @@ const Message = ({
   messageColorClass,
   user,
   userIsOnline
-}) => {
-  console.log(user);
-  console.log(userIsOnline);
-
-return (
+}) => (
   <div className={messagePositionClass}>
     <div className="SingleChat-message-info">
       {
@@ -29,6 +25,5 @@ return (
     <p className={`${messageColorClass} SingleChat-message`}>{message}</p>
   </div>
 )
-}
 
 export default Message;

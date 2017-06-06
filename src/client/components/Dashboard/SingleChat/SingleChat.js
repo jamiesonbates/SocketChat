@@ -16,7 +16,7 @@ class SingleChat extends React.Component {
     e.preventDefault();
     const message = this.refs.msg.value;
     const userId = this.props.userId;
-    const chatId = this.props.singleChat;
+    const chatId = this.props.singleChat.id;
 
     this.props.dispatch(this.props.sendMessage(message, userId, chatId));
     this.props.dispatch(this.props.stoppedTyping(chatId));
@@ -24,7 +24,7 @@ class SingleChat extends React.Component {
   }
 
   handleTyping(isTyping) {
-    const chatId = this.props.singleChat;
+    const chatId = this.props.singleChat.id;
 
     if (isTyping) {
       this.props.dispatch(this.props.startedTyping(chatId));
@@ -35,18 +35,13 @@ class SingleChat extends React.Component {
   }
 
   userIsOnline(userId) {
-    console.log(this.props.usersOnline);
     const bool = this.props.usersOnline.reduce((acc, id) => {
-      console.log(id, '=', userId);
-      console.log(id === userId);
       if (id === userId) {
         acc = true;
       }
 
       return acc;
     }, false);
-
-    console.log(bool);
 
     return bool;
   }
@@ -100,9 +95,11 @@ class SingleChat extends React.Component {
         </div>
 
         {
-          this.props.chatsWithTyping.includes(this.props.singleChat) ?
-            <Typing />
-          : null
+          this.props.singleChat ?
+            this.props.chatsWithTyping.includes(this.props.singleChat.id) ?
+              <Typing />
+              : null
+            : null
         }
 
         <div className="SingleChat-form-container">

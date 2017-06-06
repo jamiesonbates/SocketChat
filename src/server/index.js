@@ -70,18 +70,15 @@ io.on('connection', (socket) => {
   });
 
   socket.on('user online', (userId) => {
-    console.log('73', userId);
     dbActions.updateUserStatus(userId, socket.id, true)
       .then(() => {
         return dbActions.getCommonUsers(userId);
       })
       .then((data) => {
         const users = data.rows;
-        console.log(users);
 
         for (const user of users) {
           if (user.online) {
-            console.log('83', userId);
             socket.to(user.online).emit('common user now online', userId);
           }
         }
