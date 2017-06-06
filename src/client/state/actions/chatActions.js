@@ -107,10 +107,14 @@ export function fetchChats() {
 }
 
 export function setChat(id) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const allChats = state.chats.allChats;
+    const nextCurrentChat = findChat(allChats, id);
+
     return dispatch({
       type: newSingleChat,
-      payload: id
+      payload: nextCurrentChat
     })
   }
 }

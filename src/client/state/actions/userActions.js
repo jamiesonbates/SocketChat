@@ -20,7 +20,7 @@ export function userAuth() {
         })
       })
       .catch((err) => {
-        return dispatch({
+        dispatch({
           type: authFailure,
           payload: false
         })
@@ -34,10 +34,11 @@ export function userLogin(email, password) {
   return function(dispatch) {
     axios.post('/api/token', { email, password })
       .then((res) => {
-        return dispatch({
+        dispatch({
           type: loginSuccess,
           payload: res.data
         });
+
         browserHistory.push('/');
       })
       .catch((err) => {
@@ -53,10 +54,11 @@ export function userSignUp(user) {
   return function(dispatch) {
     axios.post('/api/users', user)
       .then((res) => {
-        return dispatch({
+        dispatch({
           type: signupSuccess,
           payload: res.data
         });
+        
         browserHistory.push('/');
       })
   }

@@ -44,12 +44,12 @@ class SingleChat extends React.Component {
             this.props.singleChat ?
               this.props.allChats
                 .reduce((acc, chat) => {
-                  if (chat.id === this.props.singleChat) {
+                  if (chat.id === this.props.singleChat.id) {
                     acc = chat;
                   }
 
                   return acc;
-                })
+                }, {})
                 .messages
                 .map((message, i) => (
                   <div key={i} className="SingleChat-message">
