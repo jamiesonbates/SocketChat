@@ -4,7 +4,6 @@ import {
   userNowOnline,
   userNowOffline,
   manageRoomType,
-  sendMessageType,
   startedTypingType,
   stoppedTypingType,
   someoneStartedTypingType,

@@ -54,6 +54,26 @@ class Dashboard extends React.Component {
     }
   }
 
+  determineChatHeader(chat) {
+    if (chat.name) {
+      return chat.name;
+    }
+
+    const title = chat.users.reduce((acc, user, i, arr) => {
+      if (arr.length - 1 === i) {
+        acc += `${user.firstName} ${user.lastName}`;
+
+        return acc;
+      }
+
+      acc += `${user.firstName} ${user.lastName}, `;
+
+      return acc;
+    }, '');
+
+    return title;
+  }
+
   render() {
     return (
       <div className="Dashboard-container">
@@ -63,6 +83,7 @@ class Dashboard extends React.Component {
             allChats={this.props.allChats}
             fetchChats={fetchChats}
             setChat={setChat}
+            determineChatHeader={this.determineChatHeader}
           />
 
           {/* Where should methods live and/or when should they be passed */}
@@ -75,6 +96,7 @@ class Dashboard extends React.Component {
             stoppedTyping={stoppedTyping}
             chatsWithTyping={this.props.chatsWithTyping}
             usersOnline={this.props.usersOnline}
+            determineChatHeader={this.determineChatHeader}
           />
         </div>
       </div>

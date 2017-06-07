@@ -5,6 +5,41 @@
   flex-direction: column;
 }
 
+.SingleChat-header-container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.SingleChat-title {
+  display: flex;
+  align-items: center;
+}
+
+.SingleChat-header-container div {
+  padding: 5px;
+}
+
+.SingleChat-icon {
+  font-size: 20px;
+}
+
+.SingleChat-multiple-users {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SingleChat-multiple-users-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .SingleChat-messages-container {
   padding: 10px;
   flex: 1;
@@ -82,4 +117,8 @@
 
 .SingleChat-form-container form button {
   padding: 5px 10px;
+}
+
+.SingleChat-typing {
+
 }

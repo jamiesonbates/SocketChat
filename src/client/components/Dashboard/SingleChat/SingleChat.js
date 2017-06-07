@@ -1,4 +1,7 @@
 import React from 'react';
+import FaMessage from 'react-icons/lib/fa/comment';
+import FaUsers from 'react-icons/lib/fa/user-plus';
+import FaUser from 'react-icons/lib/fa/user';
 
 import './SingleChat.css';
 import wrapDash from '../../../containers/WrapDash';
@@ -54,18 +57,47 @@ class SingleChat extends React.Component {
 
       return false;
     })[0];
-
-    console.log(user);
-
     return user;
   }
 
   render() {
     return (
       <div className="SingleChat-container">
+        <div className="SingleChat-header-container">
+          <div className="SingleChat-title">
+            {
+              this.props.singleChat ?
+                this.props.singleChat.name || this.props.singleChat.users.length < 2 ?
+                  <FaMessage className="SingleChat-icon" />
+                : <FaUsers className="SingleChat-icon" />
+              : null
+            }
+
+            {
+              this.props.singleChat ?
+                <div className="SingleChat-header-title">
+                  <h2>{this.props.determineChatHeader(this.props.singleChat)}</h2>
+                </div>
+              : null
+            }
+          </div>
+
+          <div className="SingleChat-header-options">
+            {
+              this.props.singleChat ?
+                this.props.singleChat.users.length > 2 ?
+                  <div className="SingleChat-multiple-users">
+                    <FaUser className="SingleChat-icon" />
+                    <div className="SingleChat-multiple-users-count">{this.props.singleChat.users.length}</div>
+                  </div>
+                : null
+              : null
+            }
+          </div>
+        </div>
+
         <div className="SingleChat-messages-container">
 
-        <h2>SingleChat</h2>
           {
             this.props.singleChat ?
                 this.props.singleChat.messages.map((message, i) => (
@@ -97,9 +129,11 @@ class SingleChat extends React.Component {
         {
           this.props.singleChat ?
             this.props.chatsWithTyping.includes(this.props.singleChat.id) ?
-              <Typing />
-              : null
+              <div className="SingleChat-typing">
+                <p>Typing</p>
+              </div>
             : null
+          : null
         }
 
         <div className="SingleChat-form-container">

@@ -28,34 +28,13 @@ class ChatsList extends React.Component {
                     className="ChatsList-chat"
                     onClick={() => this.openChat(chat.id)}>
                     {
-                      chat.name ?
                         <div>
                           <div>
-                            <p>{chat.name}</p>
+                            <p>{this.props.determineChatHeader(chat)}</p>
 
                             <LastMessage messages={chat.messages} />
                           </div>
                         </div>
-                      :
-                        <div>
-                          <div>
-                            {
-                              chat.users.map((user, i) => (
-                                <span key={i}>
-                                  {user.firstName} {user.lastName}
-                                  {
-                                    i !== chat.users.length - 1 ?
-                                      <span>, </span>
-                                    : null
-                                  }
-                                </span>
-                              ))
-                            }
-
-                            <LastMessage messages={chat.messages} />
-                          </div>
-                        </div>
-
                     }
                   </div>
                 ))
