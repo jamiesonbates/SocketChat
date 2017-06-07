@@ -141,6 +141,21 @@
   padding: 5px 10px;
 }
 
-.SingleChat-typing {
+.SingleChat-typing-container {
+  display: flex;
+}
 
+.SingleChat-typing {
+  margin: 10px;
+  padding: 5px;
+  background-color: #333332;
+  display: flex;
+  box-sizing: border-box;
+  border-radius: 5px;
+  flex: 0;
+}
+
+.SingleChat-typing p {
+  font-size: 13px;
+  color: white;
 }

@@ -92,6 +92,7 @@ class SingleChat extends React.Component {
                 </div>
               : null
             }
+
             {
               this.props.singleChat && this.props.singleChat.users.length < 3 ?
                 this.props.singleChat.users.map((user, i) => (
@@ -158,15 +159,17 @@ class SingleChat extends React.Component {
           }
         </div>
 
-        {
-          this.props.singleChat ?
-            this.props.chatsWithTyping.includes(this.props.singleChat.id) ?
-              <div className="SingleChat-typing">
-                <p>Typing</p>
-              </div>
+        <div className="SingleChat-typing-container">  
+          {
+            this.props.singleChat ?
+              this.props.chatsWithTyping.includes(this.props.singleChat.id) ?
+                <div className="SingleChat-typing">
+                  <p>Typing...</p>
+                </div>
+              : null
             : null
-          : null
-        }
+          }
+        </div>
 
         <div className="SingleChat-form-container">
           <form onSubmit={this.sendMessage.bind(this)} ref="messageForm">
