@@ -78,6 +78,19 @@ class SingleChat extends React.Component {
                 </div>
               : null
             }
+            {
+              this.props.singleChat && this.props.singleChat.users.length < 3 ?
+                this.props.singleChat.users.map((user, i) => (
+                  this.userIsOnline(user.id) && user.id !== this.props.userId ?
+                    <div
+                      key={i}
+                      className="SingleChat-userIsOnline-large">
+                    </div>
+                  : null
+
+                ))
+              : null
+            }
           </div>
 
           <div className="SingleChat-header-options">
@@ -115,14 +128,14 @@ class SingleChat extends React.Component {
                         <Message
                           messagePositionClass={'SingleChat-message-position-currentUser'}
                           messageColorClass={'SingleChat-message-color-currentUser'}
-                          message={message.message}
+                          message={message}
                           user={null}
                         />
                       :
                         <Message
                           messagePositionClass={'SingleChat-message-position-otherUser'}
                           messageColorClass={'SingleChat-message-color-otherUser'}
-                          message={message.message}
+                          message={message}
                           user={this.findUserName(message.userId)}
                         />
                     }

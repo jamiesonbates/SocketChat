@@ -21,6 +21,10 @@
   align-items: center;
 }
 
+.SingleChat-title div, .SingleChat-title svg {
+  margin: 3px;
+}
+
 .SingleChat-header-options {
   display: flex;
 }
@@ -83,7 +87,15 @@
   display: flex;
 }
 
+.SingleChat-message-info p {
+  margin: 3px;
+}
+
 .SingleChat-user-message {
+  font-size: 13px;
+}
+
+.SingleChat-time-message {
   font-size: 13px;
 }
 
@@ -95,6 +107,13 @@
 
 .SingleChat-userIsOnline {
   background-color: green;
+}
+
+.SingleChat-userIsOnline-large {
+  background-color: green;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
 }
 
 .SingleChat-message {

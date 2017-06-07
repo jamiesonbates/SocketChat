@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const Message = ({
   message,
@@ -8,16 +9,22 @@ const Message = ({
   userIsOnline
 }) => (
   <div className={messagePositionClass}>
-    <div className="SingleChat-message-info">
-      {
-        user ?
+    {
+      user ?
+        <div className="SingleChat-message-info">
           <p className="SingleChat-user-message">
             {`${user.firstName} ${user.lastName}`}
           </p>
-        : null
-      }
-    </div>
-    <p className={`${messageColorClass} SingleChat-message`}>{message}</p>
+
+          <p className="SingleChat-time-message">
+            {moment(message.createdAt).format('H:mm A')}
+          </p>
+        </div>
+      : <p className="SingleChat-time-message">
+          {moment(message.createdAt).format('H:mm A')}
+        </p>
+    }
+    <p className={`${messageColorClass} SingleChat-message`}>{message.message}</p>
   </div>
 )
 
