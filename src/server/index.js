@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 app.use('/api/users', require('./routes/users'));
 app.use('/api/token', require('./routes/token'));
 app.use('/api/chats', require('./routes/chats'));
+app.use('/api/online', require('./routes/online'));
 
 app.use(STATIC_PATH, express.static('public'));
 app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
@@ -86,14 +87,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('user offline', (userId) => {
-    console.log(userId);
     dbActions.updateUserStatus(userId, null, false)
       .then(() => {
         return dbActions.getCommonUsers(userId);
       })
       .then((data) => {
         const users = data.rows;
-        
+
         for (const user of users) {
           if (user.online) {
             socket.to(user.online).emit('common user now offline', userId);

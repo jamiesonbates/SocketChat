@@ -5,7 +5,8 @@ import {
   userNowOnline,
   userNowOffline,
   someoneStartedTypingType,
-  someoneStoppedTypingType
+  someoneStoppedTypingType,
+  setUsersOnlineType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -34,6 +35,7 @@ export default function reducer(state={
       }
 
     case userNowOnline:
+    case setUsersOnlineType:
       return {
         ...state,
         usersOnline: action.payload

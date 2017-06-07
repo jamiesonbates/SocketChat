@@ -19,6 +19,7 @@ import {
   notifyCommonUsers,
   manageRoom
 } from '../../state/actions/socketActions';
+import { getCommonUsers } from '../../state/actions/onlineActions';
 
 class Dashboard extends React.Component {
   constructor() {
@@ -27,6 +28,7 @@ class Dashboard extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(connectSocket());
+    this.props.dispatch(getCommonUsers());
   }
 
   componentDidMount() {
