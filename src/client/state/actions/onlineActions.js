@@ -12,13 +12,11 @@ export function getCommonUsers() {
     axios.get(`/api/online/${userId}`)
       .then((res) => {
         const users = res.data;
-        
+
         const nextUsersOnline = [
           ...usersOnline,
           ...users
         ];
-
-        console.log(nextUsersOnline);
 
         return dispatch({
           type: setUsersOnlineType,

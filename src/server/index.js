@@ -63,6 +63,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('join room', (data) => {
+    console.log(`user joined room ${data}`);
     socket.join(data);
   });
 
