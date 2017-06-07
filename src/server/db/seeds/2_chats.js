@@ -4,7 +4,7 @@ exports.seed = function(knex, Promise) {
       return knex('chats').insert([
         {
           id: 1,
-          name: 'Two Person Chat',
+          name: null
         },
         {
           id: 2,

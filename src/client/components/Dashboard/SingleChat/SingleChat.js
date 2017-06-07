@@ -67,9 +67,7 @@ class SingleChat extends React.Component {
           <div className="SingleChat-title">
             {
               this.props.singleChat ?
-                this.props.singleChat.name || this.props.singleChat.users.length < 2 ?
-                  <FaMessage className="SingleChat-icon" />
-                : <FaUsers className="SingleChat-icon" />
+                <FaMessage className="SingleChat-icon" />
               : null
             }
 

@@ -60,6 +60,10 @@ class Dashboard extends React.Component {
     }
 
     const title = chat.users.reduce((acc, user, i, arr) => {
+      if (user.id === this.props.userInfo.id) {
+        return acc;
+      }
+
       if (arr.length - 1 === i) {
         acc += `${user.firstName} ${user.lastName}`;
 
@@ -83,7 +87,7 @@ class Dashboard extends React.Component {
             allChats={this.props.allChats}
             fetchChats={fetchChats}
             setChat={setChat}
-            determineChatHeader={this.determineChatHeader}
+            determineChatHeader={this.determineChatHeader.bind(this)}
           />
 
           {/* Where should methods live and/or when should they be passed */}
@@ -96,7 +100,7 @@ class Dashboard extends React.Component {
             stoppedTyping={stoppedTyping}
             chatsWithTyping={this.props.chatsWithTyping}
             usersOnline={this.props.usersOnline}
-            determineChatHeader={this.determineChatHeader}
+            determineChatHeader={this.determineChatHeader.bind(this)}
           />
         </div>
       </div>
