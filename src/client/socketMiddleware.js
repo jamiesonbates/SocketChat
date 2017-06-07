@@ -70,12 +70,17 @@ const socketMiddleware = (function() {
   }
 
   const onUserOffline = (store, payload) => {
+    console.log(payload);
     store.dispatch(updateOnlineUsers(payload, false));
   }
 
   const onUserLogin = (ws, payload) => {
     ws.emit('user online', payload);
   }
+
+  // const onUserLogout = () => {
+  //   socket.emit('going offline', 'ladida');
+  // }
 
   return store => next => action => {
     switch(action.type) {
@@ -90,6 +95,15 @@ const socketMiddleware = (function() {
         socket.on('someone stopped typing', (payload) => onSomeoneStoppedTyping(store, payload));
         socket.on('common user now online', (payload) => onUserOnline(store, payload));
         socket.on('common user now offline', (payload) => onUserOffline(store, payload));
+
+        const state = store.getState();
+        const userId = state.userInfo.id;
+
+        function onUserLogout() {
+          socket.emit('user offline', userId);
+        }
+
+        window.addEventListener('unload', onUserLogout);
 
         break;
       case disconnectType:

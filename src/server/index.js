@@ -57,7 +57,7 @@ const io = socketIO().listen(server);
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', (data) => {
     console.log('user disconnected');
   });
 
@@ -86,11 +86,14 @@ io.on('connection', (socket) => {
   });
 
   socket.on('user offline', (userId) => {
+    console.log(userId);
     dbActions.updateUserStatus(userId, null, false)
       .then(() => {
         return dbActions.getCommonUsers(userId);
       })
-      .then((users) => {
+      .then((data) => {
+        const users = data.rows;
+        
         for (const user of users) {
           if (user.online) {
             socket.to(user.online).emit('common user now offline', userId);
