@@ -87,6 +87,7 @@ class Dashboard extends React.Component {
             allChats={this.props.allChats}
             fetchChats={fetchChats}
             setChat={setChat}
+            userId={this.props.userInfo.id}
             determineChatHeader={this.determineChatHeader.bind(this)}
           />
 

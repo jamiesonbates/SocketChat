@@ -11,14 +11,9 @@ const Message = ({
     <div className="SingleChat-message-info">
       {
         user ?
-          <p className="SingleChat-user">
+          <p className="SingleChat-user-message">
             {`${user.firstName} ${user.lastName}`}
           </p>
-        : null
-      }
-      {
-        userIsOnline ?
-          <div className="SingleChat-userIsOnline"></div>
         : null
       }
     </div>

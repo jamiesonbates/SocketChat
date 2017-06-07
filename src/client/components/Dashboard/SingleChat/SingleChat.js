@@ -82,13 +82,23 @@ class SingleChat extends React.Component {
 
           <div className="SingleChat-header-options">
             {
-              this.props.singleChat ?
-                this.props.singleChat.users.length > 2 ?
-                  <div className="SingleChat-multiple-users">
-                    <FaUser className="SingleChat-icon" />
-                    <div className="SingleChat-multiple-users-count">{this.props.singleChat.users.length}</div>
-                  </div>
-                : null
+              this.props.singleChat && this.props.singleChat.users.length > 2 ?
+                this.props.singleChat.users.map((user, i) => {
+                  if (user.id === this.props.userId) {
+                    return null;
+                  }
+
+                  return (
+                    <div key={i} className="SingleChat-user">
+                      <p>{`${user.firstName} ${user.lastName}`}</p>
+                      {
+                        this.userIsOnline(user.id) ?
+                          <div className="SingleChat-userIsOnline"></div>
+                        : <div className="SingleChat-userIsOffline"></div>
+                      }
+                    </div>
+                  )
+                })
               : null
             }
           </div>
@@ -107,7 +117,6 @@ class SingleChat extends React.Component {
                           messageColorClass={'SingleChat-message-color-currentUser'}
                           message={message.message}
                           user={null}
-                          userIsOnline={false}
                         />
                       :
                         <Message
@@ -115,7 +124,6 @@ class SingleChat extends React.Component {
                           messageColorClass={'SingleChat-message-color-otherUser'}
                           message={message.message}
                           user={this.findUserName(message.userId)}
-                          userIsOnline={this.userIsOnline(message.userId)}
                         />
                     }
                   </div>

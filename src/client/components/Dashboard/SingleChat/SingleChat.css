@@ -12,32 +12,33 @@
   flex-direction: column;
 }
 
+.SingleChat-icon {
+  font-size: 20px;
+}
+
 .SingleChat-title {
   display: flex;
   align-items: center;
 }
 
-.SingleChat-header-container div {
-  padding: 5px;
-}
-
-.SingleChat-icon {
-  font-size: 20px;
-}
-
-.SingleChat-multiple-users {
-  position: relative;
-  height: 30px;
-  width: 30px;
+.SingleChat-header-options {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.SingleChat-multiple-users-count {
-  position: absolute;
-  top: 0;
-  right: 0;
+
+.SingleChat-user {
+  border: 1px solid #878784;
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  font-size: 13px;
+}
+
+.SingleChat-user p, .SingleChat-user div {
+  margin: 2px;
 }
 
 .SingleChat-messages-container {
@@ -82,15 +83,18 @@
   display: flex;
 }
 
-.SingleChat-user {
+.SingleChat-user-message {
   font-size: 13px;
+}
+
+.SingleChat-userIsOnline, .SingleChat-userIsOffline {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
 }
 
 .SingleChat-userIsOnline {
   background-color: green;
-  height: 5px;
-  width: 5px;
-  border-radius: 50%;
 }
 
 .SingleChat-message {
