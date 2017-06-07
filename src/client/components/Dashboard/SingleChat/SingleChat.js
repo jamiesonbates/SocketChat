@@ -15,11 +15,21 @@ class SingleChat extends React.Component {
     this.handleTyping = this.handleTyping.bind(this);
   }
 
+  scrollToBottom() {
+    const msgDiv = document.querySelector('.SingleChat-messages-container');
+
+    msgDiv.scrollTop = msgDiv.scrollHeight;
+  }
+
   sendMessage(e) {
     e.preventDefault();
     const message = this.refs.msg.value;
     const userId = this.props.userId;
     const chatId = this.props.singleChat.id;
+
+    if (message.length < 1) {
+      return;
+    }
 
     this.props.dispatch(this.props.sendMessage(message, userId, chatId));
     this.props.dispatch(this.props.stoppedTyping(chatId));
@@ -58,6 +68,10 @@ class SingleChat extends React.Component {
       return false;
     })[0];
     return user;
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   render() {
@@ -118,7 +132,6 @@ class SingleChat extends React.Component {
         </div>
 
         <div className="SingleChat-messages-container">
-
           {
             this.props.singleChat ?
                 this.props.singleChat.messages.map((message, i) => (

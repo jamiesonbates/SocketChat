@@ -48,8 +48,7 @@
 .SingleChat-messages-container {
   padding: 10px;
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  overflow-y: scroll;
 }
 
 .SingleChat-message {
