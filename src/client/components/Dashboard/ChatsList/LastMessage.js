@@ -1,11 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 
-const LastMessage = ({ messages }) => {
-  const msg = messages[messages.length - 1].message;
-
-  return (
-    <p className="ChatsList-last-message">{msg}</p>
-  )
-}
+const LastMessage = ({ lastMessage, user, userId }) => (
+  <div className="ChatsList-lastMessage-container">
+    <p className="ChatsList-lastMessage">
+      {user.id === userId ? 'You' : user.firstName }: {lastMessage.message}
+    </p>
+  </div>
+)
 
 export default LastMessage;

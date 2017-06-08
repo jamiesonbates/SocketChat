@@ -60,6 +60,18 @@ class Dashboard extends React.Component {
     }
   }
 
+  findUserName(userId, chat) {
+    const user = chat.users.filter(user => {
+      if (user.id === userId) {
+        return true;
+      }
+
+      return false;
+    })[0];
+
+    return user;
+  }
+
   determineChatHeader(chat) {
     if (chat.name) {
       return chat.name;
@@ -95,6 +107,7 @@ class Dashboard extends React.Component {
             setChat={setChat}
             userId={this.props.userInfo.id}
             determineChatHeader={this.determineChatHeader.bind(this)}
+            findUserName={this.findUserName.bind(this)}
           />
 
           {/* Where should methods live and/or when should they be passed */}
@@ -108,6 +121,7 @@ class Dashboard extends React.Component {
             chatsWithTyping={this.props.chatsWithTyping}
             usersOnline={this.props.usersOnline}
             determineChatHeader={this.determineChatHeader.bind(this)}
+            findUserName={this.findUserName.bind(this)}
           />
         </div>
       </div>

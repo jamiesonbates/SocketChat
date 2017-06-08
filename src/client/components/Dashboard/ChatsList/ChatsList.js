@@ -32,7 +32,11 @@ class ChatsList extends React.Component {
                           <div>
                             <p>{this.props.determineChatHeader(chat)}</p>
 
-                            <LastMessage messages={chat.messages} />
+                            <LastMessage
+                              lastMessage={chat.messages[chat.messages.length - 1]}
+                              user={this.props.findUserName(chat.messages[chat.messages.length - 1].userId, chat)}
+                              userId={this.props.userId}
+                            />
                           </div>
                         </div>
                     }

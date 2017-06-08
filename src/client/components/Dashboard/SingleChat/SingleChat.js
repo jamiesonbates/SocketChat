@@ -59,17 +59,6 @@ class SingleChat extends React.Component {
     return bool;
   }
 
-  findUserName(userId) {
-    const user = this.props.singleChat.users.filter(user => {
-      if (user.id === userId) {
-        return true;
-      }
-
-      return false;
-    })[0];
-    return user;
-  }
-
   componentDidUpdate() {
     this.scrollToBottom();
   }
@@ -150,7 +139,7 @@ class SingleChat extends React.Component {
                           messagePositionClass={'SingleChat-message-position-otherUser'}
                           messageColorClass={'SingleChat-message-color-otherUser'}
                           message={message}
-                          user={this.findUserName(message.userId)}
+                          user={this.props.findUserName(message.userId, this.props.singleChat)}
                         />
                     }
                   </div>
@@ -159,7 +148,7 @@ class SingleChat extends React.Component {
           }
         </div>
 
-        <div className="SingleChat-typing-container">  
+        <div className="SingleChat-typing-container">
           {
             this.props.singleChat ?
               this.props.chatsWithTyping.includes(this.props.singleChat.id) ?
