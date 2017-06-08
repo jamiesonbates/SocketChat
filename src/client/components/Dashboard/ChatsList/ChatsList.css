@@ -14,10 +14,10 @@
 .ChatsList-chat {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
 }
 
 .ChatsList-chat:hover {
-  background-color: #555657;
+  background-color: #EDF2F2;
   cursor: pointer;
 }

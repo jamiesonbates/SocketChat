@@ -1,6 +1,8 @@
 import React from 'react';
+import FaUser from 'react-icons/lib/fa/user';
 
 import LastMessage from './LastMessage';
+import './ChatPeak.css';
 
 const ChatPeak = ({
   chat,
@@ -9,10 +11,22 @@ const ChatPeak = ({
   determineChatHeader,
   findUserName,
 }) => (
-  <div>
-    <div>
-      <p>{determineChatHeader(chat)}</p>
-      <p>{time}</p>
+  <div className="ChatPeak-container">
+    <div className="ChatPeak-icon-container">
+      <div className="ChatPeak-icon-circle">
+        <FaUser className="ChatPeak-icon" />
+      </div>
+    </div>
+    <div className="ChatPeak-info-container">
+      <div className="ChatPeak-info">
+        <div className="ChatPeak-header-container">
+          <p className="ChatPeak-header">{determineChatHeader(chat)}</p>
+        </div>
+
+        <div className="ChatPeak-time-container">
+          <p className="ChatPeak-time">{time}</p>
+        </div>
+      </div>
 
       <LastMessage
         lastMessage={chat.messages[chat.messages.length - 1]}

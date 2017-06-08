@@ -1,0 +1,61 @@
+.ChatPeak-container {
+  width: 100%;
+  display: flex;
+}
+
+.ChatPeak-icon-container {
+  padding: 2px;
+}
+
+.ChatPeak-icon-circle {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: #ABC9FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ChatPeak-icon {
+  font-size: 25px;
+  color: #3762ED;
+}
+
+.ChatPeak-info-container {
+  flex: 1;
+}
+
+.ChatPeak-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.ChatPeak-header-container {
+  flex: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 1px;
+}
+
+.ChatPeak-time-container {
+  flex: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 1px;
+}
+
+.ChatPeak-header {
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.ChatPeak-time {
+}
+
+.ChatPeak-time {
+  color: #939696;
+  font-size: 13px;
+  white-space: nowrap;
+}
