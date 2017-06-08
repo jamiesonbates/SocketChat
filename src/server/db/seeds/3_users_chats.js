@@ -41,7 +41,27 @@ exports.seed = function(knex, Promise) {
           id: 8,
           user_id: 3,
           chat_id: 3
-        }
+        },
+        {
+          id: 9,
+          user_id: 1,
+          chat_id: 4
+        },
+        {
+          id: 10,
+          user_id: 2,
+          chat_id: 4
+        },
+        {
+          id: 11,
+          user_id: 3,
+          chat_id: 4
+        },
+        {
+          id: 12,
+          user_id: 4,
+          chat_id: 4
+        },
       ]);
     })
     .then(() => {

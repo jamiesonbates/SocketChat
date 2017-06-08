@@ -67,6 +67,12 @@ exports.seed = function(knex, Promise) {
           user_id: 1,
           chat_id: 3,
           message: 'Testing'
+        },
+        {
+          id: 12,
+          user_id: 4,
+          chat_id: 4,
+          message: 'I heart Rory!'
         }
       ]);
     })

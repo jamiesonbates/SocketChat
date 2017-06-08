@@ -25,6 +25,14 @@ exports.seed = function(knex, Promise) {
           username: 'fakeuser',
           email: 'fakeuser@gmail.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
+        },
+        {
+          id: 4,
+          first_name: 'Reed',
+          last_name: 'Speegle',
+          username: 'reedspeegle',
+          email: 'reedspeegle@gmail.com',
+          h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         }
       ]);
     })

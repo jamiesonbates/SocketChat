@@ -1,4 +1,13 @@
+.LastMessage-container {
+  padding: 0 1px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
 .LastMessage {
   color: gray;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: clip;
 }

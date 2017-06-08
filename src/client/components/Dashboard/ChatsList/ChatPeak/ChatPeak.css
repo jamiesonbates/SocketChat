@@ -1,10 +1,14 @@
 .ChatPeak-container {
   width: 100%;
   display: flex;
+  padding: 3px;
+  box-sizing: border-box;
+  background-color: inherit;
 }
 
 .ChatPeak-icon-container {
   padding: 2px;
+  width: 15%;
 }
 
 .ChatPeak-icon-circle {
@@ -23,32 +27,46 @@
 }
 
 .ChatPeak-info-container {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 85%;
+  background-color: inherit;
 }
 
 .ChatPeak-info {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  background-color: inherit;
 }
 
 
 .ChatPeak-header-container {
-  flex: 0;
+  /*flex: 0;*/
+  width: 90%;
   display: flex;
   align-items: center;
   padding: 0 1px;
 }
 
 .ChatPeak-time-container {
-  flex: 0;
+  height: 100%;
   display: flex;
   align-items: center;
   padding: 0 1px;
+  background-color: inherit;
+  z-index: 1;
+  position: absolute;
+  box-sizing: border-box;
+  right: 0;
 }
 
 .ChatPeak-header {
   font-size: 16px;
   white-space: nowrap;
+  overflow: auto;
+  text-overflow: clip;
 }
 
 .ChatPeak-time {

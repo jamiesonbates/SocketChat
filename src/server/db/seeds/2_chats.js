@@ -13,6 +13,10 @@ exports.seed = function(knex, Promise) {
         {
           id: 3,
           name: null
+        },
+        {
+          id: 4,
+          name: null
         }
       ]);
     })
