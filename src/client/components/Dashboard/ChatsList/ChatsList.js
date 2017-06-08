@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import './ChatsList.css';
 import wrapDash from '../../../containers/WrapDash';
-import LastMessage from './LastMessage';
+import ChatPeak from './ChatPeak/ChatPeak';
 
 class ChatsList extends React.Component {
   constructor(props) {
@@ -28,17 +28,12 @@ class ChatsList extends React.Component {
                     className="ChatsList-chat"
                     onClick={() => this.openChat(chat.id)}>
                     {
-                        <div>
-                          <div>
-                            <p>{this.props.determineChatHeader(chat)}</p>
-
-                            <LastMessage
-                              lastMessage={chat.messages[chat.messages.length - 1]}
-                              user={this.props.findUserName(chat.messages[chat.messages.length - 1].userId, chat)}
-                              userId={this.props.userId}
-                            />
-                          </div>
-                        </div>
+                      <ChatPeak
+                        chat={chat}
+                        determineChatHeader={this.props.determineChatHeader}
+                        findUserName={this.props.findUserName}
+                        userId={this.props.userId}
+                      />
                     }
                   </div>
                 ))
