@@ -51,6 +51,10 @@ class Dashboard extends React.Component {
   }
 
   handleRooms(chats, event) {
+    if (!chats) {
+      return;
+    }
+
     for (const chat of chats) {
       this.props.dispatch(manageRoom(chat.id, event));
     }
