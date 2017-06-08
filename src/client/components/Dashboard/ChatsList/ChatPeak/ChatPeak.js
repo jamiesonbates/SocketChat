@@ -2,10 +2,17 @@ import React from 'react';
 
 import LastMessage from './LastMessage';
 
-const ChatPeak = ({ chat, userId, determineChatHeader, findUserName }) => (
+const ChatPeak = ({
+  chat,
+  time,
+  userId,
+  determineChatHeader,
+  findUserName,
+}) => (
   <div>
     <div>
       <p>{determineChatHeader(chat)}</p>
+      <p>{time}</p>
 
       <LastMessage
         lastMessage={chat.messages[chat.messages.length - 1]}
