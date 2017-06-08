@@ -70,17 +70,12 @@ const socketMiddleware = (function() {
   }
 
   const onUserOffline = (store, payload) => {
-    console.log(payload);
     store.dispatch(updateOnlineUsers(payload, false));
   }
 
   const onUserLogin = (ws, payload) => {
     ws.emit('user online', payload);
   }
-
-  // const onUserLogout = () => {
-  //   socket.emit('going offline', 'ladida');
-  // }
 
   return store => next => action => {
     switch(action.type) {
