@@ -35,8 +35,22 @@ function getCommonUsers(userId) {
   );
 }
 
+function getContacts(userId) {
+  return db.raw(`
+    SELECT u.id, u.first_name, u.last_name, u.email, u.username
+    FROM users as u
+    WHERE EXISTS (
+      SELECT uc.user_id2
+      FROM user_contacts as uc
+      WHERE uc.user_id1 = ${userId}
+    )
+    AND NOT u.id = ${userId}
+  `)
+}
+
 module.exports = {
   createMessage,
   updateUserStatus,
-  getCommonUsers
+  getCommonUsers,
+  getContacts
 }

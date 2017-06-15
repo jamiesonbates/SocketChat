@@ -26,6 +26,9 @@ import {
   updateMain,
   updateSide
 } from '../../state/actions/dashControlActions';
+import {
+  getContacts
+} from '../../state/actions/contactsActions';
 import { getCommonUsers } from '../../state/actions/onlineActions';
 
 class Dashboard extends React.Component {
@@ -36,6 +39,7 @@ class Dashboard extends React.Component {
   componentWillMount() {
     this.props.dispatch(connectSocket());
     this.props.dispatch(getCommonUsers());
+    this.props.dispatch(getContacts());
   }
 
   componentDidMount() {
