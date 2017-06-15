@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
   socket.on('user online', (userId) => {
     dbActions.updateUserStatus(userId, socket.id, true)
       .then(() => {
-        return dbActions.getCommonUsers(userId);
+        return dbActions.getContacts(userId);
       })
       .then((data) => {
         const users = data.rows;
@@ -91,7 +91,7 @@ io.on('connection', (socket) => {
   socket.on('user offline', (userId) => {
     dbActions.updateUserStatus(userId, null, false)
       .then(() => {
-        return dbActions.getCommonUsers(userId);
+        return dbActions.getContacts(userId);
       })
       .then((data) => {
         const users = data.rows;

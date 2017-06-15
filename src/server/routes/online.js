@@ -7,7 +7,7 @@ const router = require('express').Router();
 const dbActions = require('../dbActions');
 
 router.get('/:userId', (req, res, next) => {
-  dbActions.getCommonUsers(req.params.userId)
+  dbActions.getContacts(req.params.userId)
     .then((data) => {
       const usersOnline = [];
 
