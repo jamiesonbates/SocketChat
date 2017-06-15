@@ -68,11 +68,12 @@ class ChatsList extends React.Component {
               : null
           }
 
-          <div
+
+
+          <FaNewChat
             className="ChatsList-newChat-btn"
-            onClick={() => this.props.dispatch(updateSide(showAddChatType))}>
-            <FaNewChat className="ChatsList-newChat-icon" />
-          </div>
+            onClick={() => this.props.dispatch(updateSide(showAddChatType))}
+          />
         </div>
       </div>
     )

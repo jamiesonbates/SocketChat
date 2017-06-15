@@ -24,8 +24,7 @@
 
 .ChatsList-newChat-btn {
   border-radius: 50%;
-  height: 60px;
-  width: 60px;
+  padding: 15px;
   background-color: #DB0500;
   display: flex;
   justify-content: center;
@@ -35,9 +34,13 @@
   right: 25px;
   z-index: 2;
   box-shadow: 0 1px 3px 1px gray;
-}
-
-.ChatsList-newChat-icon {
+  transition: bottom 0.25s;
   color: white;
   font-size: 35px;
+}
+
+.ChatsList-newChat-btn:hover {
+  background-color: #B20400;
+  cursor: pointer;
+  bottom: 27px;
 }
