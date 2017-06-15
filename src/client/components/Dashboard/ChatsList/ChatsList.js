@@ -5,6 +5,8 @@ import './ChatsList.css';
 import wrapDash from '../../../containers/WrapDash';
 import ChatPeak from './ChatPeak/ChatPeak';
 
+import { showChatType } from '../../../state/actionTypes';
+
 class ChatsList extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ class ChatsList extends React.Component {
 
   openChat(id) {
     this.props.dispatch(this.props.setChat(id));
+    this.props.dispatch(this.props.updateMain(showChatType));
   }
 
   determineTimeDisplay(time) {

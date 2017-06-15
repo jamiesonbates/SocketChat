@@ -21,6 +21,10 @@ import {
   notifyCommonUsers,
   manageRoom
 } from '../../state/actions/socketActions';
+import {
+  updateMain,
+  updateSide
+} from '../../state/actions/dashControlActions';
 import { getCommonUsers } from '../../state/actions/onlineActions';
 
 class Dashboard extends React.Component {
@@ -110,6 +114,7 @@ class Dashboard extends React.Component {
             userId={this.props.userInfo.id}
             determineChatHeader={this.determineChatHeader.bind(this)}
             findUserName={this.findUserName.bind(this)}
+            updateMain={updateMain}
           />
 
         {/* Where should methods live and/or when should they be passed */}
