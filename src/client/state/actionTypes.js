@@ -27,6 +27,7 @@ const showBookmarksType = 'SHOW_BOOKMARKS';
 const showDefaultMainType = 'SHOW_DEFAULT_MAIN';
 const showChatsListType = 'SHOW_CHATS_LIST';
 const showAddChatType = 'SHOW_ADD_CHAT';
+const showGroupFormType = 'SHOW_GROUP_FORM';
 
 export {
   authSuccess,
@@ -55,5 +56,6 @@ export {
   showBookmarksType,
   showDefaultMainType,
   showChatsListType,
-  showAddChatType
+  showAddChatType,
+  showGroupFormType
 }
