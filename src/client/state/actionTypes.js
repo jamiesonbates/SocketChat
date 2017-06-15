@@ -22,6 +22,11 @@ const someoneStartedTypingType = 'SOMEONE_STARTED_TYPING';
 const someoneStoppedTypingType = 'SOMEONE_STOPPED_TYPING';
 const notifyCommonUsersType = 'NOTIFY_COMMON_USERS';
 const setUsersOnlineType = 'SET_USERS_ONLINE';
+const showChatType = 'SHOW_CHAT';
+const showBookmarksType = 'SHOW_BOOKMARKS';
+const showDefaultMainType = 'SHOW_DEFAULT_MAIN';
+const showChatsListType = 'SHOW_CHATS_LIST';
+const showNewChatType = 'SHOW_NEW_CHAT';
 
 export {
   authSuccess,
@@ -45,5 +50,10 @@ export {
   someoneStartedTypingType,
   someoneStoppedTypingType,
   notifyCommonUsersType,
-  setUsersOnlineType
+  setUsersOnlineType,
+  showChatType,
+  showBookmarksType,
+  showDefaultMainType,
+  showChatsListType,
+  showNewChatType
 }

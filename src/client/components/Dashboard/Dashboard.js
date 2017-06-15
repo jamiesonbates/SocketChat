@@ -6,6 +6,8 @@ import './Dashboard.css';
 import Nav from '../Nav/Nav';
 import ChatsList from './ChatsList/ChatsList';
 import SingleChat from './SingleChat/SingleChat';
+import Bookmarks from './Bookmarks/Bookmarks';
+import DefaultMain from './DefaultMain/DefaultMain';
 import {
   fetchChats,
   setChat,
@@ -100,7 +102,7 @@ class Dashboard extends React.Component {
     return (
       <div className="Dashboard-container">
         <Nav />
-        <div className="Dashboard-main-container">
+        <div className="Dashboard-sections-container">
           <ChatsList
             allChats={this.props.allChats}
             fetchChats={fetchChats}
@@ -110,19 +112,25 @@ class Dashboard extends React.Component {
             findUserName={this.findUserName.bind(this)}
           />
 
-          {/* Where should methods live and/or when should they be passed */}
-          <SingleChat
-            allChats={this.props.allChats}
-            singleChat={this.props.singleChat}
-            sendMessage={sendMessage}
-            userId={this.props.userInfo.id}
-            startedTyping={startedTyping}
-            stoppedTyping={stoppedTyping}
-            chatsWithTyping={this.props.chatsWithTyping}
-            usersOnline={this.props.usersOnline}
-            determineChatHeader={this.determineChatHeader.bind(this)}
-            findUserName={this.findUserName.bind(this)}
-          />
+        {/* Where should methods live and/or when should they be passed */}
+          {
+            this.props.dashControls.mainStatus.showDefaultMain ?
+              <DefaultMain />
+            :  this.props.dashControls.mainStatus.showChat ?
+                <SingleChat
+                  allChats={this.props.allChats}
+                  singleChat={this.props.singleChat}
+                  sendMessage={sendMessage}
+                  userId={this.props.userInfo.id}
+                  startedTyping={startedTyping}
+                  stoppedTyping={stoppedTyping}
+                  chatsWithTyping={this.props.chatsWithTyping}
+                  usersOnline={this.props.usersOnline}
+                  determineChatHeader={this.determineChatHeader.bind(this)}
+                  findUserName={this.findUserName.bind(this)}
+                />
+              : this.props.dashControls.mainStatus.showBookmarks
+          }
         </div>
       </div>
     )
@@ -135,7 +143,8 @@ const mapStateToProps = function(state) {
     singleChat: state.chats.singleChat,
     userInfo: state.userInfo,
     chatsWithTyping: state.chats.chatsWithTyping,
-    usersOnline: state.chats.usersOnline
+    usersOnline: state.chats.usersOnline,
+    dashControls: state.dashControls
   }
 }
 

@@ -1,10 +1,17 @@
+.Dashboard-main-container {
+  width: 75%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
 .Dashboard-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.Dashboard-main-container {
+.Dashboard-sections-container {
   display: flex;
   flex: 1;
 }
