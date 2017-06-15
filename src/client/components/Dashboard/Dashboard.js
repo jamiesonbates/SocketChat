@@ -5,6 +5,7 @@ import moment from 'moment';
 import './Dashboard.css';
 import Nav from '../Nav/Nav';
 import ChatsList from './ChatsList/ChatsList';
+import AddChat from './AddChat/AddChat';
 import SingleChat from './SingleChat/SingleChat';
 import Bookmarks from './Bookmarks/Bookmarks';
 import DefaultMain from './DefaultMain/DefaultMain';
@@ -105,17 +106,21 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="Dashboard-container">
-        <Nav />
         <div className="Dashboard-sections-container">
-          <ChatsList
-            allChats={this.props.allChats}
-            fetchChats={fetchChats}
-            setChat={setChat}
-            userId={this.props.userInfo.id}
-            determineChatHeader={this.determineChatHeader.bind(this)}
-            findUserName={this.findUserName.bind(this)}
-            updateMain={updateMain}
-          />
+          {
+            this.props.dashControls.sideStatus.showChatsList ?
+              <ChatsList
+                allChats={this.props.allChats}
+                fetchChats={fetchChats}
+                setChat={setChat}
+                userId={this.props.userInfo.id}
+                determineChatHeader={this.determineChatHeader.bind(this)}
+                findUserName={this.findUserName.bind(this)}
+                updateMain={updateMain}
+              />
+            : <AddChat />
+
+          }
 
         {/* Where should methods live and/or when should they be passed */}
           {

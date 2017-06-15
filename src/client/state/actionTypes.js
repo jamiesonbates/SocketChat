@@ -26,7 +26,7 @@ const showChatType = 'SHOW_CHAT';
 const showBookmarksType = 'SHOW_BOOKMARKS';
 const showDefaultMainType = 'SHOW_DEFAULT_MAIN';
 const showChatsListType = 'SHOW_CHATS_LIST';
-const showNewChatType = 'SHOW_NEW_CHAT';
+const showAddChatType = 'SHOW_ADD_CHAT';
 
 export {
   authSuccess,
@@ -55,5 +55,5 @@ export {
   showBookmarksType,
   showDefaultMainType,
   showChatsListType,
-  showNewChatType
+  showAddChatType
 }

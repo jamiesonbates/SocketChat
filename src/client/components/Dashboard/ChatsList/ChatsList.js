@@ -1,11 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import FaNewChat from 'react-icons/lib/md/chat';
+
 
 import './ChatsList.css';
 import wrapDash from '../../../containers/WrapDash';
 import ChatPeak from './ChatPeak/ChatPeak';
-
-import { showChatType } from '../../../state/actionTypes';
+import { showChatType, showAddChatType } from '../../../state/actionTypes';
+import { updateSide } from '../../../state/actions/dashControlActions';
 
 class ChatsList extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class ChatsList extends React.Component {
     const timeMil = moment(time).valueOf();
     const diff = nowMil - timeMil;
     const midnightDiff = nowMil - moment(new Date().setUTCHours(0, 0, 0, 0)).valueOf();
-    const weekAgoDiff = nowMil - moment(Date.now()).subtract(7, 'days').valueOf();
+    const weekAgoDiff = nowMil - moment(Date.now()).subtract(6, 'days').valueOf();
 
     if (diff < 60000) {
       return 'Now';
@@ -37,16 +39,14 @@ class ChatsList extends React.Component {
       return moment(timeMil).format('ddd');
     }
     else {
-      return moment(timeMil).format('m/D/Y');
+      return moment(timeMil).format('M/D/YY');
     }
   }
 
   render() {
     return (
-      <div className="ChatsList-container">
-        <div className="ChatsList-header">
-          <h2>ChatsList</h2>
-        </div>
+      <div className="Dashboard-side-container">
+        <div className="ChatsList-chats-container">
           {
             this.props.allChats
               ? this.props.allChats.map((chat, i) => (
@@ -67,6 +67,13 @@ class ChatsList extends React.Component {
                 ))
               : null
           }
+
+          <div
+            className="ChatsList-newChat-btn"
+            onClick={() => this.props.dispatch(updateSide(showAddChatType))}>
+            <FaNewChat className="ChatsList-newChat-icon" />
+          </div>
+        </div>
       </div>
     )
   }

@@ -3,7 +3,7 @@ import {
   showBookmarksType,
   showDefaultMainType,
   showChatsListType,
-  showNewChatType
+  showAddChatType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -48,6 +48,23 @@ export default function reducer(state={
         }
       }
 
+    case showChatsListType:
+      return {
+        ...state,
+        sideStatus: {
+          showChatsList: true,
+          showAddChat: false
+        }
+      }
+
+    case showAddChatType:
+      return {
+        ...state,
+        sideStatus: {
+          showChatsList: false,
+          showAddChat: true
+        }
+      }
   }
 
   return state;
