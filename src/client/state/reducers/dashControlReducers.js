@@ -44,7 +44,8 @@ export default function reducer(state={
       return {
         ...state,
         showChatsList: true,
-        showAddChat: false
+        showAddChat: false,
+        showGroupForm: false
       }
 
     case showAddChatType:

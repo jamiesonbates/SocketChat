@@ -6,8 +6,7 @@ import './CreateGroup.scss';
 const CreateGroup = ({ navToGroupForm }) => (
   <div
     className="CreateGroup-container"
-    onClick={navToGroupForm}
-    >
+    onClick={navToGroupForm}>
     <FaNewGroup className="CreateGroup-icon" />
     <h2>New Group</h2>
   </div>

@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import './Dashboard.css';
-import Nav from '../Nav/Nav';
-import ChatsList from './ChatsList/ChatsList';
-import AddChat from './AddChat/AddChat';
+import SidePanel from './SidePanel/SidePanel';
 import SingleChat from './SingleChat/SingleChat';
 import Bookmarks from './Bookmarks/Bookmarks';
 import DefaultMain from './DefaultMain/DefaultMain';
@@ -111,20 +109,10 @@ class Dashboard extends React.Component {
     return (
       <div className="Dashboard-container">
         <div className="Dashboard-sections-container">
-          {
-            this.props.dashControls.showChatsList ?
-              <ChatsList
-                allChats={this.props.allChats}
-                fetchChats={fetchChats}
-                setChat={setChat}
-                userId={this.props.userInfo.id}
-                determineChatHeader={this.determineChatHeader.bind(this)}
-                findUserName={this.findUserName.bind(this)}
-                updateMain={updateMain}
-              />
-            : <AddChat />
-
-          }
+          <SidePanel
+            determineChatHeader={this.determineChatHeader}
+            findUserName={this.findUserName}
+          />
 
         {/* Where should methods live and/or when should they be passed */}
           {

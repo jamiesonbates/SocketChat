@@ -20,7 +20,10 @@ export default function(ComposedClass) {
 
   function mapStateToProps(state) {
     return {
-      dashControls: state.dashControls
+      dashControls: state.dashControls,
+      allChats: state.chats.allChats,
+      userInfo: state.userInfo,
+      
     }
   }
 

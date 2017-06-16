@@ -1,3 +1,8 @@
+.ChatsList-container {
+  position: relative;
+  flex: 1;
+}
+
 .ChatsList-header {
   display: flex;
   align-items: center;
@@ -10,11 +15,6 @@
   align-items: center;
   background-color: white;
   width: 100%;
-}
-
-.ChatsList-chats-container {
-  position: relative;
-  flex: 1;
 }
 
 .ChatsList-chat:hover {
