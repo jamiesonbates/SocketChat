@@ -1,0 +1,39 @@
+.NameGroup-container {
+  padding: 15px;
+  display: flex;
+  border-bottom: 1px solid #2E2E2E;
+}
+
+.NameGroup-container form {
+  flex: 1;
+  display: flex;
+}
+
+.NameGroup-container form input {
+  flex: 1;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.NameGroup-container form input:focus {
+  outline: none;
+}
+
+.NameGroup-container form input::placeholder {
+  font-size: 15px;
+  font-family: Arial;
+}
+
+.NameGroup-icon {
+  padding: 5px;
+  height: 25px;
+  width: 25px;
+  border: 1px solid #2E2E2E;
+  border-radius: 50%;
+  background-color: white;
+  color: #2E2E2E;
+}

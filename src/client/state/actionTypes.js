@@ -28,6 +28,7 @@ const showDefaultMainType = 'SHOW_DEFAULT_MAIN';
 const showChatsListType = 'SHOW_CHATS_LIST';
 const showAddChatType = 'SHOW_ADD_CHAT';
 const showGroupFormType = 'SHOW_GROUP_FORM';
+const updateGroupNameType = 'UPDATE_GROUP_NAME';
 
 export {
   authSuccess,
@@ -57,5 +58,6 @@ export {
   showDefaultMainType,
   showChatsListType,
   showAddChatType,
-  showGroupFormType
+  showGroupFormType,
+  updateGroupNameType
 }

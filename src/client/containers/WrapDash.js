@@ -23,7 +23,8 @@ export default function(ComposedClass) {
       dashControls: state.dashControls,
       allChats: state.chats.allChats,
       userInfo: state.userInfo,
-      
+      forms: state.forms
+
     }
   }
 
