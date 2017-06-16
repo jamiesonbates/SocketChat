@@ -2,7 +2,7 @@ import React from 'react';
 import FaUser from 'react-icons/lib/fa/user';
 
 import LastMessage from './LastMessage';
-import './ChatPeak.css';
+import './ChatPeak.scss';
 
 const ChatPeak = ({
   chat,
