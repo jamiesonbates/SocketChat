@@ -2,9 +2,9 @@ import React from 'react';
 
 import './NameGroup.scss';
 
-const NameGroup = ({  }) => (
+const NameGroup = ({ updateGroupName, groupNameVal }) => (
   <div>
-    Hello World from Name Group
+    <input type="text" onChange={updateGroupName} value={groupNameVal}/>
   </div>
 )
 
