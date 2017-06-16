@@ -8,6 +8,7 @@
 
 .ChatPeak-icon-container {
   padding: 2px;
+  box-sizing: border-box;
   width: 15%;
 }
 
