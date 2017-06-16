@@ -29,6 +29,7 @@ const showChatsListType = 'SHOW_CHATS_LIST';
 const showAddChatType = 'SHOW_ADD_CHAT';
 const showGroupFormType = 'SHOW_GROUP_FORM';
 const updateGroupNameType = 'UPDATE_GROUP_NAME';
+const updateSearchTermType = 'UPDATE_SEARCH_TERM';
 
 export {
   authSuccess,
@@ -59,5 +60,6 @@ export {
   showChatsListType,
   showAddChatType,
   showGroupFormType,
-  updateGroupNameType
+  updateGroupNameType,
+  updateSearchTermType
 }

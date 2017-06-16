@@ -1,12 +1,13 @@
 import React from 'react';
 
+import SearchContacts from './SearchContacts/SearchContacts';
 import CreateGroup from './CreateGroup/CreateGroup';
 import NameGroup from './NameGroup/NameGroup';
 import wrapDash from '../../../../containers/WrapDash';
 import './AddChat.scss';
 import { showGroupFormType } from '../../../../state/actionTypes';
 import { updateSide, updateMain } from '../../../../state/actions/dashControlActions';
-import { updateGroupName } from '../../../../state/actions/formActions';
+import { updateGroupName, updateSearchTerm } from '../../../../state/actions/formActions';
 
 class AddChat extends React.Component {
   constructor(props) {
@@ -21,6 +22,10 @@ class AddChat extends React.Component {
     this.props.dispatch(updateGroupName(name));
   }
 
+  setSearchTerm(term) {
+    this.props.dispatch(updateSearchTerm(term));
+  }
+
   render() {
     return (
       <div className="Dashboard-side-container">
@@ -32,6 +37,11 @@ class AddChat extends React.Component {
             />
           : <CreateGroup navToGroupForm={this.navToGroupForm.bind(this)}/>
         }
+
+        <SearchContacts
+          setSearchTerm={this.setSearchTerm.bind(this)}
+          searchTermVal={this.props.forms.searchTerm}
+        />
       </div>
     )
   }

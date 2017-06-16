@@ -2,12 +2,20 @@
   padding: 15px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.CreateGroup-container:hover {
+  background-color: #E3E3E3;
+  cursor: pointer;
 }
 
 .CreateGroup-container h2 {
   font-size: 20px;
-  margin-left: 2%;
+  font-weight: normal;
+  margin-left: 5%;
   color: #2E2E2E;
+  font-family: Arial;
 }
 
 .CreateGroup-icon {
