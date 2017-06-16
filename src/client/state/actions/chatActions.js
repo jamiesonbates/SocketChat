@@ -24,6 +24,27 @@ export function fetchChats() {
   }
 }
 
+export function createChat(users) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
+    const name = state.forms.groupName || null;
+    const body = {
+      chat: {
+        name
+      },
+      users
+    }
+
+    body.users.push(userId);
+
+    axios.post('/api/chats', body)
+      .then((res) => {
+        console.log(res);
+      })
+  }
+}
+
 export function setChat(id) {
   return function(dispatch, getState) {
     const state = getState();

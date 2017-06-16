@@ -34,74 +34,38 @@ router.get('/:userId', (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-  // db('chats')
-  //   .innerJoin('users_chats', 'chats.id', 'users_chats.chat_id')
-  //   .where('users_chats.user_id', req.params.userId)
-  //   .select('chats.id', 'chats.name')
-  //   .then((chats) => {
-  //     const promises = [];
-  //
-  //     for (const chat of chats) {
-  //       promises.push(getMessages(chat));
-  //     }
-  //
-  //     return Promise.all(promises);
-  //   })
-  //   .then((chats) => {
-  //     const promises = [];
-  //
-  //     for (const chat of chats) {
-  //       promises.push(getPeople(chat));
-  //     }
-  //
-  //     return Promise.all(promises);
-  //   })
-  //   .then((chats) => {
-  //     res.send(chats);
-  //   })
-  //   .catch((err) => {
-  //     next(err);
-  //   });
 });
 
-// function getMessages(chat) {
-//   const promise = new Promise((resolve, reject) => {
-//     return db('messages')
-//       .where('chat_id', chat.id)
-//       .limit(100)
-//       .returning('*')
-//       .then((messages) => {
-//         chat.messages = messages;
-//
-//         resolve(chat);
-//       })
-//   });
-//
-//   return promise;
-// }
-//
-// function getPeople(chat) {
-//   const promise = new Promise((resolve, reject) => {
-//     return db('chats')
-//       .innerJoin('users_chats', 'chats.id', 'users_chats.chat_id')
-//       .innerJoin('users', 'users_chats.user_id', 'users.id')
-//       .where('chat_id', chat.id)
-//       .distinct('users.email')
-//       .select(
-//         'users.id as userId',
-//         'users.first_name',
-//         'users.last_name',
-//         'users.username',
-//         'users.email',
-//       )
-//       .then((users) => {
-//         chat.users = users;
-//
-//         resolve(chat);
-//       });
-//   })
-//
-//   return promise;
-// }
+router.post('/', (req, res, next) => {
+  const { chat } = req.body;
+  const { users } = req.body;
+
+  db('chats')
+    .insert(chat)
+    .returning('*')
+    .then((data) => {
+      const newChatId = data[0].id;
+      const promises = [];
+
+      for (const userId of users) {
+        promises.push(addUserChat(userId, newChatId))
+      }
+
+      return Promise.all(promises);
+    })
+    .then(() => {
+      console.log('here');
+      res.send(true);
+    });
+});
+
+function addUserChat(user_id, chat_id) {
+  return db('users_chats')
+    .insert({
+      user_id,
+      chat_id
+    })
+}
+
 
 module.exports = router;
