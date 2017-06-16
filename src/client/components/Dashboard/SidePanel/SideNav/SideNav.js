@@ -1,12 +1,22 @@
 import React from 'react';
 
 import './SideNav.scss';
-import FaBackArrow from 'react-icons/lib/md/keyboard-arrow-down';
+import FaBackArrow from 'react-icons/lib/md/arrow-back';
 
-const SideNav = ({ sideNavTitle, navToChatsList }) => (
+const SideNav = ({ navToChatsList, inAddChat, inGroupForm }) => (
   <div className="SideNav-container">
-    <FaBackArrow className="SideNav-icon" onClick={navToChatsList}/>
-    <h2>sideNavTitle</h2>
+    {
+      inAddChat ?
+        <FaBackArrow className="SideNav-icon" onClick={navToChatsList}/>
+      : null
+    }
+    {
+      inAddChat ?
+        inGroupForm ?
+          <h2 className="SideNav-header">New Group</h2>
+        : <h2 className="SideNav-header">New Chat</h2>
+      : <h2 className="SideNav-header SideNav-home">Chats</h2>
+    }
   </div>
 )
 

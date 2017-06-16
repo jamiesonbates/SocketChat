@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import './Dashboard.css';
+import './shared.scss';
 import SidePanel from './SidePanel/SidePanel';
 import SingleChat from './SingleChat/SingleChat';
 import Bookmarks from './Bookmarks/Bookmarks';
