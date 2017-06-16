@@ -20,8 +20,7 @@ export default function(ComposedClass) {
 
   function mapStateToProps(state) {
     return {
-      mainStatus: state.dashControls.mainStatus,
-      sideStatus: state.dashControls.sideStatus
+      dashControls: state.dashControls
     }
   }
 

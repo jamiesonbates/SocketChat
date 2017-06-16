@@ -7,3 +7,5 @@ const NameGroup = ({  }) => (
     Hello World from Name Group
   </div>
 )
+
+export default NameGroup;

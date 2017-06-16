@@ -13,16 +13,16 @@ class AddChat extends React.Component {
   }
 
   navToGroupForm() {
-    this.props.dispatch(this.props.updateSide(showGroupFormType));
+    this.props.dispatch(updateSide(showGroupFormType));
   }
 
   render() {
     return (
       <div className="Dashboard-side-container">
         {
-          this.props.sideStatus.showGroupForm ?
+          this.props.dashControls.showGroupForm ?
             <NameGroup />
-          : <CreateGroup />
+          : <CreateGroup navToGroupForm={this.navToGroupForm.bind(this)}/>
         }
       </div>
     )

@@ -112,7 +112,7 @@ class Dashboard extends React.Component {
       <div className="Dashboard-container">
         <div className="Dashboard-sections-container">
           {
-            this.props.dashControls.sideStatus.showChatsList ?
+            this.props.dashControls.showChatsList ?
               <ChatsList
                 allChats={this.props.allChats}
                 fetchChats={fetchChats}
@@ -128,9 +128,9 @@ class Dashboard extends React.Component {
 
         {/* Where should methods live and/or when should they be passed */}
           {
-            this.props.dashControls.mainStatus.showDefaultMain ?
+            this.props.dashControls.showDefaultMain ?
               <DefaultMain />
-            :  this.props.dashControls.mainStatus.showChat ?
+            :  this.props.dashControls.showChat ?
                 <SingleChat
                   allChats={this.props.allChats}
                   singleChat={this.props.singleChat}
@@ -143,7 +143,7 @@ class Dashboard extends React.Component {
                   determineChatHeader={this.determineChatHeader.bind(this)}
                   findUserName={this.findUserName.bind(this)}
                 />
-              : this.props.dashControls.mainStatus.showBookmarks
+              : <Bookmarks />
           }
         </div>
       </div>
