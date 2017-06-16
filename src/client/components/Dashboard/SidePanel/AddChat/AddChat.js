@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ContactsList from './ContactsList/ContactsList';
 import SearchContacts from './SearchContacts/SearchContacts';
 import CreateGroup from './CreateGroup/CreateGroup';
 import NameGroup from './NameGroup/NameGroup';
@@ -41,6 +42,11 @@ class AddChat extends React.Component {
         <SearchContacts
           setSearchTerm={this.setSearchTerm.bind(this)}
           searchTermVal={this.props.forms.searchTerm}
+        />
+
+        <ContactsList
+          usersContacts={this.props.contacts.usersContacts}
+          searchTerm={this.props.forms.searchTerm}
         />
       </div>
     )
