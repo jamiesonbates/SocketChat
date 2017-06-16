@@ -28,7 +28,10 @@ class ContactsList extends React.Component {
             return isMatch;
           })
           .map((contact, i) => (
-            <div key={i} className="ContactsList-contact">
+            <div
+              key={i}
+              className="ContactsList-contact"
+              onClick={() => this.props.handleAddChat(contact.id)}>
               <FaUser className="ContactsList-icon" />
               <p>{contact.firstName} {contact.lastName}</p>
             </div>

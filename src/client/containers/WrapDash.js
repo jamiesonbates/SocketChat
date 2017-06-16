@@ -25,7 +25,6 @@ export default function(ComposedClass) {
       userInfo: state.userInfo,
       forms: state.forms,
       contacts: state.contacts
-
     }
   }
 
