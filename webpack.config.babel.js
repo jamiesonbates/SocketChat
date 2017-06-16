@@ -18,7 +18,8 @@ export default {
     rules: [
       { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css/, use: 'style-loader', exclude: /node_modules/ },
-      { test: /\.css/, use: 'css-loader', exclude: /node_modules/ }
+      { test: /\.css/, use: 'css-loader', exclude: /node_modules/ },
+      { test: /\.scss$/, use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]}
     ],
   },
   devtool: isProd ? false : 'source-map',
