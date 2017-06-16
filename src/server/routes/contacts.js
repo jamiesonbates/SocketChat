@@ -8,8 +8,13 @@ const { getContacts, createContact } = require('../dbActions');
 
 router.get('/:userId', (req, res, next) => {
   getContacts(req.params.userId)
-    .then((contacts) => {
-      console.log(contacts);
+    .then((data) => {
+      const contacts = data.rows;
+
+      res.send(camelizeKeys(contacts));
+    })
+    .catch((err) => {
+      next(err);
     })
 });
 

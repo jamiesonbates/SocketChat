@@ -22,6 +22,7 @@ class SearchContacts extends React.Component {
           <input
             type="text"
             ref="term"
+            autoFocus={true}
             onChange={this.handleFormChange.bind(this)}
             value={this.props.searchTermVal}
           />

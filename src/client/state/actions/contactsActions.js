@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { updateContactsType } from '../actionTypes';
+
 export function getContacts() {
   return function(dispatch, getState) {
     const state = getState();
@@ -7,7 +9,10 @@ export function getContacts() {
 
     axios.get(`/api/contacts/${userId}`)
       .then((res) => {
-        console.log(res.data);
+        dispatch({
+          type: updateContactsType,
+          payload: res.data
+        })
       })
   }
 }
