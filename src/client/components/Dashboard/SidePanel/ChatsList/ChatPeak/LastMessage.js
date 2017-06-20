@@ -3,14 +3,10 @@ import moment from 'moment';
 
 import './LastMessage.css';
 
-const LastMessage = ({ user, lastMessage }) => (
+const LastMessage = ({ lastMessage }) => (
   <div className="LastMessage-container">
     <p className="LastMessage">
-      {
-        user ?
-          `${user.firstName}:`
-        : ''
-      } {lastMessage}
+      { lastMessage }
     </p>
   </div>
 )

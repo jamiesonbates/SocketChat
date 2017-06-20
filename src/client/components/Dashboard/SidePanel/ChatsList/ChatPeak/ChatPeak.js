@@ -31,8 +31,6 @@ const ChatPeak = ({
 
       <LastMessage
         lastMessage={determineLastMessage(chat)}
-        user={findUserName(chat)}
-        userId={userId}
       />
     </div>
   </div>

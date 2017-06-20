@@ -53,7 +53,16 @@ class ChatsList extends React.Component {
       return '';
     }
 
-    return chat.messages.pop().message;
+    const lastMsgObj = chat.messages[chat.messages.length - 1];
+    const lastMsg = lastMsgObj.message;
+    const lastMsgUser = this.props.findUserName(chat);
+
+    if (lastMsgUser.id === this.props.userId) {
+      return `You: ${lastMsg}`;
+    }
+    else {
+      return `${lastMsgUser.firstName}: ${lastMsg}`;
+    }
   }
 
   render() {
@@ -71,7 +80,7 @@ class ChatsList extends React.Component {
                       chat={chat}
                       userId={this.props.userId}
                       determineChatHeader={this.props.determineChatHeader}
-                      determineLastMessage={this.determineLastMessage}
+                      determineLastMessage={this.determineLastMessage.bind(this)}
                       findUserName={this.props.findUserName}
                       time={this.determineTimeDisplay(chat)}
                     />

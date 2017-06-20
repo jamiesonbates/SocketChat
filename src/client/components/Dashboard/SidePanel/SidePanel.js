@@ -40,7 +40,7 @@ class SidePanel extends React.Component {
               setChat={setChat}
               userId={this.props.userInfo.id}
               determineChatHeader={this.props.determineChatHeader.bind(this)}
-              findUserName={this.props.findUserName.bind(this)}
+              findUserName={this.props.findUserName}
               updateMain={updateMain}
             />
           : <AddChat />

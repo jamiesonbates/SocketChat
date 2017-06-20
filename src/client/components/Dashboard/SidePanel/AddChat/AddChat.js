@@ -31,9 +31,6 @@ class AddChat extends React.Component {
   handleAddChat(userId) {
     let chatId;
     const chatExists = this.props.allChats.reduce((acc, chat) => {
-      console.log(chat.users.length);
-      console.log(chat.users[0].id, userId);
-      console.log(chat.users[0].id === userId);
       if (chat.users.length < 2 && chat.users[0].id === userId) {
         acc = true;
         chatId = chat.id;
@@ -41,8 +38,6 @@ class AddChat extends React.Component {
 
       return acc;
     }, false);
-
-    console.log(chatExists);
 
     if (chatExists) {
       this.props.dispatch(setChat(chatId));
