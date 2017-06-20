@@ -67,6 +67,7 @@ export function createChat(users) {
     axios.post('/api/chats', body)
       .then((res) => {
         const { chatId } = res.data;
+        
         dispatch(fetchChats(true, chatId));
       })
   }

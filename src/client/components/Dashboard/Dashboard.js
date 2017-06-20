@@ -97,7 +97,7 @@ class Dashboard extends React.Component {
         return acc;
       }
 
-      if (arr.length - 1 === i) {
+      if (arr.length - 1 === i || arr.length < 3) {
         acc += `${user.firstName} ${user.lastName}`;
 
         return acc;
