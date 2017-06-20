@@ -39,31 +39,43 @@ router.get('/:userId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const { chat } = req.body;
   const { users } = req.body;
+  let chatId;
 
   db('chats')
     .insert(chat)
     .returning('*')
     .then((data) => {
-      const newChatId = data[0].id;
+      chatId = data[0].id;
       const promises = [];
 
       for (const userId of users) {
-        promises.push(addUserChat(userId, newChatId))
+        promises.push(addUserChat(userId, chatId))
       }
 
       return Promise.all(promises);
     })
-    .then(() => { 
-      res.send(true);
+    .then(() => {
+      res.send({ chatId });
+    })
+    .catch((err) => {
+      next(err);
     });
 });
 
 function addUserChat(user_id, chat_id) {
-  return db('users_chats')
-    .insert({
-      user_id,
-      chat_id
+  const promise = new Promise((resolve, reject) => {
+    db('users_chats')
+      .insert({
+        user_id,
+        chat_id
+      })
+      .returning('*')
+    .then((user_chat) => {
+      resolve(user_chat);
     })
+  });
+
+  return promise;
 }
 
 

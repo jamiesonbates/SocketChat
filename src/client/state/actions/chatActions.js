@@ -4,23 +4,48 @@ import {
   chatsSuccess,
   newSingleChat,
   addNewMessage,
-  sendMessageType
+  sendMessageType,
+  showChatType,
+  showChatsListType
 } from '../actionTypes';
 
-export function fetchChats() {
+import {
+  updateMain,
+  updateSide
+} from './dashControlActions';
+
+export function setChat(id) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const allChats = state.chats.allChats;
+    const nextCurrentChat = findChat(allChats, id);
+
+    dispatch({
+      type: newSingleChat,
+      payload: nextCurrentChat
+    });
+    dispatch(updateMain(showChatType));
+    dispatch(updateSide(showChatsListType));
+  }
+}
+
+export function fetchChats(shouldSetChat=false, chatId=null) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
 
     axios.get(`/api/chats/${userId}`)
       .then((res) => {
-        console.log(res.data);
         let allChats = res.data;
 
-        return dispatch({
+        dispatch({
           type: chatsSuccess,
           payload: allChats
         })
+
+        if (shouldSetChat) {
+          dispatch(setChat(chatId));
+        }
       })
   }
 }
@@ -41,21 +66,9 @@ export function createChat(users) {
 
     axios.post('/api/chats', body)
       .then((res) => {
-        dispatch(fetchChats(userId));
+        const { chatId } = res.data;
+        dispatch(fetchChats(true, chatId));
       })
-  }
-}
-
-export function setChat(id) {
-  return function(dispatch, getState) {
-    const state = getState();
-    const allChats = state.chats.allChats;
-    const nextCurrentChat = findChat(allChats, id);
-
-    return dispatch({
-      type: newSingleChat,
-      payload: nextCurrentChat
-    })
   }
 }
 

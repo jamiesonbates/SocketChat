@@ -123,7 +123,7 @@ class SingleChat extends React.Component {
 
         <div className="SingleChat-messages-container">
           {
-            this.props.singleChat ?
+            this.props.singleChat && this.props.singleChat.messages ?
                 this.props.singleChat.messages.map((message, i) => (
                   <div key={i} className="SingleChat-message">
                     {
