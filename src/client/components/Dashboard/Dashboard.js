@@ -70,16 +70,21 @@ class Dashboard extends React.Component {
     }
   }
 
-  findUserName(userId, chat) {
-    const user = chat.users.filter(user => {
+  findUserName(chat) {
+    if (!chat.messages || !chat.messages.length) {
+      return '';
+    }
+
+    const userId = chat.messages[chat.messages.length - 1].userId;
+    let foundUser;
+
+    for (const user of chat.users) {
       if (user.id === userId) {
-        return true;
+        foundUser = user;
       }
+    }
 
-      return false;
-    })[0];
-
-    return user;
+    return foundUser;
   }
 
   determineChatHeader(chat) {

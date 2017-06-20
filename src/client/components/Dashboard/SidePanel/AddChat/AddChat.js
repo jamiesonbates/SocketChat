@@ -9,7 +9,7 @@ import './AddChat.scss';
 import { showGroupFormType, showChatType, showChatsListType } from '../../../../state/actionTypes';
 import { updateSide, updateMain } from '../../../../state/actions/dashControlActions';
 import { updateGroupName, updateSearchTerm } from '../../../../state/actions/formActions';
-import { setChat } from '../../../../state/actions/chatActions';
+import { setChat, createChat } from '../../../../state/actions/chatActions';
 
 class AddChat extends React.Component {
   constructor(props) {
@@ -31,6 +31,9 @@ class AddChat extends React.Component {
   handleAddChat(userId) {
     let chatId;
     const chatExists = this.props.allChats.reduce((acc, chat) => {
+      console.log(chat.users.length);
+      console.log(chat.users[0].id, userId);
+      console.log(chat.users[0].id === userId);
       if (chat.users.length < 2 && chat.users[0].id === userId) {
         acc = true;
         chatId = chat.id;
@@ -39,12 +42,17 @@ class AddChat extends React.Component {
       return acc;
     }, false);
 
+    console.log(chatExists);
+
     if (chatExists) {
       this.props.dispatch(setChat(chatId));
-      this.props.dispatch(updateMain(showChatType));
-      this.props.dispatch(updateSide(showChatsListType));
-      return;
     }
+    else {
+      this.props.dispatch(createChat([userId]));
+    }
+
+    this.props.dispatch(updateMain(showChatType));
+    this.props.dispatch(updateSide(showChatsListType));
   }
 
   render() {

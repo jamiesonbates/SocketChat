@@ -19,7 +19,12 @@ class ChatsList extends React.Component {
     this.props.dispatch(this.props.updateMain(showChatType));
   }
 
-  determineTimeDisplay(time) {
+  determineTimeDisplay(chat) {
+    if (!chat.messages || !chat.messages.length) {
+      return '';
+    }
+
+    const time = chat.messages[chat.messages.length - 1].createdAt;
     const nowMil = moment(Date.now()).valueOf();
     const timeMil = moment(time).valueOf();
     const diff = nowMil - timeMil;
@@ -43,6 +48,14 @@ class ChatsList extends React.Component {
     }
   }
 
+  determineLastMessage(chat) {
+    if (!chat.messages || !chat.messages.length) {
+      return '';
+    }
+
+    return chat.messages.pop().message;
+  }
+
   render() {
     return (
       <div className="ChatsList-container">
@@ -58,16 +71,15 @@ class ChatsList extends React.Component {
                       chat={chat}
                       userId={this.props.userId}
                       determineChatHeader={this.props.determineChatHeader}
+                      determineLastMessage={this.determineLastMessage}
                       findUserName={this.props.findUserName}
-                      time={this.determineTimeDisplay(chat.messages[chat.messages.length - 1].createdAt)}
+                      time={this.determineTimeDisplay(chat)}
                     />
                   }
                 </div>
               ))
             : null
         }
-
-
 
         <FaNewChat
           className="ChatsList-newChat-btn"

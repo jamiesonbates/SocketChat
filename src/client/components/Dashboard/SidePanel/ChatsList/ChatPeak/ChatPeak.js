@@ -9,7 +9,8 @@ const ChatPeak = ({
   time,
   userId,
   determineChatHeader,
-  findUserName,
+  determineLastMessage,
+  findUserName
 }) => (
   <div className="ChatPeak-container">
     <div className="ChatPeak-icon-container">
@@ -29,8 +30,8 @@ const ChatPeak = ({
       </div>
 
       <LastMessage
-        lastMessage={chat.messages[chat.messages.length - 1]}
-        user={findUserName(chat.messages[chat.messages.length - 1].userId, chat)}
+        lastMessage={determineLastMessage(chat)}
+        user={findUserName(chat)}
         userId={userId}
       />
     </div>

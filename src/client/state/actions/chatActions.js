@@ -14,6 +14,7 @@ export function fetchChats() {
 
     axios.get(`/api/chats/${userId}`)
       .then((res) => {
+        console.log(res.data);
         let allChats = res.data;
 
         return dispatch({
@@ -40,7 +41,7 @@ export function createChat(users) {
 
     axios.post('/api/chats', body)
       .then((res) => {
-        console.log(res);
+        dispatch(fetchChats(userId));
       })
   }
 }

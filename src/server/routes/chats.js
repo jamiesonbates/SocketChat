@@ -22,7 +22,7 @@ router.get('/:userId', (req, res, next) => {
              INNER JOIN users_chats as uc1 ON c2.id = uc1.chat_id
              INNER JOIN users as u ON u.id = uc1.user_id
              WHERE c2.id = c1.id
-             AND NOT uc1.id = ${req.params.userId}
+             AND NOT uc1.user_id = ${req.params.userId}
            ) usr) as users
          FROM chats as c1
          INNER JOIN users_chats as uc2 ON c1.id = uc2.chat_id
