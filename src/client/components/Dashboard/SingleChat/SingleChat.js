@@ -147,20 +147,25 @@ class SingleChat extends React.Component {
                     }
                   </div>
 
-                  if (i === 0) {
-                    messageJSX =
-                      <div>
-                        <div className="SingleChat-time">
-                          <h4>{moment(message.createdAt).format('MMMM Do')}</h4>
-                          <div className="SingleChat-line"></div>
-                        </div>
+                  // if (i === 0) {
+                  //   messageJSX =
+                  //     <div>
+                  //       <div className="SingleChat-time">
+                  //         <h4>{moment(message.createdAt).format('MMMM Do')}</h4>
+                  //         <div className="SingleChat-line"></div>
+                  //       </div>
+                  //
+                  //       {messageJSX}
+                  //     </div>
+                  // }
+                  if (i + 1 < allMessages.length) {
+                    let lastDate;
 
-                        {messageJSX}
-                      </div>
-                  }
-                  else if (i + 1 < allMessages.length) {
+                    if (i !== 0) {
+                      lastDate = moment(allMessages[i - 1].createdAt).date();
+                    }
+
                     const curDate = moment(allMessages[i].createdAt).date();
-                    const lastDate = moment(allMessages[i - 1].createdAt).date();
                     const nextDate = moment(allMessages[i + 1].createdAt).date()
                     let todayDate = new Date();
                     let yesterdayDate = new Date();
@@ -169,7 +174,17 @@ class SingleChat extends React.Component {
                     yesterdayDate.setDate(yesterdayDate.getDate() - 1);
                     yesterdayDate = yesterdayDate.getDate();
 
-                    if (curDate !== lastDate && curDate === todayDate) {
+                    if (i === 0 && todayDate === curDate) {
+                      messageJSX =
+                        <div className="SingleChat-single-message-container">
+                          <div className="SingleChat-time">
+                            <h4>Today</h4>
+                            <div className="SingleChat-line"></div>
+                          </div>
+                          {messageJSX}
+                        </div>
+                    }
+                    else if (curDate !== lastDate && curDate === todayDate) {
                       messageJSX =
                         <div className="SingleChat-single-message-container">
                           <div className="SingleChat-time">
