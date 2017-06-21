@@ -82,8 +82,10 @@ class AddChat extends React.Component {
 
       const isMatch = newGroup.reduce((acc, userId) => {
         for (const user of chat.users) {
-          if (userId.id === user.id || this.props.userInfo.id === user) {
+          if (userId.id === user.id) {
             acc = true;
+
+            return acc;
           }
           else {
             acc = false;
@@ -96,6 +98,7 @@ class AddChat extends React.Component {
       if (isMatch) {
         acc = true;
         chatId = chat.id;
+
         return acc;
       }
 
