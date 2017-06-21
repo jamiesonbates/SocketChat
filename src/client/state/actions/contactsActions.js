@@ -21,8 +21,13 @@ export function addNewGroupMember(userId) {
   return function(dispatch, getState) {
     const state = getState();
     const newGroup = state.contacts.newGroup;
+    const newGroupIds = [...newGroup].map(user => user.id);
     const usersContacts = state.contacts.usersContacts;
     let user;
+
+    if (newGroupIds.includes(userId)) {
+      return;
+    }
 
     for (const contact of usersContacts) {
       if (contact.id === userId) {
