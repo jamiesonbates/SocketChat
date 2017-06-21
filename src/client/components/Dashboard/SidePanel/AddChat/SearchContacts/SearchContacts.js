@@ -17,7 +17,18 @@ class SearchContacts extends React.Component {
   render() {
     return (
       <div className="SearchContacts-container">
-        <FaSearch className="SearchContacts-icon"/>
+        <FaSearch className="SearchContacts-icon-search" />
+
+        {
+          this.props.showGroupForm ?
+            this.props.newGroup.map((user, i) => (
+              <div key={i} className="SearchContacts-groupmember">
+                <p>{ user.firstName } { user.lastName }</p>
+              </div>
+            ))
+          : null
+        }
+
         <form name="searchTerm" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"

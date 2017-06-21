@@ -3,6 +3,7 @@
 .SearchContacts-container {
   padding: 15px;
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 4px solid #E3E3E3;
 }
 
@@ -30,9 +31,23 @@
   font-family: Arial;
 }
 
-.SearchContacts-icon {
+.SearchContacts-icon-search {
   padding: 5px;
   height: 25px;
   width: 25px;
   color: #2E2E2E;
+}
+
+.SearchContacts-groupmember {
+  border-radius: 10px;
+  background-color: lightgray;
+  margin: 2px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SearchContacts-groupmember p {
+  color: white;
 }

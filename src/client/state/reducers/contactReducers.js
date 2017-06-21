@@ -1,15 +1,23 @@
 import {
-  updateContactsType
+  updateContactsType,
+  addNewGroupMemberType
 } from '../actionTypes';
 
 export default function reducer(state={
-  usersContacts: []
+  usersContacts: [],
+  newGroup: []
 }, action) {
   switch(action.type) {
     case updateContactsType:
       return {
         ...state,
         usersContacts: action.payload
+      }
+
+    case addNewGroupMemberType:
+      return {
+        ...state,
+        newGroup: action.payload
       }
   }
 

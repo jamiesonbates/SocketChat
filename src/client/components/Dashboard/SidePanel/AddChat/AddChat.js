@@ -1,4 +1,5 @@
 import React from 'react';
+import FaCheck from 'react-icons/lib/md/check';
 
 import ContactsList from './ContactsList/ContactsList';
 import SearchContacts from './SearchContacts/SearchContacts';
@@ -10,6 +11,7 @@ import { showGroupFormType, showChatType, showChatsListType } from '../../../../
 import { updateSide, updateMain } from '../../../../state/actions/dashControlActions';
 import { updateGroupName, updateSearchTerm } from '../../../../state/actions/formActions';
 import { setChat, createChat } from '../../../../state/actions/chatActions';
+import { addNewGroupMember } from '../../../../state/actions/contactsActions';
 
 class AddChat extends React.Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class AddChat extends React.Component {
     this.props.dispatch(updateSearchTerm(term));
   }
 
-  handleAddChat(userId) {
+  handleAddSingleChat(userId) {
     let chatId;
 
     const chatExists = this.props.allChats.filter(chat => {
@@ -59,28 +61,54 @@ class AddChat extends React.Component {
     }
   }
 
+  handleAddMultiChat(userId) {
+    this.props.dispatch(addNewGroupMember(userId));
+  }
+
+  handleCreateNewGroup() {
+
+  }
+
   render() {
     return (
       <div className="Dashboard-side-container">
+        <div className="AddChat-form-container">
+          {
+            this.props.dashControls.showGroupForm ?
+              <NameGroup
+                setGroupName={this.setGroupName.bind(this)}
+                groupNameVal={this.props.forms.groupName}
+              />
+            : <CreateGroup navToGroupForm={this.navToGroupForm.bind(this)}/>
+          }
+
+          <SearchContacts
+            setSearchTerm={this.setSearchTerm.bind(this)}
+            searchTermVal={this.props.forms.searchTerm}
+            showGroupForm={this.props.dashControls.showGroupForm}
+            newGroup={this.props.contacts.newGroup}
+          />
+
+          {
+            this.props.dashControls.showGroupForm ?
+              <FaCheck className="AddChat-icon-check" />
+            : null
+          }
+        </div>
+
         {
           this.props.dashControls.showGroupForm ?
-            <NameGroup
-              setGroupName={this.setGroupName.bind(this)}
-              groupNameVal={this.props.forms.groupName}
+            <ContactsList
+              usersContacts={this.props.contacts.usersContacts}
+              searchTerm={this.props.forms.searchTerm}
+              handleAddChat={this.handleAddMultiChat.bind(this)}
             />
-          : <CreateGroup navToGroupForm={this.navToGroupForm.bind(this)}/>
+          : <ContactsList
+              usersContacts={this.props.contacts.usersContacts}
+              searchTerm={this.props.forms.searchTerm}
+              handleAddChat={this.handleAddSingleChat.bind(this)}
+            />
         }
-
-        <SearchContacts
-          setSearchTerm={this.setSearchTerm.bind(this)}
-          searchTermVal={this.props.forms.searchTerm}
-        />
-
-        <ContactsList
-          usersContacts={this.props.contacts.usersContacts}
-          searchTerm={this.props.forms.searchTerm}
-          handleAddChat={this.handleAddChat.bind(this)}
-        />
       </div>
     )
   }
