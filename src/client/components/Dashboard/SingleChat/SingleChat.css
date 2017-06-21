@@ -148,3 +148,24 @@
   font-size: 13px;
   color: white;
 }
+
+.SingleChat-time {
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.SingleChat-time h4 {
+  z-index: 1;
+  background-color: white;
+  padding: 0 10px;
+}
+
+.SingleChat-line {
+  border-bottom: 1px solid lightgray;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
