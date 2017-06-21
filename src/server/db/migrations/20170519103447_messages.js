@@ -14,7 +14,8 @@ exports.up = function(knex, Promise) {
       .inTable('chats')
       .onDelete('CASCADE');
     table.string('message').notNullable();
-    table.timestamps(true, true);
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('modified_at').defaultTo(knex.fn.now());
   });
 };
 

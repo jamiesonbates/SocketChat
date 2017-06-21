@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import FaMessage from 'react-icons/lib/fa/comment';
 import FaUsers from 'react-icons/lib/fa/user-plus';
 import FaUser from 'react-icons/lib/fa/user';
@@ -124,8 +125,10 @@ class SingleChat extends React.Component {
         <div className="SingleChat-messages-container">
           {
             this.props.singleChat && this.props.singleChat.messages ?
-                this.props.singleChat.messages.map((message, i) => (
-                  <div key={i} className="SingleChat-message">
+                this.props.singleChat.messages.map((message, i) => {
+                  const allMessages = this.props.singleChat.messages;
+
+                  let messageJSX = <div key={i} className="SingleChat-message">
                     {
                       message.userId === this.props.userId ?
                         <Message
@@ -139,11 +142,74 @@ class SingleChat extends React.Component {
                           messagePositionClass={'SingleChat-message-position-otherUser'}
                           messageColorClass={'SingleChat-message-color-otherUser'}
                           message={message}
-                          user={this.props.findUserName(message.userId, this.props.singleChat)}
+                          user={this.props.findUserName(this.props.singleChat)}
                         />
                     }
                   </div>
-                ))
+
+                  if (i === 0) {
+                    console.log(message.message);
+                    console.log(message.createdAt);
+                    messageJSX =
+                      <div className="SingleChat-single-message-container">
+                        <div className="SingleChat-time">
+                          <h4>{moment(message.createdAt).format('MMMM Do')}</h4>
+                        </div>
+                        {messageJSX}
+                      </div>
+                  }
+                  else if (i + 1 < allMessages.length) {
+                    const curDate = moment(allMessages[i].createdAt).date();
+                    const lastDate = moment(allMessages[i - 1].createdAt).date();
+                    const nextDate = moment(allMessages[i + 1].createdAt).date()
+                    let todayDate = new Date();
+                    let yesterdayDate = new Date();
+
+                    todayDate = todayDate.getDate();
+                    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+                    yesterdayDate = yesterdayDate.getDate();
+
+                    console.log(message.message);
+                    console.log(message.createdAt);
+                    console.log('next', nextDate);
+                    console.log('cur', curDate);
+                    console.log('today', todayDate);
+                    console.log('yesterday', yesterdayDate);
+
+                    if (curDate !== lastDate && curDate === todayDate) {
+                      console.log('today');
+                      messageJSX =
+                        <div className="SingleChat-single-message-container">
+                          <div className="SingleChat-time">
+                            <h4>Today</h4>
+                          </div>
+                          {messageJSX}
+                        </div>
+                    }
+                    else if (curDate !== nextDate && curDate === yesterdayDate) {
+                      console.log('yesterday');
+                      messageJSX =
+                        <div className="SingleChat-single-message-container">
+                          <div className="SingleChat-time">
+                            <h4>Yesterday</h4>
+                          </div>
+                          {messageJSX}
+                        </div>
+                    }
+                    else if (nextDate !== curDate) {
+                      console.log('show a date');
+                      messageJSX =
+                        <div className="SingleChat-single-message-container">
+                          <div className="SingleChat-time">
+                            <h4>{moment(message.createdAt).format('MMMM Do')}</h4>
+                          </div>
+                          {messageJSX}
+                        </div>
+                    }
+                  }
+
+                  return messageJSX;
+                })
             : null
           }
         </div>

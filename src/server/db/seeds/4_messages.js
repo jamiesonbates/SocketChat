@@ -6,19 +6,22 @@ exports.seed = function(knex, Promise) {
           id: 1,
           user_id: 1,
           chat_id: 1,
-          message: 'Hey, how are you?'
+          message: 'Hey, how are you?',
+          created_at: '2017-06-15T11:59:54.317407-07:00'
         },
         {
           id: 2,
           user_id: 1,
           chat_id: 1,
-          message: 'Wanna go to happy hour?'
+          message: 'Wanna go to happy hour?',
+          created_at: '2017-06-19T11:59:54.317407-07:00'
         },
         {
           id: 3,
           user_id: 2,
           chat_id: 1,
-          message: 'Sure! Where do you want to go?'
+          message: 'Sure! Where do you want to go?',
+          created_at: '2017-06-20T11:59:54.317407-07:00'
         },
         {
           id: 4,

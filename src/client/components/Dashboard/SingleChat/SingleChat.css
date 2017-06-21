@@ -55,10 +55,6 @@
   flex-direction: column;
 }
 
-.SingleChat-message-color-currentUser, .SingleChat-message-color-otherUser {
-
-}
-
 .SingleChat-message-position-currentUser {
   align-self: flex-end;
 }
