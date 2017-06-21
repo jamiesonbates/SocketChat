@@ -28,7 +28,6 @@ router.get('/:userId', (req, res, next) => {
          WHERE uc2.user_id = ${req.params.userId}) as chats;`
     )
     .then((query) => {
-      console.log(camelizeKeys(query.rows));
       res.send(camelizeKeys(query.rows));
     })
     .catch((err) => {
@@ -39,6 +38,7 @@ router.get('/:userId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const { chat } = req.body;
   const { users } = req.body;
+  console.log(req.body);
   let chatId;
 
   db('chats')

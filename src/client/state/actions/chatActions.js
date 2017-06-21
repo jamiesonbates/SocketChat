@@ -52,6 +52,7 @@ export function fetchChats(shouldSetChat=false, chatId=null) {
 
 export function createChat(users) {
   return function(dispatch, getState) {
+    console.log(users);
     const state = getState();
     const userId = state.userInfo.id;
     const name = state.forms.groupName || null;
@@ -67,7 +68,7 @@ export function createChat(users) {
     axios.post('/api/chats', body)
       .then((res) => {
         const { chatId } = res.data;
-        
+
         dispatch(fetchChats(true, chatId));
       })
   }

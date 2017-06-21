@@ -107,8 +107,7 @@ class AddChat extends React.Component {
     }
     else {
       let userGroup = [
-        ...this.props.contacts.newGroup,
-        this.props.userInfo
+        ...this.props.contacts.newGroup
       ]
       .map(user => user.id);
 
