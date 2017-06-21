@@ -66,7 +66,54 @@ class AddChat extends React.Component {
   }
 
   handleCreateNewGroup() {
+    let chatId;
+    const newGroup = this.props.contacts.newGroup;
 
+    const chatExists = this.props.allChats.filter(chat => {
+      if (chat.users.length === newGroup.length + 1) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    })
+    .reduce((acc, chat) => {
+      const newGroup = this.props.contacts.newGroup;
+
+      const isMatch = newGroup.reduce((acc, userId) => {
+        for (const user of chat.users) {
+          if (userId.id === user.id || this.props.userInfo.id === user) {
+            acc = true;
+          }
+          else {
+            acc = false;
+          }
+        }
+
+        return acc;
+      }, false);
+
+      if (isMatch) {
+        acc = true;
+        chatId = chat.id;
+        return acc;
+      }
+
+      return acc;
+    }, false);
+
+    if (chatExists) {
+      this.props.dispatch(setChat(chatId))
+    }
+    else {
+      let userGroup = [
+        ...this.props.contacts.newGroup,
+        this.props.userInfo
+      ]
+      .map(user => user.id);
+
+      this.props.dispatch(createChat(userGroup))
+    }
   }
 
   render() {
@@ -91,7 +138,10 @@ class AddChat extends React.Component {
 
           {
             this.props.dashControls.showGroupForm ?
-              <FaCheck className="AddChat-icon-check" />
+              <FaCheck
+                className="AddChat-icon-check"
+                onClick={this.handleCreateNewGroup.bind(this)}
+              />
             : null
           }
         </div>
