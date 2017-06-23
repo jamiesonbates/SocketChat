@@ -10,14 +10,11 @@ import Bookmarks from './Bookmarks/Bookmarks';
 import DefaultMain from './DefaultMain/DefaultMain';
 import {
   fetchChats,
-  setChat,
-  sendMessage
+  setChat
 } from '../../state/actions/chatActions';
 import {
   connectSocket,
   disconnectSocket,
-  startedTyping,
-  stoppedTyping,
   notifyCommonUsers,
   manageRoom
 } from '../../state/actions/socketActions';
@@ -124,16 +121,8 @@ class Dashboard extends React.Component {
           {
             this.props.dashControls.showDefaultMain ?
               <DefaultMain />
-            :  this.props.dashControls.showChat ?
+            : this.props.dashControls.showChat ?
                 <SingleChat
-                  allChats={this.props.allChats}
-                  singleChat={this.props.singleChat}
-                  sendMessage={sendMessage}
-                  userId={this.props.userInfo.id}
-                  startedTyping={startedTyping}
-                  stoppedTyping={stoppedTyping}
-                  chatsWithTyping={this.props.chatsWithTyping}
-                  usersOnline={this.props.usersOnline}
                   determineChatHeader={this.determineChatHeader.bind(this)}
                   findUserName={this.findUserName.bind(this)}
                 />
@@ -148,10 +137,7 @@ class Dashboard extends React.Component {
 const mapStateToProps = function(state) {
   return {
     allChats: state.chats.allChats,
-    singleChat: state.chats.singleChat,
     userInfo: state.userInfo,
-    chatsWithTyping: state.chats.chatsWithTyping,
-    usersOnline: state.chats.usersOnline,
     dashControls: state.dashControls
   }
 }

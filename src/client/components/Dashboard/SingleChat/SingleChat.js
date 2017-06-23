@@ -5,7 +5,7 @@ import FaUsers from 'react-icons/lib/fa/user-plus';
 import FaUser from 'react-icons/lib/fa/user';
 
 import './SingleChat.css';
-import wrapDash from '../../../containers/WrapDash';
+import wrapSingleChat from '../../../containers/WrapSingleChat';
 import Message from './Message';
 import Typing from './Typing';
 
@@ -22,29 +22,29 @@ class SingleChat extends React.Component {
     msgDiv.scrollTop = msgDiv.scrollHeight;
   }
 
-  sendMessage(e) {
+  handleSendMessage(e) {
     e.preventDefault();
     const message = this.refs.msg.value;
     const userId = this.props.userId;
-    const chatId = this.props.singleChat.id;
+    const chatId = this.props.chatId;
 
     if (message.length < 1) {
       return;
     }
 
-    this.props.dispatch(this.props.sendMessage(message, userId, chatId));
-    this.props.dispatch(this.props.stoppedTyping(chatId));
+    this.props.sendMessage({ message, userId, chatId });
+    this.props.stoppedTyping(chatId);
     this.refs.messageForm.reset();
   }
 
   handleTyping(isTyping) {
-    const chatId = this.props.singleChat.id;
+    const chatId = this.props.chatId;
 
     if (isTyping) {
-      this.props.dispatch(this.props.startedTyping(chatId));
+      this.props.startedTyping(chatId);
     }
     else {
-      this.props.dispatch(this.props.stoppedTyping(chatId));
+      this.props.stoppedTyping(chatId);
     }
   }
 
@@ -84,8 +84,8 @@ class SingleChat extends React.Component {
             }
 
             {
-              this.props.singleChat && this.props.singleChat.users.length < 3 ?
-                this.props.singleChat.users.map((user, i) => (
+              this.props.singleChat && this.props.users.length < 3 ?
+                this.props.users.map((user, i) => (
                   this.userIsOnline(user.id) && user.id !== this.props.userId ?
                     <div
                       key={i}
@@ -100,8 +100,8 @@ class SingleChat extends React.Component {
 
           <div className="SingleChat-header-options">
             {
-              this.props.singleChat && this.props.singleChat.users.length > 2 ?
-                this.props.singleChat.users.map((user, i) => {
+              this.props.singleChat && this.props.users.length > 2 ?
+                this.props.users.map((user, i) => {
                   if (user.id === this.props.userId) {
                     return null;
                   }
@@ -147,17 +147,6 @@ class SingleChat extends React.Component {
                     }
                   </div>
 
-                  // if (i === 0) {
-                  //   messageJSX =
-                  //     <div>
-                  //       <div className="SingleChat-time">
-                  //         <h4>{moment(message.createdAt).format('MMMM Do')}</h4>
-                  //         <div className="SingleChat-line"></div>
-                  //       </div>
-                  //
-                  //       {messageJSX}
-                  //     </div>
-                  // }
                   if (i + 1 < allMessages.length) {
                     let lastDate;
 
@@ -225,7 +214,7 @@ class SingleChat extends React.Component {
         <div className="SingleChat-typing-container">
           {
             this.props.singleChat ?
-              this.props.chatsWithTyping.includes(this.props.singleChat.id) ?
+              this.props.chatsWithTyping.includes(this.props.chatId) ?
                 <div className="SingleChat-typing">
                   <p>Typing...</p>
                 </div>
@@ -235,7 +224,7 @@ class SingleChat extends React.Component {
         </div>
 
         <div className="SingleChat-form-container">
-          <form onSubmit={this.sendMessage.bind(this)} ref="messageForm">
+          <form onSubmit={this.handleSendMessage.bind(this)} ref="messageForm">
             <input
               onBlur={() => this.handleTyping(false)}
               onChange={() => this.handleTyping(true)}
@@ -250,4 +239,4 @@ class SingleChat extends React.Component {
   }
 }
 
-export default wrapDash(SingleChat);
+export default wrapSingleChat(SingleChat);

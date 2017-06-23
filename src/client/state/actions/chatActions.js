@@ -88,10 +88,13 @@ export function receiveMessage(msg) {
   }
 }
 
-export function sendMessage(message, userId, chatId) {
-  return {
-    type: sendMessageType,
-    payload: { message, userId, chatId }
+export function sendMessage(data) {
+  const { message, userId, chatId } = data; 
+  return function(dispatch) {
+    return dispatch({
+      type: sendMessageType,
+      payload: { message, userId, chatId }
+    });
   }
 }
 
