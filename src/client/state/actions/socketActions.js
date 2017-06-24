@@ -31,7 +31,7 @@ export function notifyCommonUsers() {
   }
 }
 
-export function manageRoom(chatId, event) {
+export function manageRoom({ chatId, event }) {
   return {
     type: manageRoomType,
     payload: { chatId, event }

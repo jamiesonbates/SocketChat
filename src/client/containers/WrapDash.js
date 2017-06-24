@@ -14,8 +14,6 @@ export default function(ComposedClass) {
         <ComposedClass {...this.props} />
       )
     }
-
-
   }
 
   function mapStateToProps(state) {
