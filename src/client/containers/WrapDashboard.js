@@ -39,7 +39,7 @@ export default function(ComposedClass) {
       disconnectSocket: () => dispatch(disconnectSocket()),
       notifyCommonUsers: () => dispatch(notifyCommonUsers()),
       manageRoom: (data) => dispatch(manageRoom(data)),
-      fetchChats: () => dispatch(fetchChats()),
+      fetchChats: (data) => dispatch(fetchChats(data)),
       getCommonUsers: () => dispatch(getCommonUsers()),
       getContacts: () => dispatch(getContacts())
     }

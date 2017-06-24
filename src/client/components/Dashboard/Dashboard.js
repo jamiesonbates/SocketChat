@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     if (this.props.allChats === null) {
-      this.props.fetchChats();
+      this.props.fetchChats({});
     }
     else {
       this.handleRooms(this.props.allChats, 'join room');
@@ -118,13 +118,5 @@ class Dashboard extends React.Component {
     )
   }
 }
-//
-// const mapStateToProps = function(state) {
-//   return {
-//     allChats: state.chats.allChats,
-//     userInfo: state.userInfo,
-//     dashControls: state.dashControls
-//   }
-// }
 
 export default wrapDashboard(Dashboard);

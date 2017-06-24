@@ -29,7 +29,7 @@ export function setChat(id) {
   }
 }
 
-export function fetchChats(shouldSetChat=false, chatId=null) {
+export function fetchChats({ shouldSetChat=false, chatId=null }) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
@@ -52,7 +52,6 @@ export function fetchChats(shouldSetChat=false, chatId=null) {
 
 export function createChat(users) {
   return function(dispatch, getState) {
-    console.log(users);
     const state = getState();
     const userId = state.userInfo.id;
     const name = state.forms.groupName || null;
@@ -69,7 +68,7 @@ export function createChat(users) {
       .then((res) => {
         const { chatId } = res.data;
 
-        dispatch(fetchChats(true, chatId));
+        dispatch(fetchChats({ shouldSetChat: true, chatId }));
       })
   }
 }
@@ -89,7 +88,7 @@ export function receiveMessage(msg) {
 }
 
 export function sendMessage(data) {
-  const { message, userId, chatId } = data; 
+  const { message, userId, chatId } = data;
   return function(dispatch) {
     return dispatch({
       type: sendMessageType,
@@ -111,6 +110,10 @@ function findChat(chats, id) {
 
 function addMessageToChat(chats, msg) {
   const nextChats = chats.map(chat => {
+    if (!chat.messages) {
+      chat.messages = [];
+    }
+    
     if (chat.id === msg.chatId) {
       chat.messages.push(msg);
     }

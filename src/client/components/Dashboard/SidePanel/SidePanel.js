@@ -1,27 +1,20 @@
 import React from 'react';
 
-import wrapDash from '../../../containers/WrapDash';
+import wrapSidePanel from '../../../containers/WrapSidePanel';
 import ChatsList from './ChatsList/ChatsList';
 import AddChat from './AddChat/AddChat';
 import './SidePanel.scss';
 import SideNav from './SideNav/SideNav';
-import {
-  fetchChats,
-  setChat
-} from '../../../state/actions/chatActions';
-import {
-  updateMain,
-  updateSide
-} from '../../../state/actions/dashControlActions';
 import { showChatsListType } from '../../../state/actionTypes';
 
 class SidePanel extends React.Component {
   constructor(props) {
     super(props);
+
   }
 
   navToChatsList() {
-    this.props.dispatch(updateSide(showChatsListType));
+    this.props.updateSide(showChatsListType);
   }
 
   render() {
@@ -29,19 +22,14 @@ class SidePanel extends React.Component {
       <div className="SidePanel-container">
         <SideNav
           navToChatsList={this.navToChatsList.bind(this)}
-          inAddChat={this.props.dashControls.showAddChat}
-          inGroupForm={this.props.dashControls.showGroupForm}
+          inAddChat={this.props.showAddChat}
+          inGroupForm={this.props.showGroupForm}
         />
         {
-          this.props.dashControls.showChatsList ?
+          this.props.showChatsList ?
             <ChatsList
-              allChats={this.props.allChats}
-              fetchChats={fetchChats}
-              setChat={setChat}
-              userId={this.props.userInfo.id}
               determineChatHeader={this.props.determineChatHeader.bind(this)}
               findUserName={this.props.findUserName}
-              updateMain={updateMain}
             />
           : <AddChat />
 
@@ -51,4 +39,4 @@ class SidePanel extends React.Component {
   }
 }
 
-export default wrapDash(SidePanel);
+export default wrapSidePanel(SidePanel);

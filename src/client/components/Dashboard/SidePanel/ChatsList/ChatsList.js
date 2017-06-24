@@ -2,12 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import FaNewChat from 'react-icons/lib/md/chat';
 
-
 import './ChatsList.css';
-import wrapDash from '../../../../containers/WrapDash';
+import wrapSidePanel from '../../../../containers/WrapSidePanel';
 import ChatPeak from './ChatPeak/ChatPeak';
 import { showChatType, showAddChatType } from '../../../../state/actionTypes';
-import { updateSide } from '../../../../state/actions/dashControlActions';
 
 class ChatsList extends React.Component {
   constructor(props) {
@@ -15,8 +13,8 @@ class ChatsList extends React.Component {
   }
 
   openChat(id) {
-    this.props.dispatch(this.props.setChat(id));
-    this.props.dispatch(this.props.updateMain(showChatType));
+    this.props.setChat(id);
+    this.props.updateMain(showChatType);
   }
 
   determineTimeDisplay(chat) {
@@ -92,11 +90,11 @@ class ChatsList extends React.Component {
 
         <FaNewChat
           className="ChatsList-newChat-btn"
-          onClick={() => this.props.dispatch(updateSide(showAddChatType))}
+          onClick={() => this.props.updateSide(showAddChatType)}
         />
       </div>
     )
   }
 }
 
-export default wrapDash(ChatsList);
+export default wrapSidePanel(ChatsList);

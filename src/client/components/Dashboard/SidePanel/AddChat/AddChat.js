@@ -5,13 +5,9 @@ import ContactsList from './ContactsList/ContactsList';
 import SearchContacts from './SearchContacts/SearchContacts';
 import CreateGroup from './CreateGroup/CreateGroup';
 import NameGroup from './NameGroup/NameGroup';
-import wrapDash from '../../../../containers/WrapDash';
+import wrapSidePanel from '../../../../containers/WrapSidePanel';
 import './AddChat.scss';
 import { showGroupFormType, showChatType, showChatsListType } from '../../../../state/actionTypes';
-import { updateSide, updateMain } from '../../../../state/actions/dashControlActions';
-import { updateGroupName, updateSearchTerm } from '../../../../state/actions/formActions';
-import { setChat, createChat } from '../../../../state/actions/chatActions';
-import { addNewGroupMember } from '../../../../state/actions/contactsActions';
 
 class AddChat extends React.Component {
   constructor(props) {
@@ -19,15 +15,15 @@ class AddChat extends React.Component {
   }
 
   navToGroupForm() {
-    this.props.dispatch(updateSide(showGroupFormType));
+    this.props.updateSide(showGroupFormType);
   }
 
   setGroupName(name) {
-    this.props.dispatch(updateGroupName(name));
+    this.props.updateGroupName(name);
   }
 
   setSearchTerm(term) {
-    this.props.dispatch(updateSearchTerm(term));
+    this.props.updateSearchTerm(term);
   }
 
   handleAddSingleChat(userId) {
@@ -54,20 +50,20 @@ class AddChat extends React.Component {
     }, false);
 
     if (chatExists) {
-      this.props.dispatch(setChat(chatId));
+      this.props.setChat(chatId);
     }
     else {
-      this.props.dispatch(createChat([userId]));
+      this.props.createChat([userId]);
     }
   }
 
   handleAddMultiChat(userId) {
-    this.props.dispatch(addNewGroupMember(userId));
+    this.props.addNewGroupMember(userId);
   }
 
   handleCreateNewGroup() {
     let chatId;
-    const newGroup = this.props.contacts.newGroup;
+    const newGroup = this.props.newGroup;
 
     const chatExists = this.props.allChats.filter(chat => {
       if (chat.users.length === newGroup.length + 1) {
@@ -78,7 +74,7 @@ class AddChat extends React.Component {
       }
     })
     .reduce((acc, chat) => {
-      const newGroup = this.props.contacts.newGroup;
+      const newGroup = this.props.newGroup;
 
       const isMatch = newGroup.reduce((acc, userId) => {
         for (const user of chat.users) {
@@ -106,15 +102,15 @@ class AddChat extends React.Component {
     }, false);
 
     if (chatExists) {
-      this.props.dispatch(setChat(chatId))
+      this.props.setChat(chatId);
     }
     else {
       let userGroup = [
-        ...this.props.contacts.newGroup
+        ...this.props.newGroup
       ]
       .map(user => user.id);
 
-      this.props.dispatch(createChat(userGroup))
+      this.props.createChat(userGroup);
     }
   }
 
@@ -123,23 +119,23 @@ class AddChat extends React.Component {
       <div className="Dashboard-side-container">
         <div className="AddChat-form-container">
           {
-            this.props.dashControls.showGroupForm ?
+            this.props.showGroupForm ?
               <NameGroup
                 setGroupName={this.setGroupName.bind(this)}
-                groupNameVal={this.props.forms.groupName}
+                groupNameVal={this.props.groupName}
               />
             : <CreateGroup navToGroupForm={this.navToGroupForm.bind(this)}/>
           }
 
           <SearchContacts
             setSearchTerm={this.setSearchTerm.bind(this)}
-            searchTermVal={this.props.forms.searchTerm}
-            showGroupForm={this.props.dashControls.showGroupForm}
-            newGroup={this.props.contacts.newGroup}
+            searchTermVal={this.props.searchTerm}
+            showGroupForm={this.props.showGroupForm}
+            newGroup={this.props.newGroup}
           />
 
           {
-            this.props.dashControls.showGroupForm ?
+            this.props.showGroupForm ?
               <FaCheck
                 className="AddChat-icon-check"
                 onClick={this.handleCreateNewGroup.bind(this)}
@@ -149,15 +145,15 @@ class AddChat extends React.Component {
         </div>
 
         {
-          this.props.dashControls.showGroupForm ?
+          this.props.showGroupForm ?
             <ContactsList
-              usersContacts={this.props.contacts.usersContacts}
-              searchTerm={this.props.forms.searchTerm}
+              usersContacts={this.props.usersContacts}
+              searchTerm={this.props.searchTerm}
               handleAddChat={this.handleAddMultiChat.bind(this)}
             />
           : <ContactsList
-              usersContacts={this.props.contacts.usersContacts}
-              searchTerm={this.props.forms.searchTerm}
+              usersContacts={this.props.usersContacts}
+              searchTerm={this.props.searchTerm}
               handleAddChat={this.handleAddSingleChat.bind(this)}
             />
         }
@@ -166,4 +162,4 @@ class AddChat extends React.Component {
   }
 }
 
-export default wrapDash(AddChat);
+export default wrapSidePanel(AddChat);
