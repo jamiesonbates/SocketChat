@@ -4,49 +4,34 @@ import moment from 'moment';
 
 import './Dashboard.css';
 import './shared.scss';
+import wrapDashboard from '../../containers/WrapDashboard';
 import SidePanel from './SidePanel/SidePanel';
 import SingleChat from './SingleChat/SingleChat';
 import Bookmarks from './Bookmarks/Bookmarks';
 import DefaultMain from './DefaultMain/DefaultMain';
-import {
-  fetchChats,
-  setChat
-} from '../../state/actions/chatActions';
-import {
-  connectSocket,
-  disconnectSocket,
-  notifyCommonUsers,
-  manageRoom
-} from '../../state/actions/socketActions';
-import {
-  updateMain,
-  updateSide
-} from '../../state/actions/dashControlActions';
-import {
-  getContacts
-} from '../../state/actions/contactsActions';
-import { getCommonUsers } from '../../state/actions/onlineActions';
 
 class Dashboard extends React.Component {
   constructor() {
     super();
+
+    this.determineChatHeader = this.determineChatHeader.bind(this);
   }
 
   componentWillMount() {
-    this.props.dispatch(connectSocket());
-    this.props.dispatch(getCommonUsers());
-    this.props.dispatch(getContacts());
+    this.props.connectSocket();
+    this.props.getCommonUsers();
+    this.props.getContacts();
   }
 
   componentDidMount() {
     if (this.props.allChats === null) {
-      this.props.dispatch(fetchChats());
+      this.props.fetchChats();
     }
     else {
       this.handleRooms(this.props.allChats, 'join room');
     }
 
-    this.props.dispatch(notifyCommonUsers());
+    this.props.notifyCommonUsers();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,7 +48,7 @@ class Dashboard extends React.Component {
     }
 
     for (const chat of chats) {
-      this.props.dispatch(manageRoom(chat.id, event));
+      this.props.manageRoom({ chatId: chat.id, event });
     }
   }
 
@@ -90,7 +75,7 @@ class Dashboard extends React.Component {
     }
 
     const title = chat.users.reduce((acc, user, i, arr) => {
-      if (user.id === this.props.userInfo.id) {
+      if (user.id === this.props.userId) {
         return acc;
       }
 
@@ -119,9 +104,9 @@ class Dashboard extends React.Component {
 
         {/* Where should methods live and/or when should they be passed */}
           {
-            this.props.dashControls.showDefaultMain ?
+            this.props.showDefaultMain ?
               <DefaultMain />
-            : this.props.dashControls.showChat ?
+            : this.props.showChat ?
                 <SingleChat
                   determineChatHeader={this.determineChatHeader.bind(this)}
                   findUserName={this.findUserName.bind(this)}
@@ -133,13 +118,13 @@ class Dashboard extends React.Component {
     )
   }
 }
+//
+// const mapStateToProps = function(state) {
+//   return {
+//     allChats: state.chats.allChats,
+//     userInfo: state.userInfo,
+//     dashControls: state.dashControls
+//   }
+// }
 
-const mapStateToProps = function(state) {
-  return {
-    allChats: state.chats.allChats,
-    userInfo: state.userInfo,
-    dashControls: state.dashControls
-  }
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default wrapDashboard(Dashboard);
