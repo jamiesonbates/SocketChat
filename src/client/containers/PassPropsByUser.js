@@ -17,13 +17,13 @@ export default function(ComposedClass, userId) {
 
   const mapStateToProps = state => {
     return {
-      targetUserId: userId
+      targetUserId: state.uniqueUser.targetUserId
     }
   }
 
   const mapDispatchToProps = dispatch => (
     {
-      updateUserProfile: (data) => dispatch(updateUserProfile(data)) 
+      updateUserProfile: (data) => dispatch(updateUserProfile(data))
     }
   )
 

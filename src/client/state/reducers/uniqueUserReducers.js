@@ -1,11 +1,13 @@
 import {
   setUserProfileType,
   resetUserProfileType,
-  noUserProfileMatchType
+  noUserProfileMatchType,
+  setTargetUserIdType
 } from '../actionTypes';
 
 export default function reducer(state={
-  userProfile: null
+  userProfile: null,
+  targetUserId: null
 }, action) {
   switch(action.type) {
     case setUserProfileType:
@@ -14,6 +16,12 @@ export default function reducer(state={
       return {
         ...state,
         userProfile: action.payload
+      }
+
+    case setTargetUserIdType:
+      return {
+        ...state,
+        targetUserId: action.payload
       }
   }
 

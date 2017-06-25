@@ -1,7 +1,8 @@
 import {
   setUserProfileType,
   resetUserProfileType,
-  noUserProfileMatchType
+  noUserProfileMatchType,
+  setTargetUserIdType
 } from '../actionTypes';
 
 export function updateUserProfile(targetUserId) {
@@ -21,6 +22,7 @@ export function updateUserProfile(targetUserId) {
     }
     else {
       const contacts = state.contacts.usersContacts;
+      console.log('contacts');
 
       for (const contact of contacts) {
         if (contact.id === targetUserId) {
@@ -30,5 +32,12 @@ export function updateUserProfile(targetUserId) {
     }
 
     return dispatch({ type: noUserProfileMatchType, payload: null });
+  }
+}
+
+export function updateTargetUserId(userId) {
+  return {
+    type: setTargetUserIdType,
+    payload: userId
   }
 }

@@ -35,6 +35,8 @@ const addNewGroupMemberType = 'ADD_NEW_GROUP_MEMBER';
 const setUserProfileType = 'SET_USER_PROFILE';
 const resetUserProfileType = "RESET_USER_PROFILE";
 const noUserProfileMatchType = 'NO_USER_PROFILE_MATCH';
+const showUserProfileType = 'SHOW_USER_PROFILE';
+const setTargetUserIdType = 'SET_TARGET_USERID';
 
 export {
   authSuccess,
@@ -71,5 +73,7 @@ export {
   addNewGroupMemberType,
   setUserProfileType,
   resetUserProfileType,
-  noUserProfileMatchType
+  noUserProfileMatchType,
+  showUserProfileType,
+  setTargetUserIdType
 }

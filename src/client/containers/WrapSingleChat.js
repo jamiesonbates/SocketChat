@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { startedTyping, stoppedTyping } from '../state/actions/socketActions';
 import { sendMessage } from '../state/actions/chatActions';
+import { updateMain } from '../state/actions/dashControlActions';
+import { updateUserProfile, updateTargetUserId } from '../state/actions/uniqueUserActions';
 
 export default function(ComposedClass) {
   class WrapSingleChat extends React.Component {
@@ -31,9 +33,11 @@ export default function(ComposedClass) {
 
   const mapDispatchToProps = dispatch => (
     {
-      sendMessage: (data) => { dispatch(sendMessage(data)) },
-      startedTyping: (data) => { dispatch(startedTyping(data)) },
-      stoppedTyping: (data) => { dispatch(stoppedTyping(data)) }
+      sendMessage: (data) => dispatch(sendMessage(data)),
+      startedTyping: (data) => dispatch(startedTyping(data)),
+      stoppedTyping: (data) => dispatch(stoppedTyping(data)),
+      updateMain: (data) => dispatch(updateMain(data)),
+      updateTargetUserId: (data) => dispatch(updateTargetUserId(data))
     }
   )
 

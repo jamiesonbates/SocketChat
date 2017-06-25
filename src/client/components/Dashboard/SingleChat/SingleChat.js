@@ -6,6 +6,7 @@ import FaUser from 'react-icons/lib/fa/user';
 
 import './SingleChat.css';
 import wrapSingleChat from '../../../containers/WrapSingleChat';
+import { showUserProfileType } from '../../../state/actionTypes';
 import Message from './Message';
 import Typing from './Typing';
 
@@ -46,6 +47,11 @@ class SingleChat extends React.Component {
     else {
       this.props.stoppedTyping(chatId);
     }
+  }
+
+  handleClickOnUser(userId) {
+    this.props.updateTargetUserId(userId);
+    this.props.updateMain(showUserProfileType);
   }
 
   userIsOnline(userId) {
@@ -107,7 +113,7 @@ class SingleChat extends React.Component {
                   }
 
                   return (
-                    <div key={i} className="SingleChat-user">
+                    <div key={i} className="SingleChat-user" onClick={() => this.handleClickOnUser(user.id)}>
                       <p>{`${user.firstName} ${user.lastName}`}</p>
                       {
                         this.userIsOnline(user.id) ?

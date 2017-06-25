@@ -1,5 +1,3 @@
-import { setUserProfileType, resetUserProfileType, noUserProfileMatchType } from '../actionTypes';
-
 export function updateMain(type) {
   return {
     type

@@ -9,6 +9,7 @@ import SidePanel from './SidePanel/SidePanel';
 import SingleChat from './SingleChat/SingleChat';
 import Bookmarks from './Bookmarks/Bookmarks';
 import DefaultMain from './DefaultMain/DefaultMain';
+import UserProfile from './UserProfile/UserProfile';
 
 class Dashboard extends React.Component {
   constructor() {

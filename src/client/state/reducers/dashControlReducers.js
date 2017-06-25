@@ -4,7 +4,8 @@ import {
   showDefaultMainType,
   showChatsListType,
   showAddChatType,
-  showGroupFormType
+  showGroupFormType,
+  showUserProfileType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -13,7 +14,8 @@ export default function reducer(state={
   showDefaultMain: true,
   showChatsList: true,
   showNewChat: false,
-  showGroupForm: false
+  showGroupForm: false,
+  showUserProfile: false
 }, action) {
   switch(action.type) {
     case showChatType:
@@ -58,6 +60,11 @@ export default function reducer(state={
       return {
         ...state,
         showGroupForm: true
+      }
+    case showUserProfileType:
+      return {
+        ...state,
+        showUserProfile: true
       }
   }
 
