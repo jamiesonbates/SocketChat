@@ -32,6 +32,9 @@ const updateGroupNameType = 'UPDATE_GROUP_NAME';
 const updateSearchTermType = 'UPDATE_SEARCH_TERM';
 const updateContactsType = 'UPDATE_CONTACTS';
 const addNewGroupMemberType = 'ADD_NEW_GROUP_MEMBER';
+const setUserProfileType = 'SET_USER_PROFILE';
+const resetUserProfileType = "RESET_USER_PROFILE";
+const noUserProfileMatchType = 'NO_USER_PROFILE_MATCH';
 
 export {
   authSuccess,
@@ -65,5 +68,8 @@ export {
   updateGroupNameType,
   updateSearchTermType,
   updateContactsType,
-  addNewGroupMemberType
+  addNewGroupMemberType,
+  setUserProfileType,
+  resetUserProfileType,
+  noUserProfileMatchType
 }
