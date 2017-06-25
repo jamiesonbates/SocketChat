@@ -52,12 +52,10 @@ class Dashboard extends React.Component {
     }
   }
 
-  findUserName(chat) {
-    if (!chat.messages || !chat.messages.length) {
-      return '';
+  findUserName(chat, userId) {
+    if (!userId) {
+      userId = chat.messages[chat.messages.length - 1].userId;
     }
-
-    const userId = chat.messages[chat.messages.length - 1].userId;
     let foundUser;
 
     for (const user of chat.users) {

@@ -53,7 +53,7 @@ class ChatsList extends React.Component {
 
     const lastMsgObj = chat.messages[chat.messages.length - 1];
     const lastMsg = lastMsgObj.message;
-    const lastMsgUser = this.props.findUserName(chat);
+    const lastMsgUser = this.props.findUserName(chat, lastMsg.userId);
 
     if (lastMsgUser.id === this.props.userId) {
       return `You: ${lastMsg}`;

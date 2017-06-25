@@ -124,9 +124,9 @@ class SingleChat extends React.Component {
 
         <div className="SingleChat-messages-container">
           {
-            this.props.singleChat && this.props.singleChat.messages ?
-                this.props.singleChat.messages.map((message, i) => {
-                  const allMessages = this.props.singleChat.messages;
+            this.props.singleChat && this.props.messages ?
+                this.props.messages.map((message, i) => {
+                  const allMessages = this.props.messages;
 
                   let messageJSX = <div key={i} className="SingleChat-message">
                     {
@@ -142,7 +142,7 @@ class SingleChat extends React.Component {
                           messagePositionClass={'SingleChat-message-position-otherUser'}
                           messageColorClass={'SingleChat-message-color-otherUser'}
                           message={message}
-                          user={this.props.findUserName(this.props.singleChat)}
+                          user={this.props.findUserName(this.props.singleChat, message.userId)}
                         />
                     }
                   </div>
@@ -165,7 +165,7 @@ class SingleChat extends React.Component {
 
                     if (i === 0 && todayDate === curDate) {
                       messageJSX =
-                        <div className="SingleChat-single-message-container">
+                        <div key={i} className="SingleChat-single-message-container">
                           <div className="SingleChat-time">
                             <h4>Today</h4>
                             <div className="SingleChat-line"></div>
@@ -175,7 +175,7 @@ class SingleChat extends React.Component {
                     }
                     else if (curDate !== lastDate && curDate === todayDate) {
                       messageJSX =
-                        <div className="SingleChat-single-message-container">
+                        <div key={i} className="SingleChat-single-message-container">
                           <div className="SingleChat-time">
                             <h4>Today</h4>
                             <div className="SingleChat-line"></div>
@@ -185,7 +185,7 @@ class SingleChat extends React.Component {
                     }
                     else if (curDate !== nextDate && curDate === yesterdayDate) {
                       messageJSX =
-                        <div className="SingleChat-single-message-container">
+                        <div key={i} className="SingleChat-single-message-container">
                           <div className="SingleChat-time">
                             <h4>Yesterday</h4>
                             <div className="SingleChat-line"></div>
@@ -195,7 +195,7 @@ class SingleChat extends React.Component {
                     }
                     else if (nextDate !== curDate) {
                       messageJSX =
-                        <div className="SingleChat-single-message-container">
+                        <div key={i} className="SingleChat-single-message-container">
                           <div className="SingleChat-time">
                             <h4>{moment(message.createdAt).format('MMMM Do')}</h4>
                             <div className="SingleChat-line"></div>
