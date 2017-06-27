@@ -5,7 +5,8 @@ import {
   showChatsListType,
   showAddChatType,
   showGroupFormType,
-  showUserProfileType
+  showUserProfileType,
+  exitUserProfileType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -65,6 +66,11 @@ export default function reducer(state={
       return {
         ...state,
         showUserProfile: true
+      }
+    case exitUserProfileType:
+      return {
+        ...state,
+        showUserProfile: false
       }
   }
 

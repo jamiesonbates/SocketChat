@@ -4,6 +4,7 @@ import FaClose from 'react-icons/lib/md/close';
 
 import './UserProfile.scss';
 import passPropsByUser from '../../../containers/PassPropsByUser';
+import { exitUserProfileType } from '../../../state/actionTypes';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -28,6 +29,12 @@ class UserProfile extends React.Component {
     }, false);
 
     return bool;
+  }
+
+  handleExit() {
+    this.props.updateMain(exitUserProfileType);
+    this.props.updateTargetUserId(null);
+    this.props.updateUserProfile(null);
   }
 
   handleMessageClick(userId) {
@@ -65,13 +72,17 @@ class UserProfile extends React.Component {
     return (
       <div className="UserProfile-container">
         <div className="UserProfile-nav">
-          <FaClose className="UserProfile-close-icon"/>
+          <FaClose
+            className="UserProfile-close-icon"
+            onClick={this.handleExit.bind(this)}
+          />
         </div>
         {
           this.props.targetUserProfile ?
             <div className="UserProfile-main">
               <div className="UserProfile-top">
                 <FaUser className="UserProfile-user-icon" />
+
 
                 <div className="UserProfile-name">
                   <h3>
