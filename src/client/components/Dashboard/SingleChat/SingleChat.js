@@ -54,6 +54,7 @@ class SingleChat extends React.Component {
     this.props.updateMain(showUserProfileType);
   }
 
+  // TODO: used multiple places - condense
   userIsOnline(userId) {
     const bool = this.props.usersOnline.reduce((acc, id) => {
       if (id === userId) {

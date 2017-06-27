@@ -1,3 +1,91 @@
 .UserProfile-container {
   flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.UserProfile-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.UserProfile-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 2px solid #D1D1D1;
+}
+
+.UserProfile-bottom {
+  padding: 50px 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserProfile-icon {
+  background-color: #D1D1D1;
+  color: #3B3B3B;
+  padding: 8%;
+  border-radius: 50%;
+  font-size: 200px;
+}
+
+.UserProfile-name {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.UserProfile-online, .UserProfile.not-online {
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.UserProfile-online {
+  background-color: green;
+}
+
+.UserProfile-not-online {
+  background-color: green;
+  border: 1px solid black;
+}
+
+.UserProfile-options {
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.UserProfile-message-btn {
+  padding: 8px 15px;
+  font-size: 18px;
+  background-color: #F7F7F7;
+  border-radius: 5px;
+  border: 1px solid #D1D1D1;
+}
+
+.UserProfile-message-btn:hover {
+  cursor: pointer;
+  background-color: white;
+}
+
+.UserProfile-info-container {
+  padding: 5px;
+  display: flex;
+  width: 75%;
+  align-items: center;
+}
+
+.UserProfile-title {
+  width: 30%;
+  color: #A1A1A1;
+}
+
+.UserProfile-info {
+  width: 70%;
 }

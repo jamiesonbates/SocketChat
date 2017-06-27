@@ -17,7 +17,9 @@ export default function(ComposedClass) {
 
   const mapStateToProps = state => {
     return {
-      targetUserId: state.uniqueUserInfo.targetUserId
+      targetUserId: state.uniqueUserInfo.targetUserId,
+      targetUserProfile: state.uniqueUserInfo.userProfile,
+      usersOnline: state.chats.usersOnline
     }
   }
 
@@ -27,5 +29,5 @@ export default function(ComposedClass) {
     }
   )
 
-  return connect(mapStateToProps)(PassPropsByUser);
+  return connect(mapStateToProps, mapDispatchToProps)(PassPropsByUser);
 }
