@@ -1,5 +1,6 @@
 import React from 'react';
 import FaUser from 'react-icons/lib/fa/user';
+import FaClose from 'react-icons/lib/md/close';
 
 import './UserProfile.scss';
 import passPropsByUser from '../../../containers/PassPropsByUser';
@@ -8,7 +9,7 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props);
+    this.handleMessageClick = this.handleMessageClick.bind(this);
   }
 
   componentWillMount() {
@@ -29,14 +30,48 @@ class UserProfile extends React.Component {
     return bool;
   }
 
+  handleMessageClick(userId) {
+    let chatId;
+
+    const chatExists = this.props.allChats.filter(chat => {
+      if (chat.users.length < 3) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    })
+    .reduce((acc, chat) => {
+      for (const user of chat.users) {
+        if (user.id === userId) {
+          chatId = chat.id;
+          acc = true;
+          return acc;
+        }
+      }
+
+      return acc;
+    }, false);
+
+    if (chatExists) {
+      this.props.setChat(chatId);
+    }
+    else {
+      this.props.createChat([userId]);
+    }
+  }
+
   render() {
     return (
       <div className="UserProfile-container">
+        <div className="UserProfile-nav">
+          <FaClose className="UserProfile-close-icon"/>
+        </div>
         {
           this.props.targetUserProfile ?
             <div className="UserProfile-main">
               <div className="UserProfile-top">
-                <FaUser className="UserProfile-icon" />
+                <FaUser className="UserProfile-user-icon" />
 
                 <div className="UserProfile-name">
                   <h3>
@@ -49,9 +84,30 @@ class UserProfile extends React.Component {
                   }
                 </div>
 
-                <div className="UserProfile-options">
-                  <button className="UserProfile-message-btn">Message</button>
-                </div>
+                {
+                  this.props.currentUserId === this.props.targetUserId ?
+                    <div className="UserProfile-options">
+                      <button className="UserProfile-btn">
+                        Bookmarks
+                      </button>
+
+                      <button className="UserProfile-btn">
+                        Edit
+                      </button>
+                    </div>
+                  : <div className="UserProfile-options">
+                      <button
+                        className="UserProfile-btn"
+                        onClick={() => this.handleMessageClick(this.props.targetUserId)}
+                      >
+                        Message
+                      </button>
+
+                      <button className="UserProfile-btn">
+                        Bookmarks
+                      </button>
+                    </div>
+                }
               </div>
 
               <div className="UserProfile-bottom">

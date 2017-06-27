@@ -4,6 +4,25 @@
   flex-direction: column;
 }
 
+.UserProfile-nav {
+  background-color: #F7F7F7;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #D1D1D1;
+  z-index: 1;
+  margin-bottom: 5px;
+}
+
+.UserProfile-close-icon {
+  font-size: 25px;
+}
+
+.UserProfile-nav-icon {
+  font-size: 20px;
+}
+
 .UserProfile-main {
   display: flex;
   flex-direction: column;
@@ -26,10 +45,10 @@
   align-items: center;
 }
 
-.UserProfile-icon {
-  background-color: #D1D1D1;
+.UserProfile-user-icon {
+  background-color: #F7F7F7;
   color: #3B3B3B;
-  padding: 8%;
+  padding: 40px;
   border-radius: 50%;
   font-size: 200px;
 }
@@ -61,15 +80,16 @@
   padding-bottom: 20px;
 }
 
-.UserProfile-message-btn {
-  padding: 8px 15px;
+.UserProfile-btn {
+  margin: 3px;
+  padding: 5px 10px;
   font-size: 18px;
   background-color: #F7F7F7;
   border-radius: 5px;
   border: 1px solid #D1D1D1;
 }
 
-.UserProfile-message-btn:hover {
+.UserProfile-btn:hover {
   cursor: pointer;
   background-color: white;
 }
@@ -78,7 +98,6 @@
   padding: 5px;
   display: flex;
   width: 75%;
-  align-items: center;
 }
 
 .UserProfile-title {
@@ -88,4 +107,5 @@
 
 .UserProfile-info {
   width: 70%;
+  overflow-wrap: break-word;
 }

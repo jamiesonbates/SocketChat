@@ -26,6 +26,7 @@ class AddChat extends React.Component {
     this.props.updateSearchTerm(term);
   }
 
+  // exists in multiple places
   handleAddSingleChat(userId) {
     let chatId;
 

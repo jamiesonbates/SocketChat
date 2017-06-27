@@ -7,7 +7,7 @@
 .Dashboard-main-container {
   border: 1px solid black;
   display: flex;
-  flex: 3;
+  flex: 4;
   box-sizing: border-box;
   flex-direction: column;
 }
