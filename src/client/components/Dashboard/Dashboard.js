@@ -95,13 +95,13 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="Dashboard-container">
-        <div className="Dashboard-sections-container">
-          <SidePanel
-            determineChatHeader={this.determineChatHeader}
-            findUserName={this.findUserName}
-          />
+        <SidePanel
+          determineChatHeader={this.determineChatHeader}
+          findUserName={this.findUserName}
+        />
 
         {/* Where should methods live and/or when should they be passed */}
+        <div className="Dashboard-main-container">
           {
             this.props.showDefaultMain ?
               <DefaultMain />
@@ -113,6 +113,12 @@ class Dashboard extends React.Component {
               : <Bookmarks />
           }
         </div>
+
+        {
+          this.props.showUserProfile ?
+            <UserProfile />
+          : null
+        }
       </div>
     )
   }

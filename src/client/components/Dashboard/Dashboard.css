@@ -1,13 +1,14 @@
 .Dashboard-container {
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex: 1;
 }
 
 .Dashboard-main-container {
-  width: 75%;
   border: 1px solid black;
   display: flex;
+  flex: 3;
+  box-sizing: border-box;
   flex-direction: column;
 }
 

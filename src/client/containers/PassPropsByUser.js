@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { updateUserProfile } from '../state/actions/uniqueUserActions';
 
-export default function(ComposedClass, userId) {
+export default function(ComposedClass) {
   class PassPropsByUser extends React.Component {
     constructor() {
       super();
@@ -17,7 +17,7 @@ export default function(ComposedClass, userId) {
 
   const mapStateToProps = state => {
     return {
-      targetUserId: state.uniqueUser.targetUserId
+      targetUserId: state.uniqueUserInfo.targetUserId
     }
   }
 

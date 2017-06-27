@@ -22,7 +22,6 @@ export function updateUserProfile(targetUserId) {
     }
     else {
       const contacts = state.contacts.usersContacts;
-      console.log('contacts');
 
       for (const contact of contacts) {
         if (contact.id === targetUserId) {

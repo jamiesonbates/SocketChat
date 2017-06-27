@@ -72,7 +72,7 @@ class SingleChat extends React.Component {
 
   render() {
     return (
-      <div className="Dashboard-main-container">
+      <div className="SingleChat-container">
         <div className="SingleChat-header-container">
           <div className="SingleChat-title">
             {

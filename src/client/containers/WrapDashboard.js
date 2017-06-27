@@ -28,6 +28,7 @@ export default function(ComposedClass) {
     return {
       allChats: state.chats.allChats,
       showDefaultMain: state.dashControls.showDefaultMain,
+      showUserProfile: state.dashControls.showUserProfile,
       showChat: state.dashControls.showChat,
       userId: state.userInfo.id
     }

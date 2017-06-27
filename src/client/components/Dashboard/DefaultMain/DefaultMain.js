@@ -9,7 +9,7 @@ class DefaultMain extends React.Component {
 
   render() {
     return (
-      <div className="Dashboard-main-container">
+      <div className="DefaultMain-container">
         <p>Hello World 2</p>
       </div>
     )
