@@ -10,7 +10,6 @@ class Bookmarks extends React.Component {
   render() {
     return (
       <div className="Dashboard-main-container">
-        <p>Hello world</p>
       </div>
     )
   }
