@@ -29,6 +29,7 @@ app.use('/api/token', require('./routes/token'));
 app.use('/api/chats', require('./routes/chats'));
 app.use('/api/online', require('./routes/online'));
 app.use('/api/contacts', require('./routes/contacts'));
+app.use('/api/bookmarks', require('./routes/bookmarks'));
 
 app.use(STATIC_PATH, express.static('public'));
 app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
