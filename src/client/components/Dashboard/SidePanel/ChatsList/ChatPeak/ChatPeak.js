@@ -9,8 +9,7 @@ const ChatPeak = ({
   time,
   userId,
   determineChatHeader,
-  determineLastMessage,
-  findUserName
+  determineLastMessage
 }) => (
   <div className="ChatPeak-container">
     <div className="ChatPeak-icon-container">

@@ -6,6 +6,8 @@ import './ChatsList.css';
 import wrapSidePanel from '../../../../containers/WrapSidePanel';
 import ChatPeak from './ChatPeak/ChatPeak';
 import { showChatType, showAddChatType } from '../../../../state/actionTypes';
+import Utilities from '../../../../utilities/Utilities';
+console.log(Utilities);
 
 class ChatsList extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class ChatsList extends React.Component {
     this.props.updateMain(showChatType);
   }
 
+  // TODO: used in multiple places
   determineTimeDisplay(chat) {
     if (!chat.messages || !chat.messages.length) {
       return '';
@@ -53,7 +56,7 @@ class ChatsList extends React.Component {
 
     const lastMsgObj = chat.messages[chat.messages.length - 1];
     const lastMsg = lastMsgObj.message;
-    const lastMsgUser = this.props.findUserName(chat, lastMsg.userId);
+    const lastMsgUser = Utilities.findUser(chat.users, lastMsgObj.userId);
 
     if (lastMsgUser.id === this.props.userId) {
       return `You: ${lastMsg}`;
@@ -79,7 +82,6 @@ class ChatsList extends React.Component {
                       userId={this.props.userId}
                       determineChatHeader={this.props.determineChatHeader}
                       determineLastMessage={this.determineLastMessage.bind(this)}
-                      findUserName={this.props.findUserName}
                       time={this.determineTimeDisplay(chat)}
                     />
                   }

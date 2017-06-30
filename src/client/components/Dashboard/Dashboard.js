@@ -52,22 +52,7 @@ class Dashboard extends React.Component {
       this.props.manageRoom({ chatId: chat.id, event });
     }
   }
-
-  findUserName(chat, userId) {
-    if (!userId) {
-      userId = chat.messages[chat.messages.length - 1].userId;
-    }
-    let foundUser;
-
-    for (const user of chat.users) {
-      if (user.id === userId) {
-        foundUser = user;
-      }
-    }
-
-    return foundUser;
-  }
-
+  
   determineChatHeader(chat) {
     if (chat.name) {
       return chat.name;
@@ -97,7 +82,6 @@ class Dashboard extends React.Component {
       <div className="Dashboard-container">
         <SidePanel
           determineChatHeader={this.determineChatHeader}
-          findUserName={this.findUserName}
         />
 
         {/* Where should methods live and/or when should they be passed */}
@@ -108,7 +92,6 @@ class Dashboard extends React.Component {
             : this.props.showChat ?
                 <SingleChat
                   determineChatHeader={this.determineChatHeader.bind(this)}
-                  findUserName={this.findUserName.bind(this)}
                 />
               : <Bookmarks />
           }

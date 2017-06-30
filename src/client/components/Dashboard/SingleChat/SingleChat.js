@@ -9,6 +9,7 @@ import wrapSingleChat from '../../../containers/WrapSingleChat';
 import { showUserProfileType } from '../../../state/actionTypes';
 import Message from './Message';
 import Typing from './Typing';
+import Utilities from '../../../utilities/Utilities';
 
 class SingleChat extends React.Component {
   constructor(props) {
@@ -149,7 +150,9 @@ class SingleChat extends React.Component {
                           messagePositionClass={'SingleChat-message-position-otherUser'}
                           messageColorClass={'SingleChat-message-color-otherUser'}
                           message={message}
-                          user={this.props.findUserName(this.props.singleChat, message.userId)}
+                          user={
+                            Utilities.findUser(this.props.singleChat.users, message.userId)
+                          }
                         />
                     }
                   </div>

@@ -29,7 +29,6 @@ class SidePanel extends React.Component {
           this.props.showChatsList ?
             <ChatsList
               determineChatHeader={this.props.determineChatHeader.bind(this)}
-              findUserName={this.props.findUserName}
             />
           : <AddChat />
 
