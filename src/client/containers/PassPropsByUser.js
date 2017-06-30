@@ -22,7 +22,7 @@ export default function(ComposedClass) {
     return {
       targetUserId: state.uniqueUserInfo.targetUserId,
       targetUserProfile: state.uniqueUserInfo.userProfile,
-      targetBookmarks: state.uniqueUserInfo.targetBookmarks,
+      bookmarks: state.bookmarks.bookmarks,
       usersOnline: state.chats.usersOnline,
       currentUserId: state.userInfo.id,
       allChats: state.chats.allChats

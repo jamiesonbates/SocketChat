@@ -5,8 +5,9 @@ import { updateMain } from './dashControlActions';
 
 export function setBookmarks(userId) {
   return function(dispatch, getState) {
-    axios.get(`/bookmarks/${userId}`)
+    axios.get(`/api/bookmarks/${userId}`)
       .then((res) => {
+        console.log(res.data);
         dispatch({
           type: setBookmarksType,
           payload: res.data

@@ -22,7 +22,7 @@ router.get('/:userId', (req, res, next) => {
           WHERE ucat.user_id = ${req.params.userId}) as bookmarks;
   `)
     .then((data) => {
-      res.send(data.rows)
+      res.send(camelizeKeys(data.rows));
     })
     .catch((err) => {
       next(err);

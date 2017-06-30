@@ -31,6 +31,11 @@ exports.seed = function(knex, Promise) {
           id: 6,
           user_id: 1,
           name: 'Ski Mountains'
+        },
+        {
+          id: 7,
+          user_id: 2,
+          name: 'Love'
         }
       ]);
     })

@@ -6,17 +6,31 @@ import passPropsByUser from '../../../containers/PassPropsByUser';
 class Bookmarks extends React.Component {
   constructor(props) {
     super(props);
-
     console.log(this.props);
-  }
-
-  componentWillMount() {
-
   }
 
   render() {
     return (
       <div className="Dashboard-main-container">
+        <h2>Bookmarks</h2>
+
+        <div className="Bookmarks-list">
+          {
+            this.props.bookmarks.map((category, i) => (
+              <div key={i} className="Bookmarks-category">
+                <h3>{category.catName}</h3>
+
+                {
+                  category.messages.map((msg, i) => (
+                    <div key={i} className="Bookmarks-message">
+                      <p>{msg.message}</p>
+                    </div>
+                  ))
+                }
+              </div>
+            ))
+          }
+        </div>
       </div>
     )
   }
