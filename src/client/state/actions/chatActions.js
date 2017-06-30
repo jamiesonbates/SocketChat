@@ -11,7 +11,7 @@ import {
 
 import {
   updateMain,
-  updateSide
+  updateSide,
 } from './dashControlActions';
 
 export function setChat(id) {
@@ -113,7 +113,7 @@ function addMessageToChat(chats, msg) {
     if (!chat.messages) {
       chat.messages = [];
     }
-    
+
     if (chat.id === msg.chatId) {
       chat.messages.push(msg);
     }

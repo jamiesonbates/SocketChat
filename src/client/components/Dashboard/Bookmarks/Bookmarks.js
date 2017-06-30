@@ -1,10 +1,17 @@
 import React from 'react';
 
 import './Bookmarks.scss';
+import passPropsByUser from '../../../containers/PassPropsByUser';
 
 class Bookmarks extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    console.log(this.props);
+  }
+
+  componentWillMount() {
+
   }
 
   render() {
@@ -15,4 +22,4 @@ class Bookmarks extends React.Component {
   }
 }
 
-export default Bookmarks;
+export default passPropsByUser(Bookmarks);

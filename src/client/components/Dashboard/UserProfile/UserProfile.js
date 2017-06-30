@@ -11,6 +11,7 @@ class UserProfile extends React.Component {
     super(props);
 
     this.handleMessageClick = this.handleMessageClick.bind(this);
+    this.handleBookmarksClick = this.handleBookmarksClick.bind(this);
   }
 
   componentWillMount() {
@@ -68,6 +69,10 @@ class UserProfile extends React.Component {
     }
   }
 
+  handleBookmarksClick(userId) {
+    this.props.setBookmarks(userId);
+  }
+
   render() {
     return (
       <div className="UserProfile-container">
@@ -98,7 +103,10 @@ class UserProfile extends React.Component {
                 {
                   this.props.currentUserId === this.props.targetUserId ?
                     <div className="UserProfile-options">
-                      <button className="UserProfile-btn">
+                      <button
+                        className="UserProfile-btn"
+                        onClick={() => this.handleBookmarksClick(this.props.targetUserId)}
+                      >
                         Bookmarks
                       </button>
 
@@ -114,7 +122,10 @@ class UserProfile extends React.Component {
                         Message
                       </button>
 
-                      <button className="UserProfile-btn">
+                      <button
+                        className="UserProfile-btn"
+                        onClick={() => this.handleBookmarksClick(this.props.targetUserId)}
+                      >
                         Bookmarks
                       </button>
                     </div>

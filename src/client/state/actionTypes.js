@@ -38,6 +38,7 @@ const noUserProfileMatchType = 'NO_USER_PROFILE_MATCH';
 const showUserProfileType = 'SHOW_USER_PROFILE';
 const exitUserProfileType = 'EXIT_USER_PROFILE';
 const setTargetUserIdType = 'SET_TARGET_USERID';
+const setBookmarksType = 'SET_BOOKMARKS';
 
 export {
   authSuccess,
@@ -77,5 +78,6 @@ export {
   noUserProfileMatchType,
   showUserProfileType,
   exitUserProfileType,
-  setTargetUserIdType
+  setTargetUserIdType,
+  setBookmarksType
 }

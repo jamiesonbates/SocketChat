@@ -1,10 +1,17 @@
 import axios from 'axios';
 
-export function getBookmarks(userId) {
+import { showBookmarksType, setBookmarksType } from '../actionTypes';
+import { updateMain } from './dashControlActions';
+
+export function setBookmarks(userId) {
   return function(dispatch, getState) {
     axios.get(`/bookmarks/${userId}`)
       .then((res) => {
-        console.log(res.data);
+        dispatch({
+          type: setBookmarksType,
+          payload: res.data
+        })
+        dispatch(updateMain(showBookmarksType));
       })
   }
 }

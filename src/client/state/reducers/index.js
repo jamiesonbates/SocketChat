@@ -7,6 +7,7 @@ import dashControls from './dashControlReducers';
 import forms from './formReducers';
 import contacts from './contactReducers';
 import uniqueUserInfo from './uniqueUserReducers';
+import bookmarks from './bookmarkReducers';
 
 export default combineReducers({
   userInfo,
@@ -15,5 +16,6 @@ export default combineReducers({
   dashControls,
   forms,
   contacts,
-  uniqueUserInfo
+  uniqueUserInfo,
+  bookmarks
 });
