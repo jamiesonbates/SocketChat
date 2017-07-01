@@ -11,7 +11,7 @@ class Bookmarks extends React.Component {
 
   render() {
     return (
-      <div className="Dashboard-main-container">
+      <div className="Bookmarks-container">
         <h2>Bookmarks</h2>
 
         <div className="Bookmarks-list">
@@ -21,11 +21,13 @@ class Bookmarks extends React.Component {
                 <h3>{category.catName}</h3>
 
                 {
-                  category.messages.map((msg, i) => (
-                    <div key={i} className="Bookmarks-message">
-                      <p>{msg.message}</p>
-                    </div>
-                  ))
+                  category.messages ?
+                    category.messages.map((msg, i) => (
+                      <div key={i} className="Bookmarks-message">
+                        <p>{msg.message}</p>
+                      </div>
+                    ))
+                  : null
                 }
               </div>
             ))

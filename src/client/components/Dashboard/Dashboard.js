@@ -52,16 +52,12 @@ class Dashboard extends React.Component {
       this.props.manageRoom({ chatId: chat.id, event });
     }
   }
-  
+
   determineChatHeader(chat) {
-    if (chat.name) {
-      return chat.name;
-    }
+    if (chat.name) return chat.name;
 
     const title = chat.users.reduce((acc, user, i, arr) => {
-      if (user.id === this.props.userId) {
-        return acc;
-      }
+      if (user.id === this.props.userId) return acc;
 
       if (arr.length - 1 === i || arr.length < 3) {
         acc += `${user.firstName} ${user.lastName}`;

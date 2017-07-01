@@ -1,0 +1,26 @@
+.Bookmarks-container {
+  display: flex;
+  flex-direction:column;
+  flex: 1;
+  padding: 10px;
+}
+
+.Bookmarks-list {
+  flex: 1;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.Bookmarks-category {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  background-color: #BFC5CC;
+  border-radius: 3px;
+  flex-basis: 300px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
