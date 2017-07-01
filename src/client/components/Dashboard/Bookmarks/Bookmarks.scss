@@ -1,13 +1,13 @@
 .Bookmarks-container {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   flex: 1;
   padding: 10px;
 }
 
 .Bookmarks-list {
   flex: 1;
-  display: inline-flex;
+  display: flex;
   flex-wrap: nowrap;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
@@ -15,6 +15,7 @@
 }
 
 .Bookmarks-category {
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   margin-right: 20px;
