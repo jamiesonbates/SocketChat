@@ -28,6 +28,12 @@
   flex-grow: 0;
 }
 
+.Bookmarks-message-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .Bookmarks-message {
   background-color: #6F70A8;
   color: #DBDCEB;
@@ -38,10 +44,13 @@
 }
 
 .Bookmarks-message:hover {
+  cursor: pointer;
+}
+
+.Bookmark-clicked {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   background-color: #181824;
-  cursor: pointer;
 }
 
 .Bookmarks-message-tools {
@@ -49,7 +58,7 @@
   display: none;
 }
 
-.Bookmarks-message:hover .Bookmarks-message-tools {
+.Bookmarks-message-tools {
   position: absolute;
   left: 0;
   padding: 10px;
@@ -83,4 +92,21 @@
 
 .Bookmarks-icon-person:hover {
   color: #696970;
+}
+
+.Bookmarks-icon-singleopts {
+  transition: transform 0.3s;
+}
+
+.Bookmarks-icon-singleopts:hover {
+  transform: rotate(180deg);
+}
+
+.Bookmarks-icon-doubleopts {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+.Bookmarks-icon-doubleopts:hover {
+  transform: rotate(0);
 }
