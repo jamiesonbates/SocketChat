@@ -15,13 +15,72 @@
 }
 
 .Bookmarks-category {
+  padding: 10px;
+  box-sizing: border-box;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
   margin-right: 20px;
-  background-color: #BFC5CC;
+  background-color: #E5E3E0;
   border-radius: 3px;
   flex-basis: 300px;
   flex-shrink: 0;
   flex-grow: 0;
+}
+
+.Bookmarks-message {
+  background-color: #6F70A8;
+  color: #DBDCEB;
+  border-radius: 18px;
+  padding: 10px;
+  margin: 5px 0;
+  position: relative;
+}
+
+.Bookmarks-message:hover {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #181824;
+  cursor: pointer;
+}
+
+.Bookmarks-message-tools {
+  padding: 10px 5px 0 5px;
+  display: none;
+}
+
+.Bookmarks-message:hover .Bookmarks-message-tools {
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  width: 100%;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  background-color: #181824;
+}
+
+.Bookmarks-icon {
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+.Bookmarks-icon:hover {
+  color: #B7B8C4;
+  cursor: pointer;
+}
+
+.Bookmarks-icon-person {
+  box-sizing: border-box;
+  padding: 2px;
+  background-color: #D6D8E5;
+  border-radius: 50%;
+  color: #9B9CA6;
+}
+
+.Bookmarks-icon-person:hover {
+  color: #696970;
 }
