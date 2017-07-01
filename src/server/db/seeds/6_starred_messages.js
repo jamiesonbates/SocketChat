@@ -25,6 +25,42 @@ exports.seed = function(knex, Promise) {
           category_id: 7,
           user_id: 2,
           message_id: 1
+        },
+        {
+          id: 5,
+          category_id: 7,
+          user_id: 2,
+          message_id: 2
+        },
+        {
+          id: 6,
+          category_id: 7,
+          user_id: 2,
+          message_id: 3
+        },
+        {
+          id: 7,
+          category_id: 7,
+          user_id: 2,
+          message_id: 4
+        },
+        {
+          id: 8,
+          category_id: 7,
+          user_id: 2,
+          message_id: 5
+        },
+        {
+          id: 9,
+          category_id: 7,
+          user_id: 2,
+          message_id: 6
+        },
+        {
+          id: 10,
+          category_id: 7,
+          user_id: 2,
+          message_id: 7
         }
       ]);
     })
