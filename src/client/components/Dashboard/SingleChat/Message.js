@@ -1,12 +1,14 @@
 import React from 'react';
 import moment from 'moment';
+import FaBookmark from 'react-icons/lib/md/bookmark';
 
 const Message = ({
   message,
   messagePositionClass,
   messageColorClass,
   user,
-  userIsOnline
+  userIsOnline,
+  handleBookmarking
 }) => (
   <div className={messagePositionClass}>
     {
@@ -19,10 +21,22 @@ const Message = ({
           <p className="SingleChat-time-message">
             {moment(message.createdAt).format('H:mm A')}
           </p>
+
+          <FaBookmark
+            className="SingleChat-bookmark-icon"
+            onClick={() => handleBookmarking(message.id)}
+          />
         </div>
-      : <p className="SingleChat-time-message">
-          {moment(message.createdAt).format('H:mm A')}
-        </p>
+      : <div className="SingleChat-message-info">
+          <p className="SingleChat-time-message">
+            {moment(message.createdAt).format('H:mm A')}
+          </p>
+
+          <FaBookmark
+            className="SingleChat-bookmark-icon"
+            onClick={() => handleBookmarking(message.id)}
+          />
+        </div>
     }
     <p className={`${messageColorClass} SingleChat-message`}>{message.message}</p>
   </div>

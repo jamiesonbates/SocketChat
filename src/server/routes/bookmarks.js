@@ -19,7 +19,7 @@ router.get('/:userId', (req, res, next) => {
               WHERE sm.category_id = ucat.id
             ) msg) as messages
           FROM users_categories as ucat
-          WHERE ucat.user_id = ${req.params.userId}) as bookmarks;
+          WHERE ucat.user_id = ${req.params.userId} OR ucat.id = 11) as bookmarks;
   `)
     .then((data) => {
       res.send(camelizeKeys(data.rows));
@@ -29,14 +29,16 @@ router.get('/:userId', (req, res, next) => {
     });
 });
 
+router.post('/', (req, res, next) => {
+  const { categoryId, messageId, userId } = req.body;
+});
+
 router.delete('/:starredMessageId', (req, res, next) => {
-  console.log(req.params.starredMessageId);
   db('starred_messages')
     .del()
     .where('id', req.params.starredMessageId)
     .returning('*')
     .then((data) => {
-      console.log(data);
       res.send(data);
     })
     .catch((err) => {

@@ -179,3 +179,12 @@
   top: 50%;
   width: 100%;
 }
+
+.SingleChat-bookmark-icon {
+  color: lightgray;
+}
+
+.SingleChat-bookmark-icon:hover {
+  cursor: pointer;
+  color: gray;
+}

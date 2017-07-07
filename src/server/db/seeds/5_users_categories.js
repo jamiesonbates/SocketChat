@@ -51,6 +51,11 @@ exports.seed = function(knex, Promise) {
           id: 10,
           user_id: 2,
           name: 'House'
+        },
+        {
+          id: 11,
+          user_id: null,
+          name: 'General'
         }
       ]);
     })

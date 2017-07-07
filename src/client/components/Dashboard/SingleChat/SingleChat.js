@@ -72,6 +72,11 @@ class SingleChat extends React.Component {
     this.scrollToBottom();
   }
 
+  handleBookmarking(msgId, catId) {
+    console.log(msgId);
+    // this.bookmarkMsg(msgId, catId);
+  }
+
   render() {
     return (
       <div className="SingleChat-container">
@@ -144,6 +149,7 @@ class SingleChat extends React.Component {
                           messageColorClass={'SingleChat-message-color-currentUser'}
                           message={message}
                           user={null}
+                          handleBookmarking={this.handleBookmarking.bind(this)}
                         />
                       :
                         <Message
@@ -153,6 +159,7 @@ class SingleChat extends React.Component {
                           user={
                             Utilities.findUser(this.props.singleChat.users, message.userId)
                           }
+                          handleBookmarking={this.handleBookmarking.bind(this)}
                         />
                     }
                   </div>

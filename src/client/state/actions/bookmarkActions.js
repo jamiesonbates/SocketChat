@@ -8,7 +8,6 @@ export function setBookmarks(userId) {
   return function(dispatch, getState) {
     axios.get(`/api/bookmarks/${userId}`)
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: setBookmarksType,
           payload: res.data
@@ -33,7 +32,8 @@ export function deleteCategory(catId) {
 
 export function bookmarkMsg(msgId, catId) {
   return function(dispatch, getState) {
-
+    const state = getState();
+    const userId = state.userInfo.id;
   }
 }
 

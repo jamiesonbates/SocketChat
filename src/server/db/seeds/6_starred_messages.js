@@ -52,13 +52,13 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 9,
-          category_id: 7,
+          category_id: 11,
           user_id: 2,
           message_id: 6
         },
         {
           id: 10,
-          category_id: 7,
+          category_id: 11,
           user_id: 2,
           message_id: 7
         }
