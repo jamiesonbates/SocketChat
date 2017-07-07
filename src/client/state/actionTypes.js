@@ -38,6 +38,7 @@ const noUserProfileMatchType = 'NO_USER_PROFILE_MATCH';
 const showUserProfileType = 'SHOW_USER_PROFILE';
 const exitUserProfileType = 'EXIT_USER_PROFILE';
 const setTargetUserIdType = 'SET_TARGET_USERID';
+const setTargetBookmarksIdType = 'SET_TARGET_BOOKMARKS_ID';
 const setBookmarksType = 'SET_BOOKMARKS';
 
 export {
@@ -79,5 +80,6 @@ export {
   showUserProfileType,
   exitUserProfileType,
   setTargetUserIdType,
+  setTargetBookmarksIdType,
   setBookmarksType
 }

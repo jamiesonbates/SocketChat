@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateUserProfile, updateTargetUserId } from '../state/actions/uniqueUserActions';
 import { setChat, createChat } from '../state/actions/chatActions';
 import { updateMain } from '../state/actions/dashControlActions';
-import { setBookmarks } from '../state/actions/bookmarkActions';
+import { setBookmarks, unBookmarkMsg } from '../state/actions/bookmarkActions';
 
 export default function(ComposedClass) {
   class PassPropsByUser extends React.Component {
@@ -36,7 +36,8 @@ export default function(ComposedClass) {
       setChat: (data) => dispatch(setChat(data)),
       createChat: (data) => dispatch(createChat(data)),
       updateMain: (data) => dispatch(updateMain(data)),
-      setBookmarks: (data) => dispatch(setBookmarks(data))
+      setBookmarks: (data) => dispatch(setBookmarks(data)),
+      unBookmarkMsg: (data) => dispatch(unBookmarkMsg(data))
     }
   )
 

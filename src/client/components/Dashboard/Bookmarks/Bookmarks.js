@@ -23,6 +23,10 @@ class Bookmarks extends React.Component {
     this.setState({ clickedId: id });
   }
 
+  handleMsgUnbookmark(starredMessagesId) {
+    this.props.unBookmarkMsg(starredMessagesId);
+  }
+
   render() {
     return (
       <div className="Bookmarks-container">
@@ -38,7 +42,7 @@ class Bookmarks extends React.Component {
                   category.messages ?
                     category.messages.map((msg, i) => (
                       <div key={i} className={
-                        this.state.clickedId === msg.id ?
+                        this.state.clickedId === msg.messageId ?
                           'Bookmarks-message Bookmark-clicked'
                         : 'Bookmarks-message'
 
@@ -47,24 +51,27 @@ class Bookmarks extends React.Component {
                           <p>{msg.message}</p>
 
                           {
-                            this.state.clickedId === msg.id ?
+                            this.state.clickedId === msg.messageId ?
                               <FaClose
                                 className="Bookmarks-icon"
                                 onClick={() => this.handleMsgClick(null)}
                               />
                             :  <FaSingleOpts
                                 className="Bookmarks-icon Bookmarks-icon-singleopts"
-                                onClick={() => this.handleMsgClick(msg.id)}
+                                onClick={() => this.handleMsgClick(msg.messageId)}
                               />
                           }
                         </div>
 
                         {
-                          this.state.clickedId === msg.id ?
+                          this.state.clickedId === msg.messageId ?
                             <div className="Bookmarks-message-tools">
                               <FaMessage className="Bookmarks-icon Boomarks-icon-message"/>
                               <FaPerson className="Bookmarks-icon Bookmarks-icon-person" />
-                              <FaTrash className="Bookmarks-icon Bookmarks-icon-trash" />
+                              <FaTrash
+                                className="Bookmarks-icon Bookmarks-icon-trash"
+                                onClick={() => this.handleMsgUnbookmark(msg.starredMessageId)}
+                              />
                             </div>
                           : null
                         }

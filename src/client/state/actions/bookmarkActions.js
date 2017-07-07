@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { showBookmarksType, setBookmarksType } from '../actionTypes';
 import { updateMain } from './dashControlActions';
+import { updateTargetBookmarksId } from './uniqueUserActions';
 
 export function setBookmarks(userId) {
   return function(dispatch, getState) {
@@ -13,6 +14,7 @@ export function setBookmarks(userId) {
           payload: res.data
         })
         dispatch(updateMain(showBookmarksType));
+        dispatch(updateTargetBookmarksId(userId));
       })
   }
 }
@@ -35,9 +37,16 @@ export function bookmarkMsg(msgId, catId) {
   }
 }
 
-export function unBookmarkMsg(msgId) {
+export function unBookmarkMsg(starredMessagesId) {
   return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.uniqueUserInfo.targetBookmarksId;
 
+    axios.delete(`/api/bookmarks/${starredMessagesId}`)
+      .then((data) => {
+        console.log(data);
+        dispatch(setBookmarks(userId));
+      })
   }
 }
 

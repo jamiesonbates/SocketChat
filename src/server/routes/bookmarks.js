@@ -10,7 +10,7 @@ router.get('/:userId', (req, res, next) => {
     FROM (SELECT ucat.id as cat_id, ucat.name as cat_name,
             (SELECT json_agg(msg)
             FROM (
-              SELECT m.message, m.chat_id, m.id, m.created_at,
+              SELECT m.message, m.chat_id, m.id as message_id, m.created_at, sm.id as starred_message_id,
                 (SELECT u.first_name FROM users as u WHERE u.id = m.user_id),
                 (SELECT u.last_name FROM users as u WHERE u.id = m.user_id),
                 (SELECT u.id as user_id FROM users as u WHERE u.id = m.user_id)
@@ -23,6 +23,21 @@ router.get('/:userId', (req, res, next) => {
   `)
     .then((data) => {
       res.send(camelizeKeys(data.rows));
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.delete('/:starredMessageId', (req, res, next) => {
+  console.log(req.params.starredMessageId);
+  db('starred_messages')
+    .del()
+    .where('id', req.params.starredMessageId)
+    .returning('*')
+    .then((data) => {
+      console.log(data);
+      res.send(data);
     })
     .catch((err) => {
       next(err);
