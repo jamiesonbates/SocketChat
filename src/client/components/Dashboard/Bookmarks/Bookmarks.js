@@ -2,8 +2,8 @@ import React from 'react';
 import FaMessage from 'react-icons/lib/md/message';
 import FaTrash from 'react-icons/lib/md/delete';
 import FaPerson from 'react-icons/lib/md/person';
-import FaDoubleOpts from 'react-icons/lib/fa/angle-double-up';
 import FaSingleOpts from 'react-icons/lib/fa/angle-up';
+import FaClose from 'react-icons/lib/md/close';
 
 import './Bookmarks.scss';
 import passPropsByUser from '../../../containers/PassPropsByUser';
@@ -48,8 +48,8 @@ class Bookmarks extends React.Component {
 
                           {
                             this.state.clickedId === msg.id ?
-                              <FaDoubleOpts
-                                className="Bookmarks-icon Bookmarks-icon-doubleopts"
+                              <FaClose
+                                className="Bookmarks-icon"
                                 onClick={() => this.handleMsgClick(null)}
                               />
                             :  <FaSingleOpts
