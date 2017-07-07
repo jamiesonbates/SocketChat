@@ -72,6 +72,6 @@
     "knex": "knex"
   },
   "engines": {
-    "node": "7.4.0"
+    "node": "8.1.3"
   }
 }
