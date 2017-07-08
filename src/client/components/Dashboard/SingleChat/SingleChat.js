@@ -149,6 +149,7 @@ class SingleChat extends React.Component {
                           messageColorClass={'SingleChat-message-color-currentUser'}
                           message={message}
                           user={null}
+                          starred={message.starred}
                           handleBookmarking={this.handleBookmarking.bind(this)}
                         />
                       :
@@ -156,6 +157,7 @@ class SingleChat extends React.Component {
                           messagePositionClass={'SingleChat-message-position-otherUser'}
                           messageColorClass={'SingleChat-message-color-otherUser'}
                           message={message}
+                          starred={message.starred}
                           user={
                             Utilities.findUser(this.props.singleChat.users, message.userId)
                           }

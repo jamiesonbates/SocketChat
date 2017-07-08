@@ -8,6 +8,7 @@ const Message = ({
   messageColorClass,
   user,
   userIsOnline,
+  starred,
   handleBookmarking
 }) => (
   <div className={messagePositionClass}>
@@ -23,7 +24,11 @@ const Message = ({
           </p>
 
           <FaBookmark
-            className="SingleChat-bookmark-icon"
+            className={
+              starred ?
+                'SingleChat-bookmark-icon SingleChat-starred'
+              : 'SingleChat-bookmark-icon'
+            }
             onClick={() => handleBookmarking(message.id)}
           />
         </div>
@@ -33,7 +38,11 @@ const Message = ({
           </p>
 
           <FaBookmark
-            className="SingleChat-bookmark-icon"
+            className={
+              starred ?
+                'SingleChat-bookmark-icon SingleChat-starred'
+              : 'SingleChat-bookmark-icon'
+            }
             onClick={() => handleBookmarking(message.id)}
           />
         </div>

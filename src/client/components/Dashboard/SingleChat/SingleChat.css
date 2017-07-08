@@ -188,3 +188,7 @@
   cursor: pointer;
   color: gray;
 }
+
+.SingleChat-starred {
+  color: red;
+}
