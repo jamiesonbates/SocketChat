@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { showBookmarksType, setBookmarksType } from '../actionTypes';
+import { showBookmarksType, setBookmarksType, updateBookmarksInChatType } from '../actionTypes';
 import { updateMain } from './dashControlActions';
 import { updateTargetBookmarksId } from './uniqueUserActions';
 
@@ -36,8 +36,31 @@ export function bookmarkMsg({ msgId, catId }) {
     const userId = state.userInfo.id;
 
     axios.post('/api/bookmarks', { msgId, catId, userId })
-      .then((data) => {
-        console.log(data);
+      .then(({ data }) => {
+        let newRecord = data;
+        
+        const nextAllChats = state.chats.allChats.map(chat => {
+          console.log(chat.id, newRecord.chat_id);
+          if (chat.id === newRecord.chat_id) {
+            console.log('here 1');
+            chat.messages = chat.messages.map(message => {
+              console.log(message.id, newRecord.message_id);
+              if (message.id === newRecord.message_id) {
+                console.log('here 2');
+                message.starred = true;
+              }
+
+              return message;
+            })
+          }
+
+          return chat;
+        });
+
+        return dispatch({
+          type: updateBookmarksInChatType,
+          payload: nextAllChats
+        });
       })
   }
 }
@@ -49,7 +72,6 @@ export function unBookmarkMsg(starredMessagesId) {
 
     axios.delete(`/api/bookmarks/${starredMessagesId}`)
       .then((data) => {
-        console.log(data);
         dispatch(setBookmarks(userId));
       })
   }

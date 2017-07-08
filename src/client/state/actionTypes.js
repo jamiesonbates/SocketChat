@@ -40,6 +40,7 @@ const exitUserProfileType = 'EXIT_USER_PROFILE';
 const setTargetUserIdType = 'SET_TARGET_USERID';
 const setTargetBookmarksIdType = 'SET_TARGET_BOOKMARKS_ID';
 const setBookmarksType = 'SET_BOOKMARKS';
+const updateBookmarksInChatType = 'UPDATE_BOOKMARKS_IN_CHAT';
 
 export {
   authSuccess,
@@ -81,5 +82,6 @@ export {
   exitUserProfileType,
   setTargetUserIdType,
   setTargetBookmarksIdType,
-  setBookmarksType
+  setBookmarksType,
+  updateBookmarksInChatType
 }

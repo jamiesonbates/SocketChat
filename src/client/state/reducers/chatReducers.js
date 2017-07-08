@@ -6,7 +6,8 @@ import {
   userNowOffline,
   someoneStartedTypingType,
   someoneStoppedTypingType,
-  setUsersOnlineType
+  setUsersOnlineType,
+  updateBookmarksInChatType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -57,6 +58,11 @@ export default function reducer(state={
       return {
         ...state,
         chatsWithTyping: action.payload
+      }
+    case updateBookmarksInChatType:
+      return {
+        ...state,
+        allChats: action.payload
       }
   }
 

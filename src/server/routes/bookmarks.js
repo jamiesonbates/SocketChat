@@ -32,6 +32,7 @@ router.get('/:userId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const { catId, msgId, userId } = req.body;
   let newRecord;
+  let resRecord;
 
   if (!catId) {
     newRecord = { message_id: msgId, user_id: userId };
@@ -42,7 +43,15 @@ router.post('/', (req, res, next) => {
 
   db('starred_messages').insert(newRecord).returning('*')
     .then((starredMessage) => {
-      res.send(starredMessage[0]);
+      const { message_id } = starredMessage[0];
+      resRecord = starredMessage[0];
+
+      return db('messages').where('id', message_id).select('chat_id')
+    })
+    .then((data) => {
+      resRecord.chat_id = data[0].chat_id;
+
+      res.send(resRecord);
     })
     .catch((err) => {
       next(err);
