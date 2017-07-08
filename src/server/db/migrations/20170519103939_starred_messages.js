@@ -7,7 +7,8 @@ exports.up = function(knex, Promise) {
       .integer('category_id')
       .references('id')
       .inTable('users_categories')
-      .onDelete('CASCADE');
+      .onDelete('CASCADE')
+      .defaultTo(11);
     table
       .integer('user_id')
       .references('id')

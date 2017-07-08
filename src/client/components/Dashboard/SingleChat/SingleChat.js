@@ -74,7 +74,8 @@ class SingleChat extends React.Component {
 
   handleBookmarking(msgId, catId) {
     console.log(msgId);
-    // this.bookmarkMsg(msgId, catId);
+    console.log(catId);
+    this.props.bookmarkMsg({ msgId, catId });
   }
 
   render() {

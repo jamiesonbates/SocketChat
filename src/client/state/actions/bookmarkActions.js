@@ -30,10 +30,15 @@ export function deleteCategory(catId) {
   }
 }
 
-export function bookmarkMsg(msgId, catId) {
+export function bookmarkMsg({ msgId, catId }) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
+
+    axios.post('/api/bookmarks', { msgId, catId, userId })
+      .then((data) => {
+        console.log(data);
+      })
   }
 }
 

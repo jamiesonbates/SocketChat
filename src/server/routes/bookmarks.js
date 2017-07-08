@@ -30,7 +30,23 @@ router.get('/:userId', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { categoryId, messageId, userId } = req.body;
+  const { catId, msgId, userId } = req.body;
+  let newRecord;
+
+  if (!catId) {
+    newRecord = { message_id: msgId, user_id: userId };
+  }
+  else {
+    newRecord = { message_id: msgId, user_id: userId, category_id: catId };
+  }
+
+  db('starred_messages').insert(newRecord).returning('*')
+    .then((starredMessage) => {
+      res.send(starredMessage[0]);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.delete('/:starredMessageId', (req, res, next) => {
