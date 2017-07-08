@@ -10,8 +10,9 @@ router.get('/:userId', (req, res, next) => {
     FROM (SELECT c1.id, c1.name,
            (SELECT json_agg(msg)
            FROM (
-             SELECT id, message, user_id, created_at
-             FROM messages
+             SELECT m.id, m.message, m.user_id, m.created_at,
+              (SELECT id as starred FROM starred_messages as sm WHERE sm.message_id = m.id AND sm.user_id = ${req.params.userId})
+             FROM messages as m
              WHERE chat_id = c1.id
              ORDER BY created_at ASC
            ) msg) as messages,
