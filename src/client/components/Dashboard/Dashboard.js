@@ -22,6 +22,7 @@ class Dashboard extends React.Component {
     this.props.connectSocket();
     this.props.getCommonUsers();
     this.props.getContacts();
+    this.props.getCategories();
   }
 
   componentDidMount() {

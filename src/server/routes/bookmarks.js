@@ -71,4 +71,13 @@ router.delete('/:starredMessageId', (req, res, next) => {
     });
 });
 
+router.get('/categories/:userId', (req, res, next) => {
+  db('users_categories')
+    .select('*')
+    .where('user_id', req.params.userId)
+    .then((cats) => {
+      res.send(cats);
+    })
+});
+
 module.exports = router;

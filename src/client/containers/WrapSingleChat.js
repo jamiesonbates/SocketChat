@@ -28,7 +28,8 @@ export default function(ComposedClass) {
       users: state.chats.singleChat.users,
       userId: state.userInfo.id,
       messages: state.chats.singleChat.messages,
-      chatsWithTyping: state.chats.chatsWithTyping
+      chatsWithTyping: state.chats.chatsWithTyping,
+      categories: state.userInfo.categories
     }
   }
 

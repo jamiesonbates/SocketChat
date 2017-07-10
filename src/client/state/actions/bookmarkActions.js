@@ -4,7 +4,8 @@ import {
   showBookmarksType,
   setBookmarksType,
   updateBookmarksInChatType,
-  resetBookmarksType
+  resetBookmarksType,
+  setUsersCategoriesType
 } from '../actionTypes';
 import { updateMain } from './dashControlActions';
 import { updateTargetBookmarksId } from './uniqueUserActions';
@@ -23,6 +24,18 @@ export function setBookmarks(userId) {
 export function resetBookmarks() {
   return {
     type: resetBookmarksType
+  }
+}
+
+export function getCategories() {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
+
+    axios.get(`/api/bookmarks/categories/${userId}`)
+      .then(({ data }) => {
+        dispatch({ type: setUsersCategoriesType, payload: data });
+      });
   }
 }
 

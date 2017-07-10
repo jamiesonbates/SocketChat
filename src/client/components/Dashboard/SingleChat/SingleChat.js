@@ -3,6 +3,7 @@ import moment from 'moment';
 import FaMessage from 'react-icons/lib/fa/comment';
 import FaUsers from 'react-icons/lib/fa/user-plus';
 import FaUser from 'react-icons/lib/fa/user';
+import 'react-select/dist/react-select.css';
 
 import './SingleChat.css';
 import wrapSingleChat from '../../../containers/WrapSingleChat';
@@ -14,6 +15,10 @@ import Utilities from '../../../utilities/Utilities';
 class SingleChat extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      bookmarkMsgId: null
+    }
 
     this.handleTyping = this.handleTyping.bind(this);
   }
@@ -72,10 +77,12 @@ class SingleChat extends React.Component {
     this.scrollToBottom();
   }
 
-  handleBookmarking(msgId, catId) {
-    console.log(msgId);
-    console.log(catId);
-    this.props.bookmarkMsg({ msgId, catId });
+  handleBookmarking(bookmarkMsgId) {
+    this.setState({ bookmarkMsgId });
+  }
+
+  handleExitBookmarking() {
+    this.setState({ bookmarkMsgId: null });
   }
 
   render() {
@@ -155,7 +162,11 @@ class SingleChat extends React.Component {
                           message={message}
                           user={null}
                           starred={message.starred}
+                          handleExitBookmarking={this.handleExitBookmarking.bind(this)}
                           handleBookmarking={this.handleBookmarking.bind(this)}
+                          bookmarkMsgId={this.state.bookmarkMsgId}
+                          categories={this.props.categories}
+                          bookmarkMsg={this.props.bookmarkMsg}
                         />
                       :
                         <Message
@@ -166,7 +177,11 @@ class SingleChat extends React.Component {
                           user={
                             Utilities.findUser(this.props.singleChat.users, message.userId)
                           }
+                          handleExitBookmarking={this.handleExitBookmarking.bind(this)}
                           handleBookmarking={this.handleBookmarking.bind(this)}
+                          bookmarkMsgId={this.state.bookmarkMsgId}
+                          categories={this.props.categories}
+                          bookmarkMsg={this.props.bookmarkMsg}
                         />
                     }
                   </div>

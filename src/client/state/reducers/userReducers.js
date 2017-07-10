@@ -2,7 +2,8 @@ import {
   authSuccess,
   authFailure,
   loginSuccess,
-  signupSuccess
+  signupSuccess,
+  setUsersCategoriesType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -11,7 +12,8 @@ export default function reducer(state={
   firstName: null,
   lastName: null,
   email: null,
-  username: null
+  username: null,
+  categories: null
 }, action) {
   switch (action.type) {
     case loginSuccess:
@@ -38,6 +40,12 @@ export default function reducer(state={
         lastName: null,
         email: null,
         username: null
+      }
+
+    case setUsersCategoriesType:
+      return {
+        ...state,
+        categories: action.payload
       }
   }
 

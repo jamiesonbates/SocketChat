@@ -62,6 +62,8 @@
 .SingleChat-message-position-currentUser, .SingleChat-message-position-otherUser {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  max-width: 75%;
 }
 
 .SingleChat-message-position-currentUser {
@@ -82,6 +84,8 @@
 
 .SingleChat-message-info {
   display: flex;
+  position: relative;
+  align-items: center;
 }
 
 .SingleChat-message-info:hover .SingleChat-bookmark-icon {
@@ -117,7 +121,7 @@
   border-radius: 50%;
 }
 
-.SingleChat-message {
+.SingleChat-message-text {
   border-radius: 10px;
   padding: 5px;
   font-size: 20px;
@@ -198,7 +202,70 @@
   color: red;
 }
 
+.SingleChat-bookmark-icon.bookmarking {
+  display: inline-block;
+  color: gray;
+}
+
 .SingleChat-starred:hover {
   cursor: default;
   color: red;
+}
+
+.SingleChat-message .SingleChat-bookmark-form {
+  position: absolute;
+  z-index: 2;
+  bottom: 100%;
+  left: 50%;
+  background-color: white;
+  padding: 20px 10px 10px;
+  box-sizing: border-box;
+  border-radius: 3%;
+  border: 1px solid #8F8F8C;
+}
+
+.SingleChat-bookmark-form h4 {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+.SingleChat-bookmark-form > * {
+  margin: 2px 0;
+}
+
+.SingleChat-bookmark-select {
+
+}
+
+.SingleChat-bookmark-select:focus {
+  outline: none;
+}
+
+.SingleChat-bookmark-option:focus {
+  outline:none;
+}
+
+.SingleChat-bookmark-close {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  color: #8F8F8C;
+}
+
+.SingleChat-bookmark-close:hover {
+  color: #4F4F4D;
+  cursor: pointer;
+}
+
+.SingleChat-bookmark-btn {
+  background-color: white;
+  border: none;
+  display: inline-block;
+}
+
+.SingleChat-bookmark-btn:hover {
+  background-color: #3653F6;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
 }

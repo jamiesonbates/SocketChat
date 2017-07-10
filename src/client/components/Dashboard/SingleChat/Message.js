@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import FaBookmark from 'react-icons/lib/md/bookmark';
 
+import CreateBookmark from './CreateBookmark';
+
 const Message = ({
   message,
   messagePositionClass,
@@ -9,7 +11,12 @@ const Message = ({
   user,
   userIsOnline,
   starred,
-  handleBookmarking
+  handleBookmarking,
+  handleNewBookmark,
+  bookmarkMsgId,
+  categories,
+  handleExitBookmarking,
+  bookmarkMsg
 }) => (
   <div className={messagePositionClass}>
     {
@@ -27,10 +34,23 @@ const Message = ({
             className={
               starred ?
                 'SingleChat-bookmark-icon SingleChat-starred'
-              : 'SingleChat-bookmark-icon'
+              : bookmarkMsgId === message.id ?
+                  'SingleChat-bookmark-icon bookmarking'
+                  : 'SingleChat-bookmark-icon'
             }
             onClick={() => handleBookmarking(message.id)}
           />
+
+          {
+            bookmarkMsgId === message.id ?
+              <CreateBookmark
+                categories={categories}
+                messageId={message.id}
+                handleExitBookmarking={handleExitBookmarking}
+                bookmarkMsg={bookmarkMsg}
+              />
+            : null
+          }
         </div>
       : <div className="SingleChat-message-info">
           <p className="SingleChat-time-message">
@@ -41,13 +61,26 @@ const Message = ({
             className={
               starred ?
                 'SingleChat-bookmark-icon SingleChat-starred'
-              : 'SingleChat-bookmark-icon'
+              : bookmarkMsgId === message.id ?
+                  'SingleChat-bookmark-icon bookmarking'
+                  : 'SingleChat-bookmark-icon'
             }
             onClick={() => handleBookmarking(message.id)}
           />
+
+          {
+            bookmarkMsgId === message.id ?
+              <CreateBookmark
+                categories={categories}
+                messageId={message.id}
+                handleExitBookmarking={handleExitBookmarking}
+                bookmarkMsg={bookmarkMsg}
+              />
+            : null
+          }
         </div>
     }
-    <p className={`${messageColorClass} SingleChat-message`}>{message.message}</p>
+    <p className={`${messageColorClass} SingleChat-message-text`}>{message.message}</p>
   </div>
 )
 
