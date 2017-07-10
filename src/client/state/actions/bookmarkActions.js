@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { showBookmarksType, setBookmarksType, updateBookmarksInChatType } from '../actionTypes';
+import {
+  showBookmarksType,
+  setBookmarksType,
+  updateBookmarksInChatType,
+  resetBookmarksType
+} from '../actionTypes';
 import { updateMain } from './dashControlActions';
 import { updateTargetBookmarksId } from './uniqueUserActions';
 
@@ -8,13 +13,16 @@ export function setBookmarks(userId) {
   return function(dispatch, getState) {
     axios.get(`/api/bookmarks/${userId}`)
       .then((res) => {
-        dispatch({
-          type: setBookmarksType,
-          payload: res.data
-        })
+        dispatch({ type: setBookmarksType, payload: res.data });
         dispatch(updateMain(showBookmarksType));
         dispatch(updateTargetBookmarksId(userId));
       })
+  }
+}
+
+export function resetBookmarks() {
+  return {
+    type: resetBookmarksType
   }
 }
 
@@ -38,15 +46,11 @@ export function bookmarkMsg({ msgId, catId }) {
     axios.post('/api/bookmarks', { msgId, catId, userId })
       .then(({ data }) => {
         let newRecord = data;
-        
+
         const nextAllChats = state.chats.allChats.map(chat => {
-          console.log(chat.id, newRecord.chat_id);
           if (chat.id === newRecord.chat_id) {
-            console.log('here 1');
             chat.messages = chat.messages.map(message => {
-              console.log(message.id, newRecord.message_id);
               if (message.id === newRecord.message_id) {
-                console.log('here 2');
                 message.starred = true;
               }
 
@@ -60,8 +64,8 @@ export function bookmarkMsg({ msgId, catId }) {
         return dispatch({
           type: updateBookmarksInChatType,
           payload: nextAllChats
-        });
-      })
+        })
+      });
   }
 }
 
@@ -69,10 +73,15 @@ export function unBookmarkMsg(starredMessagesId) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.uniqueUserInfo.targetBookmarksId;
+    const bookmarks = state.bookmarks.bookmarks;
 
     axios.delete(`/api/bookmarks/${starredMessagesId}`)
       .then((data) => {
-        dispatch(setBookmarks(userId));
+        if (bookmarks) {
+          dispatch(setBookmarks(userId));
+        }
+
+
       })
   }
 }

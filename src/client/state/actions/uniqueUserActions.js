@@ -3,7 +3,8 @@ import {
   resetUserProfileType,
   noUserProfileMatchType,
   setTargetUserIdType,
-  setTargetBookmarksIdType
+  setTargetBookmarksIdType,
+  resetTargetBookmarksIdType
 } from '../actionTypes';
 
 export function updateUserProfile(targetUserId) {
@@ -46,5 +47,11 @@ export function updateTargetBookmarksId(userId) {
   return {
     type: setTargetBookmarksIdType,
     payload: userId
+  }
+}
+
+export function resetTargetBookmarksId() {
+  return {
+    type: resetTargetBookmarksIdType
   }
 }

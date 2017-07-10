@@ -27,6 +27,11 @@ class Bookmarks extends React.Component {
     this.props.unBookmarkMsg(starredMessagesId);
   }
 
+  componentWillUnmount() {
+    this.props.resetBookmarks();
+    this.props.resetTargetBookmarksId();
+  }
+
   render() {
     return (
       <div className="Bookmarks-container">

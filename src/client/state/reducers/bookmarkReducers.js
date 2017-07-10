@@ -1,4 +1,4 @@
-import { setBookmarksType } from '../actionTypes';
+import { setBookmarksType, resetBookmarksType } from '../actionTypes';
 
 export default function reducer(state={
   bookmarks: null
@@ -8,6 +8,11 @@ export default function reducer(state={
       return {
         ...state,
         bookmarks: action.payload
+      }
+    case resetBookmarksType:
+      return {
+        ...state,
+        bookmarks: null
       }
   }
 
