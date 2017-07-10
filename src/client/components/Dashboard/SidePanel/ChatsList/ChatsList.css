@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 .ChatsList-container {
   position: relative;
-  flex: 1;
-  padding-top: 10px;
+  font-family: 'Lato';
+  border-bottom: 5px solid #1D2547;
+  padding: 10px 0;
 }
 
 .ChatsList-header {
@@ -14,12 +17,11 @@
 .ChatsList-chat {
   display: flex;
   align-items: center;
-  background-color: white;
   width: 100%;
 }
 
 .ChatsList-chat:hover {
-  background-color: #EDF2F2;
+  background-color: #1D2547;
   cursor: pointer;
 }
 
