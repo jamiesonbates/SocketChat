@@ -73,15 +73,10 @@ export function unBookmarkMsg(starredMessagesId) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.uniqueUserInfo.targetBookmarksId;
-    const bookmarks = state.bookmarks.bookmarks;
 
     axios.delete(`/api/bookmarks/${starredMessagesId}`)
       .then((data) => {
-        if (bookmarks) {
-          dispatch(setBookmarks(userId));
-        }
-
-
+        dispatch(setBookmarks(userId));
       })
   }
 }

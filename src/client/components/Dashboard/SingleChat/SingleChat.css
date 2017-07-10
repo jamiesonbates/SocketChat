@@ -1,5 +1,4 @@
 .SingleChat-container {
-  /*width: 75%;*/
   border: 1px solid black;
   display: flex;
   flex: 1;
@@ -83,6 +82,10 @@
 
 .SingleChat-message-info {
   display: flex;
+}
+
+.SingleChat-message-info:hover .SingleChat-bookmark-icon {
+  display: inline-block;
 }
 
 .SingleChat-message-info p {
@@ -181,6 +184,7 @@
 }
 
 .SingleChat-bookmark-icon {
+  display: none;
   color: lightgray;
 }
 
@@ -190,5 +194,11 @@
 }
 
 .SingleChat-starred {
+  display: inline-block;
+  color: red;
+}
+
+.SingleChat-starred:hover {
+  cursor: default;
   color: red;
 }

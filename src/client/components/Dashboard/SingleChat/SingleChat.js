@@ -121,7 +121,11 @@ class SingleChat extends React.Component {
                   }
 
                   return (
-                    <div key={i} className="SingleChat-user" onClick={() => this.handleClickOnUser(user.id)}>
+                    <div
+                      key={i}
+                      className="SingleChat-user"
+                      onClick={() => this.handleClickOnUser(user.id)}
+                    >
                       <p>{`${user.firstName} ${user.lastName}`}</p>
                       {
                         this.userIsOnline(user.id) ?
