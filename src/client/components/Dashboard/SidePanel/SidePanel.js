@@ -24,6 +24,13 @@ class SidePanel extends React.Component {
     this.props.updateMain(showUserProfileType);
   }
 
+  handleNavToBookmarks() {
+    console.log('here');
+    const userId = this.props.userId;
+
+    this.props.setBookmarks(userId);
+  }
+
   render() {
     return (
       <div className="SidePanel-container">
@@ -33,6 +40,7 @@ class SidePanel extends React.Component {
           inGroupForm={this.props.showGroupForm}
           userInfo={this.props.userInfo}
           handleNavToProfile={this.handleNavToProfile.bind(this)}
+          handleNavToBookmarks={this.handleNavToBookmarks.bind(this)}
         />
         {
           this.props.showChatsList ?
