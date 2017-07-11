@@ -26,6 +26,7 @@ export default function(ComposedClass) {
       showAddChat: state.dashControls.showAddChat,
       showGroupForm: state.dashControls.showGroupForm,
       showChatsList: state.dashControls.showChatsList,
+      showContactsList: state.dashControls.showContactsList,
       allChats: state.chats.allChats,
       userId: state.userInfo.id,
       newGroup: state.contacts.newGroup,

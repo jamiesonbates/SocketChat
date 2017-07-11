@@ -8,10 +8,10 @@ class SearchContacts extends React.Component {
     super(props);
   }
 
-  handleFormChange() {
+  setSearchTerm() {
     const term = this.refs.term.value;
 
-    this.props.setSearchTerm(term);
+    this.props.updateSearchTerm(term);
   }
 
   render() {
@@ -34,7 +34,7 @@ class SearchContacts extends React.Component {
             type="text"
             ref="term"
             autoFocus={true}
-            onChange={this.handleFormChange.bind(this)}
+            onChange={this.setSearchTerm.bind(this)}
             value={this.props.searchTermVal}
           />
         </form>

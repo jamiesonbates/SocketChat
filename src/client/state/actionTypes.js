@@ -44,6 +44,8 @@ const updateBookmarksInChatType = 'UPDATE_BOOKMARKS_IN_CHAT';
 const resetBookmarksType = 'RESET_BOOKMARKS';
 const resetTargetBookmarksIdType = 'RESET_TARGET_BOOKMARKS_ID';
 const setUsersCategoriesType = 'SET_USERS_CATEGORIES';
+const showContactsListType = 'SHOW_CONTACTS_LIST';
+const exitContactsListType = 'EXIT_CONTACTS_LIST';
 
 export {
   authSuccess,
@@ -89,5 +91,7 @@ export {
   updateBookmarksInChatType,
   resetBookmarksType,
   resetTargetBookmarksIdType,
-  setUsersCategoriesType
+  setUsersCategoriesType,
+  showContactsListType,
+  exitContactsListType
 }

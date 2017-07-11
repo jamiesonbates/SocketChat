@@ -6,7 +6,9 @@ import {
   showAddChatType,
   showGroupFormType,
   showUserProfileType,
-  exitUserProfileType
+  exitUserProfileType,
+  showContactsListType,
+  exitContactsListType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -16,7 +18,8 @@ export default function reducer(state={
   showChatsList: true,
   showNewChat: false,
   showGroupForm: false,
-  showUserProfile: false
+  showUserProfile: false,
+  showContactsList: false
 }, action) {
   switch(action.type) {
     case showChatType:
@@ -71,6 +74,20 @@ export default function reducer(state={
       return {
         ...state,
         showUserProfile: false
+      }
+
+    case showContactsListType:
+      return {
+        ...state,
+        showContactsList: true,
+        showChatsList: false
+      }
+
+    case exitContactsListType:
+      return {
+        ...state,
+        showContactsList: false,
+        showChatsList: true
       }
   }
 

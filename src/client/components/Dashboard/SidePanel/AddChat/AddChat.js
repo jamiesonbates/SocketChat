@@ -22,10 +22,6 @@ class AddChat extends React.Component {
     this.props.updateGroupName(name);
   }
 
-  setSearchTerm(term) {
-    this.props.updateSearchTerm(term);
-  }
-
   // exists in multiple places
   handleAddSingleChat(userId) {
     let chatId;
@@ -129,7 +125,7 @@ class AddChat extends React.Component {
           }
 
           <SearchContacts
-            setSearchTerm={this.setSearchTerm.bind(this)}
+            updateSearchTerm={this.props.updateSearchTerm}
             searchTermVal={this.props.searchTerm}
             showGroupForm={this.props.showGroupForm}
             newGroup={this.props.newGroup}
@@ -150,12 +146,12 @@ class AddChat extends React.Component {
             <ContactsList
               usersContacts={this.props.usersContacts}
               searchTerm={this.props.searchTerm}
-              handleAddChat={this.handleAddMultiChat.bind(this)}
+              handleContactClick={this.handleAddMultiChat.bind(this)}
             />
           : <ContactsList
               usersContacts={this.props.usersContacts}
               searchTerm={this.props.searchTerm}
-              handleAddChat={this.handleAddSingleChat.bind(this)}
+              handleContactClick={this.handleAddSingleChat.bind(this)}
             />
         }
       </div>

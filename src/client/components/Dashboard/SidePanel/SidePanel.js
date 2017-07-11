@@ -3,9 +3,11 @@ import React from 'react';
 import wrapSidePanel from '../../../containers/WrapSidePanel';
 import ChatsList from './ChatsList/ChatsList';
 import AddChat from './AddChat/AddChat';
+import ContactsList from './AddChat/ContactsList/ContactsList';
 import './SidePanel.scss';
 import SideNav from './SideNav/SideNav';
-import { showChatsListType, showUserProfileType } from '../../../state/actionTypes';
+import SearchContacts from './AddChat/SearchContacts/SearchContacts';
+import { showChatsListType, showUserProfileType, showContactsListType } from '../../../state/actionTypes';
 
 class SidePanel extends React.Component {
   constructor(props) {
@@ -25,10 +27,13 @@ class SidePanel extends React.Component {
   }
 
   handleNavToBookmarks() {
-    console.log('here');
     const userId = this.props.userId;
 
     this.props.setBookmarks(userId);
+  }
+
+  handleNavToContacts() {
+    this.props.updateSide(showContactsListType);
   }
 
   render() {
@@ -41,13 +46,27 @@ class SidePanel extends React.Component {
           userInfo={this.props.userInfo}
           handleNavToProfile={this.handleNavToProfile.bind(this)}
           handleNavToBookmarks={this.handleNavToBookmarks.bind(this)}
+          handleNavToContacts={this.handleNavToContacts.bind(this)}
         />
         {
           this.props.showChatsList ?
             <ChatsList
               determineChatHeader={this.props.determineChatHeader.bind(this)}
             />
-          : <AddChat />
+          : this.props.showContactsList ?
+              <div>
+                <SearchContacts
+                  updateSearchTerm={this.props.updateSearchTerm}
+                  searchTermVal={this.props.searchTerm}
+                  showGroupForm={false}
+                />
+                <ContactsList
+                  usersContacts={this.props.usersContacts}
+                  searchTerm={this.props.searchTerm}
+                  handleContactClick={this.handleNavToContacts.bind(this)}
+                />
+              </div>
+            : <AddChat />
 
         }
       </div>

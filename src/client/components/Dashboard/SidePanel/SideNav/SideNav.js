@@ -6,7 +6,7 @@ import FaUser from 'react-icons/lib/ti/user-outline';
 import './SideNav.scss';
 import FaBackArrow from 'react-icons/lib/md/arrow-back';
 
-const SideNav = ({ navToChatsList, inAddChat, inGroupForm, userInfo, handleNavToProfile, handleNavToBookmarks }) => (
+const SideNav = ({ navToChatsList, inAddChat, inGroupForm, userInfo, handleNavToProfile, handleNavToBookmarks, handleNavToContacts }) => (
   <div className="SideNav-container">
     {
       inAddChat ?
@@ -24,9 +24,18 @@ const SideNav = ({ navToChatsList, inAddChat, inGroupForm, userInfo, handleNavTo
           </div>
 
           <div className="SideNav-user-options">
-            <FaUser className="SideNav-home-icon" onClick={handleNavToProfile}/>
-            <FaContacts className="SideNav-home-icon" />
-            <FaBookmarks className="SideNav-home-icon" onClick={handleNavToBookmarks}/>
+            <FaUser
+              className="SideNav-home-icon" 
+              onClick={handleNavToProfile}
+            />
+            <FaContacts
+              className="SideNav-home-icon"
+              onClick={handleNavToContacts}
+            />
+            <FaBookmarks
+              className="SideNav-home-icon"
+              onClick={handleNavToBookmarks}
+            />
           </div>
         </div>
     }
