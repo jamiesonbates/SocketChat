@@ -51,14 +51,16 @@ export default function reducer(state={
         ...state,
         showChatsList: true,
         showAddChat: false,
-        showGroupForm: false
+        showGroupForm: false,
+        showContactsList: false
       }
 
     case showAddChatType:
       return {
         ...state,
         showChatsList: false,
-        showAddChat: true
+        showAddChat: true,
+        showContactsList: false
       }
     case showGroupFormType:
       return {
@@ -75,19 +77,11 @@ export default function reducer(state={
         ...state,
         showUserProfile: false
       }
-
     case showContactsListType:
       return {
         ...state,
         showContactsList: true,
         showChatsList: false
-      }
-
-    case exitContactsListType:
-      return {
-        ...state,
-        showContactsList: false,
-        showChatsList: true
       }
   }
 

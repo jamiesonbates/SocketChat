@@ -15,10 +15,6 @@ class SidePanel extends React.Component {
 
   }
 
-  navToChatsList() {
-    this.props.updateSide(showChatsListType);
-  }
-
   handleNavToProfile() {
     const userId = this.props.userId;
 
@@ -36,11 +32,15 @@ class SidePanel extends React.Component {
     this.props.updateSide(showContactsListType);
   }
 
+  handleNavToChats() {
+    this.props.updateSide(showChatsListType);
+  }
+
   render() {
     return (
       <div className="SidePanel-container">
         <SideNav
-          navToChatsList={this.navToChatsList.bind(this)}
+          handleNavToChats={this.handleNavToChats.bind(this)}
           inAddChat={this.props.showAddChat}
           inGroupForm={this.props.showGroupForm}
           userInfo={this.props.userInfo}

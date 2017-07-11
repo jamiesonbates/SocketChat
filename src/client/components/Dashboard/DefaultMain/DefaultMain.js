@@ -1,16 +1,31 @@
 import React from 'react';
 
+import BookmarksPre from './BookmarksPre/BookmarksPre';
+import ChatsPre from './ChatsPre/ChatsPre';
 import './DefaultMain.scss';
 
 class DefaultMain extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+  }
+
+  mostRecentChats() {
+
+  }
+
+  mostRecentBookmarks() {
+    
   }
 
   render() {
     return (
       <div className="DefaultMain-container">
-        <p>Hello World 2</p>
+        <div className="DefaultMain-header">
+
+        </div>
+
+        <ChatsPre />
+        <BookmarksPre />
       </div>
     )
   }
