@@ -33,7 +33,7 @@
 }
 
 .ChatsList-chat:hover {
-  background-color: inherit;
+  background-color: #1D2547;
   cursor: pointer;
 }
 

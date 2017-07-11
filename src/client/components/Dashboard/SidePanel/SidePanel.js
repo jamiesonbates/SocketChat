@@ -5,7 +5,7 @@ import ChatsList from './ChatsList/ChatsList';
 import AddChat from './AddChat/AddChat';
 import './SidePanel.scss';
 import SideNav from './SideNav/SideNav';
-import { showChatsListType } from '../../../state/actionTypes';
+import { showChatsListType, showUserProfileType } from '../../../state/actionTypes';
 
 class SidePanel extends React.Component {
   constructor(props) {
@@ -17,6 +17,13 @@ class SidePanel extends React.Component {
     this.props.updateSide(showChatsListType);
   }
 
+  handleNavToProfile() {
+    const userId = this.props.userId;
+
+    this.props.updateTargetUserId(userId);
+    this.props.updateMain(showUserProfileType);
+  }
+
   render() {
     return (
       <div className="SidePanel-container">
@@ -25,6 +32,7 @@ class SidePanel extends React.Component {
           inAddChat={this.props.showAddChat}
           inGroupForm={this.props.showGroupForm}
           userInfo={this.props.userInfo}
+          handleNavToProfile={this.handleNavToProfile.bind(this)}
         />
         {
           this.props.showChatsList ?
