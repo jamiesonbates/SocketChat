@@ -24,6 +24,7 @@ class SidePanel extends React.Component {
           navToChatsList={this.navToChatsList.bind(this)}
           inAddChat={this.props.showAddChat}
           inGroupForm={this.props.showGroupForm}
+          userInfo={this.props.userInfo}
         />
         {
           this.props.showChatsList ?

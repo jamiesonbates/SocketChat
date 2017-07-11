@@ -29,7 +29,8 @@ export default function(ComposedClass) {
       newGroup: state.contacts.newGroup,
       usersContacts: state.contacts.usersContacts,
       groupName: state.forms.groupName,
-      searchTerm: state.forms.searchTerm
+      searchTerm: state.forms.searchTerm,
+      userInfo: state.userInfo
     }
   }
 
