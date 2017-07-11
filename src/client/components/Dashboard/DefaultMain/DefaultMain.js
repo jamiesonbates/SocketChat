@@ -13,15 +13,18 @@ class DefaultMain extends React.Component {
     this.mostRecentChats = this.mostRecentChats.bind(this);
   }
 
+  componentWillMount() {
+    this.props.getRecentBookmarks();
+  }
+
   mostRecentChats() {
     if (!this.props.allChats) {
-      return;
+      return null;
     }
 
     const chats = [...this.props.allChats].sort((a, b) => {
       const aMil = moment(a.lastActivity).valueOf();
       const bMil = moment(b.lastActivity).valueOf();
-      console.log(aMil > bMil);
 
       if (aMil < bMil) {
         return 1;
@@ -34,13 +37,7 @@ class DefaultMain extends React.Component {
       }
     }).slice(0, 5);
 
-    console.log(chats);
-
     return chats;
-  }
-
-  mostRecentBookmarks() {
-    return this.props.bookmarks;
   }
 
   render() {
@@ -50,13 +47,16 @@ class DefaultMain extends React.Component {
           Hello
         </div>
 
-        <ChatsPre
-          chats={this.mostRecentChats()}
-        />
+        <div className="DefaultMain-recent">
+          <ChatsPre
+            chats={this.mostRecentChats()}
+            determineChatHeader={this.props.determineChatHeader.bind(this)}
+          />
 
-        <BookmarksPre
-          mostRecentBookmarks={this.mostRecentBookmarks.bind(this)}
-        />
+          <BookmarksPre
+            recentBookmarks={this.props.recentBookmarks}
+          />
+        </div>
       </div>
     )
   }

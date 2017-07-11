@@ -5,18 +5,34 @@ import {
   setBookmarksType,
   updateBookmarksInChatType,
   resetBookmarksType,
-  setUsersCategoriesType
+  setUsersCategoriesType,
+  setRecentBookmarksType
 } from '../actionTypes';
 import { updateMain } from './dashControlActions';
 import { updateTargetBookmarksId } from './uniqueUserActions';
 
-export function setBookmarks(userId) {
+export function setBookmarks({ userId, forRecent=false }) {
   return function(dispatch, getState) {
     axios.get(`/api/bookmarks/${userId}`)
       .then((res) => {
         dispatch({ type: setBookmarksType, payload: res.data });
-        dispatch(updateMain(showBookmarksType));
-        dispatch(updateTargetBookmarksId(userId));
+
+        if (!forRecent) {
+          dispatch(updateMain(showBookmarksType));
+          dispatch(updateTargetBookmarksId(userId));
+        }
+      })
+  }
+}
+
+export function getRecentBookmarks() {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
+
+    axios.get(`/api/bookmarks/recent/${userId}`)
+      .then(({ data }) => {
+        dispatch({ type: setRecentBookmarksType, payload: data });
       })
   }
 }
@@ -89,7 +105,7 @@ export function unBookmarkMsg(starredMessagesId) {
 
     axios.delete(`/api/bookmarks/${starredMessagesId}`)
       .then((data) => {
-        dispatch(setBookmarks(userId));
+        dispatch(setBookmarks({ userId }));
       })
   }
 }

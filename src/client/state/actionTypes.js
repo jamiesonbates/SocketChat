@@ -46,6 +46,7 @@ const resetTargetBookmarksIdType = 'RESET_TARGET_BOOKMARKS_ID';
 const setUsersCategoriesType = 'SET_USERS_CATEGORIES';
 const showContactsListType = 'SHOW_CONTACTS_LIST';
 const exitContactsListType = 'EXIT_CONTACTS_LIST';
+const setRecentBookmarksType = 'SET_RECENT_BOOKMARKS';
 
 export {
   authSuccess,
@@ -93,5 +94,6 @@ export {
   resetTargetBookmarksIdType,
   setUsersCategoriesType,
   showContactsListType,
-  exitContactsListType
+  exitContactsListType,
+  setRecentBookmarksType
 }

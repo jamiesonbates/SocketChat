@@ -25,7 +25,7 @@ class SidePanel extends React.Component {
   handleNavToBookmarks() {
     const userId = this.props.userId;
 
-    this.props.setBookmarks(userId);
+    this.props.setBookmarks({ userId });
   }
 
   handleNavToContacts() {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { setBookmarks, resetBookmarks, getRecentBookmarks } from '../state/actions/bookmarkActions';
+
 export default function(ComposedClass) {
   class WrapDefaultMain extends React.Component {
     constructor() {
@@ -17,13 +19,16 @@ export default function(ComposedClass) {
   const mapStateToProps = function(state) {
     return {
       allChats: state.chats.allChats,
-      bookmarks: state.bookmarks.bookmarks
+      recentBookmarks: state.userInfo.recentBookmarks,
+      userId: state.userInfo.id
     }
   }
 
   const mapDispatchToProps = dispatch => (
     {
-
+      setBookmarks: (data) => dispatch(setBookmarks(data)),
+      resetBookmarks: () => dispatch(resetBookmarks()),
+      getRecentBookmarks: () => dispatch(getRecentBookmarks())
     }
   )
 

@@ -10,7 +10,7 @@ import {
 import { fetchChats } from '../state/actions/chatActions';
 import { getContacts } from '../state/actions/contactsActions';
 import { getCommonUsers } from '../state/actions/onlineActions';
-import { getCategories } from '../state/actions/bookmarkActions';
+import { getCategories, getRecentBookmarks } from '../state/actions/bookmarkActions';
 
 export default function(ComposedClass) {
   class WrapDashboard extends React.Component {
@@ -44,7 +44,8 @@ export default function(ComposedClass) {
       fetchChats: (data) => dispatch(fetchChats(data)),
       getCommonUsers: () => dispatch(getCommonUsers()),
       getContacts: () => dispatch(getContacts()),
-      getCategories: () => dispatch(getCategories())
+      getCategories: () => dispatch(getCategories()),
+      getRecentBookmarks: () => dispatch(getRecentBookmarks())
     }
   )
 

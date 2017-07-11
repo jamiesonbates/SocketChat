@@ -2,11 +2,19 @@ import React from 'react';
 
 import './BookmarksPre.scss';
 
-const BookmarksPre = ({ mostRecentBookmarks }) => {
-  console.log(mostRecentBookmarks());
+const BookmarksPre = ({ recentBookmarks }) => {
+  console.log(recentBookmarks);
   return (
     <div>
-      Hello Bookmarks
+      {
+        recentBookmarks ?
+          recentBookmarks.map((bookmark, i) => (
+            <div>
+              { bookmark.message }
+            </div>
+          ))
+        : null
+      }
     </div>
   )
 }

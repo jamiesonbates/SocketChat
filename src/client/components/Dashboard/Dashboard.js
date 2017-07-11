@@ -23,6 +23,7 @@ class Dashboard extends React.Component {
     this.props.getCommonUsers();
     this.props.getContacts();
     this.props.getCategories();
+    // this.props.getRecentBookmarks();
   }
 
   componentDidMount() {
@@ -85,7 +86,9 @@ class Dashboard extends React.Component {
         <div className="Dashboard-main-container">
           {
             this.props.showDefaultMain ?
-              <DefaultMain />
+              <DefaultMain
+                determineChatHeader={this.determineChatHeader}
+              />
             : this.props.showChat ?
                 <SingleChat
                   determineChatHeader={this.determineChatHeader.bind(this)}

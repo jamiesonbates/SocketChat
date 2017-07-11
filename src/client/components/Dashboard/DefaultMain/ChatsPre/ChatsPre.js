@@ -3,14 +3,16 @@ import moment from 'moment';
 
 import './ChatsPre.scss';
 
-const ChatsPre = ({ chats }) => {
+const ChatsPre = ({ chats, determineChatHeader }) => {
   return (
-    <div>
+    <div className="ChatsPre-container">
+      <h3>Recent Chat Activity</h3>
       {
         chats ?
           chats.map((chat, i) => (
-            <div key={i}>
-              {chat.id} {chat.last_activity}
+            <div className="ChatsPre-chat" key={i}>
+              <p>{determineChatHeader(chat)}</p>
+              <p>Active {moment(chat.lastActivity).fromNow()}</p>
             </div>
           ))
         : null
