@@ -106,9 +106,16 @@ io.on('connection', (socket) => {
   });
 
   socket.on('msg', (data) => {
+    let msg;
+
     dbActions.createMessage(data)
-      .then((msg) => {
-        msg = camelizeKeys(msg[0]);
+      .then((newMsg) => {
+        msg = camelizeKeys(newMsg[0]);
+
+        return dbActions.updateChatActivity(msg.chatId);
+      })
+      .then((chat) => {
+        msg.last_activity = chat[0].last_activity;
 
         socket.broadcast.to(msg.chatId).emit('new msg', msg);
         socket.emit('new msg', msg);

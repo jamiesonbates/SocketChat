@@ -47,9 +47,17 @@ function createContact(userId1, userId2) {
   .returning('*');
 }
 
+function updateChatActivity(chatId) {
+  return db('chats')
+    .update('last_activity', db.fn.now())
+    .where('id', chatId)
+    .returning('*')
+}
+
 module.exports = {
   createMessage,
   updateUserStatus,
   getContacts,
-  createContact
+  createContact,
+  updateChatActivity
 }

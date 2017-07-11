@@ -3,6 +3,7 @@ import React from 'react';
 import BookmarksPre from './BookmarksPre/BookmarksPre';
 import ChatsPre from './ChatsPre/ChatsPre';
 import './DefaultMain.scss';
+import wrapDefaultMain from '../../../containers/WrapDefaultMain';
 
 class DefaultMain extends React.Component {
   constructor(props) {
@@ -10,11 +11,11 @@ class DefaultMain extends React.Component {
   }
 
   mostRecentChats() {
-
+    return this.props.allChats;
   }
 
   mostRecentBookmarks() {
-    
+    return this.props.bookmarks;
   }
 
   render() {
@@ -24,11 +25,15 @@ class DefaultMain extends React.Component {
 
         </div>
 
-        <ChatsPre />
-        <BookmarksPre />
+        <ChatsPre
+          mostRecentChats={this.mostRecentChats.bind(this)}
+        />
+        <BookmarksPre
+          mostRecentBookmarks={this.mostRecentBookmarks.bind(this)}
+        />
       </div>
     )
   }
 }
 
-export default DefaultMain;
+export default wrapDefaultMain(DefaultMain);

@@ -7,7 +7,7 @@ const router = require('express').Router();
 router.get('/:userId', (req, res, next) => {
   return db.raw(`
     SELECT *
-    FROM (SELECT c1.id, c1.name,
+    FROM (SELECT c1.id, c1.name, c1.last_activity,
            (SELECT json_agg(msg)
            FROM (
              SELECT m.id, m.message, m.user_id, m.created_at,
@@ -39,7 +39,6 @@ router.get('/:userId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const { chat } = req.body;
   const { users } = req.body;
-  console.log(req.body);
   let chatId;
 
   db('chats')

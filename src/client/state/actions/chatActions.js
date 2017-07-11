@@ -115,6 +115,7 @@ function addMessageToChat(chats, msg) {
     }
 
     if (chat.id === msg.chatId) {
+      chat.lastActivity = msg.last_activity;
       chat.messages.push(msg);
     }
 
