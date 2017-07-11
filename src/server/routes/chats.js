@@ -26,7 +26,8 @@ router.get('/:userId', (req, res, next) => {
            ) usr) as users
          FROM chats as c1
          INNER JOIN users_chats as uc2 ON c1.id = uc2.chat_id
-         WHERE uc2.user_id = ${req.params.userId}) as chats;`
+         WHERE uc2.user_id = ${req.params.userId}
+         ORDER BY c1.last_activity DESC) as chats;`
     )
     .then((query) => {
       res.send(camelizeKeys(query.rows));
