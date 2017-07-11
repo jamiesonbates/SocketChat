@@ -4,7 +4,8 @@
   padding: 15px;
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 4px solid #E3E3E3;
+  border-bottom: 6px solid #26315E;
+  background-color: #1D2547;
 }
 
 .SearchContacts-container form {
@@ -20,6 +21,9 @@
   padding: 0;
   padding-left: 10px;
   font-size: 15px;
+  background-color: #1D2547;
+  font-family: 'Lato';
+  color: #E0E0E0;
 }
 
 .SearchContacts-container form input:focus {
@@ -28,14 +32,14 @@
 
 .SearchContacts-container form input::placeholder {
   font-size: 15px;
-  font-family: Arial;
+  font-family: 'Lato';
 }
 
 .SearchContacts-icon-search {
   padding: 5px;
   height: 25px;
   width: 25px;
-  color: #2E2E2E;
+  color: #E0E0E0;
 }
 
 .SearchContacts-groupmember {

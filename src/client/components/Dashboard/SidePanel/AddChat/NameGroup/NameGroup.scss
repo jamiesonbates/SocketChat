@@ -1,7 +1,8 @@
 .NameGroup-container {
   padding: 15px;
   display: flex;
-  border-bottom: 1px solid #E3E3E3;
+  border-bottom: 3px solid #26315E;
+  background-color: #1D2547;
 }
 
 .NameGroup-container form {
@@ -17,6 +18,9 @@
   padding: 0;
   padding-left: 10px;
   font-size: 15px;
+  background-color: #1D2547;
+  color: #E0E0E0;
+  font-family: 'Lato';
 }
 
 .NameGroup-container form input:focus {
@@ -25,7 +29,8 @@
 
 .NameGroup-container form input::placeholder {
   font-size: 15px;
-  font-family: Arial;
+  font-family: 'Lato';
+  color: #E0E0E0;
 }
 
 .NameGroup-icon {
@@ -34,6 +39,6 @@
   width: 25px;
   border: 1px solid #2E2E2E;
   border-radius: 50%;
-  background-color: white;
+  background-color: #E0E0E0;
   color: #2E2E2E;
 }

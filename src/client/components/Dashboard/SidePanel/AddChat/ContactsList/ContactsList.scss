@@ -2,20 +2,21 @@
 }
 
 .ContactsList-container h3 {
-  font-family: Arial;
+  font-family: 'Lato';
   font-size: 13px;
   padding: 10px;
+  color: #E0E0E0;
 }
 
 .ContactsList-contact {
   padding: 10px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #E3E3E3;
+  border-bottom: 2px solid #1D2547;
 }
 
 .ContactsList-contact:hover {
-  background-color: #E3E3E3;
+  background-color: #1D2547;
   cursor: pointer;
 }
 
@@ -31,5 +32,6 @@
 
 .ContactsList-contact p {
   margin-left: 5%;
-  font-family: Arial;
+  font-family: 'Lato';
+  color: #E0E0E0;
 }

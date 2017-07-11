@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import FaNewChat from 'react-icons/lib/md/chat';
+import FaNewChat from 'react-icons/lib/md/add-circle-outline';
 
 import './ChatsList.css';
 import wrapSidePanel from '../../../../containers/WrapSidePanel';
@@ -69,6 +69,14 @@ class ChatsList extends React.Component {
   render() {
     return (
       <div className="ChatsList-container">
+        <div className="ChatsList-header">
+          <h3 className="ChatsList-title">Your Chats</h3>
+
+          <FaNewChat
+            className="ChatsList-newChat-btn"
+            onClick={() => this.props.updateSide(showAddChatType)}
+          />
+        </div>
         {
           this.props.allChats
             ? this.props.allChats.map((chat, i) => (
@@ -89,11 +97,6 @@ class ChatsList extends React.Component {
               ))
             : null
         }
-
-        <FaNewChat
-          className="ChatsList-newChat-btn"
-          onClick={() => this.props.updateSide(showAddChatType)}
-        />
       </div>
     )
   }
