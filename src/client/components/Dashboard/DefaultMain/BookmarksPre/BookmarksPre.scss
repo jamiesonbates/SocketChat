@@ -1,5 +1,27 @@
 .BookmarksPre-bookmark {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 10px;
+  color: #242424;
+}
+
+.BookmarksPre-bookmark:hover {
+  background-color: #E3E8E8;
+  cursor: pointer;
+}
+
+.BookmarksPre-bookmark div:first-child {
+  display: flex;
+}
+
+.BookmarksPre-bookmark div:last-child p {
+  color: #7F7F7F;
+}
+
+.BookmarksPre-bookmark p {
+  padding-left: 5px;
+}
+
+.BookmarksPre-bookmark-icon {
+  font-size: 20px;
 }

@@ -1,13 +1,16 @@
 import React from 'react';
 import moment from 'moment';
+import FaChat from 'react-icons/lib/ti/message';
 
 import './ChatsPre.scss';
 
 const ChatsPre = ({ chats, determineChatHeader, handleChatClick }) => {
   console.log(chats);
   return (
-    <div className="DefaultMain-recent-container">
-      <h3>Recent Chat Activity</h3>
+    <div className="DefaultMain-recent">
+      <div className="DefaultMain-recent-header">
+        <h3>Recent Chat Activity</h3>
+      </div>
       {
         chats ?
           chats.map((chat, i) => (
@@ -17,7 +20,12 @@ const ChatsPre = ({ chats, determineChatHeader, handleChatClick }) => {
               onClick={() => handleChatClick(chat.id)}
             >
               <div className="ChatsPre-chat-top">
-                <p>{determineChatHeader(chat)}</p>
+                <div>
+                  <FaChat className="ChatsPre-chat-icon" />
+                  <p className="ChatsPre-chat-header">
+                  {determineChatHeader(chat)}
+                </p>
+                </div>
                 <p className="ChatsPre-time">
                   {moment(chat.lastActivity).fromNow(true)}
                 </p>

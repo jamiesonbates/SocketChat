@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import FaHome from 'react-icons/lib/ti/home-outline';
 
 import BookmarksPre from './BookmarksPre/BookmarksPre';
 import ChatsPre from './ChatsPre/ChatsPre';
@@ -50,10 +51,11 @@ class DefaultMain extends React.Component {
     return (
       <div className="DefaultMain-container">
         <div className="DefaultMain-header">
-          Hello
+          <FaHome className="DefaultMain-home-icon"/>
+          <h2>Welcome {this.props.userInfo.firstName}!</h2>
         </div>
 
-        <div className="DefaultMain-recent">
+        <div className="DefaultMain-recent-container">
           <ChatsPre
             chats={this.mostRecentChats()}
             handleChatClick={this.handleChatClick.bind(this)}

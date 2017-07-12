@@ -1,6 +1,7 @@
 .Dashboard-container {
   height: 100vh;
   display: flex;
+  background-color: #E0E0E0;
   flex: 1;
 }
 

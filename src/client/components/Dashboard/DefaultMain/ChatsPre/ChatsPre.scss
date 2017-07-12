@@ -6,7 +6,7 @@
 }
 
 .ChatsPre-chat:hover {
-  background-color: #2B2B2B;
+  background-color: #E3E8E8;
   cursor: pointer;
 }
 
@@ -15,7 +15,36 @@
   justify-content: space-between;
 }
 
+.ChatsPre-chat-top div:first-child {
+  color: #242424;
+  display: flex;
+  align-items: center;
+}
+
+.ChatsPre-chat-header {
+  white-space: nowrap;
+  text-overflow: clip;
+  overflow: auto;
+  padding-left: 5px;
+}
+
+.ChatsPre-chat-icon {
+  font-size: 20px;
+}
+
+.ChatsPre-chat-bottom p {
+  color: #7F7F7F;
+}
+
+.ChatsPre-chat:hover .ChatsPre-time {
+  background-color: inherit;
+}
+
 .ChatsPre-time {
   padding-left: 10px;
   z-index: 2;
+  background-color: inherit;
+  white-space: nowrap;
+  text-overflow: clip;
+  color: #7F7F7F;
 }
