@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { resetBookmarks, getRecentBookmarks } from '../state/actions/bookmarkActions';
+import { resetBookmarks, getRecentBookmarks, setBookmarks } from '../state/actions/bookmarkActions';
 import { updateMain, updateSide } from '../state/actions/dashControlActions';
 import { setChat } from '../state/actions/chatActions';
 
@@ -33,7 +33,8 @@ export default function(ComposedClass) {
       getRecentBookmarks: () => dispatch(getRecentBookmarks()),
       updateMain: (data) => dispatch(updateMain(data)),
       updateSide: (data) => dispatch(updateSide(data)),
-      setChat: (data) => dispatch(setChat(data))
+      setChat: (data) => dispatch(setChat(data)),
+      setBookmarks: (data) => dispatch(setBookmarks(data))
     }
   )
 

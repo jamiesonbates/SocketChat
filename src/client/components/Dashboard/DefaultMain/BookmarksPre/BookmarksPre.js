@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import './BookmarksPre.scss';
 
-const BookmarksPre = ({ recentBookmarks }) => {
+const BookmarksPre = ({ recentBookmarks, handleBookmarkClick }) => {
   return (
     <div className="DefaultMain-recent">
       <div className="DefaultMain-recent-header">
@@ -13,7 +13,7 @@ const BookmarksPre = ({ recentBookmarks }) => {
       {
         recentBookmarks ?
           recentBookmarks.map((bookmark, i) => (
-            <div key={i} className="BookmarksPre-bookmark">
+            <div key={i} className="BookmarksPre-bookmark" onClick={handleBookmarkClick}>
               <div>
                 <FaBookmark className="BookmarksPre-bookmark-icon "/>
                 <p>

@@ -47,6 +47,12 @@ class DefaultMain extends React.Component {
     this.props.updateMain(showChatType);
   }
 
+  handleBookmarkClick() {
+    const userId = this.props.userId;
+
+    this.props.setBookmarks({ userId });
+  }
+
   render() {
     return (
       <div className="DefaultMain-container">
@@ -64,6 +70,7 @@ class DefaultMain extends React.Component {
 
           <BookmarksPre
             recentBookmarks={this.props.recentBookmarks}
+            handleBookmarkClick={this.handleBookmarkClick.bind(this)}
           />
         </div>
       </div>
