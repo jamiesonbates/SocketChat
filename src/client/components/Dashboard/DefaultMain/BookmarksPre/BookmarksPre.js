@@ -3,13 +3,13 @@ import React from 'react';
 import './BookmarksPre.scss';
 
 const BookmarksPre = ({ recentBookmarks }) => {
-  console.log(recentBookmarks);
   return (
-    <div>
+    <div className="DefaultMain-recent-container">
+      <h3>Recent Bookmarks</h3>
       {
         recentBookmarks ?
           recentBookmarks.map((bookmark, i) => (
-            <div>
+            <div className="BookmarksPre-bookmark">
               { bookmark.message }
             </div>
           ))

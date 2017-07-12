@@ -1,7 +1,21 @@
 .DefaultMain-container {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .DefaultMain-recent {
   display: flex;
+}
+
+.DefaultMain-recent-container {
+  background-color: #1F1F1F;
+  min-width: 300px;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  color: white;
+  border-radius: 3px;
 }

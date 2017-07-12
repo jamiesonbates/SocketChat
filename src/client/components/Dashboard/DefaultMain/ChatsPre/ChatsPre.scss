@@ -1,7 +1,16 @@
-.ChatsPre-container {
-  background-color: #26315e;
-}
-
 .ChatsPre-chat {
   display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.ChatsPre-chat-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ChatsPre-time {
+  padding-left: 10px;
+  z-index: 2;
 }
