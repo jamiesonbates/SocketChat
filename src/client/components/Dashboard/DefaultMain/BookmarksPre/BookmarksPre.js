@@ -4,7 +4,6 @@ import moment from 'moment';
 import './BookmarksPre.scss';
 
 const BookmarksPre = ({ recentBookmarks }) => {
-  console.log(recentBookmarks);
   return (
     <div className="DefaultMain-recent-container">
       <h3>Recent Bookmarks</h3>
@@ -18,7 +17,9 @@ const BookmarksPre = ({ recentBookmarks }) => {
               <p>{moment(bookmark).format('M/D/YY')}</p>
             </div>
           ))
-        : null
+        : <div className="BookmarksPre-bookmark">
+            <p>You haven't bookmarked any messages yet.</p>
+          </div>
       }
     </div>
   )

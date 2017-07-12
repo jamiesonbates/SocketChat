@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+.ChatsPre-chat:hover {
+  background-color: #2B2B2B;
+  cursor: pointer;
+}
+
 .ChatsPre-chat-top {
   display: flex;
   justify-content: space-between;

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import './ChatsPre.scss';
 
-const ChatsPre = ({ chats, determineChatHeader }) => {
+const ChatsPre = ({ chats, determineChatHeader, handleChatClick }) => {
   console.log(chats);
   return (
     <div className="DefaultMain-recent-container">
@@ -11,7 +11,11 @@ const ChatsPre = ({ chats, determineChatHeader }) => {
       {
         chats ?
           chats.map((chat, i) => (
-            <div className="ChatsPre-chat" key={i}>
+            <div
+              className="ChatsPre-chat"
+              key={i}
+              onClick={() => handleChatClick(chat.id)}
+            >
               <div className="ChatsPre-chat-top">
                 <p>{determineChatHeader(chat)}</p>
                 <p className="ChatsPre-time">
@@ -23,7 +27,9 @@ const ChatsPre = ({ chats, determineChatHeader }) => {
               </div>
             </div>
           ))
-        : null
+        : <div className="ChatsPre-chat">
+            <p>You haven't started any chats yet.</p>
+          </div>
       }
     </div>
   )

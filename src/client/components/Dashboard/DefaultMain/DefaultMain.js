@@ -5,6 +5,7 @@ import BookmarksPre from './BookmarksPre/BookmarksPre';
 import ChatsPre from './ChatsPre/ChatsPre';
 import './DefaultMain.scss';
 import wrapDefaultMain from '../../../containers/WrapDefaultMain';
+import { showChatType } from '../../../state/actionTypes';
 
 class DefaultMain extends React.Component {
   constructor(props) {
@@ -40,6 +41,11 @@ class DefaultMain extends React.Component {
     return chats;
   }
 
+  handleChatClick(chatId) {
+    this.props.setChat(chatId);
+    this.props.updateMain(showChatType);
+  }
+
   render() {
     return (
       <div className="DefaultMain-container">
@@ -50,6 +56,7 @@ class DefaultMain extends React.Component {
         <div className="DefaultMain-recent">
           <ChatsPre
             chats={this.mostRecentChats()}
+            handleChatClick={this.handleChatClick.bind(this)}
             determineChatHeader={this.props.determineChatHeader.bind(this)}
           />
 
