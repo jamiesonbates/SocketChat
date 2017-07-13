@@ -45,7 +45,7 @@ class DefaultMain extends React.Component {
   handleChatClick(chatId) {
     this.props.setChat(chatId);
     this.props.updateMain(showChatType);
-    this.props.updateChatSeen(chatId);
+    this.props.updateChatSeen({ chatId, silent: false });
   }
 
   handleBookmarkClick() {

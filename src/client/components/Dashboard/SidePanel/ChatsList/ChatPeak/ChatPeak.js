@@ -11,7 +11,9 @@ const ChatPeak = ({
   userId,
   determineChatHeader,
   determineLastMessage
-}) => (
+}) => {
+  console.log(chat.count, chat.count > 0);
+return (
   <div className="ChatPeak-container">
     <div className="ChatPeak-icon-container">
       <div className="ChatPeak-icon-circle">
@@ -21,11 +23,11 @@ const ChatPeak = ({
     <div className="ChatPeak-info-container">
       <div className="ChatPeak-info">
         <div className="ChatPeak-header-container">
-          <p className="ChatPeak-header">{determineChatHeader(chat)}</p>
+          <p className={chat.count > 0 ? 'ChatPeak-header highlight' : 'ChatPeak-header'}>{determineChatHeader(chat)}</p>
         </div>
 
         <div className="ChatPeak-time-container">
-          <p className="ChatPeak-time">{time}</p>
+          <p className={chat.count > 0 ? 'ChatPeak-time highlight' : 'ChatPeak-time'}>{time}</p>
         </div>
       </div>
 
@@ -36,5 +38,6 @@ const ChatPeak = ({
     </div>
   </div>
 )
+}
 
 export default ChatPeak;

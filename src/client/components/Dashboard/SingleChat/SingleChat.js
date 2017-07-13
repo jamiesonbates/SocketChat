@@ -42,7 +42,7 @@ class SingleChat extends React.Component {
     this.props.sendMessage({ message, userId, chatId });
     this.props.stoppedTyping(chatId);
     this.refs.messageForm.reset();
-    this.props.updateChatSeen(chatId);
+    this.props.updateChatSeen({ chatId, silent: false });
   }
 
   handleTyping(isTyping) {

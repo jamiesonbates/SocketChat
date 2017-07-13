@@ -53,7 +53,7 @@ export function fetchChats({ shouldSetChat=false, chatId=null }) {
   }
 }
 
-export function updateChatSeen(chatId) {
+export function updateChatSeen({ chatId, silent }) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
@@ -61,6 +61,10 @@ export function updateChatSeen(chatId) {
 
     axios.post(`/api/chats/viewedchat`, { userId, chatId })
       .then(({ data }) => {
+        if (silent) {
+          return;
+        }
+
         if (singleChat) {
           dispatch(fetchChats({ shouldSetChat: true, chatId }));
         }
@@ -103,6 +107,10 @@ export function receiveMessage(msg) {
 
     if (singleChat) {
       inChat = singleChat.id === msg.chatId;
+    }
+
+    if (inChat) {
+      dispatch(updateChatSeen({ chatId: msg.chatId, silent: true }));
     }
 
     const nextChats = addMessageToChat(allChats, msg, inChat);
@@ -163,6 +171,8 @@ function addMessageToChat(chats, msg, inChat) {
           return acc;
         }, 0);
       }
+
+      console.log(nextCount);
 
       chat.count = nextCount;
     }
