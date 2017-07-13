@@ -55,11 +55,8 @@ export function updateChatSeen(chatId) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
-    const lastSeen = moment().format();
 
-    console.log(chatId, userId, lastSeen);
-
-    axios.post(`/api/chats/viewedchat`, { userId, chatId, lastSeen })
+    axios.post(`/api/chats/viewedchat`, { userId, chatId })
       .then(({ data }) => {
         console.log(data);
       })

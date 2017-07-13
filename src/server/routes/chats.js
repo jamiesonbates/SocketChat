@@ -68,15 +68,16 @@ router.post('/', (req, res, next) => {
 });
 
 router.post('/viewedchat', (req, res, next) => {
-  const { chat_id, user_id, last_seen } = decamelizeKeys(req.body);
+  const { chat_id, user_id } = decamelizeKeys(req.body);
 
-  console.log('here');
+  console.log(chat_id, user_id);
 
   db('users_chats')
-    .update({ last_seen })
+    .update('last_seen', db.fn.now())
     .where({ chat_id, user_id })
     .returning('*')
     .then((record) => {
+      console.log(record);
       res.send(record);
     });
 })
