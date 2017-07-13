@@ -31,7 +31,13 @@ const ChatsPre = ({ chats, determineChatHeader, handleChatClick }) => {
                 </p>
               </div>
               <div className="ChatsPre-chat-bottom">
-                <p>{'<X> number of new messages'}</p>
+                <p>{chat.count > 0 ?
+                      chat.count > 1 ?
+                        `${chat.count} new messages`
+                      : `${chat.count} new message`
+                    : `You're up to date`
+                  }
+                </p>
               </div>
             </div>
           ))
