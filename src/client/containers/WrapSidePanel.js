@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { updateSide, updateMain } from '../state/actions/dashControlActions';
-import { fetchChats, setChat, createChat } from '../state/actions/chatActions';
+import { fetchChats, setChat, createChat, updateChatSeen } from '../state/actions/chatActions';
 import { updateGroupName, updateSearchTerm } from '../state/actions/formActions';
 import { addNewGroupMember } from '../state/actions/contactsActions';
 import { updateTargetUserId } from '../state/actions/uniqueUserActions';
@@ -48,7 +48,8 @@ export default function(ComposedClass) {
       updateSearchTerm: (data) => dispatch(updateSearchTerm(data)),
       addNewGroupMember: (data) => dispatch(addNewGroupMember(data)),
       updateTargetUserId: (data) => dispatch(updateTargetUserId(data)),
-      setBookmarks: (data) => dispatch(setBookmarks(data))
+      setBookmarks: (data) => dispatch(setBookmarks(data)),
+      updateChatSeen: (data) => dispatch(updateChatSeen(data))
     }
   )
 

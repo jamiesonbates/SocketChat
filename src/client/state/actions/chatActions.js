@@ -29,7 +29,6 @@ export function setChat(id) {
     });
     dispatch(updateMain(showChatType));
     dispatch(updateSide(showChatsListType));
-    dispatch(updateChatSeen(id));
   }
 }
 
@@ -58,11 +57,16 @@ export function updateChatSeen(chatId) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
-    const allChats = state.chats.allChats;
+    const singleChat = state.chats.singleChat;
 
     axios.post(`/api/chats/viewedchat`, { userId, chatId })
       .then(({ data }) => {
-        dispatch(fetchChats({}));
+        if (singleChat) {
+          dispatch(fetchChats({ shouldSetChat: true, chatId }));
+        }
+        else {
+          dispatch(fetchChats({}));
+        }
       });
   }
 }

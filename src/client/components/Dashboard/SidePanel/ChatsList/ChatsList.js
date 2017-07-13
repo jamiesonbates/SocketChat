@@ -15,6 +15,7 @@ class ChatsList extends React.Component {
   }
 
   openChat(id) {
+    this.props.updateChatSeen(id);
     this.props.setChat(id);
     this.props.updateMain(showChatType);
   }
