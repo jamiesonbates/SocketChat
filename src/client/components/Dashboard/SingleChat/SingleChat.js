@@ -198,6 +198,7 @@ class SingleChat extends React.Component {
 
         <div className="SingleChat-messages-container">
           {
+            // TODO: must condense and abstract this
             this.props.singleChat && this.props.messages ?
               this.props.messages.map((message, i) => {
                 const allMessages = this.props.messages;
@@ -241,6 +242,9 @@ class SingleChat extends React.Component {
                   else {
                     messageJSX = this.createMessage(null, i, message, userId);
                   }
+                }
+                else {
+                  messageJSX = this.createMessage(null, i, message, userId);
                 }
 
                 return messageJSX;
