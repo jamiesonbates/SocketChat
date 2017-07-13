@@ -13,6 +13,9 @@ exports.up = function(knex, Promise) {
       .references('id')
       .inTable('chats')
       .onDelete('CASCADE');
+    table
+      .timestamp('last_seen')
+      .defaultTo(knex.fn.now());
     table.timestamps(true, true);
   });
 };

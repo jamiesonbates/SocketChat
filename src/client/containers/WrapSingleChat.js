@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { startedTyping, stoppedTyping } from '../state/actions/socketActions';
-import { sendMessage } from '../state/actions/chatActions';
+import { sendMessage, updateChatSeen } from '../state/actions/chatActions';
 import { updateMain } from '../state/actions/dashControlActions';
 import { updateUserProfile, updateTargetUserId } from '../state/actions/uniqueUserActions';
 import { bookmarkMsg } from '../state/actions/bookmarkActions';
@@ -40,7 +40,8 @@ export default function(ComposedClass) {
       stoppedTyping: (data) => dispatch(stoppedTyping(data)),
       updateMain: (data) => dispatch(updateMain(data)),
       updateTargetUserId: (data) => dispatch(updateTargetUserId(data)),
-      bookmarkMsg: (data) => dispatch(bookmarkMsg(data))
+      bookmarkMsg: (data) => dispatch(bookmarkMsg(data)),
+      updateChatSeen: (data) => dispatch(updateChatSeen(data))
     }
   )
 

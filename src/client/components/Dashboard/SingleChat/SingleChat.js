@@ -75,6 +75,7 @@ class SingleChat extends React.Component {
 
   componentDidUpdate() {
     this.scrollToBottom();
+    this.props.updateChatSeen(this.props.chatId);
   }
 
   handleBookmarking(bookmarkMsgId) {

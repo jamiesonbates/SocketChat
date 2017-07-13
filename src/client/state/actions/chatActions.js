@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 import {
   chatsSuccess,
@@ -46,6 +47,21 @@ export function fetchChats({ shouldSetChat=false, chatId=null }) {
         if (shouldSetChat) {
           dispatch(setChat(chatId));
         }
+      })
+  }
+}
+
+export function updateChatSeen(chatId) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
+    const lastSeen = moment().format();
+
+    console.log(chatId, userId, lastSeen);
+
+    axios.post(`/api/chats/viewedchat`, { userId, chatId, lastSeen })
+      .then(({ data }) => {
+        console.log(data);
       })
   }
 }
