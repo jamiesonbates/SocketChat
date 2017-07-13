@@ -7,7 +7,7 @@ import ContactsList from './AddChat/ContactsList/ContactsList';
 import './SidePanel.scss';
 import SideNav from './SideNav/SideNav';
 import SearchContacts from './AddChat/SearchContacts/SearchContacts';
-import { showChatsListType, showUserProfileType, showContactsListType } from '../../../state/actionTypes';
+import { showChatsListType, showUserProfileType, showContactsListType, showDefaultMainType } from '../../../state/actionTypes';
 
 class SidePanel extends React.Component {
   constructor(props) {
@@ -36,6 +36,11 @@ class SidePanel extends React.Component {
     this.props.updateSide(showChatsListType);
   }
 
+  handleNavToDefaultMain() {
+    console.log(showDefaultMainType);
+    this.props.updateMain(showDefaultMainType)
+  }
+
   render() {
     return (
       <div className="SidePanel-container">
@@ -47,6 +52,7 @@ class SidePanel extends React.Component {
           handleNavToProfile={this.handleNavToProfile.bind(this)}
           handleNavToBookmarks={this.handleNavToBookmarks.bind(this)}
           handleNavToContacts={this.handleNavToContacts.bind(this)}
+          handleNavToDefaultMain={this.handleNavToDefaultMain.bind(this)}
         />
         {
           this.props.showChatsList ?

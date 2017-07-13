@@ -47,6 +47,8 @@ const setUsersCategoriesType = 'SET_USERS_CATEGORIES';
 const showContactsListType = 'SHOW_CONTACTS_LIST';
 const exitContactsListType = 'EXIT_CONTACTS_LIST';
 const setRecentBookmarksType = 'SET_RECENT_BOOKMARKS';
+const updateChatSeenType = 'UPDATE_CHAT_SEEN';
+const resetSingleChatType = 'RESET_SINGLE_CHAT';
 
 export {
   authSuccess,
@@ -95,5 +97,7 @@ export {
   setUsersCategoriesType,
   showContactsListType,
   exitContactsListType,
-  setRecentBookmarksType
+  setRecentBookmarksType,
+  updateChatSeenType,
+  resetSingleChatType
 }

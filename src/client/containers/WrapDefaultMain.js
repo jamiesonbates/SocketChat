@@ -34,7 +34,7 @@ export default function(ComposedClass) {
       updateMain: (data) => dispatch(updateMain(data)),
       updateSide: (data) => dispatch(updateSide(data)),
       setChat: (data) => dispatch(setChat(data)),
-      setBookmarks: (data) => dispatch(setBookmarks(data))
+      setBookmarks: (data) => dispatch(setBookmarks(data)),
     }
   )
 

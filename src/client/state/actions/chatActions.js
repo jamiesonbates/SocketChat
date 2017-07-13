@@ -7,7 +7,9 @@ import {
   addNewMessage,
   sendMessageType,
   showChatType,
-  showChatsListType
+  showChatsListType,
+  updateChatSeenType,
+  resetSingleChatType
 } from '../actionTypes';
 
 import {
@@ -27,6 +29,7 @@ export function setChat(id) {
     });
     dispatch(updateMain(showChatType));
     dispatch(updateSide(showChatsListType));
+    dispatch(updateChatSeen(id));
   }
 }
 
@@ -55,11 +58,12 @@ export function updateChatSeen(chatId) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
+    const allChats = state.chats.allChats;
 
     axios.post(`/api/chats/viewedchat`, { userId, chatId })
       .then(({ data }) => {
-        console.log(data);
-      })
+        dispatch(fetchChats({}));
+      });
   }
 }
 
@@ -90,6 +94,7 @@ export function receiveMessage(msg) {
   return function(dispatch, getState) {
     const state = getState();
     const allChats = state.chats.allChats;
+    const singleChat = state.chats.singleChat;
 
     const nextChats = addMessageToChat(allChats, msg);
 
@@ -110,6 +115,13 @@ export function sendMessage(data) {
   }
 }
 
+export function resetSingleChat() {
+  return {
+    type: resetSingleChatType,
+    payload: null
+  }
+}
+
 // utility
 function findChat(chats, id) {
   for (const chat of chats) {
@@ -127,10 +139,22 @@ function addMessageToChat(chats, msg) {
       chat.messages = [];
     }
 
+
     if (chat.id === msg.chatId) {
       chat.lastActivity = msg.last_activity;
       chat.messages.push(msg);
+
+      const nextCount = chat.messages.reduce((acc, msg) => {
+        if (moment(msg.createdAt).valueOf() > moment(chat.lastSeen).valueOf()) {
+          acc += 1;
+        }
+
+        return acc;
+      }, 0);
+
+      chat.count = nextCount;
     }
+
 
     return chat;
   })

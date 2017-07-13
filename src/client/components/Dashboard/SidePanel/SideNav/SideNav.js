@@ -3,11 +3,12 @@ import FaContacts from 'react-icons/lib/ti/contacts';
 import FaBookmarks from 'react-icons/lib/ti/bookmark';
 import FaUser from 'react-icons/lib/ti/user-outline';
 import FaChats from 'react-icons/lib/ti/messages';
+import FaHome from 'react-icons/lib/ti/home-outline';
 
 import './SideNav.scss';
 import FaBackArrow from 'react-icons/lib/md/arrow-back';
 
-const SideNav = ({ handleNavToChats, inAddChat, inGroupForm, userInfo, handleNavToProfile, handleNavToBookmarks, handleNavToContacts }) => (
+const SideNav = ({ handleNavToChats, inAddChat, inGroupForm, userInfo, handleNavToProfile, handleNavToBookmarks, handleNavToContacts, handleNavToDefaultMain }) => (
   <div className="SideNav-container">
     {
       inAddChat ?
@@ -25,6 +26,10 @@ const SideNav = ({ handleNavToChats, inAddChat, inGroupForm, userInfo, handleNav
           </div>
 
           <div className="SideNav-user-options">
+            <FaHome
+              className="SideNav-home-icon"
+              onClick={handleNavToDefaultMain}
+            />
             <FaUser
               className="SideNav-home-icon"
               onClick={handleNavToProfile}

@@ -7,7 +7,9 @@ import {
   someoneStartedTypingType,
   someoneStoppedTypingType,
   setUsersOnlineType,
-  updateBookmarksInChatType
+  updateBookmarksInChatType,
+  updateChatSeenType,
+  resetSingleChatType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -17,12 +19,14 @@ export default function reducer(state={
   chatsWithTyping: []
 }, action) {
   switch(action.type) {
+    case updateChatSeenType:
     case chatsSuccess:
       return {
         ...state,
         allChats: action.payload
       }
 
+    case resetSingleChatType:
     case newSingleChat:
       return {
         ...state,

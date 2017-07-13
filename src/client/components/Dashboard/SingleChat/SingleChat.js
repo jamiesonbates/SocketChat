@@ -74,9 +74,12 @@ class SingleChat extends React.Component {
     return bool;
   }
 
+  componentWillUnmount() {
+    this.props.resetSingleChat();
+  }
+
   componentDidUpdate() {
     this.scrollToBottom();
-    this.props.updateChatSeen(this.props.chatId);
   }
 
   handleBookmarking(bookmarkMsgId) {

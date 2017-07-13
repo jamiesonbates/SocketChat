@@ -70,8 +70,6 @@ router.post('/', (req, res, next) => {
 router.post('/viewedchat', (req, res, next) => {
   const { chat_id, user_id } = decamelizeKeys(req.body);
 
-  console.log(chat_id, user_id);
-
   db('users_chats')
     .update('last_seen', db.fn.now())
     .where({ chat_id, user_id })
@@ -80,7 +78,7 @@ router.post('/viewedchat', (req, res, next) => {
       console.log(record);
       res.send(record);
     });
-})
+});
 
 function addUserChat(user_id, chat_id) {
   const promise = new Promise((resolve, reject) => {
