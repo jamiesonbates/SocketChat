@@ -95,8 +95,13 @@ export function receiveMessage(msg) {
     const state = getState();
     const allChats = state.chats.allChats;
     const singleChat = state.chats.singleChat;
+    let inChat = false;
 
-    const nextChats = addMessageToChat(allChats, msg);
+    if (singleChat) {
+      inChat = singleChat.id === msg.chatId;
+    }
+
+    const nextChats = addMessageToChat(allChats, msg, inChat);
 
     return dispatch({
       type: addNewMessage,
@@ -133,7 +138,7 @@ function findChat(chats, id) {
   return null;
 }
 
-function addMessageToChat(chats, msg) {
+function addMessageToChat(chats, msg, inChat) {
   const nextChats = chats.map(chat => {
     if (!chat.messages) {
       chat.messages = [];
@@ -143,14 +148,17 @@ function addMessageToChat(chats, msg) {
     if (chat.id === msg.chatId) {
       chat.lastActivity = msg.last_activity;
       chat.messages.push(msg);
+      let nextCount = 0;
 
-      const nextCount = chat.messages.reduce((acc, msg) => {
-        if (moment(msg.createdAt).valueOf() > moment(chat.lastSeen).valueOf()) {
-          acc += 1;
-        }
+      if (!inChat) {
+        nextCount = chat.messages.reduce((acc, msg) => {
+          if (moment(msg.createdAt).valueOf() > moment(chat.lastSeen).valueOf()) {
+            acc += 1;
+          }
 
-        return acc;
-      }, 0);
+          return acc;
+        }, 0);
+      }
 
       chat.count = nextCount;
     }
