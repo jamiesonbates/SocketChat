@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { resetBookmarks, getRecentBookmarks, setBookmarks } from '../state/actions/bookmarkActions';
 import { updateMain, updateSide } from '../state/actions/dashControlActions';
-import { setChat } from '../state/actions/chatActions';
+import { setChat, updateChatSeen } from '../state/actions/chatActions';
 
 export default function(ComposedClass) {
   class WrapDefaultMain extends React.Component {
@@ -35,6 +35,7 @@ export default function(ComposedClass) {
       updateSide: (data) => dispatch(updateSide(data)),
       setChat: (data) => dispatch(setChat(data)),
       setBookmarks: (data) => dispatch(setBookmarks(data)),
+      updateChatSeen: (data) => dispatch(updateChatSeen(data))
     }
   )
 

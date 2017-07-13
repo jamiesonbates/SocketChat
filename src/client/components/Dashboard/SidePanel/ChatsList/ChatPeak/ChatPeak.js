@@ -1,5 +1,6 @@
 import React from 'react';
 import FaUser from 'react-icons/lib/fa/user';
+import moment from 'moment';
 
 import LastMessage from './LastMessage';
 import './ChatPeak.scss';
@@ -29,6 +30,7 @@ const ChatPeak = ({
       </div>
 
       <LastMessage
+        highlight={chat.count > 0}
         lastMessage={determineLastMessage(chat)}
       />
     </div>

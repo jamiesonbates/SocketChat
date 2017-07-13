@@ -5,7 +5,6 @@ import FaChat from 'react-icons/lib/ti/message';
 import './ChatsPre.scss';
 
 const ChatsPre = ({ chats, determineChatHeader, handleChatClick }) => {
-  console.log(chats);
   return (
     <div className="DefaultMain-recent">
       <div className="DefaultMain-recent-header">

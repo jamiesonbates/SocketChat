@@ -3,10 +3,10 @@ import moment from 'moment';
 
 import './LastMessage.css';
 
-const LastMessage = ({ lastMessage }) => (
+const LastMessage = ({ lastMessage, highlight }) => (
   <div className="LastMessage-container">
-    <p className="LastMessage">
-      { lastMessage }
+    <p className={ highlight ? `LastMessage highlight` : 'LastMessage'}>
+      {lastMessage }
     </p>
   </div>
 )
