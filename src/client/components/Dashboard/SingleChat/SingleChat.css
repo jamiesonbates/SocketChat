@@ -3,6 +3,9 @@
   flex: 1;
   box-sizing: border-box;
   flex-direction: column;
+  background-color: white;
+  margin: 20px;
+  font-family: 'Lato';
 }
 
 
@@ -11,8 +14,10 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: #F7F7F7;
+  background-color: #26315E;
   border-bottom: 1px solid #A1A5A8;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .SingleChat-icon {
@@ -49,7 +54,7 @@
 }
 
 .SingleChat-messages-container {
-  padding: 10px;
+  padding: 0 20px;
   flex: 1;
   overflow-y: scroll;
 }
@@ -60,26 +65,26 @@
   padding: 2px;
 }
 
-.SingleChat-message-position-currentUser, .SingleChat-message-position-otherUser {
+.SingleChat-currentUser, .SingleChat-otherUser {
   display: flex;
   flex-direction: column;
   flex: 1;
   max-width: 75%;
 }
 
-.SingleChat-message-position-currentUser {
+.SingleChat-currentUser {
   align-self: flex-end;
 }
 
-.SingleChat-message-color-currentUser {
-  background-color: lightblue;
-}
-
-.SingleChat-message-position-otherUser {
+.SingleChat-otherUser {
   align-self: flex-start;
 }
 
-.SingleChat-message-color-otherUser {
+.SingleChat-currentUser-color {
+  background-color: lightblue;
+}
+
+.SingleChat-otherUser-color {
   background-color: lightgray;
 }
 

@@ -6,8 +6,8 @@ import CreateBookmark from './CreateBookmark';
 
 const Message = ({
   message,
-  messagePositionClass,
-  messageColorClass,
+  messageClass,
+  messageColor,
   user,
   userIsOnline,
   starred,
@@ -18,7 +18,7 @@ const Message = ({
   handleExitBookmarking,
   bookmarkMsg
 }) => (
-  <div className={messagePositionClass}>
+  <div className={messageClass}>
     {
       user ?
         <div className="SingleChat-message-info">
@@ -80,7 +80,7 @@ const Message = ({
           }
         </div>
     }
-    <p className={`${messageColorClass} SingleChat-message-text`}>{message.message}</p>
+    <p className={`${messageColor} SingleChat-message-text`}>{message.message}</p>
   </div>
 )
 

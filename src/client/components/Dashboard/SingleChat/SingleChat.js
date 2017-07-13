@@ -29,6 +29,51 @@ class SingleChat extends React.Component {
     msgDiv.scrollTop = msgDiv.scrollHeight;
   }
 
+  createMessage(date, i, message, userId) {
+    console.log(date, i, message, userId);
+    return (
+      <div key={i} className="SingleChat-single-message-container">
+        {
+          date ?
+            <div className="SingleChat-time">
+              <h4>{date}</h4>
+              <div className="SingleChat-line"></div>
+            </div>
+          : null
+        }
+
+        <div className="SingleChat-message">
+          <Message
+            messageClass={
+              message.userId === userId ?
+                'SingleChat-currentUser'
+              : 'SingleChat-otherUser'
+            }
+            messageColor={
+              message.userId === userId ?
+                'SingleChat-currentUser-color'
+              : 'SingleChat-otherUser-color'
+            }
+            message={message}
+            starred={
+              message.userId === userId ? message.starred : null
+            }
+            user={
+              message.userId === userId ?
+                null
+              : Utilities.findUser(this.props.singleChat.users, message.userId)
+            }
+            handleExitBookmarking={this.handleExitBookmarking.bind(this)}
+            handleBookmarking={this.handleBookmarking.bind(this)}
+            bookmarkMsgId={this.state.bookmarkMsgId}
+            categories={this.props.categories}
+            bookmarkMsg={this.props.bookmarkMsg}
+          />
+        </div>
+      </div>
+    )
+  }
+
   handleSendMessage(e) {
     e.preventDefault();
     const message = this.refs.msg.value;
@@ -155,102 +200,52 @@ class SingleChat extends React.Component {
         <div className="SingleChat-messages-container">
           {
             this.props.singleChat && this.props.messages ?
-                this.props.messages.map((message, i) => {
-                  const allMessages = this.props.messages;
+              this.props.messages.map((message, i) => {
+                const allMessages = this.props.messages;
+                const { userId } = this.props;
+                let messageJSX;
 
-                  let messageJSX = <div key={i} className="SingleChat-message">
-                    {
-                      message.userId === this.props.userId ?
-                        <Message
-                          messagePositionClass={'SingleChat-message-position-currentUser'}
-                          messageColorClass={'SingleChat-message-color-currentUser'}
-                          message={message}
-                          user={null}
-                          starred={message.starred}
-                          handleExitBookmarking={this.handleExitBookmarking.bind(this)}
-                          handleBookmarking={this.handleBookmarking.bind(this)}
-                          bookmarkMsgId={this.state.bookmarkMsgId}
-                          categories={this.props.categories}
-                          bookmarkMsg={this.props.bookmarkMsg}
-                        />
-                      :
-                        <Message
-                          messagePositionClass={'SingleChat-message-position-otherUser'}
-                          messageColorClass={'SingleChat-message-color-otherUser'}
-                          message={message}
-                          starred={message.starred}
-                          user={
-                            Utilities.findUser(this.props.singleChat.users, message.userId)
-                          }
-                          handleExitBookmarking={this.handleExitBookmarking.bind(this)}
-                          handleBookmarking={this.handleBookmarking.bind(this)}
-                          bookmarkMsgId={this.state.bookmarkMsgId}
-                          categories={this.props.categories}
-                          bookmarkMsg={this.props.bookmarkMsg}
-                        />
-                    }
-                  </div>
+                if (i + 1 < allMessages.length || i === 0) {
+                  let lastDate;
 
-                  if (i + 1 < allMessages.length) {
-                    let lastDate;
-
-                    if (i !== 0) {
-                      lastDate = moment(allMessages[i - 1].createdAt).date();
-                    }
-
-                    const curDate = moment(allMessages[i].createdAt).date();
-                    const nextDate = moment(allMessages[i + 1].createdAt).date()
-                    let todayDate = new Date();
-                    let yesterdayDate = new Date();
-
-                    todayDate = todayDate.getDate();
-                    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-                    yesterdayDate = yesterdayDate.getDate();
-
-                    if (i === 0 && todayDate === curDate) {
-                      messageJSX =
-                        <div key={i} className="SingleChat-single-message-container">
-                          <div className="SingleChat-time">
-                            <h4>Today</h4>
-                            <div className="SingleChat-line"></div>
-                          </div>
-                          {messageJSX}
-                        </div>
-                    }
-                    else if (curDate !== lastDate && curDate === todayDate) {
-                      messageJSX =
-                        <div key={i} className="SingleChat-single-message-container">
-                          <div className="SingleChat-time">
-                            <h4>Today</h4>
-                            <div className="SingleChat-line"></div>
-                          </div>
-                          {messageJSX}
-                        </div>
-                    }
-                    else if (curDate !== nextDate && curDate === yesterdayDate) {
-                      messageJSX =
-                        <div key={i} className="SingleChat-single-message-container">
-                          <div className="SingleChat-time">
-                            <h4>Yesterday</h4>
-                            <div className="SingleChat-line"></div>
-                          </div>
-                          {messageJSX}
-                        </div>
-                    }
-                    else if (nextDate !== curDate) {
-                      messageJSX =
-                        <div key={i} className="SingleChat-single-message-container">
-                          <div className="SingleChat-time">
-                            <h4>{moment(message.createdAt).format('MMMM Do')}</h4>
-                            <div className="SingleChat-line"></div>
-                          </div>
-                          {messageJSX}
-                        </div>
-                    }
+                  if (i !== 0) {
+                    lastDate = moment(allMessages[i - 1].createdAt).date();
                   }
 
-                  return messageJSX;
-                })
+                  const curDate = moment(allMessages[i].createdAt).date();
+                  let nextDate;
+
+                  if (allMessages.length > 1) {
+                    nextDate = moment(allMessages[i + 1].createdAt).date()
+                  }
+
+                  let todayDate = new Date();
+                  let yesterdayDate = new Date();
+
+                  todayDate = todayDate.getDate();
+                  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+                  yesterdayDate = yesterdayDate.getDate();
+
+                  if ((i === 0 && todayDate === curDate) || (curDate !== lastDate && curDate === todayDate)) {
+                    messageJSX = this.createMessage('Today', i, message, userId);
+                  }
+                  else if (i === 0) {
+                    messageJSX = this.createMessage( moment(message.createdAt).format('MMMM Do'), i, message, userId);
+                  }
+                  else if (curDate !== nextDate && curDate === yesterdayDate) {
+                    messageJSX = this.createMessage('Yesterday', i, message, userId);
+                  }
+                  else if (nextDate !== curDate) {
+                    messageJSX = this.createMessage(moment(message.createdAt).format('MMMM Do'), i, message, userId
+                    );
+                  }
+                  else {
+                    messageJSX = this.createMessage(null, i, message, userId);
+                  }
+                }
+
+                return messageJSX;
+              })
             : null
           }
         </div>

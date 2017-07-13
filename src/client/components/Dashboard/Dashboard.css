@@ -10,6 +10,7 @@
   flex: 4;
   box-sizing: border-box;
   flex-direction: column;
+  padding: 20px;
 }
 
 
