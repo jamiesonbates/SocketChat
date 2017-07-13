@@ -83,7 +83,7 @@ const socketMiddleware = (function() {
         if (socket != null) {
           socket.close();
         }
-        
+
         socket = io();
         socket.on('new msg', (payload) => onReceive(store, payload));
         socket.on('someone started typing', (payload) => onSomeoneStartedTyping(store, payload));
@@ -95,6 +95,7 @@ const socketMiddleware = (function() {
         const userId = state.userInfo.id;
 
         function onUserLogout() {
+          console.log('here');
           socket.emit('user offline', userId);
         }
 

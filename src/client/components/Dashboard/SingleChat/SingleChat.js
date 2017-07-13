@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import FaMessage from 'react-icons/lib/fa/comment';
+import FaChat from 'react-icons/lib/ti/message';
 import FaUsers from 'react-icons/lib/fa/user-plus';
 import FaUser from 'react-icons/lib/fa/user';
 import 'react-select/dist/react-select.css';
@@ -30,7 +30,6 @@ class SingleChat extends React.Component {
   }
 
   createMessage(date, i, message, userId) {
-    console.log(date, i, message, userId);
     return (
       <div key={i} className="SingleChat-single-message-container">
         {
@@ -142,7 +141,7 @@ class SingleChat extends React.Component {
           <div className="SingleChat-title">
             {
               this.props.singleChat ?
-                <FaMessage className="SingleChat-icon" />
+                <FaChat className="SingleChat-icon" />
               : null
             }
 

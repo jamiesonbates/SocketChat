@@ -7,7 +7,6 @@ import wrapSidePanel from '../../../../containers/WrapSidePanel';
 import ChatPeak from './ChatPeak/ChatPeak';
 import { showChatType, showAddChatType } from '../../../../state/actionTypes';
 import Utilities from '../../../../utilities/Utilities';
-console.log(Utilities);
 
 class ChatsList extends React.Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class ChatsList extends React.Component {
   }
 
   openChat(id) {
-    this.props.updateChatSeen(id);
+    this.props.updateChatSeen({ chatId: id, silent: false });
     this.props.setChat(id);
     this.props.updateMain(showChatType);
   }
