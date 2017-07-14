@@ -80,6 +80,15 @@ router.post('/viewedchat', (req, res, next) => {
     });
 });
 
+router.get('/lastseen/:userId', (req, res, next) => {
+  db('users_chats')
+    .select('chat_id', 'last_seen')
+    .where('user_id', req.params.userId)
+    .then((chats) => {
+      res.send(camelizeKeys(chats));
+    })
+});
+
 function addUserChat(user_id, chat_id) {
   const promise = new Promise((resolve, reject) => {
     db('users_chats')

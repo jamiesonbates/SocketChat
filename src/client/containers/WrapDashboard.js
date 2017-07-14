@@ -8,6 +8,7 @@ import {
   manageRoom
 } from '../state/actions/socketActions';
 import { fetchChats } from '../state/actions/chatActions';
+import { getChatViews } from '../state/actions/chats/chatViews';
 import { getContacts } from '../state/actions/contactsActions';
 import { getCommonUsers } from '../state/actions/onlineActions';
 import { getCategories, getRecentBookmarks } from '../state/actions/bookmarkActions';
@@ -45,7 +46,8 @@ export default function(ComposedClass) {
       getCommonUsers: () => dispatch(getCommonUsers()),
       getContacts: () => dispatch(getContacts()),
       getCategories: () => dispatch(getCategories()),
-      getRecentBookmarks: () => dispatch(getRecentBookmarks())
+      getRecentBookmarks: () => dispatch(getRecentBookmarks()),
+      getChatViews: () => dispatch(getChatViews())
     }
   )
 

@@ -9,14 +9,16 @@ import {
   setUsersOnlineType,
   updateBookmarksInChatType,
   updateChatSeenType,
-  resetSingleChatType
+  resetSingleChatType,
+  updateChatViewHistoryType
 } from '../actionTypes';
 
 export default function reducer(state={
   allChats: null,
   singleChat: null,
   usersOnline: [],
-  chatsWithTyping: []
+  chatsWithTyping: [],
+  chatViewHistory: []
 }, action) {
   switch(action.type) {
     case updateChatSeenType:
@@ -67,6 +69,12 @@ export default function reducer(state={
       return {
         ...state,
         allChats: action.payload
+      }
+
+    case updateChatViewHistoryType:
+      return {
+        ...state,
+        chatViewHistory: action.payload
       }
   }
 
