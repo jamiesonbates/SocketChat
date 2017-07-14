@@ -5,6 +5,7 @@ import moment from 'moment';
 import './Dashboard.css';
 import './shared.scss';
 import wrapDashboard from '../../containers/WrapDashboard';
+import wrapSingleChat from '../../containers/WrapSingleChat';
 import SidePanel from './SidePanel/SidePanel';
 import SingleChat from './SingleChat/SingleChat';
 import Bookmarks from './Bookmarks/Bookmarks';

@@ -56,7 +56,7 @@
 }
 
 .SingleChat-messages-container {
-  padding: 20px 20px 0;
+  padding: 20px 20px 10px;
   flex: 1;
   overflow-y: scroll;
 }
@@ -177,7 +177,7 @@
   color: white;
 }
 
-.SingleChat-time {
+.SingleChat-time, .SingleChat-new {
   padding: 20px 0;
   width: 100%;
   display: flex;
@@ -185,10 +185,14 @@
   position: relative;
 }
 
-.SingleChat-time h4 {
+.SingleChat-time h4, .SingleChat-new h4 {
   z-index: 1;
   background-color: white;
   padding: 0 10px;
+}
+
+.SingleChat-new h4 {
+  color: red;
 }
 
 .SingleChat-line {
@@ -196,6 +200,10 @@
   position: absolute;
   top: 50%;
   width: 100%;
+}
+
+.SingleChat-line.red {
+  border-bottom: 1px solid red;
 }
 
 .SingleChat-bookmark-icon {

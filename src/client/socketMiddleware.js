@@ -95,7 +95,6 @@ const socketMiddleware = (function() {
         const userId = state.userInfo.id;
 
         function onUserLogout() {
-          console.log('here');
           socket.emit('user offline', userId);
         }
 

@@ -18,15 +18,8 @@ import {
 } from './dashControlActions';
 
 export function setChat(id) {
-  return function(dispatch, getState) {
-    const state = getState();
-    const allChats = state.chats.allChats;
-    const nextCurrentChat = findChat(allChats, id);
-
-    dispatch({
-      type: newSingleChat,
-      payload: nextCurrentChat
-    });
+  return function(dispatch) {
+    dispatch({ type: newSingleChat, payload: id });
     dispatch(updateMain(showChatType));
     dispatch(updateSide(showChatsListType));
   }
@@ -61,6 +54,7 @@ export function updateChatSeen({ chatId, silent }) {
 
     axios.post(`/api/chats/viewedchat`, { userId, chatId })
       .then(({ data }) => {
+        console.log(data);
         if (silent) {
           return;
         }
@@ -171,8 +165,6 @@ function addMessageToChat(chats, msg, inChat) {
           return acc;
         }, 0);
       }
-
-      console.log(nextCount);
 
       chat.count = nextCount;
     }

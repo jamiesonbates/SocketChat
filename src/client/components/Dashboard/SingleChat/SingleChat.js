@@ -29,7 +29,7 @@ class SingleChat extends React.Component {
     msgDiv.scrollTop = msgDiv.scrollHeight;
   }
 
-  createMessage(date, i, message, userId) {
+  createMessage(date, i, message, userId, newMessageStart) {
     return (
       <div key={i} className="SingleChat-single-message-container">
         {
@@ -37,6 +37,15 @@ class SingleChat extends React.Component {
             <div className="SingleChat-time">
               <h4>{date}</h4>
               <div className="SingleChat-line"></div>
+            </div>
+          : null
+        }
+
+        {
+          newMessageStart ?
+            <div className="SingleChat-new">
+              <h4>New Messages</h4>
+              <div className="SingleChat-line red"></div>
             </div>
           : null
         }
@@ -60,7 +69,7 @@ class SingleChat extends React.Component {
             user={
               message.userId === userId ?
                 null
-              : Utilities.findUser(this.props.singleChat.users, message.userId)
+              : Utilities.findUser(this.props.chat.users, message.userId)
             }
             handleExitBookmarking={this.handleExitBookmarking.bind(this)}
             handleBookmarking={this.handleBookmarking.bind(this)}
@@ -117,7 +126,6 @@ class SingleChat extends React.Component {
 
     return bool;
   }
-
   componentWillUnmount() {
     this.props.resetSingleChat();
   }
@@ -135,26 +143,27 @@ class SingleChat extends React.Component {
   }
 
   render() {
+    console.log('render');
     return (
       <div className="SingleChat-container">
         <div className="SingleChat-header-container">
           <div className="SingleChat-title">
             {
-              this.props.singleChat ?
+              this.props.chat ?
                 <FaChat className="SingleChat-icon" />
               : null
             }
 
             {
-              this.props.singleChat ?
+              this.props.chat ?
                 <div className="SingleChat-header-title">
-                  <h2>{this.props.determineChatHeader(this.props.singleChat)}</h2>
+                  <h2>{this.props.determineChatHeader(this.props.chat)}</h2>
                 </div>
               : null
             }
 
             {
-              this.props.singleChat && this.props.users.length < 3 ?
+              this.props.chat && this.props.users.length < 3 ?
                 this.props.users.map((user, i) => (
                   this.userIsOnline(user.id) && user.id !== this.props.userId ?
                     <div
@@ -170,7 +179,7 @@ class SingleChat extends React.Component {
 
           <div className="SingleChat-header-options">
             {
-              this.props.singleChat && this.props.users.length > 2 ?
+              this.props.chat && this.props.users.length > 2 ?
                 this.props.users.map((user, i) => {
                   if (user.id === this.props.userId) {
                     return null;
@@ -199,11 +208,19 @@ class SingleChat extends React.Component {
         <div className="SingleChat-messages-container">
           {
             // TODO: must condense and abstract this
-            this.props.singleChat && this.props.messages ?
+            this.props.chat && this.props.messages ?
               this.props.messages.map((message, i) => {
                 const allMessages = this.props.messages;
+                const lastSeen = moment(this.props.chat.lastSeen).valueOf();
+                const messageTime = moment(message.createdAt).valueOf();
                 const { userId } = this.props;
                 let messageJSX;
+                let newMessageStart = false;
+
+                if (messageTime > lastSeen && moment(allMessages[i - 1].createdAt).valueOf() < lastSeen) {
+                    newMessageStart = true;
+                }
+
 
                 if (i + 1 < allMessages.length || i === 0) {
                   let lastDate;
@@ -227,24 +244,23 @@ class SingleChat extends React.Component {
                   yesterdayDate = yesterdayDate.getDate();
 
                   if ((i === 0 && todayDate === curDate) || (curDate !== lastDate && curDate === todayDate)) {
-                    messageJSX = this.createMessage('Today', i, message, userId);
+                    messageJSX = this.createMessage('Today', i, message, userId, newMessageStart);
                   }
                   else if (i === 0) {
-                    messageJSX = this.createMessage( moment(message.createdAt).format('MMMM Do'), i, message, userId);
+                    messageJSX = this.createMessage( moment(message.createdAt).format('MMMM Do'), i, message, userId, newMessageStart);
                   }
                   else if (curDate !== nextDate && curDate === yesterdayDate) {
-                    messageJSX = this.createMessage('Yesterday', i, message, userId);
+                    messageJSX = this.createMessage('Yesterday', i, message, userId, newMessageStart);
                   }
                   else if (nextDate !== curDate) {
-                    messageJSX = this.createMessage(moment(message.createdAt).format('MMMM Do'), i, message, userId
-                    );
+                    messageJSX = this.createMessage(moment(message.createdAt).format('MMMM Do'), i, message, userId, newMessageStart);
                   }
                   else {
-                    messageJSX = this.createMessage(null, i, message, userId);
+                    messageJSX = this.createMessage(null, i, message, userId, newMessageStart);
                   }
                 }
                 else {
-                  messageJSX = this.createMessage(null, i, message, userId);
+                  messageJSX = this.createMessage(null, i, message, userId, newMessageStart);
                 }
 
                 return messageJSX;
@@ -255,7 +271,7 @@ class SingleChat extends React.Component {
 
         <div className="SingleChat-typing-container">
           {
-            this.props.singleChat ?
+            this.props.chat ?
               this.props.chatsWithTyping.includes(this.props.chatId) ?
                 <div className="SingleChat-typing">
                   <p>Typing...</p>

@@ -20,14 +20,29 @@ export default function(ComposedClass) {
     }
   }
 
+  const findChat = function(state) {
+    const allChats = state.chats.allChats;
+    const chatId = state.chats.singleChat;
+
+    return allChats.reduce((acc, chat) => {
+      if (chat.id === chatId) {
+        acc = chat;
+      }
+
+      return acc;
+    });
+  }
+
   const mapStateToProps = function(state) {
+    const chat = findChat(state);
+
     return {
-      usersOnline: state.chats.usersOnline,
-      chatId: state.chats.singleChat.id,
-      singleChat: state.chats.singleChat,
-      users: state.chats.singleChat.users,
+      chat,
+      chatId: chat.id,
+      users: chat.users,
+      messages: chat.messages,
       userId: state.userInfo.id,
-      messages: state.chats.singleChat.messages,
+      usersOnline: state.chats.usersOnline,
       chatsWithTyping: state.chats.chatsWithTyping,
       categories: state.userInfo.categories
     }
