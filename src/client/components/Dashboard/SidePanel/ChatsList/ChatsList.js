@@ -14,7 +14,6 @@ class ChatsList extends React.Component {
   }
 
   openChat(id) {
-    this.props.updateChatSeen({ chatId: id, silent: false });
     this.props.setChat(id);
     this.props.updateMain(showChatType);
   }
@@ -87,6 +86,7 @@ class ChatsList extends React.Component {
                   {
                     <ChatPeak
                       chat={chat}
+                      chatNewMessages={Utilities.findChat(this.props.chatNewMessages, chat.id)}
                       userId={this.props.userId}
                       determineChatHeader={this.props.determineChatHeader}
                       determineLastMessage={this.determineLastMessage.bind(this)}

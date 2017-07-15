@@ -27,7 +27,7 @@ router.get('/:userId', (req, res, next) => {
            (SELECT COUNT(*)
            FROM messages as m2
            WHERE m2.chat_id = c1.id
-           AND m2.created_at > uc2.last_seen)
+           AND m2.created_at > uc2.last_seen) as original_count
          FROM chats as c1
          INNER JOIN users_chats as uc2 ON c1.id = uc2.chat_id
          WHERE uc2.user_id = ${req.params.userId}
@@ -67,7 +67,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.post('/viewedchat', (req, res, next) => {
+router.post('/view_history', (req, res, next) => {
   const { chat_id, user_id } = decamelizeKeys(req.body);
 
   db('users_chats')
@@ -75,12 +75,11 @@ router.post('/viewedchat', (req, res, next) => {
     .where({ chat_id, user_id })
     .returning('*')
     .then((record) => {
-      console.log(record);
       res.send(record);
     });
 });
 
-router.get('/lastseen/:userId', (req, res, next) => {
+router.get('/view_history/:userId', (req, res, next) => {
   db('users_chats')
     .select('chat_id', 'last_seen')
     .where('user_id', req.params.userId)

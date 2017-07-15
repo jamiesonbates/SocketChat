@@ -33,7 +33,9 @@ export default function(ComposedClass) {
       usersContacts: state.contacts.usersContacts,
       groupName: state.forms.groupName,
       searchTerm: state.forms.searchTerm,
-      userInfo: state.userInfo
+      userInfo: state.userInfo,
+      chatLastSeen: state.chats.chatLastSeen,
+      chatNewMessages: state.chats.chatNewMessages
     }
   }
 

@@ -1,7 +1,9 @@
 import findUser from './findUser';
+import findChat from './findChat';
 
 const Utilities = {
-  findUser
+  findUser,
+  findChat
 }
 
 export default Utilities;

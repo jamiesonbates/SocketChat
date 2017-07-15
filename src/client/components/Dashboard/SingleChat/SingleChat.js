@@ -95,7 +95,6 @@ class SingleChat extends React.Component {
     this.props.sendMessage({ message, userId, chatId });
     this.props.stoppedTyping(chatId);
     this.refs.messageForm.reset();
-    this.props.updateChatSeen({ chatId, silent: false });
   }
 
   handleTyping(isTyping) {
@@ -126,8 +125,36 @@ class SingleChat extends React.Component {
 
     return bool;
   }
+
   componentWillUnmount() {
     this.props.resetSingleChat();
+  }
+
+  componentDidMount() {
+    console.log(this.props, 'did mount');
+    if (this.props.newMessages.count < 0) {
+      this.props.updateChatSeen({ chatId: this.props.chatId, next: false });
+    }
+    else {
+      this.props.updateChatSeen({ chatId: this.props.chatId, next: true });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props, 'will change');
+    if (nextProps.chatId !== this.props.chatId) {
+      this.props.updateChatSeen({ chatId: this.props.chatId, next: false, leaving: true });
+    }
+    else {
+      if (nextProps.newMessages.count < 0) {
+        this.props.updateChatSeen({ chatId: nextProps.chatId, next: false });
+      }
+      else {
+        this.props.updateChatSeen({ chatId: nextProps.chatId, next: true });
+      }
+    }
+
+    console.log(nextProps, 'will receive props');
   }
 
   componentDidUpdate() {
@@ -143,7 +170,6 @@ class SingleChat extends React.Component {
   }
 
   render() {
-    console.log('render');
     return (
       <div className="SingleChat-container">
         <div className="SingleChat-header-container">
@@ -211,7 +237,9 @@ class SingleChat extends React.Component {
             this.props.chat && this.props.messages ?
               this.props.messages.map((message, i) => {
                 const allMessages = this.props.messages;
-                const lastSeen = moment(this.props.chat.lastSeen).valueOf();
+                const lastSeen = moment(this.props.lastSeen.lastSeen).valueOf();
+                // console.log('last seen', this.props.lastSeen);
+                // console.log(this.props.chatId);
                 const messageTime = moment(message.createdAt).valueOf();
                 const { userId } = this.props;
                 let messageJSX;

@@ -50,6 +50,9 @@ const setRecentBookmarksType = 'SET_RECENT_BOOKMARKS';
 const updateChatSeenType = 'UPDATE_CHAT_SEEN';
 const resetSingleChatType = 'RESET_SINGLE_CHAT';
 const updateChatViewHistoryType = 'UPDATE_CHAT_VIEW_HISTORY';
+const updateNewMessageCountType = 'UPDATE_NEW_MESSAGE_COUNT';
+const setChatViewHistoryType = 'SET_CHAT_VIEW_HISTORY';
+const updateChatLastSeenType = 'UPDATE_CHAT_LAST_SEEN';
 
 export {
   authSuccess,
@@ -101,5 +104,8 @@ export {
   setRecentBookmarksType,
   updateChatSeenType,
   resetSingleChatType,
-  updateChatViewHistoryType
+  updateChatViewHistoryType,
+  updateNewMessageCountType,
+  setChatViewHistoryType,
+  updateChatLastSeenType,
 }

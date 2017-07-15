@@ -24,13 +24,12 @@ class Dashboard extends React.Component {
     this.props.getCommonUsers();
     this.props.getContacts();
     this.props.getCategories();
-    this.props.getChatViews();
     // this.props.getRecentBookmarks();
   }
 
   componentDidMount() {
     if (this.props.allChats === null) {
-      this.props.fetchChats({});
+      this.props.fetchChats({ onLoad: true });
     }
     else {
       this.handleRooms(this.props.allChats, 'join room');

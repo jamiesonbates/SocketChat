@@ -37,7 +37,6 @@ class SidePanel extends React.Component {
   }
 
   handleNavToDefaultMain() {
-    console.log(showDefaultMainType);
     this.props.updateMain(showDefaultMainType)
   }
 

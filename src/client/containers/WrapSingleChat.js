@@ -33,11 +33,41 @@ export default function(ComposedClass) {
     });
   }
 
+  const findLastSeen = function(state) {
+    const lastSeen = state.chats.chatLastSeen;
+    const chatId = state.chats.singleChat;
+
+    return lastSeen.reduce((acc, chat) => {
+      if (chat.chatId === chatId) {
+        acc = chat;
+      }
+
+      return acc;
+    })
+  }
+
+  const findNewMessages = function(state) {
+    const newMessages = state.chats.chatNewMessages;
+    const chatId = state.chats.singleChat;
+
+    return newMessages.reduce((acc, chat) => {
+      if (chat.chatId === chatId) {
+        acc = chat;
+      }
+
+      return acc;
+    })
+  }
+
   const mapStateToProps = function(state) {
     const chat = findChat(state);
+    const lastSeen = findLastSeen(state);
+    const newMessages = findNewMessages(state);
 
     return {
       chat,
+      lastSeen,
+      newMessages,
       chatId: chat.id,
       users: chat.users,
       messages: chat.messages,
