@@ -132,7 +132,7 @@ class SingleChat extends React.Component {
 
   componentDidMount() {
     console.log(this.props, 'did mount');
-    if (this.props.newMessages.count < 0) {
+    if (this.props.newMessages.count < 1) {
       this.props.updateChatSeen({ chatId: this.props.chatId, next: false });
     }
     else {
@@ -141,20 +141,10 @@ class SingleChat extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, 'will change');
     if (nextProps.chatId !== this.props.chatId) {
+      console.log('will receive props');
       this.props.updateChatSeen({ chatId: this.props.chatId, next: false, leaving: true });
     }
-    else {
-      if (nextProps.newMessages.count < 0) {
-        this.props.updateChatSeen({ chatId: nextProps.chatId, next: false });
-      }
-      else {
-        this.props.updateChatSeen({ chatId: nextProps.chatId, next: true });
-      }
-    }
-
-    console.log(nextProps, 'will receive props');
   }
 
   componentDidUpdate() {
@@ -247,6 +237,10 @@ class SingleChat extends React.Component {
 
                 if (messageTime > lastSeen && moment(allMessages[i - 1].createdAt).valueOf() < lastSeen) {
                     newMessageStart = true;
+                }
+
+                if (!this.props.lastSeen.hadNewMessages && Object.keys(this.props.lastSeen).includes('hadNewMessages')) {
+                  newMessageStart = false;
                 }
 
 

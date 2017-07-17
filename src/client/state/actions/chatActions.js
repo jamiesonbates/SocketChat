@@ -58,7 +58,7 @@ export function updateNewMessageCount(chatId, lastSeen, onLoad=false) {
     const allChats = state.chats.allChats;
     const chatNewMessages = state.chats.chatNewMessages;
     // const chatLastSeen = state.chats.chatLastSeen;
-    console.log('new messages!');
+    // console.log('new messages!');
 
     const nextChatNewMessages = chatNewMessages.map((history) => {
       if (history.chatId === chatId || onLoad) {
@@ -101,8 +101,10 @@ export function updateChatSeen({ chatId, silent=null, from=null, next=false,  le
             history.hadNewMessages = false;
 
             delete history.nextSeen;
+            console.log(history);
           }
 
+          console.log('leaving', leaving);
           if (leaving && history.chatId === data[0].chat_id) {
             delete history.hadNewMessages;
           }
@@ -153,6 +155,8 @@ export function receiveMessage(msg) {
       inChat = singleChat === msg.chatId;
     }
 
+    console.log(lastSeen);
+
     const nextChats = addMessageToChat(allChats, msg, inChat);
 
     dispatch({
@@ -164,6 +168,7 @@ export function receiveMessage(msg) {
       dispatch(updateChatSeen({ chatId: msg.chatId, from: 'receiveMessage', next: true }));
     }
     else if (inChat && !lastSeen.hadNewMessages) {
+      console.log('here');
       dispatch(updateChatSeen({ chatId: msg.chatId, next: false }));
     }
     else {
