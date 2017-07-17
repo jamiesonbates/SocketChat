@@ -147,7 +147,7 @@ class SingleChat extends React.Component {
         this.props.updateChatSeen({ chatId: nextProps.chatId, next: false});
       }
       else {
-        this.props.updateChatSeen({ chatId: this.props.chatId, next: true });
+        this.props.updateChatSeen({ chatId: nextProps.chatId, next: true });
       }
     }
   }
