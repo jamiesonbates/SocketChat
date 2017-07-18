@@ -24,7 +24,6 @@ class Dashboard extends React.Component {
     this.props.getCommonUsers();
     this.props.getContacts();
     this.props.getCategories();
-    // this.props.getRecentBookmarks();
   }
 
   componentDidMount() {

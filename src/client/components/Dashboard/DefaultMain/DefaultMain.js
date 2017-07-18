@@ -45,7 +45,6 @@ class DefaultMain extends React.Component {
   handleChatClick(chatId) {
     this.props.setChat(chatId);
     this.props.updateMain(showChatType);
-    this.props.updateChatSeen({ chatId, silent: false });
   }
 
   handleBookmarkClick() {
@@ -65,6 +64,7 @@ class DefaultMain extends React.Component {
         <div className="DefaultMain-recent-container">
           <ChatsPre
             chats={this.mostRecentChats()}
+            newMessages={this.props.newMessages}
             handleChatClick={this.handleChatClick.bind(this)}
             determineChatHeader={this.props.determineChatHeader.bind(this)}
           />

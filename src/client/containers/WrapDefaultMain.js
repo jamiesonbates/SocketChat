@@ -23,7 +23,8 @@ export default function(ComposedClass) {
       allChats: state.chats.allChats,
       recentBookmarks: state.userInfo.recentBookmarks,
       userId: state.userInfo.id,
-      userInfo: state.userInfo
+      userInfo: state.userInfo,
+      newMessages: state.chats.chatNewMessages
     }
   }
 
