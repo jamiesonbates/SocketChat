@@ -3,6 +3,7 @@ import moment from 'moment';
 import FaChat from 'react-icons/lib/ti/message';
 import FaUsers from 'react-icons/lib/fa/user-plus';
 import FaUser from 'react-icons/lib/fa/user';
+import 'react-select/dist/react-select.css';
 
 import './SingleChat.css';
 import wrapSingleChat from '../../../containers/WrapSingleChat';

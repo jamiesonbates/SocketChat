@@ -5,9 +5,6 @@ import FaClose from 'react-icons/lib/md/close';
 import './UserProfile.scss';
 import passPropsByUser from '../../../containers/PassPropsByUser';
 import { exitUserProfileType } from '../../../state/actionTypes';
-// import { cloudinary } from '../../../cloudinary.config.js';
-import cloudinary from 'cloudinary';
-import { cloudinary_config } from '../../../cloudinary.config.js';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -21,9 +18,6 @@ class UserProfile extends React.Component {
     if (!this.props.targetUserProfile) {
       this.props.updateUserProfile(this.props.targetUserId);
     }
-
-    cloudinary.config(cloudinary_config);
-    console.log(cloudinary);
   }
 
   userIsOnline(userId) {
