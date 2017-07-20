@@ -4,7 +4,7 @@
   box-sizing: border-box;
   flex-direction: column;
   background-color: white;
-  margin: 20px;
+  /*margin: 20px;*/
   font-family: 'Lato';
 }
 
@@ -12,10 +12,11 @@
 .SingleChat-header-container {
   padding: 10px;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #26315E;
-  /*border-bottom: 1px solid #A1A5A8;*/
+  justify-content: space-between;
+  align-items: center;
+  /*flex-direction: column;*/
+  background-color: white;
+  border-bottom: 1px solid #D1D1D1;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -27,7 +28,7 @@
 .SingleChat-title {
   display: flex;
   align-items: center;
-  color: #E8EDED;
+  color: #575757;
 }
 
 .SingleChat-title div, .SingleChat-title svg {
@@ -48,11 +49,16 @@
   align-items: center;
   padding: 1px;
   font-size: 13px;
-  color: #E8EDED;
+  color: #575757;
 }
 
 .SingleChat-user p, .SingleChat-user div {
   margin: 2px;
+}
+
+.SingleChat-user:hover {
+  cursor: pointer;
+  color: #4D64BF;
 }
 
 .SingleChat-messages-container {
@@ -116,7 +122,7 @@
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  border: 2px solid #E8EDED;
+  border: 1px solid #575757;
   box-sizing: border-box;
 }
 
@@ -189,6 +195,7 @@
   z-index: 1;
   background-color: white;
   padding: 0 10px;
+  color: #575757;
 }
 
 .SingleChat-new h4 {
@@ -196,7 +203,7 @@
 }
 
 .SingleChat-line {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #D1D1D1;
   position: absolute;
   top: 50%;
   width: 100%;
