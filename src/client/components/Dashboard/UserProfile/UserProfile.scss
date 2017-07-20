@@ -2,6 +2,8 @@
   flex: 2;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  border-left: 2px solid #D1D1D1;
 }
 
 .UserProfile-nav {
@@ -39,7 +41,7 @@
   justify-content: center;
   align-items: center;
   padding: 0 10px;
-  border-bottom: 2px solid #D1D1D1;
+  border-bottom: 4px solid #D1D1D1;
 }
 
 .UserProfile-bottom {

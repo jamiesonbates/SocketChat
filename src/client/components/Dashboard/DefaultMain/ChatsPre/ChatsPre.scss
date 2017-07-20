@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 10px;
   box-sizing: border-box;
+  background-color: white;
 }
 
 .ChatsPre-chat:hover {
@@ -11,7 +12,9 @@
 }
 
 .ChatsPre-chat-top {
+  background-color: inherit;
   display: flex;
+  position: relative;
   justify-content: space-between;
 }
 
@@ -22,6 +25,7 @@
 }
 
 .ChatsPre-chat-header {
+  max-width: 80%;
   white-space: nowrap;
   text-overflow: clip;
   overflow: auto;
@@ -47,4 +51,7 @@
   white-space: nowrap;
   text-overflow: clip;
   color: #7F7F7F;
+  position: absolute;
+  right: 0;
+  height: 100%;
 }
