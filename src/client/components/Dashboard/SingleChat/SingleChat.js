@@ -23,12 +23,11 @@ class SingleChat extends React.Component {
     this.handleTyping = this.handleTyping.bind(this);
   }
 
-  scrollToBottom() {
+  updateScroll() {
     const msgDiv = document.querySelector('.SingleChat-messages-container');
 
-    msgDiv.scrollTop = msgDiv.scrollHeight;
+    msgDiv.lastElementChild.scrollIntoView();
   }
-
   createMessage(date, i, message, userId, newMessageStart) {
     return (
       <div key={i} className="SingleChat-single-message-container">
@@ -137,9 +136,13 @@ class SingleChat extends React.Component {
     else {
       this.props.updateChatSeen({ chatId: this.props.chatId, next: true });
     }
+
+    console.log('componentDidMount');
+    this.updateScroll();
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
     if (nextProps.chatId !== this.props.chatId) {
       this.props.updateChatSeen({ chatId: this.props.chatId, next: false, leaving: true });
 
@@ -153,7 +156,9 @@ class SingleChat extends React.Component {
   }
 
   componentDidUpdate() {
-    this.scrollToBottom();
+    this.updateScroll();
+
+    console.log('componentDidUpdate');
   }
 
   handleBookmarking(bookmarkMsgId) {

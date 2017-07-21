@@ -8,13 +8,11 @@
   font-family: 'Lato';
 }
 
-
 .SingleChat-header-container {
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /*flex-direction: column;*/
   background-color: white;
   border-bottom: 1px solid #D1D1D1;
   border-top-left-radius: 3px;

@@ -53,7 +53,6 @@ export function fetchChats({ shouldSetChat=false, chatId=null, onLoad=false }) {
 }
 
 export function updateNewMessageCount(chatId, lastSeen, onLoad=false) {
-  console.log(chatId, lastSeen);
   return function(dispatch, getState) {
     const state = getState();
     const allChats = state.chats.allChats;
@@ -65,15 +64,11 @@ export function updateNewMessageCount(chatId, lastSeen, onLoad=false) {
 
         const count = wholeChat.messages.reduce((acc, msg) => {
           if (moment(lastSeen).valueOf() < moment(msg.createdAt).valueOf()) {
-            console.log(lastSeen, msg.createAt);
-            console.log(true);
             acc += 1;
           }
 
           return acc;
         }, 0);
-
-        console.log(count);
 
         history.count = count;
       }
@@ -164,16 +159,12 @@ export function receiveMessage(msg) {
     })
 
     if (inChat && lastSeen.hadNewMessages) {
-      console.log('inchat new messages');
       dispatch(updateChatSeen({ chatId: msg.chatId, from: 'receiveMessage', next: true }));
     }
     else if (inChat && !lastSeen.hadNewMessages) {
-      console.log('inchat no new messages');
       dispatch(updateChatSeen({ chatId: msg.chatId, next: false }));
     }
     else {
-      console.log('here');
-      console.log(lastSeen);
       if (lastSeen.nextSeen) {
         dispatch(updateNewMessageCount(msg.chatId, lastSeen.nextSeen));
       }
