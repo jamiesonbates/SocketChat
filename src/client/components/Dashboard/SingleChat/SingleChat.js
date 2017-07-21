@@ -26,7 +26,9 @@ class SingleChat extends React.Component {
   updateScroll() {
     const msgDiv = document.querySelector('.SingleChat-messages-container');
 
-    msgDiv.lastElementChild.scrollIntoView();
+    if (msgDiv) {
+      msgDiv.lastElementChild.scrollIntoView();
+    }
   }
   createMessage(date, i, message, userId, newMessageStart) {
     return (
@@ -240,10 +242,24 @@ class SingleChat extends React.Component {
                 const lastSeen = moment(this.props.lastSeen.lastSeen).valueOf();
                 const messageTime = moment(message.createdAt).valueOf();
                 const { userId } = this.props;
-                let messageJSX;
                 let newMessageStart = false;
+                let messageJSX;
+                let prevMessage = allMessages[i - 1];
 
-                if (messageTime > lastSeen && moment(allMessages[i - 1].createdAt).valueOf() < lastSeen) {
+                if (i - 1 < 0) {
+                  prevMessage = message;
+                }
+
+                if (i === 0 && messageTime > lastSeen) {
+                  newMessageStart = true;
+                }
+
+                console.log(messageTime > lastSeen);
+                console.log(i - 1);
+                console.log(allMessages);
+                console.log(prevMessage);
+
+                if (messageTime > lastSeen && moment(prevMessage.createdAt).valueOf() < lastSeen) {
                     newMessageStart = true;
                 }
 
