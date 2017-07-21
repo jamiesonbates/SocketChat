@@ -4,7 +4,7 @@
   box-sizing: border-box;
   flex-direction: column;
   background-color: white;
-  /*margin: 20px;*/
+  padding: 0 10px 10px;
   font-family: 'Lato';
 }
 
@@ -145,6 +145,9 @@
 }
 
 .SingleChat-form-container {
+  border-radius: 5px;
+  border: 1px solid #D1D1D1;
+  margin: 0 20px 15px;
   flex: 0;
 }
 
@@ -155,9 +158,19 @@
 }
 
 .SingleChat-form-container form input {
+  background-color: transparent;
+  border: none;
   padding: 15px;
   font-size: 15px;
   flex: 1;
+}
+
+.SingleChat-form-container form input:focus {
+  outline: none;
+}
+
+.SingleChat-form-container form input:focus .SingleChat-form-container {
+  border: 1px solid #575757;
 }
 
 .SingleChat-form-container form button {
