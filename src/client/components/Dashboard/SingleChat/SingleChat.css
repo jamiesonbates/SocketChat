@@ -29,6 +29,10 @@
   color: #575757;
 }
 
+.SingleChat-title h2 {
+  font-size: 18px;
+}
+
 .SingleChat-title div, .SingleChat-title svg {
   margin: 3px;
 }
@@ -100,7 +104,12 @@
   align-items: center;
 }
 
-.SingleChat-message-info:hover .SingleChat-bookmark-icon {
+.SingleChat-message-info.curUser {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+.SingleChat-otherUser:hover .SingleChat-bookmark-icon, .SingleChat-currentUser:hover .SingleChat-bookmark-icon {
   display: inline-block;
 }
 
@@ -136,10 +145,18 @@
   border-radius: 50%;
 }
 
+.SingleChat-message-text-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .SingleChat-message-text {
   border-radius: 10px;
-  padding: 5px;
-  font-size: 20px;
+  padding: 7px 10px;
+  /*font-size: 16px;*/
+  display: inline-block;
+  margin: 5px 0;
+  color: #2B2B2B;
 }
 
 .SingleChat-form-container {
@@ -206,7 +223,7 @@
   z-index: 1;
   background-color: white;
   padding: 0 10px;
-  color: #575757;
+  color: #2B2B2B;
 }
 
 .SingleChat-new h4 {

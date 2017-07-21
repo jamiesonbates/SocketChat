@@ -236,6 +236,7 @@ class SingleChat extends React.Component {
         <div className="SingleChat-messages-container">
           {
             // TODO: must condense and abstract this
+            // TODO: clean up logic
             this.props.chat && this.props.messages ?
               this.props.messages.map((message, i) => {
                 const allMessages = this.props.messages;
@@ -246,6 +247,7 @@ class SingleChat extends React.Component {
                 let messageJSX;
                 let prevMessage = allMessages[i - 1];
 
+                // might not need this logic
                 if (i - 1 < 0) {
                   prevMessage = message;
                 }
@@ -253,11 +255,6 @@ class SingleChat extends React.Component {
                 if (i === 0 && messageTime > lastSeen) {
                   newMessageStart = true;
                 }
-
-                console.log(messageTime > lastSeen);
-                console.log(i - 1);
-                console.log(allMessages);
-                console.log(prevMessage);
 
                 if (messageTime > lastSeen && moment(prevMessage.createdAt).valueOf() < lastSeen) {
                     newMessageStart = true;

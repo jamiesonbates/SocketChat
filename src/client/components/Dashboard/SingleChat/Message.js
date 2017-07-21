@@ -52,7 +52,9 @@ const Message = ({
             : null
           }
         </div>
-      : <div className="SingleChat-message-info">
+      : <div className={
+          user ? 'SingleChat-message-info' : 'SingleChat-message-info curUser'
+        }>
           <p className="SingleChat-time-message">
             {moment(message.createdAt).format('H:mm A')}
           </p>
@@ -80,7 +82,11 @@ const Message = ({
           }
         </div>
     }
-    <p className={`${messageColor} SingleChat-message-text`}>{message.message}</p>
+    <div className="SingleChat-message-text-container">
+      <p className={`${messageColor} SingleChat-message-text`}>
+        {message.message}
+      </p>
+    </div>
   </div>
 )
 
