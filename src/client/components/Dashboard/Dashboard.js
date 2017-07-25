@@ -82,7 +82,6 @@ class Dashboard extends React.Component {
           determineChatHeader={this.determineChatHeader}
         />
 
-        {/* Where should methods live and/or when should they be passed */}
         <div className="Dashboard-main-container">
           {
             this.props.showDefaultMain ?

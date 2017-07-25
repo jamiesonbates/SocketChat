@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   color: #1D2547;
+  padding: 10px 0;
 }
 
 .DefaultMain-home-icon {
@@ -18,7 +19,7 @@
 }
 
 .DefaultMain-recent-container {
-  padding: 20px 0 0;
+  // padding: 20px 0 0;
   display: flex;
   flex-wrap: wrap;
 }

@@ -1,8 +1,24 @@
 .Bookmarks-container {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   flex: 1;
-  padding: 10px;
+  padding: 0 10px;
+  font-family: 'Lato';
+}
+
+.Bookmarks-header {
+  padding: 10px 0;
+  color: #1D2547;
+  border-bottom: 1px solid #D1D1D1;
+  display: flex;
+  align-items: center;
+}
+
+.Bookmarks-header-icon {
+  color: #1D2547;
+  font-size: 35px;
+  padding: 0 10px;
 }
 
 .Bookmarks-list {
@@ -20,12 +36,16 @@
   align-self: flex-start;
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
-  background-color: #E5E3E0;
   border-radius: 3px;
   flex-basis: 300px;
   flex-shrink: 0;
   flex-grow: 0;
+}
+
+.Bookmarks-category-header {
+  border-bottom: 1px solid #D1D1D1;
+  color: #1D2547;
+  padding: 5px 0;
 }
 
 .Bookmarks-message-container {
