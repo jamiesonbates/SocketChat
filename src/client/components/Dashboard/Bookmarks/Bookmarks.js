@@ -7,27 +7,45 @@ import FaSingleOpts from 'react-icons/lib/fa/angle-up';
 import FaClose from 'react-icons/lib/md/close';
 import FaBookmark from 'react-icons/lib/ti/bookmark';
 import FaStarburst from 'react-icons/lib/ti/starburst-outline';
+import FaArrow from 'react-icons/lib/ti/arrow-right-thick';
 
 import './Bookmarks.scss';
 import passPropsByUser from '../../../containers/PassPropsByUser';
+import { showChatType } from '../../../state/actionTypes';
 
 class Bookmarks extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      clickedId: null
+      clickedId: null,
+      nextCategory: null
     }
 
+    this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
     this.handleMsgClick = this.handleMsgClick.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleSubmitCategory = this.handleSubmitCategory.bind(this);
   }
 
   handleMsgClick(id) {
     this.setState({ clickedId: id });
   }
 
+  handleBookmarkClick(chatId) {
+    this.props.setChat(chatId);
+  }
+
   handleMsgUnbookmark(starredMessagesId) {
     this.props.unBookmarkMsg(starredMessagesId);
+  }
+
+  handleCategoryChange(e) {
+    this.setState({ nextCategory: e.target.value });
+  }
+
+  handleSubmitCategory(e) {
+    e.preventDefault();
   }
 
   componentWillUnmount() {
@@ -39,9 +57,26 @@ class Bookmarks extends React.Component {
     return (
       <div className="Bookmarks-container">
         <div className="Bookmarks-header">
-          <FaBookmark className="Bookmarks-header-icon"/>
-          <h2>Bookmarks</h2>
+          <div className="Bookmarks-title-container">
+            <FaBookmark className="Bookmarks-header-icon"/>
+            <h2>Bookmarks</h2>
+          </div>
+          {
+            this.props.currentUserId === this.props.targetBookmarksId ?
+            <div className="Bookmarks-create-category">
+              <form onSubmit={this.handleSubmitCategory}>
+                <input
+                  type="text"
+                  placeholder="Create a category"
+                  onChange={this.handleCategoryChange}
+                />
+                <button type="submit">Create</button>
+              </form>
+            </div>
+            : null
+          }
         </div>
+
 
         <div className="Bookmarks-list">
           {
@@ -55,7 +90,11 @@ class Bookmarks extends React.Component {
                 {
                   category.messages ?
                     category.messages.map((msg, i) => (
-                      <div key={i} className="Bookmarks-message-container">
+                      <div
+                        key={i}
+                        className="Bookmarks-message-container"
+                        onClick={() => this.handleBookmarkClick(msg.chatId)}
+                      >
                         <div className="Bookmarks-message">
 
                           <div>
@@ -77,18 +116,6 @@ class Bookmarks extends React.Component {
                               Bookmarked on: {moment(msg.starred_at).format('M/D/YY')}
                             </p>
                           </div>
-
-                          {/* {
-                            this.state.clickedId === msg.messageId ?
-                              <FaClose
-                                className="Bookmarks-icon"
-                                onClick={() => this.handleMsgClick(null)}
-                              />
-                            :  <FaSingleOpts
-                                className="Bookmarks-icon Bookmarks-icon-singleopts"
-                                onClick={() => this.handleMsgClick(msg.messageId)}
-                              />
-                          } */}
                         </div>
 
                         {

@@ -70,10 +70,12 @@ class UserProfile extends React.Component {
   }
 
   handleBookmarksClick(userId) {
-    this.props.setBookmarks(userId);
+    console.log(userId);
+    this.props.setBookmarks({ userId });
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="UserProfile-container">
         <div className="UserProfile-nav">

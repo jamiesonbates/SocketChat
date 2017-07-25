@@ -23,6 +23,7 @@ export default function(ComposedClass) {
     return {
       targetUserId: state.uniqueUserInfo.targetUserId,
       targetUserProfile: state.uniqueUserInfo.userProfile,
+      targetBookmarksId: state.uniqueUserInfo.targetBookmarksId,
       bookmarks: state.bookmarks.bookmarks,
       usersOnline: state.chats.usersOnline,
       currentUserId: state.userInfo.id,

@@ -7,18 +7,57 @@
   font-family: 'Lato';
 }
 
+.Bookmarks-title-container {
+  display: flex;
+}
+
 .Bookmarks-header {
   padding: 10px 0;
   color: #1D2547;
   border-bottom: 1px solid #D1D1D1;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .Bookmarks-header-icon {
   color: #1D2547;
   font-size: 35px;
   padding: 0 10px;
+}
+
+.Bookmarks-create-category form {
+  display: flex;
+  align-items: center;
+}
+
+.Bookmarks-create-category form input {
+  padding: 8px;
+  font-size: 16px;
+  font-family: 'Lato';
+  border: 1px solid #D1D1D1;
+  border-radius: 3px;
+}
+
+.Bookmarks-create-category form input:focus {
+  outline: none;
+}
+
+.Bookmarks-create-category button {
+  border: none;
+  background-color: #4D64BF;
+  margin-left: 4px;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 3px;
+  color: #F7F7F7;
+  font-family: 'Lato';
+}
+
+.Bookmarks-create-category button:hover {
+  background-color: #39498C;
+  cursor: pointer;
+  border: 1pxsolid #D1D1D1;
 }
 
 .Bookmarks-list {
@@ -64,8 +103,6 @@
   border-radius: 3px;
   background-color: #D1D1D1;
   box-sizing: border-box;
-  // justify-content: space-between;
-  // align-items: center;
 }
 
 .Bookmarks-icon {
@@ -75,10 +112,11 @@
 .Bookmarks-message-container {
   padding: 5px 0;
   box-sizing: border-box;
-  // background-color: #6F70A8;
-  // color: #DBDCEB;
-  // border-radius: 18px;
-  // margin: 0 5px;
+}
+
+.Bookmarks-message:hover {
+  cursor: pointer;
+  background-color: #C7C7C7;
 }
 
 .Bookmarks-message.Bookmark-clicked {
