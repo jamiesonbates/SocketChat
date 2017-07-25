@@ -5,12 +5,20 @@ import FaUser from 'react-icons/lib/fa/user';
 function userIconMaker(users, type) {
   switch(type) {
     case 'FOR_CHAT':
-    case 'FOR_CONTACT':
       return (
         <div className="UserIcon-chat icon">
           <h3>{users[0].firstName[0]}</h3>
         </div>
       )
+    break;
+
+    case 'FOR_CONTACT':
+      return (
+        <div className="UserIcon-contact icon">
+          <h3>{users[0].firstName[0]}</h3>
+        </div>
+      )
+    break;
 
     case 'FOR_SIDE':
       let icon;

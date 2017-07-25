@@ -2,6 +2,7 @@ import React from 'react';
 import FaUser from 'react-icons/lib/fa/user';
 
 import './ContactsList.scss';
+import Utilities from '../../../../../utilities/Utilities';
 
 class ContactsList extends React.Component {
   constructor(props) {
@@ -35,7 +36,9 @@ class ContactsList extends React.Component {
               key={i}
               className="ContactsList-contact"
               onClick={() => this.props.handleContactClick(contact.id)}>
-              <FaUser className="ContactsList-icon" />
+              <div className="ContactsList-icon-container">
+                {Utilities.userIconMaker([contact], 'FOR_CONTACT')}
+              </div>
               <p>{contact.firstName} {contact.lastName}</p>
             </div>
           ))
