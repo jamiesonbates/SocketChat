@@ -12,7 +12,6 @@ import { showChatsListType, showUserProfileType, showContactsListType, showDefau
 class SidePanel extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   handleNavToProfile() {
