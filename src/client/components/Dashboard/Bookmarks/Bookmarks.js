@@ -46,6 +46,10 @@ class Bookmarks extends React.Component {
 
   handleSubmitCategory(e) {
     e.preventDefault();
+
+    console.log(this.state.nextCategory);
+
+    this.setState({ nextCategory: null });
   }
 
   componentWillUnmount() {

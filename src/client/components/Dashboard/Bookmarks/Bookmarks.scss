@@ -46,7 +46,7 @@
 .Bookmarks-create-category button {
   border: none;
   background-color: #4D64BF;
-  margin-left: 4px;
+  margin-left: 8px;
   font-size: 16px;
   padding: 8px;
   border-radius: 3px;
@@ -92,7 +92,7 @@
 
 .Bookmarks-category-header {
   border-bottom: 1px solid #D1D1D1;
-  color: #1D2547;
+  color: #26315E;
   padding: 5px 0;
   display: flex;
 }
@@ -101,12 +101,12 @@
   display: flex;
   padding: 10px;
   border-radius: 3px;
-  background-color: #D1D1D1;
+  background-color: #E0E0E0;
   box-sizing: border-box;
 }
 
 .Bookmarks-icon {
-  color: #1D2547;
+  color: #26315E;
 }
 
 .Bookmarks-message-container {
