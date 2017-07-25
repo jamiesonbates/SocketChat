@@ -56,7 +56,7 @@ class SingleChat extends React.Component {
             message.userId !== userId ?
               <div className="Message-user-icon">
                 {
-                  Utilities.userIconMaker([Utilities.findUser(this.props.chat.users, message.userId)], 'FOR_CHAT') 
+                  Utilities.userIconMaker([Utilities.findUser(this.props.chat.users, message.userId)], 'FOR_CHAT')
                 }
               </div>
             : null
@@ -151,12 +151,10 @@ class SingleChat extends React.Component {
       this.props.updateChatSeen({ chatId: this.props.chatId, next: true });
     }
 
-    console.log('componentDidMount');
     this.updateScroll();
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
     if (nextProps.chatId !== this.props.chatId) {
       this.props.updateChatSeen({ chatId: this.props.chatId, next: false, leaving: true });
 
@@ -171,8 +169,6 @@ class SingleChat extends React.Component {
 
   componentDidUpdate() {
     this.updateScroll();
-
-    console.log('componentDidUpdate');
   }
 
   handleBookmarking(bookmarkMsgId) {

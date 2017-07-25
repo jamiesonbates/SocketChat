@@ -31,7 +31,7 @@ const ChatsPre = ({ chats, newMessages, determineChatHeader, handleChatClick }) 
                   </p>
                   </div>
                   <p className="ChatsPre-time">
-                    {moment(chat.lastActivity).fromNow(true)}
+                    {Utilities.timeDisplay(chat.lastActivity)}
                   </p>
                 </div>
                 <div className="ChatsPre-chat-bottom">

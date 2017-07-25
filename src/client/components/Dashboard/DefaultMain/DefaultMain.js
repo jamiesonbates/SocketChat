@@ -13,8 +13,13 @@ class DefaultMain extends React.Component {
     super(props);
 
     this.mostRecentChats = this.mostRecentChats.bind(this);
+    setInterval(this.updateTime.bind(this), 30000);
   }
 
+  updateTime() {
+    this.setState({});
+  }
+  
   componentWillMount() {
     this.props.getRecentBookmarks();
   }

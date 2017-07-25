@@ -11,41 +11,17 @@ import Utilities from '../../../../utilities/Utilities';
 class ChatsList extends React.Component {
   constructor(props) {
     super(props);
+
+    setInterval(this.updateTime.bind(this), 30000);
+  }
+
+  updateTime() {
+    this.setState({});
   }
 
   openChat(id) {
     this.props.setChat(id);
     this.props.updateMain(showChatType);
-  }
-
-  // TODO: used in multiple places
-  determineTimeDisplay(chat) {
-    if (!chat.messages || !chat.messages.length) {
-      return '';
-    }
-
-    const time = chat.messages[chat.messages.length - 1].createdAt;
-    const nowMil = moment(Date.now()).valueOf();
-    const timeMil = moment(time).valueOf();
-    const diff = nowMil - timeMil;
-    const midnightDiff = nowMil - moment(new Date().setUTCHours(0, 0, 0, 0)).valueOf();
-    const weekAgoDiff = nowMil - moment(Date.now()).subtract(6, 'days').valueOf();
-
-    if (diff < 60000) {
-      return 'Now';
-    }
-    else if (diff < 3600000) {
-      return Math.floor(diff / 60000) + 'm'
-    }
-    else if (diff < midnightDiff) {
-      return moment(timeMil).format('h:mm A');
-    }
-    else if (diff < weekAgoDiff) {
-      return moment(timeMil).format('ddd');
-    }
-    else {
-      return moment(timeMil).format('M/D/YY');
-    }
   }
 
   determineLastMessage(chat) {
@@ -90,7 +66,7 @@ class ChatsList extends React.Component {
                       userId={this.props.userId}
                       determineChatHeader={this.props.determineChatHeader}
                       determineLastMessage={this.determineLastMessage.bind(this)}
-                      time={this.determineTimeDisplay(chat)}
+                      time={Utilities.timeDisplay(chat.messages[chat.messages.length - 1].createdAt)}
                     />
                   }
                 </div>
