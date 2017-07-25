@@ -35,49 +35,61 @@ class SingleChat extends React.Component {
       <div key={i} className="SingleChat-single-message-container">
         {
           date ?
-            <div className="SingleChat-time">
-              <h4>{date}</h4>
-              <div className="SingleChat-line"></div>
-            </div>
+          <div className="SingleChat-time">
+            <h4>{date}</h4>
+            <div className="SingleChat-line"></div>
+          </div>
           : null
         }
 
         {
           newMessageStart ?
-            <div className="SingleChat-new">
-              <h4>New Messages</h4>
-              <div className="SingleChat-line red"></div>
-            </div>
+          <div className="SingleChat-new">
+            <h4>New Messages</h4>
+            <div className="SingleChat-line red"></div>
+          </div>
           : null
         }
 
-        <div className="SingleChat-message">
-          <Message
-            messageClass={
-              message.userId === userId ?
-                'SingleChat-currentUser'
-              : 'SingleChat-otherUser'
-            }
-            messageColor={
-              message.userId === userId ?
-                'SingleChat-currentUser-color'
-              : 'SingleChat-otherUser-color'
-            }
-            message={message}
-            starred={
-              message.userId === userId ? message.starred : null
-            }
-            user={
-              message.userId === userId ?
-                null
-              : Utilities.findUser(this.props.chat.users, message.userId)
-            }
-            handleExitBookmarking={this.handleExitBookmarking.bind(this)}
-            handleBookmarking={this.handleBookmarking.bind(this)}
-            bookmarkMsgId={this.state.bookmarkMsgId}
-            categories={this.props.categories}
-            bookmarkMsg={this.props.bookmarkMsg}
-          />
+        <div className="SingleChat-message-container">
+          {
+            message.userId !== userId ?
+              <div className="Message-user-icon">
+                {
+                  Utilities.userIconMaker([Utilities.findUser(this.props.chat.users, message.userId)], 'FOR_CHAT') 
+                }
+              </div>
+            : null
+          }
+
+          <div className="SingleChat-message">
+            <Message
+              messageClass={
+                message.userId === userId ?
+                  'SingleChat-currentUser'
+                : 'SingleChat-otherUser'
+              }
+              messageColor={
+                message.userId === userId ?
+                  'SingleChat-currentUser-color'
+                : 'SingleChat-otherUser-color'
+              }
+              message={message}
+              starred={
+                message.userId === userId ? message.starred : null
+              }
+              user={
+                message.userId === userId ?
+                  null
+                : Utilities.findUser(this.props.chat.users, message.userId)
+              }
+              handleExitBookmarking={this.handleExitBookmarking.bind(this)}
+              handleBookmarking={this.handleBookmarking.bind(this)}
+              bookmarkMsgId={this.state.bookmarkMsgId}
+              categories={this.props.categories}
+              bookmarkMsg={this.props.bookmarkMsg}
+            />
+          </div>
         </div>
       </div>
     )

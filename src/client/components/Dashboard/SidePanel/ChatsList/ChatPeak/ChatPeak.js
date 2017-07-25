@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import LastMessage from './LastMessage';
 import './ChatPeak.scss';
+import Utilities from '../../../../../utilities/Utilities';
 
 const ChatPeak = ({
   chat,
@@ -16,9 +17,9 @@ const ChatPeak = ({
 return (
   <div className="ChatPeak-container">
     <div className="ChatPeak-icon-container">
-      <div className="ChatPeak-icon-circle">
-        <FaUser className="ChatPeak-icon" />
-      </div>
+      {
+        Utilities.userIconMaker(chat.users.filter(user => user.id !== userId), 'FOR_SIDE')
+      }
     </div>
     <div className="ChatPeak-info-container">
       <div className="ChatPeak-info">

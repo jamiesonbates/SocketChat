@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import FaBookmark from 'react-icons/lib/md/bookmark';
+import FaBookmark from 'react-icons/lib/ti/bookmark';
 
+import Utilities from '../../../utilities/Utilities';
 import CreateBookmark from './CreateBookmark';
 
 const Message = ({

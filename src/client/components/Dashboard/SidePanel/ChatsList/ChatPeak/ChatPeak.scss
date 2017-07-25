@@ -7,20 +7,21 @@
 }
 
 .ChatPeak-icon-container {
+  width: 40px;
+  height: 40px;
   padding: 2px;
   box-sizing: border-box;
-  width: 15%;
 }
 
-.ChatPeak-icon-circle {
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  background-color: #ABC9FF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+// .ChatPeak-icon-circle {
+//   height: 35px;
+//   width: 35px;
+//   border-radius: 50%;
+//   background-color: #ABC9FF;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 
 .ChatPeak-icon {
   font-size: 25px;
@@ -41,7 +42,6 @@
   position: relative;
   background-color: inherit;
 }
-
 
 .ChatPeak-header-container {
   width: 90%;

@@ -1,1 +1,54 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+
+.icon {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.UserIcon-chat {
+  background-color: inherit;
+  border: 2px solid #575757;
+  box-sizing: border-box;
+  color: #575757;
+}
+
+.UserIcon-standard-container {
+  flex-wrap: wrap-reverse;
+  position: relative;
+}
+
+.UserIcon-side {
+  background-color: #ABC9FF;
+  color: #3762ED;
+}
+
+.UserIcon-standard {
+  height: 50%;
+  width: 50%;
+  border-radius: 50%;
+  background-color: #ABC9FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UserIcon-standard.top {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+
+.UserIcon-standard.bottom {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+}
+
+.UserIcon-standard-user {
+  color: #3762ED;
+  width: 80%;
+}
