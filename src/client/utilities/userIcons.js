@@ -34,15 +34,17 @@ function userIconMaker(users, type) {
         icon = (
           <div className="UserIcon-standard-container icon">
             {
+
               users.filter((user, i) => {
                 if (i < 4) {
-                  return (
-                    <div key={i} className="UserIcon-standard">
-                      <FaUser className="UserIcon-standard-user" />
-                    </div>
-                  )
+                  return true;
                 }
               })
+              .map((user, i) => (
+                <div key={i} className="UserIcon-standard">
+                  <FaUser className="UserIcon-standard-user" />
+                </div>
+              ))
             }
           </div>
         )
@@ -66,7 +68,7 @@ function userIconMaker(users, type) {
             {
               users.map((user, i) =>
                 <div key={i} className={i === 0 ? 'UserIcon-standard top' : 'UserIcon-standard bottom'}>
-                  <FaUser className="UserIcon-standard-user" />
+                  <h3>{user.firstName[0]}</h3>
                 </div>
               )
             }

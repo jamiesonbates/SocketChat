@@ -28,15 +28,15 @@
 }
 
 .UserIcon-side {
-  background-color: #ABC9FF;
-  color: #3762ED;
+  background-color: #EDEDED;
+  color: #1D2547;
 }
 
 .UserIcon-standard {
   height: 50%;
   width: 50%;
   border-radius: 50%;
-  background-color: #ABC9FF;
+  background-color: #EDEDED;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,15 +46,21 @@
   position: absolute;
   top: 1px;
   left: 1px;
+  height: 58%;
+  width: 58%;
+  font-size: 12px;
 }
 
 .UserIcon-standard.bottom {
   position: absolute;
   bottom: 1px;
   right: 1px;
+  height: 58%;
+  width: 58%;
+  font-size: 12px;
 }
 
 .UserIcon-standard-user {
-  color: #3762ED;
+  color: #1D2547;
   width: 80%;
 }
