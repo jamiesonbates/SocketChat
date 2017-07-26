@@ -140,7 +140,7 @@ class Bookmarks extends React.Component {
                         }
                       </div>
                     ))
-                  : null
+                  : <p className="Bookmarks-none-msg">No bookmarks here yet.</p>
                 }
               </div>
             ))
