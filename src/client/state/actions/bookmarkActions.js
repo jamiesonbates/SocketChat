@@ -87,6 +87,12 @@ export function getCategories() {
 export function addCategory(name) {
   return function(dispatch, getState) {
     const state = getState();
+    const userId = state.userInfo.id;
+
+    axios.post('/api/bookmarks/category', { userId, name })
+      .then((res) => {
+        dispatch(setBookmarks({ userId, forRecent: true }));
+      })
   }
 }
 

@@ -21,7 +21,7 @@ class Bookmarks extends React.Component {
 
     this.state = {
       clickedId: null,
-      nextCategory: null
+      nextCategory: ''
     }
 
     this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
@@ -49,8 +49,8 @@ class Bookmarks extends React.Component {
 
   handleSubmitCategory(e) {
     e.preventDefault();
-
-    this.setState({ nextCategory: null });
+    this.props.addCategory(this.state.nextCategory);
+    this.setState({ nextCategory: '' });
   }
 
   handlePrivacyChange(category) {
@@ -86,6 +86,7 @@ class Bookmarks extends React.Component {
                   type="text"
                   placeholder="Create a category"
                   onChange={this.handleCategoryChange}
+                  value={this.state.nextCategory}
                 />
                 <button type="submit">Create</button>
               </form>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateUserProfile, updateTargetUserId } from '../state/actions/uniqueUserActions';
 import { setChat, createChat } from '../state/actions/chatActions';
 import { updateMain } from '../state/actions/dashControlActions';
-import { setBookmarks, unBookmarkMsg, resetBookmarks, updateCategoryPrivacy } from '../state/actions/bookmarkActions';
+import { setBookmarks, unBookmarkMsg, resetBookmarks, updateCategoryPrivacy, addCategory, deleteCategory } from '../state/actions/bookmarkActions';
 import { resetTargetBookmarksId } from '../state/actions/uniqueUserActions';
 
 export default function(ComposedClass) {
@@ -42,7 +42,8 @@ export default function(ComposedClass) {
       unBookmarkMsg: (data) => dispatch(unBookmarkMsg(data)),
       resetBookmarks: () => dispatch(resetBookmarks()),
       resetTargetBookmarksId: () => dispatch(resetTargetBookmarksId()),
-      updateCategoryPrivacy: (data) => dispatch(updateCategoryPrivacy(data))
+      updateCategoryPrivacy: (data) => dispatch(updateCategoryPrivacy(data)),
+      addCategory: (data) => dispatch(addCategory(data))
     }
   )
 

@@ -56,6 +56,17 @@ router.get('/recent/:userId', (req, res, next) => {
     })
 });
 
+router.post('/category', (req, res, next) => {
+  const { user_id, name } = decamelizeKeys(req.body);
+
+  db('users_categories')
+    .insert({ user_id, name })
+    .returning('*')
+    .then((data) => {
+      res.send(data);
+    })
+});
+
 router.put('/', (req, res, next) => {
   const { userId, catId, privacy } = req.body;
 
