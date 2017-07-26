@@ -59,6 +59,11 @@ router.get('/recent/:userId', (req, res, next) => {
 router.put('/', (req, res, next) => {
   const { userId, catId, privacy } = req.body;
 
+  console.log(req.body);
+  if (catId === 11) {
+    res.send('The general category cannot be public.');
+  }
+
   db('users_categories')
     .update('privacy', !privacy)
     .where({
@@ -67,6 +72,7 @@ router.put('/', (req, res, next) => {
     })
     .returning('*')
     .then((data) => {
+      console.log(data);
       const { privacy } = data[0];
 
       res.send({ privacy });

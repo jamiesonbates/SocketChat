@@ -110,8 +110,8 @@ class Bookmarks extends React.Component {
                       {
                         this.props.currentUserId === this.props.targetBookmarksId ?
                           <div
-                            className="Bookmarks-category-privacy"
-                            onClick={() => this.handlePrivacyChange(category)}
+                            className={category.catId === 11 ? 'Bookmarks-category-privacy always-private' : 'Bookmarks-category-privacy'}
+                            onClick={category.catId === 11 ? null : () => this.handlePrivacyChange(category)}
                           >
                             {category.privacy ? <FaOpen /> : <FaLocked />}
                             <p>{category.privacy ? 'Public' : 'Private'}</p>

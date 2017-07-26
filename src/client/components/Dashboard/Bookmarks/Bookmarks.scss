@@ -124,6 +124,15 @@
   align-items: flex-end;
 }
 
+.Bookmarks-category-privacy.always-private:hover {
+  color: inherit;
+  cursor: auto;
+}
+
+.Bookmarks-category-privacy.always-private p {
+  color: inherit;
+}
+
 .Bookmarks-category-privacy:hover {
   color: #4D64BF;
   cursor: pointer;

@@ -37,6 +37,10 @@ export function updateCategoryPrivacy({ catId, privacy }) {
 
     axios.put(`/api/bookmarks`, { userId, catId, privacy })
       .then((res) => {
+        if (typeof res.data === 'string') {
+          return;
+        }
+
         const nextBookmarks = bookmarks.map(bookmark => {
           if (bookmark.catId === catId) {
             bookmark.privacy = res.data.privacy;
