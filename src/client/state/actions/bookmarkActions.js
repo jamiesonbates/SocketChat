@@ -13,7 +13,10 @@ import { updateTargetBookmarksId } from './uniqueUserActions';
 
 export function setBookmarks({ userId, forRecent=false }) {
   return function(dispatch, getState) {
-    axios.get(`/api/bookmarks/${userId}`)
+    const state = getState();
+    const curUserId = state.userInfo.id;
+
+    axios.get(`/api/bookmarks/${userId}/${curUserId}`)
       .then((res) => {
         dispatch({ type: setBookmarksType, payload: res.data });
 

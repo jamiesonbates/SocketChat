@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       .inTable('users')
       .onDelete('CASCADE');
     table.string('name').notNullable();
+    table.boolean('public').defaultTo(false);
     table.timestamps(true, true);
   });
 };

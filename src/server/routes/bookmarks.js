@@ -4,10 +4,17 @@ const db = require('../db/connection');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 const router = require('express').Router();
 
-router.get('/:userId', (req, res, next) => {
+router.get('/:userId/:curUserId', (req, res, next) => {
+  const { userId, curUserId } = req.params;
+  let publicClause = '';
+
+  if (userId !== curUserId) {
+    publicClause = 'AND ucat.public = true';
+  }
+
   db.raw(`
     SELECT *
-    FROM (SELECT ucat.id as cat_id, ucat.name as cat_name,
+    FROM (SELECT ucat.id as cat_id, ucat.name as cat_name, ucat.public,
             (SELECT json_agg(msg)
             FROM (
               SELECT m.message, m.chat_id, m.id as message_id, m.created_at, sm.id as starred_message_id,
@@ -19,7 +26,7 @@ router.get('/:userId', (req, res, next) => {
               WHERE sm.category_id = ucat.id
             ) msg) as messages
           FROM users_categories as ucat
-          WHERE ucat.user_id = ${req.params.userId} OR ucat.id = 11) as bookmarks;
+          WHERE (ucat.user_id = ${userId} OR ucat.id = 11) ${publicClause}) as bookmarks;
   `)
     .then((data) => {
       res.send(camelizeKeys(data.rows));
