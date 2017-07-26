@@ -6,15 +6,15 @@ const router = require('express').Router();
 
 router.get('/:userId/:curUserId', (req, res, next) => {
   const { userId, curUserId } = req.params;
-  let publicClause = '';
+  let privacyClause = '';
 
   if (userId !== curUserId) {
-    publicClause = 'AND ucat.public = true';
+    privacyClause = 'AND ucat.privacy = true';
   }
 
   db.raw(`
     SELECT *
-    FROM (SELECT ucat.id as cat_id, ucat.name as cat_name, ucat.public,
+    FROM (SELECT ucat.id as cat_id, ucat.name as cat_name, ucat.privacy,
             (SELECT json_agg(msg)
             FROM (
               SELECT m.message, m.chat_id, m.id as message_id, m.created_at, sm.id as starred_message_id,
@@ -26,7 +26,7 @@ router.get('/:userId/:curUserId', (req, res, next) => {
               WHERE sm.category_id = ucat.id
             ) msg) as messages
           FROM users_categories as ucat
-          WHERE (ucat.user_id = ${userId} OR ucat.id = 11) ${publicClause}) as bookmarks;
+          WHERE (ucat.user_id = ${userId} OR ucat.id = 11) ${privacyClause}) as bookmarks;
   `)
     .then((data) => {
       res.send(camelizeKeys(data.rows));
@@ -53,6 +53,23 @@ router.get('/recent/:userId', (req, res, next) => {
     .limit(5)
     .then((bookmarks) => {
       res.send(bookmarks);
+    })
+});
+
+router.put('/', (req, res, next) => {
+  const { userId, catId, privacy } = req.body;
+
+  db('users_categories')
+    .update('privacy', !privacy)
+    .where({
+      user_id: userId,
+      id: catId
+    })
+    .returning('*')
+    .then((data) => {
+      const { privacy } = data[0];
+
+      res.send({ privacy });
     })
 });
 

@@ -95,6 +95,27 @@
   color: #26315E;
   padding: 5px 0;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Bookmarks-category-title {
+  display: flex;
+  align-items: center;
+}
+
+.Bookmarks-category-privacy {
+  display: flex;
+  align-items: flex-end;
+}
+
+.Bookmarks-category-privacy:hover {
+  color: #4D64BF;
+  cursor: pointer;
+}
+
+.Bookmarks-category-privacy p {
+  font-size: 12px;
 }
 
 .Bookmarks-message {
@@ -169,6 +190,6 @@
   transform: rotate(0);
 }
 
-.Bookmarks-none-msg {
+.Bookmarks-default-msg {
   padding: 10px 0;
 }

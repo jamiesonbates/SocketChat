@@ -28,6 +28,17 @@ export function setBookmarks({ userId, forRecent=false }) {
   }
 }
 
+export function updateCategoryPrivacy({ catId, privacy }) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
+
+    axios.put(`/api/bookmarks`, { userId, catId, privacy })
+      .then((res) => {
+      });
+  }
+}
+
 export function getRecentBookmarks() {
   return function(dispatch, getState) {
     const state = getState();
