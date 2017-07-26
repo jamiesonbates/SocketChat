@@ -47,8 +47,6 @@ class Bookmarks extends React.Component {
   handleSubmitCategory(e) {
     e.preventDefault();
 
-    console.log(this.state.nextCategory);
-
     this.setState({ nextCategory: null });
   }
 
@@ -63,7 +61,13 @@ class Bookmarks extends React.Component {
         <div className="Bookmarks-header">
           <div className="Bookmarks-title-container">
             <FaBookmark className="Bookmarks-header-icon"/>
-            <h2>Bookmarks</h2>
+            <h2>
+              {
+                this.props.currentUserId === this.props.targetBookmarksId ?
+                  'Your Bookmarks'
+                : 'Bookmarks'
+              }
+            </h2>
           </div>
           {
             this.props.currentUserId === this.props.targetBookmarksId ?
