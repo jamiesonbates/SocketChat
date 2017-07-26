@@ -53,6 +53,7 @@ const updateChatViewHistoryType = 'UPDATE_CHAT_VIEW_HISTORY';
 const updateNewMessageCountType = 'UPDATE_NEW_MESSAGE_COUNT';
 const setChatViewHistoryType = 'SET_CHAT_VIEW_HISTORY';
 const updateChatLastSeenType = 'UPDATE_CHAT_LAST_SEEN';
+const updateCategoryPrivacyType = 'UPDATE_CATEGORY_PRIVACY';
 
 export {
   authSuccess,
@@ -108,4 +109,5 @@ export {
   updateNewMessageCountType,
   setChatViewHistoryType,
   updateChatLastSeenType,
+  updateCategoryPrivacyType
 }

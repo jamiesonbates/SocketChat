@@ -6,7 +6,8 @@ import {
   updateBookmarksInChatType,
   resetBookmarksType,
   setUsersCategoriesType,
-  setRecentBookmarksType
+  setRecentBookmarksType,
+  updateCategoryPrivacyType
 } from '../actionTypes';
 import { updateMain } from './dashControlActions';
 import { updateTargetBookmarksId } from './uniqueUserActions';
@@ -32,9 +33,19 @@ export function updateCategoryPrivacy({ catId, privacy }) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
+    const bookmarks = state.bookmarks.bookmarks;
 
     axios.put(`/api/bookmarks`, { userId, catId, privacy })
       .then((res) => {
+        const nextBookmarks = bookmarks.map(bookmark => {
+          if (bookmark.catId === catId) {
+            bookmark.privacy = res.data.privacy;
+          }
+
+          return bookmark;
+        });
+
+        dispatch({ type: updateCategoryPrivacyType, payload: nextBookmarks });
       });
   }
 }

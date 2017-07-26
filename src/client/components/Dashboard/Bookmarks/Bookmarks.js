@@ -54,7 +54,6 @@ class Bookmarks extends React.Component {
   }
 
   handlePrivacyChange(category) {
-    console.log(category);
     const { catId, privacy } = category;
 
     this.props.updateCategoryPrivacy({ catId, privacy });
