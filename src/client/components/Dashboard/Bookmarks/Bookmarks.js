@@ -95,81 +95,82 @@ class Bookmarks extends React.Component {
         </div>
 
 
-        <div className="Bookmarks-list">
-          {
-            this.props.bookmarks.length ?
-              this.props.bookmarks.map((category, i) => (
-                <div key={i} className="Bookmarks-category">
-                  <div className="Bookmarks-category-header">
-                    <div className="Bookmarks-category-title">
-                      <FaStarburst className="Bookmarks-icon"/>
-                      <h3>{category.catName}</h3>
+        <div className="Bookmarks-list-canvas">
+          <div className="Bookmarks-list">
+            {
+              this.props.bookmarks.length ?
+                this.props.bookmarks.map((category, i) => (
+                  <div key={i} className="Bookmarks-category">
+                    <div className="Bookmarks-category-header">
+                      <div className="Bookmarks-category-title">
+                        <FaStarburst className="Bookmarks-icon"/>
+                        <h3>{category.catName}</h3>
+                      </div>
+
+                      {
+                        this.props.currentUserId === this.props.targetBookmarksId ?
+                          <div
+                            className="Bookmarks-category-privacy"
+                            onClick={() => this.handlePrivacyChange(category)}
+                          >
+                            {category.privacy ? <FaOpen /> : <FaLocked />}
+                            <p>{category.privacy ? 'Public' : 'Private'}</p>
+                          </div>
+                        : null
+                      }
                     </div>
 
                     {
-                      this.props.currentUserId === this.props.targetBookmarksId ?
-                        <div
-                          className="Bookmarks-category-privacy"
-                          onClick={() => this.handlePrivacyChange(category)}
-                        >
-                          {category.privacy ? <FaOpen /> : <FaLocked />}
-                          <p>{category.privacy ? 'Public' : 'Private'}</p>
-                        </div>
-                      : null
+                      category.messages ?
+                        category.messages.map((msg, i) => (
+                          <div
+                            key={i}
+                            className="Bookmarks-message-container"
+                            onClick={() => this.handleBookmarkClick(msg.chatId)}
+                          >
+                            <div className="Bookmarks-message">
+                              <div className="Bookmarks-message-card">
+                                <p className="Bookmarks-message-text">
+                                  {
+
+                                    this.props.currentUserId === msg.userId ?
+                                      <span className="Bookmarks-author">
+                                        You said:
+                                      </span>
+                                    : <span
+                                        className="Bookmarks-author">
+                                        {msg.firstName} {msg.lastName} said:
+                                      </span>
+                                  } {msg.message}
+                                </p>
+
+                                <p className="Bookmarks-date">
+                                  Bookmarked on: {moment(msg.starred_at).format('M/D/YY')}
+                                </p>
+                              </div>
+                            </div>
+
+                            {
+                              this.state.clickedId === msg.messageId ?
+                                <div className="Bookmarks-message-tools">
+                                  <FaMessage className="Bookmarks-icon Boomarks-icon-message"/>
+                                  <FaPerson className="Bookmarks-icon Bookmarks-icon-person" />
+                                  <FaTrash
+                                    className="Bookmarks-icon Bookmarks-icon-trash"
+                                    onClick={() => this.handleMsgUnbookmark(msg.starredMessageId)}
+                                  />
+                                </div>
+                              : null
+                            }
+                          </div>
+                        ))
+                      : <p className="Bookmarks-default-msg">No bookmarks here yet.</p>
                     }
                   </div>
-
-                  {
-                    category.messages ?
-                      category.messages.map((msg, i) => (
-                        <div
-                          key={i}
-                          className="Bookmarks-message-container"
-                          onClick={() => this.handleBookmarkClick(msg.chatId)}
-                        >
-                          <div className="Bookmarks-message">
-
-                            <div>
-                              <p>
-                                {
-
-                                  this.props.currentUserId === msg.userId ?
-                                    <span className="Bookmarks-author">
-                                      You said:
-                                    </span>
-                                  : <span
-                                      className="Bookmarks-author">
-                                      {msg.firstName} {msg.lastName} said:
-                                    </span>
-                                } {msg.message}
-                              </p>
-
-                              <p className="Bookmarks-date">
-                                Bookmarked on: {moment(msg.starred_at).format('M/D/YY')}
-                              </p>
-                            </div>
-                          </div>
-
-                          {
-                            this.state.clickedId === msg.messageId ?
-                              <div className="Bookmarks-message-tools">
-                                <FaMessage className="Bookmarks-icon Boomarks-icon-message"/>
-                                <FaPerson className="Bookmarks-icon Bookmarks-icon-person" />
-                                <FaTrash
-                                  className="Bookmarks-icon Bookmarks-icon-trash"
-                                  onClick={() => this.handleMsgUnbookmark(msg.starredMessageId)}
-                                />
-                              </div>
-                            : null
-                          }
-                        </div>
-                      ))
-                    : <p className="Bookmarks-default-msg">No bookmarks here yet.</p>
-                  }
-                </div>
-              ))
-            : <p className="Bookmarks-default-msg">This persons categories are private.</p>
-          }
+                ))
+              : <p className="Bookmarks-default-msg">This persons categories are private.</p>
+            }
+          </div>
         </div>
       </div>
     )
