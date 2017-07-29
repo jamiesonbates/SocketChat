@@ -36,6 +36,16 @@ router.get('/:userId/:curUserId', (req, res, next) => {
     });
 });
 
+router.delete('/:catId', (req, res, next) => {
+  db('users_categories')
+    .del()
+    .where('id', req.params.catId)
+    .returning('*')
+    .then((data) => {
+      res.send(data.rows);
+    });
+});
+
 router.get('/recent/:userId', (req, res, next) => {
   db('starred_messages as sm')
     .select(

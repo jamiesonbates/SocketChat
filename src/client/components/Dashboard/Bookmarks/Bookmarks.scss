@@ -186,37 +186,68 @@
   margin-right: 5px;
 }
 
-.Bookmarks-icon-person {
-  box-sizing: border-box;
-  padding: 2px;
-  background-color: #D6D8E5;
-  border-radius: 50%;
-  color: #9B9CA6;
-}
-
-.Bookmarks-icon-person:hover {
-  color: #696970;
-}
-
-.Bookmarks-icon-singleopts {
-  transition: transform 0.3s;
-  transition-delay: 0.1s;
-}
-
-.Bookmarks-icon-singleopts:hover {
-  transform: rotate(180deg);
-}
-
-.Bookmarks-icon-doubleopts {
-  transform: rotate(180deg);
-  transition: transform 0.3s;
-  transition-delay: 0.1s;
-}
-
-.Bookmarks-icon-doubleopts:hover {
-  transform: rotate(0);
-}
-
 .Bookmarks-default-msg {
   padding: 10px 0;
+}
+
+.Bookmarks-category-delete {
+  // width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 10px;
+  padding: 0;
+  // margin-top: 15px;
+}
+
+.Bookmarks-category-delete:hover {
+  color: #F32818;
+  cursor: pointer;
+}
+
+.Bookmarks-category-delete:focus {
+  outline: none;
+}
+
+.Bookmarks-category-delete-danger {
+  border: 2px solid #F32818;
+  border-radius: 3px;
+  padding: 10px;
+  white-space: normal;
+}
+
+.Bookmarks-category-delete-danger h4 {
+  font-size: 20px;
+  color: #F32818;
+}
+
+.Bookmarks-category-delete-danger p {
+  margin-top: 10px;
+}
+
+.Bookmarks-category-delete-danger div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.Bookmarks-category-delete-danger div button {
+  border:none;
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.Bookmarks-category-delete-danger button:hover {
+  cursor: pointer;
+}
+
+.Bookmarks-category-delete-danger button:first-child {
+  background-color: #F32818;
+  border: none;
+  color: white;
+}
+
+.Bookmarks-category-delete-danger button:last-child {
+  background-color: #F3CB18;
+
 }

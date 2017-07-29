@@ -98,7 +98,13 @@ export function addCategory(name) {
 
 export function deleteCategory(catId) {
   return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
 
+    axios.delete(`/api/bookmarks/${catId}`)
+      .then((res) => {
+        dispatch(setBookmarks({ userId, forRecent: true }));
+      })
   }
 }
 

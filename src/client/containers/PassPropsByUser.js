@@ -43,7 +43,8 @@ export default function(ComposedClass) {
       resetBookmarks: () => dispatch(resetBookmarks()),
       resetTargetBookmarksId: () => dispatch(resetTargetBookmarksId()),
       updateCategoryPrivacy: (data) => dispatch(updateCategoryPrivacy(data)),
-      addCategory: (data) => dispatch(addCategory(data))
+      addCategory: (data) => dispatch(addCategory(data)),
+      deleteCategory: (data) => dispatch(deleteCategory(data))
     }
   )
 

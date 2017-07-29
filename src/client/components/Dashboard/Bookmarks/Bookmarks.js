@@ -21,7 +21,8 @@ class Bookmarks extends React.Component {
 
     this.state = {
       clickedId: null,
-      nextCategory: ''
+      nextCategory: '',
+      deleteCatIdFocused: null
     }
 
     this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
@@ -29,6 +30,24 @@ class Bookmarks extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleSubmitCategory = this.handleSubmitCategory.bind(this);
     this.handlePrivacyChange = this.handlePrivacyChange.bind(this);
+    this.handleDeleteFocus = this.handleDeleteFocus.bind(this);
+    this.handleDeleteCat = this.handleDeleteCat.bind(this);
+  }
+
+  handleDeleteCat(catId) {
+    this.props.deleteCategory(catId);
+    this.setState({ deleteCatIdFocused: null });
+  }
+
+  handleDeleteFocus(catId) {
+    this.setState(prevState => {
+      if (prevState.deleteCatIdFocused) {
+        return { deleteCatIdFocused: null };
+      }
+      else {
+        return { deleteCatIdFocused: catId };
+      }
+    });
   }
 
   handleMsgClick(id) {
@@ -115,7 +134,11 @@ class Bookmarks extends React.Component {
                             onClick={category.catId === 11 ? null : () => this.handlePrivacyChange(category)}
                           >
                             {category.privacy ? <FaOpen /> : <FaLocked />}
-                            <p>{category.privacy ? 'Public' : 'Private'}</p>
+                            {
+                              category.catId === 11 ?
+                                <p>Always Private</p>
+                              : <p>{category.privacy ? 'Public' : 'Private'}</p>
+                            }
                           </div>
                         : null
                       }
@@ -150,26 +173,47 @@ class Bookmarks extends React.Component {
                                 </p>
                               </div>
                             </div>
-
-                            {
-                              this.state.clickedId === msg.messageId ?
-                                <div className="Bookmarks-message-tools">
-                                  <FaMessage className="Bookmarks-icon Boomarks-icon-message"/>
-                                  <FaPerson className="Bookmarks-icon Bookmarks-icon-person" />
-                                  <FaTrash
-                                    className="Bookmarks-icon Bookmarks-icon-trash"
-                                    onClick={() => this.handleMsgUnbookmark(msg.starredMessageId)}
-                                  />
-                                </div>
-                              : null
-                            }
                           </div>
                         ))
                       : <p className="Bookmarks-default-msg">No bookmarks here yet.</p>
                     }
+
+                    {
+                      this.props.currentUserId === this.props.targetBookmarksId && category.catId !== 11 ?
+                        <button
+                          className="Bookmarks-category-delete"
+                          onClick={() => this.handleDeleteFocus(category.catId)}
+                        >
+                          Delete Category
+                        </button>
+                      : null
+                    }
+
+                    {
+                      category.catId === this.state.deleteCatIdFocused &&   this.props.currentUserId === this.props.targetBookmarksId && category.catId !== 11 ?
+                        <div className="Bookmarks-category-delete-danger">
+                          <h4>Danger Zone</h4>
+                          <p>Do you want to delete this category and all the bookmarks within it?</p>
+                          <div>
+                            <button
+                              onClick={() => this.handleDeleteCat(category.catId)}
+                            >
+                              Yes
+                            </button>
+
+                            <button onClick={() => this.handleDeleteFocus(null)}
+                            >
+                              No, leave danger zone
+                            </button>
+                          </div>
+                        </div>
+                      : null
+                    }
                   </div>
                 ))
-              : <p className="Bookmarks-default-msg">This persons categories are private.</p>
+              : <p className="Bookmarks-default-msg">
+                  This persons categories are private.
+                </p>
             }
           </div>
         </div>
