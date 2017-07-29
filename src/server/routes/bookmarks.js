@@ -64,6 +64,10 @@ router.get('/recent/:userId', (req, res, next) => {
     .then((bookmarks) => {
       res.send(bookmarks);
     })
+    .catch((err) => {
+      console.log('here');
+      console.error(err);
+    })
 });
 
 router.post('/category', (req, res, next) => {
@@ -80,7 +84,6 @@ router.post('/category', (req, res, next) => {
 router.put('/', (req, res, next) => {
   const { userId, catId, privacy } = req.body;
 
-  console.log(req.body);
   if (catId === 11) {
     res.send('The general category cannot be public.');
   }
