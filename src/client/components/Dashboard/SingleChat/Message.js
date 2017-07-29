@@ -4,6 +4,7 @@ import FaBookmark from 'react-icons/lib/ti/bookmark';
 
 import Utilities from '../../../utilities/Utilities';
 import CreateBookmark from './CreateBookmark';
+import UserIdentifier from '../UserIdentifier/UserIdentifier';
 
 const Message = ({
   message,
@@ -17,15 +18,21 @@ const Message = ({
   bookmarkMsgId,
   categories,
   handleExitBookmarking,
-  bookmarkMsg
+  bookmarkMsg,
+  updateMain,
+  updateTargetUserId
 }) => (
   <div className={messageClass}>
     {
       user ?
         <div className="SingleChat-message-info">
-          <p className="SingleChat-user-message">
-            {`${user.firstName} ${user.lastName}`}
-          </p>
+          <UserIdentifier
+            userId={user.id}
+            firstName={user.firstName}
+            lastName={user.lastName}
+            updateMain={updateMain}
+            updateTargetUserId={updateTargetUserId}
+          />
 
           <p className="SingleChat-time-message">
             {moment(message.createdAt).format('H:mm A')}

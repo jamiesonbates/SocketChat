@@ -10,6 +10,7 @@ import wrapSingleChat from '../../../containers/WrapSingleChat';
 import { showUserProfileType } from '../../../state/actionTypes';
 import Message from './Message';
 import Typing from './Typing';
+import UserIdentifier from '../UserIdentifier/UserIdentifier';
 import Utilities from '../../../utilities/Utilities';
 
 class SingleChat extends React.Component {
@@ -88,6 +89,8 @@ class SingleChat extends React.Component {
               bookmarkMsgId={this.state.bookmarkMsgId}
               categories={this.props.categories}
               bookmarkMsg={this.props.bookmarkMsg}
+              updateMain={this.props.updateMain}
+              updateTargetUserId={this.props.updateTargetUserId}
             />
           </div>
         </div>
@@ -225,9 +228,14 @@ class SingleChat extends React.Component {
                     <div
                       key={i}
                       className="SingleChat-user"
-                      onClick={() => this.handleClickOnUser(user.id)}
                     >
-                      <p>{`${user.firstName} ${user.lastName}`}</p>
+                      <UserIdentifier
+                        userId={user.id}
+                        firstName={user.firstName}
+                        lastName={user.lastName}
+                        updateMain={this.props.updateMain}
+                        updateTargetUserId={this.props.updateTargetUserId}
+                      />
                       {
                         this.userIsOnline(user.id) ?
                           <div className="SingleChat-userIsOnline"></div>

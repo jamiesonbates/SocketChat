@@ -54,13 +54,12 @@
   color: #575757;
 }
 
-.SingleChat-user p, .SingleChat-user div {
+.SingleChat-user p {
   margin: 2px;
 }
 
-.SingleChat-user:hover {
-  cursor: pointer;
-  color: #4D64BF;
+.SingleChat-user div {
+  margin: 2px;
 }
 
 .SingleChat-messages-container {
@@ -120,12 +119,8 @@
 
 .SingleChat-message-info p {
   margin: 0 3px 6px;
-}
-
-.SingleChat-user-message {
   font-size: 13px;
 }
-
 .SingleChat-time-message {
   font-size: 13px;
 }
