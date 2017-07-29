@@ -1,113 +1,58 @@
 'use strict';
 
-const authSuccess = 'AUTH_SUCCESS';
-const authFailure = 'AUTH_FAILURE';
-const loginSuccess = 'LOGIN_SUCCESS';
-const loginFailure = 'LOGIN_FAILURE';
-const signupSuccess = 'SIGNUP_SUCCESS';
-const signupFailure = 'SIGNUP_FAILURE';
-const chatsSuccess = 'CHATS_SUCCESS';
-const newSingleChat = 'NEW_SINGLE_CHAT';
-const addNewMessage = 'ADD_NEW_MESSAGE';
-const updateSingleChat = 'UPDATE_SINGLE_CHAT';
-const userNowOnline = 'USER_NOW_ONLINE';
-const userNowOffline = 'USER_NOW_OFFLINE';
-const connectType = 'CONNECT';
-const disconnectType = 'DISCONNECT';
-const manageRoomType = 'MANAGE_ROOM';
-const sendMessageType = 'SEND_MESSAGE';
-const startedTypingType = 'STARTED_TYPING';
-const stoppedTypingType = 'STOPPED_TYPING';
-const someoneStartedTypingType = 'SOMEONE_STARTED_TYPING';
-const someoneStoppedTypingType = 'SOMEONE_STOPPED_TYPING';
-const notifyCommonUsersType = 'NOTIFY_COMMON_USERS';
-const setUsersOnlineType = 'SET_USERS_ONLINE';
-const showChatType = 'SHOW_CHAT';
-const showBookmarksType = 'SHOW_BOOKMARKS';
-const showDefaultMainType = 'SHOW_DEFAULT_MAIN';
-const showChatsListType = 'SHOW_CHATS_LIST';
-const showAddChatType = 'SHOW_ADD_CHAT';
-const showGroupFormType = 'SHOW_GROUP_FORM';
-const updateGroupNameType = 'UPDATE_GROUP_NAME';
-const updateSearchTermType = 'UPDATE_SEARCH_TERM';
-const updateContactsType = 'UPDATE_CONTACTS';
-const addNewGroupMemberType = 'ADD_NEW_GROUP_MEMBER';
-const setUserProfileType = 'SET_USER_PROFILE';
-const resetUserProfileType = "RESET_USER_PROFILE";
-const noUserProfileMatchType = 'NO_USER_PROFILE_MATCH';
-const showUserProfileType = 'SHOW_USER_PROFILE';
-const exitUserProfileType = 'EXIT_USER_PROFILE';
-const setTargetUserIdType = 'SET_TARGET_USERID';
-const setTargetBookmarksIdType = 'SET_TARGET_BOOKMARKS_ID';
-const setBookmarksType = 'SET_BOOKMARKS';
-const updateBookmarksInChatType = 'UPDATE_BOOKMARKS_IN_CHAT';
-const resetBookmarksType = 'RESET_BOOKMARKS';
-const resetTargetBookmarksIdType = 'RESET_TARGET_BOOKMARKS_ID';
-const setUsersCategoriesType = 'SET_USERS_CATEGORIES';
-const showContactsListType = 'SHOW_CONTACTS_LIST';
-const exitContactsListType = 'EXIT_CONTACTS_LIST';
-const setRecentBookmarksType = 'SET_RECENT_BOOKMARKS';
-const updateChatSeenType = 'UPDATE_CHAT_SEEN';
-const resetSingleChatType = 'RESET_SINGLE_CHAT';
-const updateChatViewHistoryType = 'UPDATE_CHAT_VIEW_HISTORY';
-const updateNewMessageCountType = 'UPDATE_NEW_MESSAGE_COUNT';
-const setChatViewHistoryType = 'SET_CHAT_VIEW_HISTORY';
-const updateChatLastSeenType = 'UPDATE_CHAT_LAST_SEEN';
-const updateCategoryPrivacyType = 'UPDATE_CATEGORY_PRIVACY';
-
-export {
-  authSuccess,
-  authFailure,
-  loginSuccess,
-  loginFailure,
-  signupSuccess,
-  signupFailure,
-  chatsSuccess,
-  newSingleChat,
-  addNewMessage,
-  updateSingleChat,
-  userNowOnline,
-  userNowOffline,
-  connectType,
-  disconnectType,
-  manageRoomType,
-  sendMessageType,
-  startedTypingType,
-  stoppedTypingType,
-  someoneStartedTypingType,
-  someoneStoppedTypingType,
-  notifyCommonUsersType,
-  setUsersOnlineType,
-  showChatType,
-  showBookmarksType,
-  showDefaultMainType,
-  showChatsListType,
-  showAddChatType,
-  showGroupFormType,
-  updateGroupNameType,
-  updateSearchTermType,
-  updateContactsType,
-  addNewGroupMemberType,
-  setUserProfileType,
-  resetUserProfileType,
-  noUserProfileMatchType,
-  showUserProfileType,
-  exitUserProfileType,
-  setTargetUserIdType,
-  setTargetBookmarksIdType,
-  setBookmarksType,
-  updateBookmarksInChatType,
-  resetBookmarksType,
-  resetTargetBookmarksIdType,
-  setUsersCategoriesType,
-  showContactsListType,
-  exitContactsListType,
-  setRecentBookmarksType,
-  updateChatSeenType,
-  resetSingleChatType,
-  updateChatViewHistoryType,
-  updateNewMessageCountType,
-  setChatViewHistoryType,
-  updateChatLastSeenType,
-  updateCategoryPrivacyType
-}
+export const authSuccess = 'AUTH_SUCCESS';
+export const authFailure = 'AUTH_FAILURE';
+export const loginSuccess = 'LOGIN_SUCCESS';
+export const loginFailure = 'LOGIN_FAILURE';
+export const signupSuccess = 'SIGNUP_SUCCESS';
+export const signupFailure = 'SIGNUP_FAILURE';
+export const chatsSuccess = 'CHATS_SUCCESS';
+export const newSingleChat = 'NEW_SINGLE_CHAT';
+export const addNewMessage = 'ADD_NEW_MESSAGE';
+export const updateSingleChat = 'UPDATE_SINGLE_CHAT';
+export const userNowOnline = 'USER_NOW_ONLINE';
+export const userNowOffline = 'USER_NOW_OFFLINE';
+export const connectType = 'CONNECT';
+export const disconnectType = 'DISCONNECT';
+export const manageRoomType = 'MANAGE_ROOM';
+export const sendMessageType = 'SEND_MESSAGE';
+export const startedTypingType = 'STARTED_TYPING';
+export const stoppedTypingType = 'STOPPED_TYPING';
+export const someoneStartedTypingType = 'SOMEONE_STARTED_TYPING';
+export const someoneStoppedTypingType = 'SOMEONE_STOPPED_TYPING';
+export const notifyCommonUsersType = 'NOTIFY_COMMON_USERS';
+export const setUsersOnlineType = 'SET_USERS_ONLINE';
+export const showChatType = 'SHOW_CHAT';
+export const showBookmarksType = 'SHOW_BOOKMARKS';
+export const showDefaultMainType = 'SHOW_DEFAULT_MAIN';
+export const showChatsListType = 'SHOW_CHATS_LIST';
+export const showAddChatType = 'SHOW_ADD_CHAT';
+export const showGroupFormType = 'SHOW_GROUP_FORM';
+export const updateGroupNameType = 'UPDATE_GROUP_NAME';
+export const updateSearchTermType = 'UPDATE_SEARCH_TERM';
+export const updateContactsType = 'UPDATE_CONTACTS';
+export const addNewGroupMemberType = 'ADD_NEW_GROUP_MEMBER';
+export const setUserProfileType = 'SET_USER_PROFILE';
+export const resetUserProfileType = "RESET_USER_PROFILE";
+export const noUserProfileMatchType = 'NO_USER_PROFILE_MATCH';
+export const showUserProfileType = 'SHOW_USER_PROFILE';
+export const exitUserProfileType = 'EXIT_USER_PROFILE';
+export const setTargetUserIdType = 'SET_TARGET_USERID';
+export const setTargetBookmarksIdType = 'SET_TARGET_BOOKMARKS_ID';
+export const setBookmarksType = 'SET_BOOKMARKS';
+export const updateBookmarksInChatType = 'UPDATE_BOOKMARKS_IN_CHAT';
+export const resetBookmarksType = 'RESET_BOOKMARKS';
+export const resetTargetBookmarksIdType = 'RESET_TARGET_BOOKMARKS_ID';
+export const setUsersCategoriesType = 'SET_USERS_CATEGORIES';
+export const showContactsListType = 'SHOW_CONTACTS_LIST';
+export const exitContactsListType = 'EXIT_CONTACTS_LIST';
+export const setRecentBookmarksType = 'SET_RECENT_BOOKMARKS';
+export const updateChatSeenType = 'UPDATE_CHAT_SEEN';
+export const resetSingleChatType = 'RESET_SINGLE_CHAT';
+export const updateChatViewHistoryType = 'UPDATE_CHAT_VIEW_HISTORY';
+export const updateNewMessageCountType = 'UPDATE_NEW_MESSAGE_COUNT';
+export const setChatViewHistoryType = 'SET_CHAT_VIEW_HISTORY';
+export const updateChatLastSeenType = 'UPDATE_CHAT_LAST_SEEN';
+export const updateCategoryPrivacyType = 'UPDATE_CATEGORY_PRIVACY';
+export const showEditProfileType = 'SHOW_EDIT_PROFILE';
+export const updateUserProfileType = 'UPDATE_USER_PROFILE';

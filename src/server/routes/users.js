@@ -58,4 +58,50 @@ router.post('/', (req, res, next) => {
     });
 });
 
+router.put('/', (req, res, next) => {
+  console.log(req.body);
+  const { first_name, last_name, username, email} = decamelizeKeys(req.body);
+
+  db('users')
+    .update({ first_name, last_name, username, email })
+    .where('id', req.body.userId)
+    .returning('*')
+    .then((data) => {
+      const user = data[0];
+
+      delete user.h_pw;
+      delete user.online;
+      delete user.created_at;
+      delete user.updated_at;
+
+      res.send(camelizeKeys(user));
+    })
+});
+
+router.post('/verify_username', (req, res, next) => {
+  db('users')
+    .where('username', req.body.username)
+    .then((data) => {
+      if (data.length) {
+        res.send('Username already exists');
+      }
+      else {
+        res.send(data);
+      }
+    })
+});
+
+router.post('/verify_email', (req, res, next) => {
+  db('users')
+    .where('email', req.body.email)
+    .then((data) => {
+      if (data.length) {
+        res.send('Email already in use');
+      }
+      else {
+        res.send(data);
+      }
+    });
+})
+
 module.exports = router;

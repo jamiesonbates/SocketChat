@@ -1,10 +1,13 @@
+import axios from 'axios';
+
 import {
   setUserProfileType,
   resetUserProfileType,
   noUserProfileMatchType,
   setTargetUserIdType,
   setTargetBookmarksIdType,
-  resetTargetBookmarksIdType
+  resetTargetBookmarksIdType,
+  updateUserProfileType
 } from '../actionTypes';
 
 export function updateUserProfile(targetUserId) {
@@ -53,5 +56,33 @@ export function updateTargetBookmarksId(userId) {
 export function resetTargetBookmarksId() {
   return {
     type: resetTargetBookmarksIdType
+  }
+}
+
+export function editUserProfile({ firstName, lastName, username, email, userId }) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const curUserId = state.userInfo.id;
+    let nextUserProfile = { ...state.userInfo };
+    console.log(nextUserProfile);
+
+    console.log(userId, curUserId);
+
+    if (userId !== curUserId) {
+      return;
+    }
+
+    axios.put('/api/users', { firstName, lastName, username, email, userId })
+      .then((res) => {
+        nextUserProfile = {
+          ...nextUserProfile,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          username: res.data.username,
+          email: res.data.email
+        }
+
+        dispatch({ type: updateUserProfileType, payload: nextUserProfile });
+      });
   }
 }

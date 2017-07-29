@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { updateUserProfile, updateTargetUserId } from '../state/actions/uniqueUserActions';
+import { updateUserProfile, updateTargetUserId, editUserProfile } from '../state/actions/uniqueUserActions';
 import { setChat, createChat } from '../state/actions/chatActions';
 import { updateMain } from '../state/actions/dashControlActions';
 import { setBookmarks, unBookmarkMsg, resetBookmarks, updateCategoryPrivacy, addCategory, deleteCategory } from '../state/actions/bookmarkActions';
@@ -27,7 +27,9 @@ export default function(ComposedClass) {
       bookmarks: state.bookmarks.bookmarks,
       usersOnline: state.chats.usersOnline,
       currentUserId: state.userInfo.id,
-      allChats: state.chats.allChats
+      allChats: state.chats.allChats,
+      showEditProfile: state.dashControls.showEditProfile,
+      userInfo: state.userInfo
     }
   }
 
@@ -44,7 +46,8 @@ export default function(ComposedClass) {
       resetTargetBookmarksId: () => dispatch(resetTargetBookmarksId()),
       updateCategoryPrivacy: (data) => dispatch(updateCategoryPrivacy(data)),
       addCategory: (data) => dispatch(addCategory(data)),
-      deleteCategory: (data) => dispatch(deleteCategory(data))
+      deleteCategory: (data) => dispatch(deleteCategory(data)),
+      editUserProfile: (data) => dispatch(editUserProfile(data))
     }
   )
 

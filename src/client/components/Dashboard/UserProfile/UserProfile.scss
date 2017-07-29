@@ -20,12 +20,16 @@
   margin-bottom: 5px;
 }
 
-.UserProfile-close-icon {
+.UserProfile-nav.edit {
+  justify-content: flex-start;
+}
+
+.UserProfile-close-icon, .UserProfile-back-icon {
   font-size: 25px;
   transition: color 0.15s;
 }
 
-.UserProfile-close-icon:hover {
+.UserProfile-close-icon:hover, .UserProfile-back-icon:hover {
   cursor: pointer;
   color: #4D64BF;
 }
