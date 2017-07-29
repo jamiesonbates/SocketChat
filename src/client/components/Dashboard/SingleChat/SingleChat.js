@@ -76,9 +76,7 @@ class SingleChat extends React.Component {
                 : 'SingleChat-otherUser-color'
               }
               message={message}
-              starred={
-                message.userId === userId ? message.starred : null
-              }
+              starred={message.starred}
               user={
                 message.userId === userId ?
                   null

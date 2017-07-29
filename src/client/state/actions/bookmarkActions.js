@@ -35,7 +35,7 @@ export function updateCategoryPrivacy({ catId, privacy }) {
     const userId = state.userInfo.id;
     const bookmarks = state.bookmarks.bookmarks;
 
-    axios.put(`/api/bookmarks`, { userId, catId, privacy })
+    axios.put(`/api/categories`, { userId, catId, privacy })
       .then((res) => {
         if (typeof res.data === 'string') {
           return;
@@ -59,7 +59,7 @@ export function getRecentBookmarks() {
     const state = getState();
     const userId = state.userInfo.id;
 
-    axios.get(`/api/bookmarks/recent/${userId}`)
+    axios.get(`/api/categories/recent/${userId}`)
       .then(({ data }) => {
         dispatch({ type: setRecentBookmarksType, payload: data });
       })
@@ -77,7 +77,7 @@ export function getCategories() {
     const state = getState();
     const userId = state.userInfo.id;
 
-    axios.get(`/api/bookmarks/categories/${userId}`)
+    axios.get(`/api/categories/${userId}`)
       .then(({ data }) => {
         dispatch({ type: setUsersCategoriesType, payload: data });
       });
@@ -89,7 +89,7 @@ export function addCategory(name) {
     const state = getState();
     const userId = state.userInfo.id;
 
-    axios.post('/api/bookmarks/category', { userId, name })
+    axios.post('/api/categories', { userId, name })
       .then((res) => {
         dispatch(setBookmarks({ userId, forRecent: true }));
       })
@@ -101,7 +101,7 @@ export function deleteCategory(catId) {
     const state = getState();
     const userId = state.userInfo.id;
 
-    axios.delete(`/api/bookmarks/${catId}`)
+    axios.delete(`/api/categories/${catId}`)
       .then((res) => {
         dispatch(setBookmarks({ userId, forRecent: true }));
       })
