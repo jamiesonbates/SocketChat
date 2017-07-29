@@ -113,7 +113,7 @@ class UserProfile extends React.Component {
               userId={this.props.currentUserId}
               updateMain={this.props.updateMain}
             />
-          : <div>
+          : <div className="UserProfile-main-container">
               {
                 this.props.targetUserProfile ?
                   <div className="UserProfile-main">
