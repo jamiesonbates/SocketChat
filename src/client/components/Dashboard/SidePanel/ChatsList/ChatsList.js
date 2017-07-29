@@ -12,7 +12,6 @@ class ChatsList extends React.Component {
   constructor(props) {
     super(props);
 
-    setInterval(this.updateTime.bind(this), 30000);
   }
 
   updateTime() {
@@ -39,6 +38,10 @@ class ChatsList extends React.Component {
     else {
       return `${lastMsgUser.firstName}: ${lastMsg}`;
     }
+  }
+
+  componentDidMount() {
+    setInterval(this.updateTime.bind(this), 30000);
   }
 
   render() {
