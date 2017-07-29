@@ -1,18 +1,5 @@
 import moment from 'moment';
 
-// function timeDisplay(time, type) {
-//   return determineDisplay(time);
-  // switch(type) {
-  //   case 'FOR_CHATS_LIST':
-  //     return determineDisplay(time);
-  //   break;
-  //
-  //   case 'FOR_CHATS_PREV':
-  //     return determineDisplay(time)
-  //   break;
-  // }
-// }
-
 function timeDisplay(time) {
   const nowMil = moment(Date.now()).valueOf();
   const timeMil = moment(time).valueOf();
