@@ -35,7 +35,7 @@ const Message = ({
           />
 
           <p className="SingleChat-time-message">
-            {moment(message.createdAt).format('H:mm A')}
+            {moment(message.createdAt).format('h:mm A')}
           </p>
 
           <FaBookmark
