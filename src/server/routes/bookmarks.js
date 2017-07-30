@@ -24,7 +24,12 @@ router.get('/:userId/:curUserId', (req, res, next) => {
               FROM messages as m
               INNER JOIN starred_messages as sm ON m.id = sm.message_id
               WHERE sm.category_id = ucat.id
-            ) msg) as messages
+            ) msg) as messages,
+          (SELECT sm2.created_at as last_activity
+          FROM starred_messages as sm2
+          WHERE sm2.user_id = ${userId}
+          ORDER BY sm2.created_at DESC
+          LIMIT 1)
           FROM users_categories as ucat
           WHERE (ucat.user_id = ${userId} OR ucat.id = 11) ${privacyClause}) as bookmarks;
   `)

@@ -5,27 +5,26 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 const router = require('express').Router();
 
 router.get('/recent/:userId', (req, res, next) => {
-  console.log('/recent/:userId');
   db('starred_messages as sm')
-  .select(
-    'm.message',
-    'm.created_at as messaged_at',
-    'sm.created_at as starred_at',
-    'u.first_name',
-    'u.last_name',
-    'u.id as sent_by_userId'
-  )
-  .innerJoin('messages as m', 'sm.message_id', 'm.id')
-  .innerJoin('users as u', 'u.id', 'm.user_id')
-  .where('sm.user_id', req.params.userId)
-  .orderBy('sm.created_at', 'DESC')
-  .limit(5)
-  .then((bookmarks) => {
-    res.send(bookmarks);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+    .select(
+      'm.message',
+      'm.created_at as messaged_at',
+      'sm.created_at as starred_at',
+      'u.first_name',
+      'u.last_name',
+      'u.id as sent_by_userId'
+    )
+    .innerJoin('messages as m', 'sm.message_id', 'm.id')
+    .innerJoin('users as u', 'u.id', 'm.user_id')
+    .where('sm.user_id', req.params.userId)
+    .orderBy('sm.created_at', 'DESC')
+    .limit(5)
+    .then((bookmarks) => {
+      res.send(bookmarks);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 router.get('/:userId', (req, res, next) => {
