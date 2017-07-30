@@ -119,7 +119,44 @@ class Bookmarks extends React.Component {
           <div className="Bookmarks-list">
             {
               this.props.bookmarks.length ?
-                this.props.bookmarks.map((category, i) => (
+                this.props.bookmarks
+                  .sort((a, b) => {
+                    let aMil;
+                    let bMil;
+
+                    if (a.catId === 11) { // general always first
+                      return -1;
+                    }
+                    else if (b.catId === 11) {
+                      return 1;
+                    }
+
+                    if (!a.lastActivity && !b.lastActivity) {
+                      aMil = moment(a.catCreatedDate).valueOf();
+                      bMil = moment(b.catCreatedDate).valueOf();
+                    }
+                    else if (!a.lastActivity) {
+                      return 1;
+                    }
+                    else if (!b.lastActivity) {
+                      return -1;
+                    }
+                    else {
+                      aMil = moment(a.lastActivity).valueOf();
+                      bMil = moment(b.lastActivity).valueOf();
+                    }
+
+                    if (aMil > bMil) {
+                      return -1;
+                    }
+                    else if (bMil > aMil) {
+                      return 1;
+                    }
+                    else {
+                      return 0;
+                    }
+                  })
+                  .map((category, i) => (
                   <div key={i} className="Bookmarks-category">
                     <div className="Bookmarks-category-header">
                       <div className="Bookmarks-category-title">
@@ -169,7 +206,7 @@ class Bookmarks extends React.Component {
                                 </p>
 
                                 <p className="Bookmarks-date">
-                                  Bookmarked on: {moment(msg.starred_at).format('M/D/YY')}
+                                  Bookmarked on: {moment(msg.starredAt).format('M/D/YY')}
                                 </p>
                               </div>
                             </div>

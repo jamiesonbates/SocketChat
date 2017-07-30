@@ -14,10 +14,10 @@ router.get('/:userId/:curUserId', (req, res, next) => {
 
   db.raw(`
     SELECT *
-    FROM (SELECT ucat.id as cat_id, ucat.name as cat_name, ucat.privacy,
+    FROM (SELECT ucat.id as cat_id, ucat.name as cat_name, ucat.privacy, ucat.created_at as cat_created_date,
             (SELECT json_agg(msg)
             FROM (
-              SELECT m.message, m.chat_id, m.id as message_id, m.created_at, sm.id as starred_message_id,
+              SELECT m.message, m.chat_id, m.id as message_id, m.created_at, sm.id as starred_message_id, sm.created_at as starred_at,
                 (SELECT u.first_name FROM users as u WHERE u.id = m.user_id),
                 (SELECT u.last_name FROM users as u WHERE u.id = m.user_id),
                 (SELECT u.id as user_id FROM users as u WHERE u.id = m.user_id)
@@ -25,11 +25,11 @@ router.get('/:userId/:curUserId', (req, res, next) => {
               INNER JOIN starred_messages as sm ON m.id = sm.message_id
               WHERE sm.category_id = ucat.id
             ) msg) as messages,
-          (SELECT sm2.created_at as last_activity
-          FROM starred_messages as sm2
-          WHERE sm2.user_id = ${userId}
-          ORDER BY sm2.created_at DESC
-          LIMIT 1)
+            (SELECT sm2.created_at as last_activity
+            FROM starred_messages as sm2
+            WHERE sm2.user_id = ${userId} AND sm2.category_id = ucat.id
+            ORDER BY sm2.created_at DESC
+            LIMIT 1)
           FROM users_categories as ucat
           WHERE (ucat.user_id = ${userId} OR ucat.id = 11) ${privacyClause}) as bookmarks;
   `)
