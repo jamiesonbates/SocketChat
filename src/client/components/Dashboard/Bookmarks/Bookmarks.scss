@@ -66,10 +66,6 @@
 }
 
 .Bookmarks-list {
-  // flex: 1;
-  // width: 100vw;
-  // display: flex;
-  // flex-wrap: nowrap;
   position: absolute;
   top: 0;
   right: 0;
@@ -102,6 +98,10 @@
   width: 300px;
   // max-width: 300px;
   // flex: 0 0 300px;
+}
+
+.Bookmarks-category:-moz-drag-over {
+  background-color: #D1D1D1;
 }
 
 .Bookmarks-category-header {
@@ -157,6 +157,7 @@
 .Bookmarks-message-container {
   padding: 5px 0;
   box-sizing: border-box;
+  background-color: transparent;
 }
 
 .Bookmarks-message:hover {
@@ -249,5 +250,4 @@
 
 .Bookmarks-category-delete-danger button:last-child {
   background-color: #F3CB18;
-
 }

@@ -159,96 +159,99 @@ class Bookmarks extends React.Component {
                 this.props.bookmarks
                   .sort(this.sortBookmarks)
                   .map((category, i) => (
-                  <div key={i} className="Bookmarks-category">
-                    <div className="Bookmarks-category-header">
-                      <div className="Bookmarks-category-title">
-                        <FaStarburst className="Bookmarks-icon"/>
-                        <h3>{category.catName}</h3>
+                    <div
+                      key={i}
+                      className="Bookmarks-category"
+                    >
+                      <div className="Bookmarks-category-header">
+                        <div className="Bookmarks-category-title">
+                          <FaStarburst className="Bookmarks-icon"/>
+                          <h3>{category.catName}</h3>
+                        </div>
+
+                        {
+                          this.props.currentUserId === this.props.targetBookmarksId ?
+                            <div
+                              className={category.catId === 11 ? 'Bookmarks-category-privacy always-private' : 'Bookmarks-category-privacy'}
+                              onClick={category.catId === 11 ? null : () => this.handlePrivacyChange(category)}
+                            >
+                              {category.privacy ? <FaOpen /> : <FaLocked />}
+                              {
+                                category.catId === 11 ?
+                                  <p>Always Private</p>
+                                : <p>{category.privacy ? 'Public' : 'Private'}</p>
+                              }
+                            </div>
+                          : null
+                        }
                       </div>
 
                       {
-                        this.props.currentUserId === this.props.targetBookmarksId ?
-                          <div
-                            className={category.catId === 11 ? 'Bookmarks-category-privacy always-private' : 'Bookmarks-category-privacy'}
-                            onClick={category.catId === 11 ? null : () => this.handlePrivacyChange(category)}
+                        category.messages ?
+                          category.messages.map((msg, i) => (
+                            <div
+                              key={i}
+                              className="Bookmarks-message-container"
+                              onClick={() => this.handleBookmarkClick(msg.chatId)}
+                            >
+                              <div className="Bookmarks-message">
+                                <div className="Bookmarks-message-card">
+                                  <p className="Bookmarks-message-text">
+                                    {
+
+                                      this.props.currentUserId === msg.userId ?
+                                        <span className="Bookmarks-author">
+                                          You said:
+                                        </span>
+                                      : <span
+                                          className="Bookmarks-author">
+                                          {msg.firstName} {msg.lastName} said:
+                                        </span>
+                                    } {msg.message}
+                                  </p>
+
+                                  <p className="Bookmarks-date">
+                                    Bookmarked on: {moment(msg.starredAt).format('M/D/YY')}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        : <p className="Bookmarks-default-msg">No bookmarks here yet.</p>
+                      }
+
+                      {
+                        this.props.currentUserId === this.props.targetBookmarksId && category.catId !== 11 ?
+                          <button
+                            className="Bookmarks-category-delete"
+                            onClick={() => this.handleDeleteFocus(category.catId)}
                           >
-                            {category.privacy ? <FaOpen /> : <FaLocked />}
-                            {
-                              category.catId === 11 ?
-                                <p>Always Private</p>
-                              : <p>{category.privacy ? 'Public' : 'Private'}</p>
-                            }
+                            Delete Category
+                          </button>
+                        : null
+                      }
+
+                      {
+                        category.catId === this.state.deleteCatIdFocused &&   this.props.currentUserId === this.props.targetBookmarksId && category.catId !== 11 ?
+                          <div className="Bookmarks-category-delete-danger">
+                            <h4>Danger Zone</h4>
+                            <p>Do you want to delete this category and all the bookmarks within it?</p>
+                            <div>
+                              <button
+                                onClick={() => this.handleDeleteCat(category.catId)}
+                              >
+                                Yes
+                              </button>
+
+                              <button onClick={() => this.handleDeleteFocus(null)}
+                              >
+                                No, leave danger zone
+                              </button>
+                            </div>
                           </div>
                         : null
                       }
                     </div>
-
-                    {
-                      category.messages ?
-                        category.messages.map((msg, i) => (
-                          <div
-                            key={i}
-                            className="Bookmarks-message-container"
-                            onClick={() => this.handleBookmarkClick(msg.chatId)}
-                          >
-                            <div className="Bookmarks-message">
-                              <div className="Bookmarks-message-card">
-                                <p className="Bookmarks-message-text">
-                                  {
-
-                                    this.props.currentUserId === msg.userId ?
-                                      <span className="Bookmarks-author">
-                                        You said:
-                                      </span>
-                                    : <span
-                                        className="Bookmarks-author">
-                                        {msg.firstName} {msg.lastName} said:
-                                      </span>
-                                  } {msg.message}
-                                </p>
-
-                                <p className="Bookmarks-date">
-                                  Bookmarked on: {moment(msg.starredAt).format('M/D/YY')}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))
-                      : <p className="Bookmarks-default-msg">No bookmarks here yet.</p>
-                    }
-
-                    {
-                      this.props.currentUserId === this.props.targetBookmarksId && category.catId !== 11 ?
-                        <button
-                          className="Bookmarks-category-delete"
-                          onClick={() => this.handleDeleteFocus(category.catId)}
-                        >
-                          Delete Category
-                        </button>
-                      : null
-                    }
-
-                    {
-                      category.catId === this.state.deleteCatIdFocused &&   this.props.currentUserId === this.props.targetBookmarksId && category.catId !== 11 ?
-                        <div className="Bookmarks-category-delete-danger">
-                          <h4>Danger Zone</h4>
-                          <p>Do you want to delete this category and all the bookmarks within it?</p>
-                          <div>
-                            <button
-                              onClick={() => this.handleDeleteCat(category.catId)}
-                            >
-                              Yes
-                            </button>
-
-                            <button onClick={() => this.handleDeleteFocus(null)}
-                            >
-                              No, leave danger zone
-                            </button>
-                          </div>
-                        </div>
-                      : null
-                    }
-                  </div>
                 ))
               : <p className="Bookmarks-default-msg">
                   This persons categories are private.
