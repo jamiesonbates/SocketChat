@@ -37,8 +37,6 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login-container">
-        <Nav />
-
         <div className="Login-form-container">
           <form onSubmit={this.handleSubmit.bind(this)} ref="loginForm" className="Login-form">
             <h2>Login</h2>
