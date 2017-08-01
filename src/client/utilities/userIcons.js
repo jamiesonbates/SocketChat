@@ -1,6 +1,5 @@
 import React from 'react';
-import FaUser from 'react-icons/lib/fa/user';
-
+import FaUser from 'react-icons/lib/ti/user';
 
 function userIconMaker(users, type) {
   switch(type) {
