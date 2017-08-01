@@ -6,12 +6,15 @@
   background-color: #26315E;
   min-width: 335px;
   position: relative;
+  padding-bottom: 5em;
 }
 
-.SidePanel-header {
+.SidePanel-contacts-container {
+  overflow-y: scroll;
+}
+
+.SidePanel-footer {
   background-color: #1D2547;
-  position: absolute;
-  bottom: 0;
   padding: 15px 0;
   width: 100%;
   display: flex;
@@ -19,6 +22,8 @@
   align-items: center;
   z-index: 99;
   box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
 }
 
 .SidePanel-logo-icon {
@@ -26,7 +31,7 @@
   font-size: 2em;
 }
 
-.SidePanel-header h1 {
+.SidePanel-footer h1 {
   color: white;
   font-weight: 900;
   font-size: 2em;

@@ -64,7 +64,7 @@ class SidePanel extends React.Component {
               determineChatHeader={this.props.determineChatHeader.bind(this)}
             />
           : this.props.showContactsList ?
-              <div>
+              <div className="SidePanel-contacts-container">
                 <SearchContacts
                   updateSearchTerm={this.props.updateSearchTerm}
                   searchTermVal={this.props.searchTerm}
@@ -100,7 +100,7 @@ class SidePanel extends React.Component {
 
         }
 
-        <div className="SidePanel-header">
+        <div className="SidePanel-footer">
           <FaWaves className="SidePanel-logo-icon"/>
           <h1>Socket Chat</h1>
         </div>
