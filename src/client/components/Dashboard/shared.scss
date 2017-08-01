@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 
-$IconBackground: #1D2547;
-$IconColor: white;
+$SideIconBackground: #1D2547;
+$SideIconColor: white;
 
 .icon {
   height: 100%;
@@ -15,16 +15,16 @@ $IconColor: white;
 }
 
 .UserIcon-contact {
-  background-color: $IconBackground;
+  background-color: $SideIconBackground;
   font-size: 18px;
-  color: $IconColor;
+  color: $SideIconColor;
 }
 
 .UserIcon-chat {
   background-color: inherit;
-  border: 1px solid white;
+  border: 1px solid #575757;
   box-sizing: border-box;
-  color: $IconColor;
+  color: #575757;
 }
 
 .UserIcon-standard-container {
@@ -33,14 +33,14 @@ $IconColor: white;
 }
 
 .UserIcon-side {
-  background-color: $IconBackground;
+  background-color: $SideIconBackground;
   box-sizing: border-box;
   border: 1px solid white;
-  color: $IconColor;
+  color: $SideIconColor;
 }
 
 .UserIcon-standard {
-  background-color: $IconBackground;
+  background-color: $SideIconBackground;
   height: 50%;
   width: 50%;
   border-radius: 50%;
@@ -49,12 +49,12 @@ $IconColor: white;
   justify-content: center;
   border: 1px solid white;
   box-sizing: border-box;
-  color: $IconColor;
+  color: $SideIconColor;
 }
 
 .UserIcon-standard h3 {
-  color: $IconColor;
-  font-size: 10px;
+  color: $SideIconColor;
+  font-size: 11px;
 }
 
 .UserIcon-standard.top {
@@ -77,6 +77,6 @@ $IconColor: white;
 
 .UserIcon-standard-user {
   align-self: flex-end;
-  color: $IconColor;
+  color: $SideIconColor;
   width: 85%;
 }
