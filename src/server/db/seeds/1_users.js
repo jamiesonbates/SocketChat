@@ -33,6 +33,46 @@ exports.seed = function(knex, Promise) {
           username: 'reedspeegle',
           email: 'reedspeegle@gmail.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
+        },
+        {
+          id: 5,
+          first_name: 'Ian',
+          last_name: 'Bates',
+          username: 'ianbates',
+          email: 'ian@ianbates.com',
+          h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
+        },
+        {
+          id: 6,
+          first_name: 'Todd',
+          last_name: 'Bates',
+          username: 'toddbates',
+          email: 'todd@toddbates.com',
+          h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
+        },
+        {
+          id: 7,
+          first_name: 'Andrea',
+          last_name: 'Bates',
+          username: 'andreabates',
+          email: 'andrea@andreabates.com',
+          h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
+        },
+        {
+          id: 8,
+          first_name: 'Todd',
+          last_name: 'Bates',
+          username: 'toddbbates',
+          email: 'toddb@toddbbates.com',
+          h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
+        },
+        {
+          id: 9,
+          first_name: 'Jonathan',
+          last_name: 'Allen',
+          username: 'jonallen',
+          email: 'jon@jonallen.com',
+          h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         }
       ]);
     })

@@ -18,12 +18,17 @@ router.get('/find/:searchTerm/:userId', (req, res, next) => {
     SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online
     FROM users as u
     WHERE u.id != ${userId}
+    AND u.id NOT IN (
+      SELECT uc.user_id2
+      FROM user_contacts as uc
+      WHERE uc.user_id1 = ${userId}
+    )
     ${clause}
     ORDER BY u.first_name DESC
     LIMIT 100;
     `)
-    .then((result) => {
-      res.send(camelizeKeys(result.rows));
+    .then((data) => {
+      res.send(camelizeKeys(data.rows));
     });
 });
 
@@ -32,11 +37,13 @@ router.get('/known/:userId', (req, res, next) => {
     .then((data) => {
       const contacts = data.rows;
 
+      console.log(contacts);
+
       res.send(camelizeKeys(contacts));
     })
     .catch((err) => {
       next(err);
-    })
+    });
 });
 
 

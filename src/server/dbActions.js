@@ -24,7 +24,7 @@ function getContacts(userId) {
   return db.raw(`
     SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online
     FROM users as u
-    WHERE EXISTS (
+    WHERE u.id IN (
       SELECT uc.user_id2
       FROM user_contacts as uc
       WHERE uc.user_id1 = ${userId}
