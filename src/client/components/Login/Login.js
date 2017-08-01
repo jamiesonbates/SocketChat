@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import FaWaves from 'react-icons/lib/ti/waves-outline';
 
 import './Login.css';
 import Nav from '../Nav/Nav';
@@ -37,6 +38,11 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login-container">
+        <div className="Login-header">
+          <FaWaves className="Login-logo-icon"/>
+          <h1>Socket Chat</h1>
+        </div>
+
         <div className="Login-form-container">
           <form onSubmit={this.handleSubmit.bind(this)} ref="loginForm" className="Login-form">
             <h2>Login</h2>
@@ -59,11 +65,11 @@ class Login extends React.Component {
             <button
               type="submit"
               className="Login-btn">
-              Login
+              Submit
             </button>
           </form>
 
-          <Link to='/signUp'>Sign Up</Link>
+          <Link className="Login-signup" to='/signUp'>New here? Sign Up</Link>
         </div>
       </div>
     )
