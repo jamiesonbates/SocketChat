@@ -5,4 +5,30 @@
   flex-direction: column;
   background-color: #26315E;
   min-width: 335px;
+  position: relative;
+}
+
+.SidePanel-header {
+  background-color: #1D2547;
+  position: absolute;
+  bottom: 0;
+  padding: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  box-sizing: border-box;
+}
+
+.SidePanel-logo-icon {
+  color: white;
+  font-size: 2em;
+}
+
+.SidePanel-header h1 {
+  color: white;
+  font-weight: 900;
+  font-size: 2em;
+  font-family: 'Lobster';
 }

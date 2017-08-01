@@ -1,4 +1,5 @@
 import React from 'react';
+import FaWaves from 'react-icons/lib/ti/waves-outline';
 
 import wrapSidePanel from '../../../containers/WrapSidePanel';
 import ChatsList from './ChatsList/ChatsList';
@@ -73,6 +74,11 @@ class SidePanel extends React.Component {
             : <AddChat />
 
         }
+
+        <div className="SidePanel-header">
+          <FaWaves className="SidePanel-logo-icon"/>
+          <h1>Socket Chat</h1>
+        </div>
       </div>
     )
   }
