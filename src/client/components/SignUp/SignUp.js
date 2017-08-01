@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FaWaves from 'react-icons/lib/ti/waves-outline';
 
 import './SignUp.css';
 import Nav from '../Nav/Nav';
@@ -36,7 +37,7 @@ class SignUp extends React.Component {
 
       return;
     }
-    
+
     if (password.length < 8) {
       this.props.signupError('Password must be longer than 8 characters.');
 
@@ -50,35 +51,38 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="SignUp-container">
-        <Nav />
+        <div className="SignUp-header">
+          <FaWaves className="Login-logo-icon"/>
+          <h1>Socket Chat</h1>
+        </div>
 
-        <div className="Signup-form-container">
-          <h2>Sign Up</h2>
+        <div className="SignUp-form-container">
+          <form onSubmit={this.handleSubmit.bind(this)} ref="signupForm" className="SignUp-form">
+            <h2>Sign Up</h2>
 
-          <form onSubmit={this.handleSubmit.bind(this)} ref="signupForm" className="Signup-form">
-            <div className="Signup-input-container">
+            <div className="SignUp-input-container">
               <input type="text" ref="firstName" placeholder="First Name"/>
             </div>
 
-            <div className="Signup-input-container">
+            <div className="SignUp-input-container">
               <input type="text" ref="lastName" placeholder="Last Name"/>
             </div>
 
-            <div className="Signup-input-container">
+            <div className="SignUp-input-container">
               <input type="text" ref="username" placeholder="Username"/>
             </div>
 
-            <div className="Signup-input-container">
+            <div className="SignUp-input-container">
               <input type="text" ref="email" placeholder="Email"/>
             </div>
 
-            <div className="Signup-input-container">
+            <div className="SignUp-input-container">
               <input type="password" ref="password" placeholder="Password"/>
             </div>
 
             {
               this.props.errors.signup ?
-                <div className="Signup-error">
+                <div className="SignUp-error">
                   <p>{this.props.errors.signup}</p>
                 </div>
               :
@@ -87,12 +91,12 @@ class SignUp extends React.Component {
 
             <button
               type="submit"
-              className="Signup-btn">
+              className="SignUp-btn">
               Start
             </button>
           </form>
 
-          <Link to='/login'>Login</Link>
+          <Link className="SignUp-login" to='/login'>Already chatting? Login</Link>
         </div>
       </div>
     )
