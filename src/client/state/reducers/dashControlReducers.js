@@ -57,7 +57,8 @@ export default function reducer(state={
         showChatsList: true,
         showAddChat: false,
         showGroupForm: false,
-        showContactsList: false
+        showContactsList: false,
+        searchForOtherUsers: false
       }
 
     case showAddChatType:

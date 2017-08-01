@@ -1,5 +1,6 @@
 import React from 'react';
 import FaWaves from 'react-icons/lib/ti/waves-outline';
+import FaDown from 'react-icons/lib/ti/arrow-sorted-down';
 
 import wrapSidePanel from '../../../containers/WrapSidePanel';
 import ChatsList from './ChatsList/ChatsList';
@@ -42,7 +43,37 @@ class SidePanel extends React.Component {
 
   handleSearchForOtherUsers() {
     this.props.updateSide(searchForOtherUsersType);
-    this.props.findContacts();
+  }
+
+  handleAddSingleChat(userId) {
+    let chatId;
+
+    const chatExists = this.props.allChats.filter(chat => {
+      if (chat.users.length < 3) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    })
+    .reduce((acc, chat) => {
+      for (const user of chat.users) {
+        if (user.id === userId) {
+          chatId = chat.id;
+          acc = true;
+          return acc;
+        }
+      }
+
+      return acc;
+    }, false);
+
+    if (chatExists) {
+      this.props.setChat(chatId);
+    }
+    else {
+      this.props.createChat([userId]);
+    }
   }
 
   render() {
@@ -74,7 +105,7 @@ class SidePanel extends React.Component {
                   header={'Your Contacts'}
                   contacts={this.props.usersContacts}
                   searchTerm={this.props.searchTerm}
-                  handleContactClick={this.handleNavToContacts.bind(this)}
+                  handleContactClick={this.handleAddSingleChat.bind(this)}
                 />
 
                 {
@@ -83,20 +114,31 @@ class SidePanel extends React.Component {
                       header={'Other Users'}
                       contacts={this.props.otherContacts}
                       searchTerm={this.props.searchTerm}
-                      handleContactClick={this.handleNavToContacts.bind(this)}
+                      handleContactClick={this.handleAddSingleChat.bind(this)}
                     />
                   : null
                 }
 
                 {
                   !this.props.searchForOtherUsers ?
-                    <div className="SidePanel-search-other-users" onClick={this.handleSearchForOtherUsers.bind(this)}>
-                      Search for others using socket chat
+                    <div
+                      className="SidePanel-search-other-users"
+                      onClick={this.handleSearchForOtherUsers.bind(this)}>
+                      <div className="container">
+                        <FaWaves className="SidePanel-search-other-users-icon waves" />
+
+                        <p>Find new people</p>
+                      </div>
+
+                      <FaDown className="SidePanel-search-other-users-icon" />
                     </div>
                   : null
                 }
               </div>
-            : <AddChat />
+            : <AddChat
+                handleSearchForOtherUsers={this.handleSearchForOtherUsers.bind(this)}
+                handleAddSingleChat={this.handleAddSingleChat.bind(this)}
+              />
 
         }
 

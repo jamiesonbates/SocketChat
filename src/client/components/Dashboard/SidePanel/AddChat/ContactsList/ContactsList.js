@@ -31,17 +31,23 @@ class ContactsList extends React.Component {
       <div className="ContactsList-container">
         <h3 className="ContactsList-header">{this.props.header}</h3>
         {
-          this.filterContacts().map((contact, i) => (
-            <div
-              key={i}
-              className="ContactsList-contact"
-              onClick={() => this.props.handleContactClick(contact.id)}>
-              <div className="ContactsList-icon-container">
-                {Utilities.userIconMaker([contact], 'FOR_CONTACT')}
-              </div>
-              <p>{contact.firstName} {contact.lastName}</p>
+          this.props.contacts.length ?
+            <div>
+              {
+                this.filterContacts().map((contact, i) => (
+                  <div
+                    key={i}
+                    className="ContactsList-contact"
+                    onClick={() => this.props.handleContactClick(contact.id)}>
+                    <div className="ContactsList-icon-container">
+                      {Utilities.userIconMaker([contact], 'FOR_CONTACT')}
+                    </div>
+                    <p>{contact.firstName} {contact.lastName}</p>
+                  </div>
+                ))
+              }
             </div>
-          ))
+          : <p>Search to find contacts.</p>
         }
       </div>
     )

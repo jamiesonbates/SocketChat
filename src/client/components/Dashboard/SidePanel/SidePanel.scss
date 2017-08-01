@@ -39,5 +39,32 @@
 }
 
 .SidePanel-search-other-users {
-  padding: 20px 0;
+  padding: 10px;
+  margin: 20px 10px 10px;
+  border-radius: 3px;
+  background-color: #4D64BF;
+  color: white;
+  font-family: 'Lato';
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SidePanel-search-other-users:hover {
+  background-color: #40539E;
+  cursor: pointer;
+}
+
+.SidePanel-search-other-users-icon {
+  color: white;
+  font-size: 2em;
+}
+
+.SidePanel-search-other-users-icon.waves {
+  margin-right: 5px;
+}
+
+.SidePanel-search-other-users .container {
+  display: flex;
+  align-items: center;
 }

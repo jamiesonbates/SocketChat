@@ -69,7 +69,7 @@ class ChatsList extends React.Component {
                       userId={this.props.userId}
                       determineChatHeader={this.props.determineChatHeader}
                       determineLastMessage={this.determineLastMessage.bind(this)}
-                      time={Utilities.timeDisplay(chat.messages[chat.messages.length - 1].createdAt)}
+                      time={chat.messages ? Utilities.timeDisplay(chat.messages[chat.messages.length - 1].createdAt) : null}
                     />
                   }
                 </div>

@@ -24,8 +24,7 @@ router.get('/find/:searchTerm/:userId', (req, res, next) => {
       WHERE uc.user_id1 = ${userId}
     )
     ${clause}
-    ORDER BY u.first_name DESC
-    LIMIT 100;
+    ORDER BY u.first_name DESC;
     `)
     .then((data) => {
       res.send(camelizeKeys(data.rows));

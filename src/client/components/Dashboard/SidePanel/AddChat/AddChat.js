@@ -1,5 +1,7 @@
 import React from 'react';
 import FaCheck from 'react-icons/lib/md/check';
+import FaWaves from 'react-icons/lib/ti/waves-outline';
+import FaDown from 'react-icons/lib/ti/arrow-sorted-down';
 
 import ContactsList from './ContactsList/ContactsList';
 import SearchContacts from './SearchContacts/SearchContacts';
@@ -20,38 +22,6 @@ class AddChat extends React.Component {
 
   setGroupName(name) {
     this.props.updateGroupName(name);
-  }
-
-  // exists in multiple places
-  handleAddSingleChat(userId) {
-    let chatId;
-
-    const chatExists = this.props.allChats.filter(chat => {
-      if (chat.users.length < 3) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    })
-    .reduce((acc, chat) => {
-      for (const user of chat.users) {
-        if (user.id === userId) {
-          chatId = chat.id;
-          acc = true;
-          return acc;
-        }
-      }
-
-      return acc;
-    }, false);
-
-    if (chatExists) {
-      this.props.setChat(chatId);
-    }
-    else {
-      this.props.createChat([userId]);
-    }
   }
 
   handleAddMultiChat(userId) {
@@ -113,7 +83,7 @@ class AddChat extends React.Component {
 
   render() {
     return (
-      <div className="Dashboard-side-container">
+      <div className="AddChat-container">
         <div className="AddChat-form-container">
           {
             this.props.showGroupForm ?
@@ -140,22 +110,56 @@ class AddChat extends React.Component {
             : null
           }
         </div>
+        <div className="AddChat-contacts-container">
 
-        {
-          this.props.showGroupForm ?
-            <ContactsList
-              header={'Your Contacts'}
-              contacts={this.props.usersContacts}
-              searchTerm={this.props.searchTerm}
-              handleContactClick={this.handleAddMultiChat.bind(this)}
-            />
-          : <ContactsList
-              header={'Your Contacts'}
-              contacts={this.props.usersContacts}
-              searchTerm={this.props.searchTerm}
-              handleContactClick={this.handleAddSingleChat.bind(this)}
-            />
-        }
+          {
+            this.props.showGroupForm ?
+              <ContactsList
+                header={'Your Contacts'}
+                contacts={this.props.usersContacts}
+                searchTerm={this.props.searchTerm}
+                handleContactClick={this.handleAddMultiChat.bind(this)}
+              />
+            : <ContactsList
+                header={'Your Contacts'}
+                contacts={this.props.usersContacts}
+                searchTerm={this.props.searchTerm}
+                handleContactClick={this.props.handleAddSingleChat}
+              />
+          }
+
+          {
+            this.props.searchForOtherUsers ?
+              this.props.showGroupForm ?
+                <ContactsList
+                  header={'Other Users'}
+                  contacts={this.props.otherContacts}
+                  searchTerm={this.props.searchTerm}
+                  handleContactClick={this.handleAddMultiChat.bind(this)}
+                />
+              : <ContactsList
+                  header={'Other Users'}
+                  contacts={this.props.otherContacts}
+                  searchTerm={this.props.searchTerm}
+                  handleContactClick={this.props.handleAddSingleChat}
+                />
+            : null
+          }
+
+          {
+            !this.props.searchForOtherUsers ?
+              <div className="SidePanel-search-other-users" onClick={this.props.handleSearchForOtherUsers}>
+                <div className="container">
+                  <FaWaves className="SidePanel-search-other-users-icon waves" />
+
+                  <p>Find new people</p>
+                </div>
+
+                <FaDown className="SidePanel-search-other-users-icon" />
+              </div>
+            : null
+          }
+        </div>
       </div>
     )
   }
