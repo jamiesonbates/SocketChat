@@ -8,7 +8,7 @@ import ContactsList from './AddChat/ContactsList/ContactsList';
 import './SidePanel.scss';
 import SideNav from './SideNav/SideNav';
 import SearchContacts from './AddChat/SearchContacts/SearchContacts';
-import { showChatsListType, showUserProfileType, showContactsListType, showDefaultMainType } from '../../../state/actionTypes';
+import { showChatsListType, showUserProfileType, showContactsListType, showDefaultMainType, searchForOtherUsersType } from '../../../state/actionTypes';
 
 class SidePanel extends React.Component {
   constructor(props) {
@@ -40,6 +40,11 @@ class SidePanel extends React.Component {
     this.props.updateMain(showDefaultMainType)
   }
 
+  handleSearchForOtherUsers() {
+    this.props.updateSide(searchForOtherUsersType);
+    this.props.findContacts();
+  }
+
   render() {
     return (
       <div className="SidePanel-container">
@@ -66,10 +71,30 @@ class SidePanel extends React.Component {
                   showGroupForm={false}
                 />
                 <ContactsList
-                  usersContacts={this.props.usersContacts}
+                  header={'Your Contacts'}
+                  contacts={this.props.usersContacts}
                   searchTerm={this.props.searchTerm}
                   handleContactClick={this.handleNavToContacts.bind(this)}
                 />
+
+                {
+                  this.props.searchForOtherUsers ?
+                    <ContactsList
+                      header={'Other Users'}
+                      contacts={this.props.otherContacts}
+                      searchTerm={this.props.searchTerm}
+                      handleContactClick={this.handleNavToContacts.bind(this)}
+                    />
+                  : null
+                }
+
+                {
+                  !this.props.searchForOtherUsers ?
+                    <div className="SidePanel-search-other-users" onClick={this.handleSearchForOtherUsers.bind(this)}>
+                      Search for others using socket chat
+                    </div>
+                  : null
+                }
               </div>
             : <AddChat />
 

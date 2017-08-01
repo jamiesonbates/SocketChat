@@ -56,3 +56,6 @@ export const updateChatLastSeenType = 'UPDATE_CHAT_LAST_SEEN';
 export const updateCategoryPrivacyType = 'UPDATE_CATEGORY_PRIVACY';
 export const showEditProfileType = 'SHOW_EDIT_PROFILE';
 export const updateUserProfileType = 'UPDATE_USER_PROFILE';
+export const setOtherContactsType = 'SET_OTHER_CONTACTS';
+export const searchForOtherUsersType = 'SEARCH_FOR_OTHER_USERS';
+export const stopSearchForOtherUsersType = 'STOP_SEARCH_FOR_OTHER_USERS';

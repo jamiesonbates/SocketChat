@@ -10,7 +10,7 @@ class ContactsList extends React.Component {
   }
 
   filterContacts() {
-    return this.props.usersContacts.filter((contact) => {
+    return this.props.contacts.filter((contact) => {
       let isMatch = false;
       const searchTerm = this.props.searchTerm;
 
@@ -29,7 +29,7 @@ class ContactsList extends React.Component {
   render() {
     return (
       <div className="ContactsList-container">
-        <h3 className="ContactsList-header">Your Contacts</h3>
+        <h3 className="ContactsList-header">{this.props.header}</h3>
         {
           this.filterContacts().map((contact, i) => (
             <div

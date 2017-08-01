@@ -9,7 +9,9 @@ import {
   exitUserProfileType,
   showContactsListType,
   exitContactsListType,
-  showEditProfileType
+  showEditProfileType,
+  searchForOtherUsersType,
+  stopSearchForOtherUsersType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -21,7 +23,8 @@ export default function reducer(state={
   showGroupForm: false,
   showUserProfile: false,
   showContactsList: false,
-  showEditProfile: false
+  showEditProfile: false,
+  searchForOtherUsers: false
 }, action) {
   switch(action.type) {
     case showChatType:
@@ -90,6 +93,18 @@ export default function reducer(state={
       return {
         ...state,
         showEditProfile: true
+      }
+
+    case searchForOtherUsersType:
+      return {
+        ...state,
+        searchForOtherUsers: true
+      }
+
+    case stopSearchForOtherUsersType:
+      return {
+        ...state,
+        searchForOtherUsers: false
       }
   }
 

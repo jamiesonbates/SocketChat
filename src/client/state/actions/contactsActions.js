@@ -1,18 +1,35 @@
 import axios from 'axios';
 
-import { updateContactsType, addNewGroupMemberType } from '../actionTypes';
+import { updateContactsType, addNewGroupMemberType, setOtherContactsType } from '../actionTypes';
 
 export function getContacts() {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
 
-    axios.get(`/api/contacts/${userId}`)
+    axios.get(`/api/contacts/known/${userId}`)
       .then((res) => {
         dispatch({
           type: updateContactsType,
           payload: res.data
         })
+      })
+  }
+}
+
+export function findContacts() {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.userInfo.id;
+    let searchTerm = state.forms.searchTerm;
+
+    if (!searchTerm) {
+      searchTerm = null;
+    }
+
+    axios.get(`/api/contacts/find/${searchTerm}/${userId}`)
+      .then((res) => {
+        dispatch({ type: setOtherContactsType, payload: res.data });
       })
   }
 }

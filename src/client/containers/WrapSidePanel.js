@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateSide, updateMain } from '../state/actions/dashControlActions';
 import { fetchChats, setChat, createChat, updateChatSeen } from '../state/actions/chatActions';
 import { updateGroupName, updateSearchTerm } from '../state/actions/formActions';
-import { addNewGroupMember } from '../state/actions/contactsActions';
+import { addNewGroupMember, findContacts } from '../state/actions/contactsActions';
 import { updateTargetUserId } from '../state/actions/uniqueUserActions';
 import { setBookmarks } from '../state/actions/bookmarkActions';
 
@@ -27,10 +27,12 @@ export default function(ComposedClass) {
       showGroupForm: state.dashControls.showGroupForm,
       showChatsList: state.dashControls.showChatsList,
       showContactsList: state.dashControls.showContactsList,
+      searchForOtherUsers: state.dashControls.searchForOtherUsers,
       allChats: state.chats.allChats,
       userId: state.userInfo.id,
       newGroup: state.contacts.newGroup,
       usersContacts: state.contacts.usersContacts,
+      otherContacts: state.contacts.otherContacts,
       groupName: state.forms.groupName,
       searchTerm: state.forms.searchTerm,
       userInfo: state.userInfo,
@@ -51,7 +53,8 @@ export default function(ComposedClass) {
       addNewGroupMember: (data) => dispatch(addNewGroupMember(data)),
       updateTargetUserId: (data) => dispatch(updateTargetUserId(data)),
       setBookmarks: (data) => dispatch(setBookmarks(data)),
-      updateChatSeen: (data) => dispatch(updateChatSeen(data))
+      updateChatSeen: (data) => dispatch(updateChatSeen(data)),
+      findContacts: () => dispatch(findContacts())
     }
   )
 

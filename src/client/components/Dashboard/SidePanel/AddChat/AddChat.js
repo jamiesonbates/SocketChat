@@ -144,12 +144,14 @@ class AddChat extends React.Component {
         {
           this.props.showGroupForm ?
             <ContactsList
-              usersContacts={this.props.usersContacts}
+              header={'Your Contacts'}
+              contacts={this.props.usersContacts}
               searchTerm={this.props.searchTerm}
               handleContactClick={this.handleAddMultiChat.bind(this)}
             />
           : <ContactsList
-              usersContacts={this.props.usersContacts}
+              header={'Your Contacts'}
+              contacts={this.props.usersContacts}
               searchTerm={this.props.searchTerm}
               handleContactClick={this.handleAddSingleChat.bind(this)}
             />
