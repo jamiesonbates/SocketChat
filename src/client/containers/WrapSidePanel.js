@@ -54,7 +54,7 @@ export default function(ComposedClass) {
       updateTargetUserId: (data) => dispatch(updateTargetUserId(data)),
       setBookmarks: (data) => dispatch(setBookmarks(data)),
       updateChatSeen: (data) => dispatch(updateChatSeen(data)),
-      findContacts: () => dispatch(findContacts())
+      findContacts: (data) => dispatch(findContacts(data))
     }
   )
 

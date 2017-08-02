@@ -99,6 +99,7 @@ class AddChat extends React.Component {
             searchTermVal={this.props.searchTerm}
             showGroupForm={this.props.showGroupForm}
             newGroup={this.props.newGroup}
+            findContacts={this.props.findContacts}
           />
 
           {

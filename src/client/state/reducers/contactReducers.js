@@ -1,7 +1,8 @@
 import {
   updateContactsType,
   addNewGroupMemberType,
-  setOtherContactsType
+  setOtherContactsType,
+  stopSearchForOtherUsersType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -25,6 +26,12 @@ export default function reducer(state={
       return {
         ...state,
         otherContacts: action.payload
+      }
+
+    case stopSearchForOtherUsersType:
+      return {
+        ...state,
+        otherContacts: []
       }
   }
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { updateContactsType, addNewGroupMemberType, setOtherContactsType } from '../actionTypes';
+import { updateContactsType, addNewGroupMemberType, setOtherContactsType, stopSearchForOtherUsersType } from '../actionTypes';
 
 export function getContacts() {
   return function(dispatch, getState) {
@@ -17,14 +17,13 @@ export function getContacts() {
   }
 }
 
-export function findContacts() {
+export function findContacts(searchTerm) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
-    let searchTerm = state.forms.searchTerm;
 
     if (!searchTerm) {
-      searchTerm = null;
+      return;
     }
 
     axios.get(`/api/contacts/find/${searchTerm}/${userId}`)

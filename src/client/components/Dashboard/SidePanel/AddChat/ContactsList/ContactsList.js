@@ -31,7 +31,7 @@ class ContactsList extends React.Component {
       <div className="ContactsList-container">
         <h3 className="ContactsList-header">{this.props.header}</h3>
         {
-          this.props.contacts.length ?
+          this.filterContacts().length ?
             <div>
               {
                 this.filterContacts().map((contact, i) => (
@@ -47,7 +47,7 @@ class ContactsList extends React.Component {
                 ))
               }
             </div>
-          : <p>Search to find contacts.</p>
+          : <p className="ContactsList-no-matches">No matches</p>
         }
       </div>
     )

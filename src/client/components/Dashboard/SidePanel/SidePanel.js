@@ -100,6 +100,7 @@ class SidePanel extends React.Component {
                   updateSearchTerm={this.props.updateSearchTerm}
                   searchTermVal={this.props.searchTerm}
                   showGroupForm={false}
+                  findContacts={this.props.findContacts}
                 />
                 <ContactsList
                   header={'Your Contacts'}

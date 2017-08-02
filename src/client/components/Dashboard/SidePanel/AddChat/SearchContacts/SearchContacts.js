@@ -12,6 +12,11 @@ class SearchContacts extends React.Component {
     const term = this.refs.term.value;
 
     this.props.updateSearchTerm(term);
+    this.props.findContacts(term);
+  }
+
+  componentDidUnmount() {
+    this.props.updateSearchTerm('');
   }
 
   render() {
