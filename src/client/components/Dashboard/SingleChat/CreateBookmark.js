@@ -27,7 +27,7 @@ class CreateBookmark extends React.Component {
 
   render() {
     return (
-      <div className="SingleChat-bookmark-form">
+      <div className={`SingleChat-bookmark-form ${this.props.createBookmarkClass}`}>
         <select onChange={this.handleSelection}>
           <option defaultValue={this.state.selection}>General</option>
           {
@@ -46,7 +46,7 @@ class CreateBookmark extends React.Component {
         <button
           className="SingleChat-bookmark-btn"
           onClick={this.handleNewBookmark}>
-          Bookmark with a category...
+          Categorize
         </button>
 
         <FaClose

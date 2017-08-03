@@ -259,29 +259,52 @@
 
 .SingleChat-starred {
   display: inline-block;
-  color: red;
+  color: #1D2547;
 }
 
 .SingleChat-bookmark-icon.bookmarking {
   display: inline-block;
-  color: gray;
+  color: #4D64BF;
 }
 
 .SingleChat-starred:hover {
   cursor: default;
-  color: red;
+  color: #1D2547;
 }
 
 .SingleChat-message .SingleChat-bookmark-form {
   position: absolute;
   z-index: 2;
-  bottom: 100%;
-  left: 50%;
   background-color: white;
   padding: 20px 10px 10px;
   box-sizing: border-box;
-  border-radius: 3%;
+  border-radius: 3px;
   border: 1px solid #8F8F8C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SingleChat-bookmark-form select {
+  background: #1EBA57 url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
+  color: white;
+  font-family: 'Lato';
+  height: 30px;
+  border: none;
+  font-size: 16px;
+}
+
+.SingleChat-bookmark-form select:hover {
+  background-color: #16873F;
+  cursor: pointer;
+}
+
+.SingleChat-bookmark-form.right {
+  right: 105%;
+}
+
+.SingleChat-bookmark-form.left {
+  left: 105%;
 }
 
 .SingleChat-bookmark-form h4 {
@@ -291,18 +314,6 @@
 
 .SingleChat-bookmark-form > * {
   margin: 2px 0;
-}
-
-.SingleChat-bookmark-select {
-
-}
-
-.SingleChat-bookmark-select:focus {
-  outline: none;
-}
-
-.SingleChat-bookmark-option:focus {
-  outline:none;
 }
 
 .SingleChat-bookmark-close {
@@ -318,15 +329,19 @@
 }
 
 .SingleChat-bookmark-btn {
-  background-color: white;
   border: none;
   display: inline-block;
+  font-family: 'Lato';
+  font-size: 18px;
+  background-color: #4D64BF;
+  color: white;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin-top: 20px;
 }
 
 .SingleChat-bookmark-btn:hover {
-  background-color: #3653F6;
-  color: white;
-  border-radius: 3px;
+  background-color: #39498C;
   cursor: pointer;
 }
 
