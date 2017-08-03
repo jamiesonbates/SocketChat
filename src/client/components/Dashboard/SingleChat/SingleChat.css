@@ -34,7 +34,7 @@
 }
 
 .SingleChat-title div, .SingleChat-title svg {
-  margin: 3px;
+  margin: 0   3px;
 }
 
 .SingleChat-header-options {
@@ -138,14 +138,16 @@
   border: none;
 }
 
-.SingleChat-userIsOnline-large {
+.SingleChat-title .SingleChat-userIsOnline-large {
   background-color: green;
   height: 14px;
   width: 14px;
+  margin-left: 10px;
   border-radius: 50%;
 }
 
-.SingleChat-userIsOffline-large {
+.SingleChat-title .SingleChat-userIsOffline-large {
+  margin-left: 10px;
   background-color: transparent;
   height: 13px;
   width: 13px;

@@ -89,9 +89,7 @@ class Dashboard extends React.Component {
                 determineChatHeader={this.determineChatHeader}
               />
             : this.props.showChat ?
-                <SingleChat
-                  determineChatHeader={this.determineChatHeader.bind(this)}
-                />
+                <SingleChat />
               : <Bookmarks />
           }
         </div>

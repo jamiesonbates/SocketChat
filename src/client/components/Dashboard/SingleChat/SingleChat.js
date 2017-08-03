@@ -22,6 +22,7 @@ class SingleChat extends React.Component {
     }
 
     this.handleTyping = this.handleTyping.bind(this);
+    this.determineChatHeader = this.determineChatHeader.bind(this);
   }
 
   updateScroll() {
@@ -185,6 +186,33 @@ class SingleChat extends React.Component {
     this.setState({ bookmarkMsgId: null });
   }
 
+  determineChatHeader(chat) {
+    if (chat.name) return (<h2>{chat.name}</h2>);
+
+    if (chat.users.length < 3) {
+      for (const user of chat.users) {
+        if (user.id !== this.props.userId) {
+          return (<UserIdentifier userId={user.id} firstName={user.firstName} lastName={user.lastName} updateMain={this.props.updateMain} updateTargetUserId={this.updateTargetUserId} />);
+        }
+      }
+    }
+
+    const title = chat.users.reduce((acc, user, i, arr) => {
+      if (user.id === this.props.userId) return acc;
+
+      if (arr.length - 1 === i || arr.length < 3) {
+        acc += `${user.firstName} ${user.lastName}`;
+      }
+      else {
+        acc += `${user.firstName} ${user.lastName}, `;
+      }
+
+      return acc;
+    }, '');
+
+    return (<h2>{title}</h2>);
+  }
+
   render() {
     return (
       <div className="SingleChat-container">
@@ -199,7 +227,7 @@ class SingleChat extends React.Component {
             {
               this.props.chat ?
                 <div className="SingleChat-header-title">
-                  <h2>{this.props.determineChatHeader(this.props.chat)}</h2>
+                  {this.determineChatHeader(this.props.chat)}
                 </div>
               : null
             }
