@@ -20,7 +20,8 @@ const Message = ({
   handleExitBookmarking,
   bookmarkMsg,
   updateMain,
-  updateTargetUserId
+  updateTargetUserId,
+  createBookmarkClass
 }) => (
   <div className={messageClass}>
     {
@@ -56,6 +57,7 @@ const Message = ({
                 messageId={message.id}
                 handleExitBookmarking={handleExitBookmarking}
                 bookmarkMsg={bookmarkMsg}
+                createBookmarkClass={createBookmarkClass}
               />
             : null
           }
@@ -85,6 +87,7 @@ const Message = ({
                 messageId={message.id}
                 handleExitBookmarking={handleExitBookmarking}
                 bookmarkMsg={bookmarkMsg}
+                createBookmarkClass={createBookmarkClass}
               />
             : null
           }

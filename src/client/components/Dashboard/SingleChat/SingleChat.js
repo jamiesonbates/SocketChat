@@ -27,7 +27,7 @@ class SingleChat extends React.Component {
   updateScroll() {
     const msgDiv = document.querySelector('.SingleChat-messages-container');
 
-    if (msgDiv) {
+    if (msgDiv && !this.state.bookmarkMsgId) {
       msgDiv.lastElementChild.scrollIntoView();
     }
   }
@@ -89,6 +89,11 @@ class SingleChat extends React.Component {
               bookmarkMsg={this.props.bookmarkMsg}
               updateMain={this.props.updateMain}
               updateTargetUserId={this.props.updateTargetUserId}
+              createBookmarkClass={
+                message.userId === userId ?
+                  'right'
+                : 'left'
+              }
             />
           </div>
         </div>
