@@ -83,6 +83,10 @@ class UserProfile extends React.Component {
     this.props.updateMain(showUserProfileType);
   }
 
+  handleSignOut() {
+    this.props.userSignOut();
+  }
+
   render() {
     return (
       <div className="UserProfile-container">
@@ -126,9 +130,11 @@ class UserProfile extends React.Component {
                           {this.props.targetUserProfile.firstName} {this.props.targetUserProfile.lastName}
                         </h3>
                         {
-                          this.userIsOnline(this.props.targetUserId) ?
-                            <div className="UserProfile-online"></div>
-                          : <div className="UserProfile-not-online"></div>
+                          this.props.currentUserId === this.props.targetUserId ?
+                            this.userIsOnline(this.props.targetUserId) ?
+                              <div className="UserProfile-online"></div>
+                            : <div className="UserProfile-not-online"></div>
+                          : null
                         }
                       </div>
 
@@ -182,6 +188,14 @@ class UserProfile extends React.Component {
                         </p>
                       </div>
                     </div>
+                  </div>
+                : null
+              }
+
+              {
+                this.props.currentUserId === this.props.targetUserId ?
+                  <div className="UserProfile-signout">
+                    <p onClick={this.handleSignOut.bind(this)}>Sign Out</p>
                   </div>
                 : null
               }

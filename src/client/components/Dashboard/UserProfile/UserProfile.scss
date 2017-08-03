@@ -3,10 +3,11 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-left: 2px solid #D1D1D1;
   font-family: 'Lato';
   max-width: 350px;
   min-width: 350px;
+  border-left: 2px solid #D1D1D1;
+
 }
 
 .UserProfile-nav {
@@ -17,7 +18,6 @@
   align-items: center;
   border-bottom: 1px solid #D1D1D1;
   z-index: 1;
-  margin-bottom: 5px;
   box-sizing: border-box;
 }
 
@@ -41,6 +41,7 @@
 
 .UserProfile-main-container {
   display: flex;
+  flex-direction: column;
   flex: 1;
 }
 
@@ -74,19 +75,23 @@
   padding: 40px;
   border-radius: 50%;
   font-size: 200px;
+  margin-top: 5px;
 }
 
 .UserProfile-name {
   padding: 10px;
   display: flex;
+  font-size: 16px;
+  box-sizing: border-box;
   align-items: center;
+  justify-content: space-between;
 }
 
-.UserProfile-online, .UserProfile.not-online {
-  height: 13px;
-  width: 13px;
+.UserProfile-online, .UserProfile-not-online {
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
-  margin: 0 5px;
+  margin-left: 10px;
 }
 
 .UserProfile-online {
@@ -94,7 +99,7 @@
 }
 
 .UserProfile-not-online {
-  background-color: green;
+  background-color: transparent;
   border: 1px solid black;
 }
 
@@ -105,16 +110,18 @@
 
 .UserProfile-btn {
   margin: 3px;
-  padding: 5px 10px;
-  font-size: 18px;
-  background-color: #E0E0E0;
-  border-radius: 5px;
-  border: 1px solid #D1D1D1;
+  padding: 7px 12px;
+  font-size: 16px;
+  background-color: #4D64BF;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  // border: 1px solid #D1D1D1;
 }
 
 .UserProfile-btn:hover {
   cursor: pointer;
-  background-color: #ADADAD;
+  background-color: #39498C;
 }
 
 .UserProfile-btn:focus {
@@ -135,4 +142,35 @@
 .UserProfile-info {
   width: 70%;
   // overflow-wrap: break-word;
+}
+
+.UserProfile-signout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato';
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  padding: 10px 0;
+  margin-bottom: 5%;
+}
+
+.UserProfile-signout p {
+  width: 40%;
+  background-color: #4D64BF;
+  font-family: 'Lato';
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 1px;
+  border-radius: 3px;
+}
+
+.UserProfile-signout p:hover {
+  background-color: #39498C;
+  cursor: pointer;
 }

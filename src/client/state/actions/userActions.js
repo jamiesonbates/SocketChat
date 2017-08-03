@@ -58,8 +58,17 @@ export function userSignUp(user) {
           type: signupSuccess,
           payload: res.data
         });
-        
+
         browserHistory.push('/');
       })
+  }
+}
+
+export function userSignOut() {
+  return function(dispatch, getState) {
+    axios.delete('/api/token')
+      .then(() => {
+        location.reload();
+      });
   }
 }

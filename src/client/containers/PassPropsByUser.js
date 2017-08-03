@@ -6,6 +6,7 @@ import { setChat, createChat } from '../state/actions/chatActions';
 import { updateMain } from '../state/actions/dashControlActions';
 import { setBookmarks, unBookmarkMsg, resetBookmarks, updateCategoryPrivacy, addCategory, deleteCategory } from '../state/actions/bookmarkActions';
 import { resetTargetBookmarksId } from '../state/actions/uniqueUserActions';
+import { userSignOut } from '../state/actions/userActions';
 
 export default function(ComposedClass) {
   class PassPropsByUser extends React.Component {
@@ -47,7 +48,8 @@ export default function(ComposedClass) {
       updateCategoryPrivacy: (data) => dispatch(updateCategoryPrivacy(data)),
       addCategory: (data) => dispatch(addCategory(data)),
       deleteCategory: (data) => dispatch(deleteCategory(data)),
-      editUserProfile: (data) => dispatch(editUserProfile(data))
+      editUserProfile: (data) => dispatch(editUserProfile(data)),
+      userSignOut: () => dispatch(userSignOut())
     }
   )
 
