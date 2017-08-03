@@ -145,6 +145,14 @@
   border-radius: 50%;
 }
 
+.SingleChat-userIsOffline-large {
+  background-color: transparent;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  border: 1px solid #575757;
+}
+
 .SingleChat-otherUser .SingleChat-message-text-container {
   display: flex;
   justify-content: flex-start;

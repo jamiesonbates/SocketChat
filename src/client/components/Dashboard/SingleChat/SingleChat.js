@@ -36,19 +36,19 @@ class SingleChat extends React.Component {
       <div key={i} className="SingleChat-single-message-container">
         {
           date ?
-          <div className="SingleChat-time">
-            <h4>{date}</h4>
-            <div className="SingleChat-line"></div>
-          </div>
+            <div className="SingleChat-time">
+              <h4>{date}</h4>
+              <div className="SingleChat-line"></div>
+            </div>
           : null
         }
 
         {
           newMessageStart ?
-          <div className="SingleChat-new">
-            <h4>New Messages</h4>
-            <div className="SingleChat-line red"></div>
-          </div>
+            <div className="SingleChat-new">
+              <h4>New Messages</h4>
+              <div className="SingleChat-line red"></div>
+            </div>
           : null
         }
 
@@ -207,12 +207,15 @@ class SingleChat extends React.Component {
             {
               this.props.chat && this.props.users.length < 3 ?
                 this.props.users.map((user, i) => (
-                  this.userIsOnline(user.id) && user.id !== this.props.userId ?
-                    <div
-                      key={i}
-                      className="SingleChat-userIsOnline-large">
-                    </div>
-                  : null
+                  this.userIsOnline(user.id) ?
+                    user.id !== this.props.userId ?
+                      <div key={i} className="SingleChat-userIsOnline-large">
+                      </div>
+                    : null
+                  : user.id !== this.props.userId ?
+                      <div key={i} className="SingleChat-userIsOffline-large">
+                      </div>
+                    : null
 
                 ))
               : null
