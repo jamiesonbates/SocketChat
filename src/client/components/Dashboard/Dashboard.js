@@ -75,6 +75,19 @@ class Dashboard extends React.Component {
     return title;
   }
 
+  recognizeLink(message) {
+    const linkRegex = new RegExp('(\b(((https?|ftp|file|):\/\/)|www[.])[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])', 'gi');
+    console.log(message.match(linkRegex));
+    console.log(message);
+
+    if (message.match(linkRegex)) {
+      return (<a href={message.message} />);
+    }
+    else {
+      return message;
+    }
+  }
+
   render() {
     return (
       <div className="Dashboard-container">
@@ -89,7 +102,7 @@ class Dashboard extends React.Component {
                 determineChatHeader={this.determineChatHeader}
               />
             : this.props.showChat ?
-                <SingleChat />
+                <SingleChat recognizeLink={this.recognizeLink} />
               : <Bookmarks />
           }
         </div>

@@ -21,7 +21,8 @@ const Message = ({
   bookmarkMsg,
   updateMain,
   updateTargetUserId,
-  createBookmarkClass
+  createBookmarkClass,
+  recognizeLink
 }) => (
   <div className={messageClass}>
     {
@@ -95,7 +96,7 @@ const Message = ({
     }
     <div className="SingleChat-message-text-container">
       <p className={`${messageColor} SingleChat-message-text`}>
-        {message.message}
+        {recognizeLink(message.message)}
       </p>
     </div>
   </div>

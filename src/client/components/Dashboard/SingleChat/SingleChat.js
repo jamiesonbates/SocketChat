@@ -96,6 +96,7 @@ class SingleChat extends React.Component {
                   'right'
                 : 'left'
               }
+              recognizeLink={this.props.recognizeLink}
             />
           </div>
         </div>
