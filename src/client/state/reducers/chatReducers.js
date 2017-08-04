@@ -22,10 +22,12 @@ export default function reducer(state={
   usersOnline: [],
   chatsWithTyping: [],
   chatLastSeen: [],
-  chatNewMessages: []
+  chatNewMessages: [],
+  currentChat: null,
+  currentChatMessages: [],
+  currentChatUsers: []
 }, action) {
   switch(action.type) {
-    case updateChatSeenType:
     case chatsSuccess:
       return {
         ...state,
@@ -36,13 +38,19 @@ export default function reducer(state={
     case newSingleChat:
       return {
         ...state,
-        singleChat: action.payload
+        singleChat: action.payload.id,
+        currentChat: action.payload.nextCurrentChat,
+        currentChatMessages: action.payload.nextCurrentChatMessages,
+        currentChatUsers: action.payload.nextCurrentChatUsers
       }
 
     case addNewMessage:
       return {
         ...state,
-        allChats: action.payload
+        allChats: action.payload.nextChats,
+        currentChat: action.payload.nextCurrentChat,
+        currentChatMessages: action.payload.nextCurrentChatMessages,
+        currentChatUsers: action.payload.nextCurrentChatUsers
       }
 
     case userNowOnline:
@@ -75,12 +83,6 @@ export default function reducer(state={
         allChats: action.payload
       }
 
-    // case updateNewMessageCountType:
-    // case updateChatViewHistoryType:
-    //   return {
-    //     ...state,
-    //     chatViewHistory: action.payload
-    //   }
     case setChatViewHistoryType:
       return {
         ...state,

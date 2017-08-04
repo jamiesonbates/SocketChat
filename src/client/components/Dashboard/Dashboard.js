@@ -75,16 +75,6 @@ class Dashboard extends React.Component {
     return title;
   }
 
-  findChat(allChats, chatId) {
-    return allChats.reduce((acc, chat) => {
-      if (chat.id === chatId) {
-        acc = chat;
-      }
-
-      return acc;
-    });
-  }
-
   render() {
     return (
       <div className="Dashboard-container">
@@ -99,7 +89,7 @@ class Dashboard extends React.Component {
                 determineChatHeader={this.determineChatHeader}
               />
             : this.props.showChat ?
-                <SingleChat chat={this.findChat(this.props.allChats, this.props.singleChat)} chatId={this.props.singleChat} />
+                <SingleChat />
               : <Bookmarks />
           }
         </div>

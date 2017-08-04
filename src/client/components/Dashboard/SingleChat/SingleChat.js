@@ -59,7 +59,7 @@ class SingleChat extends React.Component {
             message.userId !== userId ?
               <div className="Message-user-icon">
                 {
-                  Utilities.userIconMaker([Utilities.findUser(this.props.chat.users, message.userId)], 'FOR_CHAT')
+                  Utilities.userIconMaker([Utilities.findUser(this.props.currentChatUsers, message.userId)], 'FOR_CHAT')
                 }
               </div>
             : null
@@ -82,7 +82,7 @@ class SingleChat extends React.Component {
               user={
                 message.userId === userId ?
                   null
-                : Utilities.findUser(this.props.chat.users, message.userId)
+                : Utilities.findUser(this.props.currentChatUsers, message.userId)
               }
               handleExitBookmarking={this.handleExitBookmarking.bind(this)}
               handleBookmarking={this.handleBookmarking.bind(this)}
@@ -163,7 +163,6 @@ class SingleChat extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
     if (nextProps.chatId !== this.props.chatId) {
       this.props.updateChatSeen({ chatId: this.props.chatId, next: false, leaving: true });
 
@@ -223,27 +222,28 @@ class SingleChat extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="SingleChat-container">
         <div className="SingleChat-header-container">
           <div className="SingleChat-title">
             {
-              this.props.chat ?
+              this.props.currentChat ?
                 <FaChat className="SingleChat-icon" />
               : null
             }
 
             {
-              this.props.chat ?
+              this.props.currentChat ?
                 <div className="SingleChat-header-title">
-                  {this.determineChatHeader(this.props.chat)}
+                  {this.determineChatHeader(this.props.currentChat)}
                 </div>
               : null
             }
 
             {
-              this.props.chat && this.props.chat.users.length < 3 ?
-                this.props.chat.users.map((user, i) => (
+              this.props.currentChat && this.props.currentChatUsers.length < 3 ?
+                this.props.currentChatUsers.map((user, i) => (
                   this.userIsOnline(user.id) ?
                     user.id !== this.props.userId ?
                       <div key={i} className="SingleChat-userIsOnline-large">
@@ -261,8 +261,8 @@ class SingleChat extends React.Component {
 
           <div className="SingleChat-header-options">
             {
-              this.props.chat && this.props.chat.users.length > 2 ?
-                this.props.chat.users.map((user, i) => {
+              this.props.currentChat && this.props.currentChatUsers.length > 2 ?
+                this.props.currentChatUsers.map((user, i) => {
                   if (user.id === this.props.userId) {
                     return null;
                   }
@@ -296,9 +296,9 @@ class SingleChat extends React.Component {
           {
             // TODO: must condense and abstract this
             // TODO: clean up logic
-            this.props.chat && this.props.chat.messages ?
-              this.props.chat.messages.map((message, i) => {
-                const allMessages = this.props.chat.messages;
+            this.props.currentChat && this.props.currentChatMessages ?
+              this.props.currentChatMessages.map((message, i) => {
+                const allMessages = this.props.currentChatMessages;
                 const lastSeen = moment(this.props.lastSeen.lastSeen).valueOf();
                 const messageTime = moment(message.createdAt).valueOf();
                 const { userId } = this.props;
@@ -322,7 +322,6 @@ class SingleChat extends React.Component {
                 if (!this.props.lastSeen.hadNewMessages && Object.keys(this.props.lastSeen).includes('hadNewMessages')) {
                   newMessageStart = false;
                 }
-
 
                 if (i + 1 < allMessages.length || i === 0) {
                   let lastDate;
@@ -373,7 +372,7 @@ class SingleChat extends React.Component {
 
         <div className="SingleChat-typing-container">
           {
-            this.props.chat ?
+            this.props.currentChat ?
               this.props.chatsWithTyping.includes(this.props.chatId) ?
                 <div className="SingleChat-typing">
                   <p>Typing...</p>

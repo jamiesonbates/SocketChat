@@ -22,9 +22,24 @@ import {
   updateSide,
 } from './dashControlActions';
 
+import Utilities from '../../utilities/Utilities';
+
+
 export function setChat(id) {
-  return function(dispatch) {
-    dispatch({ type: newSingleChat, payload: id });
+  return function(dispatch, getState) {
+    const state = getState();
+    const allChats = state.chats.allChats;
+    const nextCurrentChat = { ...Utilities.findChat(allChats, id) };
+
+    dispatch({
+      type: newSingleChat,
+      payload: {
+        nextCurrentChat,
+        id,
+        nextCurrentChatMessages: nextCurrentChat.messages,
+        nextCurrentChatUsers: nextCurrentChat.users
+      }
+    });
     dispatch(updateMain(showChatType));
     dispatch(updateSide(showChatsListType));
   }
@@ -60,7 +75,7 @@ export function updateNewMessageCount(chatId, lastSeen, onLoad=false) {
 
     const nextChatNewMessages = chatNewMessages.map((history) => {
       if (history.chatId === chatId || onLoad) {
-        const wholeChat = findChat(allChats, history.chatId);
+        const wholeChat = Utilities.findChat(allChats, history.chatId);
 
         const count = wholeChat.messages.reduce((acc, msg) => {
           if (moment(lastSeen).valueOf() < moment(msg.createdAt).valueOf()) {
@@ -108,7 +123,6 @@ export function updateChatSeen({ chatId, silent=null, from=null, next=false,  le
           return history;
         });
 
-
         dispatch({ type: updateChatLastSeenType, payload: nextChatLastSeen });
         dispatch(updateNewMessageCount(data[0].chat_id, data[0].last_seen));
       });
@@ -139,13 +153,12 @@ export function createChat(users) {
 }
 
 export function receiveMessage(msg) {
-  console.log(msg);
   return function(dispatch, getState) {
     const state = getState();
     const allChats = state.chats.allChats;
     const singleChat = state.chats.singleChat;
     const chatLastSeen = state.chats.chatLastSeen;
-    const lastSeen = findChat(chatLastSeen, msg.chatId);
+    const lastSeen = Utilities.findChat(chatLastSeen, msg.chatId);
     let inChat = false;
 
     if (singleChat) {
@@ -153,13 +166,16 @@ export function receiveMessage(msg) {
     }
 
     const nextChats = addMessageToChat(allChats, msg, inChat);
-    console.log(allChats === allChats);
-    console.log(nextChats === allChats);
-    console.log(nextChats);
+    const nextCurrentChat = { ...Utilities.findChat(nextChats, msg.chatId) };
 
     dispatch({
       type: addNewMessage,
-      payload: nextChats
+      payload: {
+        nextChats,
+        nextCurrentChat,
+        nextCurrentChatMessages: nextCurrentChat.messages,
+        nextCurrentChatUsers: nextCurrentChat.users
+      }
     });
 
     if (inChat && lastSeen.hadNewMessages) {
@@ -193,22 +209,16 @@ export function sendMessage(data) {
 export function resetSingleChat() {
   return {
     type: resetSingleChatType,
-    payload: null
+    payload: {
+      id: null,
+      nextCurrentChat: null,
+      nextCurrentChatMessages: [],
+      nextCurrentChatUsers: []
+    }
   }
 }
 
 // utility
-
-// TODO: abstraced into utilities
-function findChat(chats, id) {
-  for (const chat of chats) {
-    if (chat.id === id || chat.chatId === id) {
-      return chat;
-    }
-  }
-
-  return null;
-}
 
 function addMessageToChat(chats, msg, inChat) {
   const nextChats = chats.map(chat => {

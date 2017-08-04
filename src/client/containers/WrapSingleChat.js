@@ -20,12 +20,10 @@ export default function(ComposedClass) {
     }
   }
 
-  const findChat = function(state) {
-    const allChats = state.chats.allChats;
-    const chatId = state.chats.singleChat;
-
+  const findChat = function(allChats, chatId) {
     return allChats.reduce((acc, chat) => {
       if (chat.id === chatId) {
+        console.log(chat);
         acc = chat;
       }
 
@@ -60,18 +58,22 @@ export default function(ComposedClass) {
   }
 
   const mapStateToProps = function(state) {
-    // const chat = findChat(state);
     const lastSeen = findLastSeen(state);
     const newMessages = findNewMessages(state);
+
 
     return {
       lastSeen,
       newMessages,
+      chatId: state.chats.singleChat,
+      currentChat: state.chats.currentChat,
+      currentChatMessages: state.chats.currentChatMessages,
+      currentChatUsers: state.chats.currentChatUsers,
       userId: state.userInfo.id,
       usersOnline: state.chats.usersOnline,
       chatsWithTyping: state.chats.chatsWithTyping,
       categories: state.userInfo.categories,
-      allChats: state.chats.allChats
+      // allChats: state.chats.allChats // needed for chat to update on new message
     }
   }
 
