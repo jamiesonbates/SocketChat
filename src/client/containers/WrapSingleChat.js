@@ -72,8 +72,7 @@ export default function(ComposedClass) {
       userId: state.userInfo.id,
       usersOnline: state.chats.usersOnline,
       chatsWithTyping: state.chats.chatsWithTyping,
-      categories: state.userInfo.categories,
-      // allChats: state.chats.allChats // needed for chat to update on new message
+      categories: state.userInfo.categories
     }
   }
 
