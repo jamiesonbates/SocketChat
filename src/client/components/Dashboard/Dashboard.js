@@ -81,7 +81,7 @@ class Dashboard extends React.Component {
 
     if (message.match(httpOrWWW)) {
       return (
-        <a href={message.match(httpOnly) ? message : `http://${message}`} target="_blank">{message}</a>
+        <a className="Link-Recognized" href={message.match(httpOnly) ? message : `http://${message}`} target="_blank">{message}</a>
       );
     }
     else {
