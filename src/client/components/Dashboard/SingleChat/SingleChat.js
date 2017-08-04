@@ -242,8 +242,8 @@ class SingleChat extends React.Component {
             }
 
             {
-              this.props.chat && this.props.users.length < 3 ?
-                this.props.users.map((user, i) => (
+              this.props.chat && this.props.chat.users.length < 3 ?
+                this.props.chat.users.map((user, i) => (
                   this.userIsOnline(user.id) ?
                     user.id !== this.props.userId ?
                       <div key={i} className="SingleChat-userIsOnline-large">
@@ -261,8 +261,8 @@ class SingleChat extends React.Component {
 
           <div className="SingleChat-header-options">
             {
-              this.props.chat && this.props.users.length > 2 ?
-                this.props.users.map((user, i) => {
+              this.props.chat && this.props.chat.users.length > 2 ?
+                this.props.chat.users.map((user, i) => {
                   if (user.id === this.props.userId) {
                     return null;
                   }
@@ -296,9 +296,9 @@ class SingleChat extends React.Component {
           {
             // TODO: must condense and abstract this
             // TODO: clean up logic
-            this.props.chat && this.props.messages ?
-              this.props.messages.map((message, i) => {
-                const allMessages = this.props.messages;
+            this.props.chat && this.props.chat.messages ?
+              this.props.chat.messages.map((message, i) => {
+                const allMessages = this.props.chat.messages;
                 const lastSeen = moment(this.props.lastSeen.lastSeen).valueOf();
                 const messageTime = moment(message.createdAt).valueOf();
                 const { userId } = this.props;

@@ -139,6 +139,7 @@ export function createChat(users) {
 }
 
 export function receiveMessage(msg) {
+  console.log(msg);
   return function(dispatch, getState) {
     const state = getState();
     const allChats = state.chats.allChats;
@@ -152,11 +153,14 @@ export function receiveMessage(msg) {
     }
 
     const nextChats = addMessageToChat(allChats, msg, inChat);
+    console.log(allChats === allChats);
+    console.log(nextChats === allChats);
+    console.log(nextChats);
 
     dispatch({
       type: addNewMessage,
       payload: nextChats
-    })
+    });
 
     if (inChat && lastSeen.hadNewMessages) {
       dispatch(updateChatSeen({ chatId: msg.chatId, from: 'receiveMessage', next: true }));

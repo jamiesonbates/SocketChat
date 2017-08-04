@@ -29,6 +29,7 @@ export default function(ComposedClass) {
   const mapStateToProps = function(state) {
     return {
       allChats: state.chats.allChats,
+      singleChat: state.chats.singleChat,
       showDefaultMain: state.dashControls.showDefaultMain,
       showUserProfile: state.dashControls.showUserProfile,
       showChat: state.dashControls.showChat,

@@ -60,21 +60,18 @@ export default function(ComposedClass) {
   }
 
   const mapStateToProps = function(state) {
-    const chat = findChat(state);
+    // const chat = findChat(state);
     const lastSeen = findLastSeen(state);
     const newMessages = findNewMessages(state);
 
     return {
-      chat,
       lastSeen,
       newMessages,
-      chatId: chat.id,
-      users: chat.users,
-      messages: chat.messages,
       userId: state.userInfo.id,
       usersOnline: state.chats.usersOnline,
       chatsWithTyping: state.chats.chatsWithTyping,
-      categories: state.userInfo.categories
+      categories: state.userInfo.categories,
+      allChats: state.chats.allChats
     }
   }
 
