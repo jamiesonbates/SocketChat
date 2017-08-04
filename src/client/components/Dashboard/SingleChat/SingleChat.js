@@ -32,6 +32,7 @@ class SingleChat extends React.Component {
       msgDiv.lastElementChild.scrollIntoView();
     }
   }
+
   createMessage(date, i, message, userId, newMessageStart) {
     return (
       <div key={i} className="SingleChat-single-message-container">
@@ -162,6 +163,7 @@ class SingleChat extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
     if (nextProps.chatId !== this.props.chatId) {
       this.props.updateChatSeen({ chatId: this.props.chatId, next: false, leaving: true });
 
@@ -192,7 +194,14 @@ class SingleChat extends React.Component {
     if (chat.users.length < 3) {
       for (const user of chat.users) {
         if (user.id !== this.props.userId) {
-          return (<UserIdentifier userId={user.id} firstName={user.firstName} lastName={user.lastName} updateMain={this.props.updateMain} updateTargetUserId={this.updateTargetUserId} />);
+          return (<UserIdentifier
+                    userId={user.id}
+                    firstName={user.firstName}
+                    lastName={user.lastName}
+                    updateMain={this.props.updateMain}
+                    updateTargetUserId={this.updateTargetUserId}
+                  />
+          );
         }
       }
     }
