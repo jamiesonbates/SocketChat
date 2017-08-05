@@ -6,7 +6,7 @@
   background-color: white;
   padding: 0 10px 10px;
   font-family: 'Lato';
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .SingleChat-header-container {
