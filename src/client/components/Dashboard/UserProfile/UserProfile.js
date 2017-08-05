@@ -122,8 +122,9 @@ class UserProfile extends React.Component {
                 this.props.targetUserProfile ?
                   <div className="UserProfile-main">
                     <div className="UserProfile-top">
-                      <FaUser className="UserProfile-user-icon" />
-
+                      <div className="UserProfile-image-container">
+                        <FaUser className="UserProfile-user-icon" />
+                      </div>
 
                       <div className="UserProfile-name">
                         <h3>
@@ -175,28 +176,31 @@ class UserProfile extends React.Component {
 
                     <div className="UserProfile-bottom">
                       <div className="UserProfile-info-container">
-                        <p className="UserProfile-title">Username</p>
-                        <p className="UserProfile-info">
-                          {this.props.targetUserProfile.username}
-                        </p>
+                        <div className="UserProfile-info">
+                          <p className="UserProfile-title">Username</p>
+                          <p className="UserProfile-data">
+                            {this.props.targetUserProfile.username}
+                          </p>
+                        </div>
+
+                        <div className="UserProfile-info">
+                          <p className="UserProfile-title">Email</p>
+                          <p className="UserProfile-data">
+                            {this.props.targetUserProfile.email}
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="UserProfile-info-container">
-                        <p className="UserProfile-title">Email</p>
-                        <p className="UserProfile-info">
-                          {this.props.targetUserProfile.email}
-                        </p>
-                      </div>
+                      {
+                        this.props.currentUserId === this.props.targetUserId ?
+                        <div className="UserProfile-signout">
+                          <p onClick={this.handleSignOut.bind(this)}>Sign Out</p>
+                        </div>
+                        : null
+                      }
                     </div>
                   </div>
-                : null
-              }
 
-              {
-                this.props.currentUserId === this.props.targetUserId ?
-                  <div className="UserProfile-signout">
-                    <p onClick={this.handleSignOut.bind(this)}>Sign Out</p>
-                  </div>
                 : null
               }
             </div>
