@@ -20,10 +20,9 @@ router.post('/', (req, res, next) => {
       .returning('*')
       .then((result) => {
         const image = result[0];
-        console.log(image);
 
         res.send(image);
-      })
+      });
   });
 });
 

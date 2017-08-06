@@ -10,6 +10,7 @@ const util = require('./util');
 
 router.get('/', util.authorize, (req, res, next) => {
   db('users')
+    .innerJoin('images', 'users.id', 'images.user_id')
     .where('id', req.claim.userId)
     .returning('*')
     .then((user) => {

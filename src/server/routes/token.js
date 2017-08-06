@@ -12,6 +12,7 @@ router.post('/', (req, res, next) => {
   let user;
 
   db('users')
+    .innerJoin('images', 'users.id', 'images.user_id')
     .where('email', email)
     .returning('*')
     .then((row) => {

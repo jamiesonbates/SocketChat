@@ -18,7 +18,10 @@ router.get('/:userId', (req, res, next) => {
            ) msg) as messages,
            (SELECT json_agg(usr)
            FROM (
-             SELECT u.id, first_name, last_name, email, username
+             SELECT u.id, u.first_name, u.last_name, u.email, u.username,
+              (SELECT img.cloudinary_url
+              FROM images as img
+              WHERE img.user_id = u.id)
              FROM chats as c2
              INNER JOIN users_chats as uc1 ON c2.id = uc1.chat_id
              INNER JOIN users as u ON u.id = uc1.user_id

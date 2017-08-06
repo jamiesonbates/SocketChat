@@ -15,13 +15,14 @@ export default function reducer(state={
   email: null,
   username: null,
   categories: null,
-  recentBookmarks: null
+  recentBookmarks: null,
+  cloudinary_url: null
 }, action) {
   switch (action.type) {
     case loginSuccess:
     case authSuccess:
     case signupSuccess:
-      const { id, firstName, lastName, email, username } = action.payload;
+      const { id, firstName, lastName, email, username, cloudinaryUrl } = action.payload;
 
       return {
         ...state,
@@ -30,7 +31,8 @@ export default function reducer(state={
         firstName,
         lastName,
         email,
-        username
+        username,
+        cloudinaryUrl
      }
 
     case authFailure:
@@ -41,7 +43,8 @@ export default function reducer(state={
         firstName: null,
         lastName: null,
         email: null,
-        username: null
+        username: null,
+        cloudinaryUrl: null
       }
 
     case setUsersCategoriesType:
