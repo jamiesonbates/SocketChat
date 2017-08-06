@@ -85,6 +85,12 @@
   box-sizing: border-box;
 }
 
+.UserProfile-profile-image {
+  height: 100%;
+  border: 1px solid #D1D1D1;
+  border-radius: 50%;
+}
+
 .UserProfile-image {
   height: 250px;
   width: 250px;
@@ -94,13 +100,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.UserProfile-profile-image {
-  height: 100%;
-  border: 1px solid #D1D1D1;
-  border-radius: 50%;
+  align-items: center;    
 }
 
 .UserProfile-image.square {

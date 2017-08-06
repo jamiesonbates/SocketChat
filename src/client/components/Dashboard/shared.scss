@@ -84,3 +84,37 @@ $SideIconColor: white;
 .Link-Recognized {
   color: #2B2B2B;
 }
+
+.Profile-image {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.Chat-profile-image {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.Side-profile-image {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.Side-profile-image.top {
+  height: 60%;
+  width: 60%;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+
+.Side-profile-image.bottom {
+  height: 60%;
+  width: 60%;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+}
