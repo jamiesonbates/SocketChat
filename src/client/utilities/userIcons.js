@@ -4,13 +4,7 @@ import FaUser from 'react-icons/lib/ti/user';
 function userIconMaker(users, type) {
   switch(type) {
     case 'FOR_PROFILE':
-      let url = users[0].cloudinaryUrl.split('/');
-
-      url = [
-        ...url.splice(0, url.indexOf('upload') + 1),
-        'g_face,c_fill,r_max,h_300,w_300',
-        ...url.splice(url.indexOf('upload') + 1)
-      ];
+      const url = buildUrl(users[0].cloudinaryUrl);
 
       return (
         <img
@@ -22,12 +16,7 @@ function userIconMaker(users, type) {
       let chatUrl;
 
       if (users[0].cloudinaryUrl) {
-        chatUrl = users[0].cloudinaryUrl.split('/');
-        chatUrl = [
-          ...chatUrl.splice(0, chatUrl.indexOf('upload') + 1),
-          'g_face,c_fill,r_max,h_300,w_300',
-          ...chatUrl.splice(chatUrl.indexOf('upload') + 1)
-        ];
+        chatUrl = buildUrl(users[0].cloudinaryUrl);
       }
 
       return users[0].cloudinaryUrl ?
@@ -52,12 +41,7 @@ function userIconMaker(users, type) {
         let url;
 
         if (users[0].cloudinaryUrl) {
-          url = users[0].cloudinaryUrl.split('/');
-          url = [
-            ...url.splice(0, url.indexOf('upload') + 1),
-            'g_face,c_fill,r_max,h_300,w_300',
-            ...url.splice(url.indexOf('upload') + 1)
-          ];
+          url = buildUrl(users[0].cloudinaryUrl);
         }
 
         icon = users[0].cloudinaryUrl ?
@@ -107,12 +91,7 @@ function userIconMaker(users, type) {
                 let url;
 
                 if (user.cloudinaryUrl) {
-                  url = user.cloudinaryUrl.split('/');
-                  url = [
-                    ...url.splice(0, url.indexOf('upload') + 1),
-                    'g_face,c_fill,r_max,h_300,w_300',
-                    ...url.splice(url.indexOf('upload') + 1)
-                  ];
+                  url = buildUrl(user.cloudinaryUrl);
                 }
 
                 return user.cloudinaryUrl ?
@@ -134,6 +113,18 @@ function userIconMaker(users, type) {
 
       return icon;
   }
+}
+
+function buildUrl(url) {
+  url = url.split('/');
+
+  url = [
+    ...url.splice(0, url.indexOf('upload') + 1),
+    'g_face,c_fill,r_max,h_300,w_300',
+    ...url.splice(url.indexOf('upload') + 1)
+  ];
+
+  return url;
 }
 
 export default userIconMaker;
