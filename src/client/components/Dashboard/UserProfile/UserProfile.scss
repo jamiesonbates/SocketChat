@@ -86,11 +86,18 @@
 }
 
 .UserProfile-image {
-  padding: 40px;
+  height: 250px;
+  width: 250px;
   border-radius: 50%;
   background-color: #F7F7F7;
   margin-top: 5px;
   position: relative;
+}
+
+.UserProfile-profile-image {
+  height: 100%;
+  border: 2px solid #D1D1D1;
+  border-radius: 50%;
 }
 
 .UserProfile-image:hover .UserProfile-add-prompt {

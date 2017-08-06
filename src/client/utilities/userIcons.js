@@ -3,6 +3,20 @@ import FaUser from 'react-icons/lib/ti/user';
 
 function userIconMaker(users, type) {
   switch(type) {
+    case 'FOR_PROFILE':
+      let url = users[0].cloudinaryUrl.split('/');
+      url = [
+        ...url.splice(0, url.indexOf('upload') + 1),
+        'g_face,c_fill,r_max,h_300,w_300',
+        ...url.splice(url.indexOf('upload') + 1)
+      ];
+
+      return (
+        <img
+          src={url.join('/')}
+          className="UserProfile-profile-image"
+        />
+      )
     case 'FOR_CHAT':
       return (
         <div className="UserIcon-chat icon">

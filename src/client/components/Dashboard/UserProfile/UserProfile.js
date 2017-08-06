@@ -8,6 +8,7 @@ import passPropsByUser from '../../../containers/PassPropsByUser';
 import { exitUserProfileType, showEditProfileType, showUserProfileType } from '../../../state/actionTypes';
 import EditProfile from './EditProfile/EditProfile';
 import { bindAll } from 'lodash';
+import Utilities from '../../../utilities/Utilities';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -125,6 +126,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="UserProfile-container">
         <div className={
@@ -168,7 +170,11 @@ class UserProfile extends React.Component {
                                 : 'UserProfile-add-prompt'
                             }
                             onClick={this.handleAddPhoto}>
-                            <h3>Add photo</h3>
+                            {
+                              this.props.targetUserProfile.cloudinaryUrl ?
+                                <h3>Change photo</h3>
+                              : <h3>Add photo</h3>
+                            }
                           </div>
                           {
                             this.state.addingPhoto ?
@@ -178,7 +184,9 @@ class UserProfile extends React.Component {
                                   <input disabled={this.state.processing} className="UserProfile-image-submit" type="submit" value="Upload" />
                                 </form>
                               </div>
-                            : <FaUser className="UserProfile-user-icon" />
+                            : this.props.targetUserProfile.cloudinaryUrl ?
+                              Utilities.userIconMaker([this.props.userInfo], 'FOR_PROFILE')
+                              : <FaUser className="UserProfile-user-icon" />
                           }
                         </div>
                       </div>
