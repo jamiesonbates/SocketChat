@@ -16,7 +16,7 @@ export function userAuth() {
       .then((res) => {
         return dispatch({
           type: authSuccess,
-          payload: res.data[0]
+          payload: res.data
         })
       })
       .catch((err) => {

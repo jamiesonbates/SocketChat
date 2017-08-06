@@ -9,14 +9,22 @@ const router = require('express').Router();
 const util = require('./util');
 
 router.get('/', util.authorize, (req, res, next) => {
-  db('users')
-    .innerJoin('images', 'users.id', 'images.user_id')
-    .where('id', req.claim.userId)
-    .returning('*')
-    .then((user) => {
-      if (!user) {
+  let user;
+  console.log(req.claim.userId);
+  db.raw(`
+    SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.h_pw,
+      (SELECT img.cloudinary_url
+      FROM images as img
+      WHERE img.user_id = u.id)
+    FROM users as u
+    WHERE (u.id = ${req.claim.userId})
+  `)
+    .then((results) => {
+      if (!results.rows.length) {
         boom.create(404, 'User not found.');
       }
+
+      user = results.rows[0];
 
       delete user.h_pw;
 

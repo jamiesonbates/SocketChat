@@ -22,7 +22,10 @@ function updateUserStatus(userId, socketId, isOnline) {
 
 function getContacts(userId) {
   return db.raw(`
-    SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online
+    SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online,
+      (SELECT img.cloudinary_url
+      FROM images as img
+      WHERE img.user_id = u.id)
     FROM users as u
     WHERE u.id IN (
       SELECT uc.user_id2

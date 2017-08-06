@@ -174,7 +174,7 @@ class UserProfile extends React.Component {
                                 onClick={this.handleAddPhoto}>
                                 {
                                   this.props.targetUserProfile.cloudinaryUrl ?
-                                  <h3>Change photo</h3>
+                                    <h3>Change photo</h3>
                                   : <h3>Add photo</h3>
                                 }
                               </div>

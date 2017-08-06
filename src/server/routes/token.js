@@ -11,16 +11,20 @@ router.post('/', (req, res, next) => {
   const { email, password } = req.body;
   let user;
 
-  db('users')
-    .innerJoin('images', 'users.id', 'images.user_id')
-    .where('email', email)
-    .returning('*')
-    .then((row) => {
-      if (!row) {
+  db.raw(`
+    SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.h_pw,
+      (SELECT img.cloudinary_url
+      FROM images as img
+      WHERE img.user_id = u.id)
+    FROM users as u
+    WHERE (u.email = '${email}')
+  `)
+    .then((results) => {
+      if (!results.rows.length) {
         throw boom.create(400, 'Bad email or password.');
       }
 
-      user = row[0];
+      user = results.rows[0];
 
       return bcrypt.compare(password, user.h_pw)
     })

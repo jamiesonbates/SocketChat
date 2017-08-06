@@ -10,13 +10,16 @@ router.get('/find/:searchTerm/:userId', (req, res, next) => {
   const { searchTerm, userId } = req.params;
   let clause = '';
 
-  // need to sterilize this
+  // TODO: need to sterilize this
   if (searchTerm !== 'null') {
     clause = `AND (u.first_name LIKE '%${searchTerm}' OR u.last_name LIKE '%${searchTerm}%' OR u.username LIKE '%${searchTerm}%' OR u.email LIKE '%${searchTerm}%')`
   }
 
   db.raw(`
-    SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online
+    SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online,
+      (SELECT img.cloudinary_url
+      FROM images as img
+      WHERE img.user_id = uc.user_id2)
     FROM users as u
     WHERE u.id != ${userId}
     AND u.id NOT IN (
