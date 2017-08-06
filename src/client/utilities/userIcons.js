@@ -27,11 +27,17 @@ function userIconMaker(users, type) {
     break;
 
     case 'FOR_CONTACT':
-      return (
-        <div className="UserIcon-contact icon">
+      let contactUrl;
+
+      if (users[0].cloudinaryUrl) {
+        contactUrl = buildUrl(users[0].cloudinaryUrl);
+      }
+
+      return users[0].cloudinaryUrl ?
+        <img src={contactUrl.join('/')} className="Contact-profile-image" />
+      : <div className="UserIcon-contact icon">
           <h3>{users[0].firstName[0]}</h3>
         </div>
-      )
     break;
 
     case 'FOR_SIDE':
