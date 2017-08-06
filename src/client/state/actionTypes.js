@@ -60,3 +60,5 @@ export const setOtherContactsType = 'SET_OTHER_CONTACTS';
 export const searchForOtherUsersType = 'SEARCH_FOR_OTHER_USERS';
 export const stopSearchForOtherUsersType = 'STOP_SEARCH_FOR_OTHER_USERS';
 export const updateProfilePicType = 'UPDATE_PROFILE_PIC';
+export const startProcessingImageType = 'START_PROCESSING_IMAGE';
+export const stopProcessingImageType = 'STOP_PROCESSING_IMAGE';

@@ -31,7 +31,8 @@ export default function(ComposedClass) {
       currentUserId: state.userInfo.id,
       allChats: state.chats.allChats,
       showEditProfile: state.dashControls.showEditProfile,
-      userInfo: state.userInfo
+      userInfo: state.userInfo,
+      processingImage: state.dashControls.processingImage
     }
   }
 

@@ -2,10 +2,11 @@ import React from 'react';
 import FaUser from 'react-icons/lib/fa/user';
 import FaClose from 'react-icons/lib/md/close';
 import FaArrow from 'react-icons/lib/md/arrow-back';
+import FaUpload from 'react-icons/lib/ti/upload';
 
 import './UserProfile.scss';
 import passPropsByUser from '../../../containers/PassPropsByUser';
-import { exitUserProfileType, showEditProfileType, showUserProfileType } from '../../../state/actionTypes';
+import { exitUserProfileType, showEditProfileType, showUserProfileType, startProcessingImageType } from '../../../state/actionTypes';
 import EditProfile from './EditProfile/EditProfile';
 import { bindAll } from 'lodash';
 import Utilities from '../../../utilities/Utilities';
@@ -16,10 +17,10 @@ class UserProfile extends React.Component {
 
     this.state = {
       addingPhoto: false,
-      processing: false,
       data_uri: null,
       filename: null,
-      filetype: null
+      filetype: null,
+      photoChosen: false
     }
 
     bindAll(this, 'handleMessageClick', 'handleBookmarksClick', 'handleAddPhoto', 'handleFile', 'handleImageUpload');
@@ -105,20 +106,27 @@ class UserProfile extends React.Component {
 
     const { data_uri, filename, filetype } = this.state;
 
+    this.props.updateMain(startProcessingImageType);
     this.props.uploadImage({ data_uri, filename, filetype });
+    this.setState({
+      addingPhoto: false,
+      filename: null,
+      filetype: null,
+      data_uri: null,
+      photoChosen: false
+    });
   }
 
   handleFile(e) {
     const reader = new FileReader();
     const file = e.target.files[0];
 
-    console.log(file);
-
     reader.onload = (upload) => {
       this.setState({
         data_uri: upload.target.result,
         filename: file.name,
-        filetype: file.type
+        filetype: file.type,
+        photoChosen: true
       })
     };
 
@@ -126,7 +134,6 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="UserProfile-container">
         <div className={
@@ -162,12 +169,12 @@ class UserProfile extends React.Component {
                   <div className="UserProfile-main">
                     <div className="UserProfile-top">
                       <div className="UserProfile-image-container">
-                        <div className="UserProfile-image">
+                        <div className={ this.state.addingPhoto || this.props.processingImage ? 'UserProfile-image square': 'UserProfile-image' }>
                           {
                             this.props.currentUserId === this.props.targetUserId ?
                               <div
                                 className={
-                                  this.state.addingPhoto ?
+                                  this.state.addingPhoto || this.props.processingImage ?
                                   'UserProfile-add-prompt hide'
                                   : 'UserProfile-add-prompt'
                                 }
@@ -180,14 +187,36 @@ class UserProfile extends React.Component {
                               </div>
                             : null
                           }
+
                           {
-                            this.state.addingPhoto && this.props.currentUserId === this.props.targetUserId ?
-                              <div>
-                                <form onSubmit={this.handleImageUpload}>
-                                  <input type="file" onChange={this.handleFile} />
-                                  <input disabled={this.state.processing} className="UserProfile-image-submit" type="submit" value="Upload" />
-                                </form>
-                              </div>
+                            (this.state.addingPhoto || this.props.processingImage) && this.props.currentUserId === this.props.targetUserId ?
+                              this.props.processingImage ?
+                                <div className="UserProfile-image-processing">
+                                  <h3>Processing...</h3>
+                                </div>
+                              : <div>
+                                  <form onSubmit={this.handleImageUpload}>
+                                    <label
+                                      htmlFor="file"
+                                      className="UserProfile-file-label">
+                                      <FaUpload className="UserProfile-file-label-icon"/>
+                                      <h3>{this.state.photoChosen ? this.state.filename : 'Choose a photo'}</h3>
+                                    </label>
+                                    <input
+                                      className="UserProfile-file-input"
+                                      id="file"
+                                      name="file"
+                                      type="file"
+                                      onChange={this.handleFile}
+                                    />
+                                    <input
+                                      disabled={!this.state.photoChosen}
+                                      className="UserProfile-image-submit"
+                                      type="submit"
+                                      value="Upload"
+                                    />
+                                  </form>
+                                </div>
                             : this.props.targetUserProfile.cloudinaryUrl ?
                               Utilities.userIconMaker([this.props.userInfo], 'FOR_PROFILE')
                               : <FaUser className="UserProfile-user-icon" />

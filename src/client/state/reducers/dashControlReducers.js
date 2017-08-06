@@ -11,7 +11,9 @@ import {
   exitContactsListType,
   showEditProfileType,
   searchForOtherUsersType,
-  stopSearchForOtherUsersType
+  stopSearchForOtherUsersType,
+  startProcessingImageType,
+  stopProcessingImageType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -24,7 +26,8 @@ export default function reducer(state={
   showUserProfile: false,
   showContactsList: false,
   showEditProfile: false,
-  searchForOtherUsers: false
+  searchForOtherUsers: false,
+  processingImage: false
 }, action) {
   switch(action.type) {
     case showChatType:
@@ -107,6 +110,18 @@ export default function reducer(state={
         ...state,
         searchForOtherUsers: false
       }
+
+      case stopProcessingImageType:
+        return {
+          ...state,
+          processingImage: false
+        }
+
+      case startProcessingImageType:
+        return {
+          ...state,
+          processingImage: true
+        }
   }
 
   return state;

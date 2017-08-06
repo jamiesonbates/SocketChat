@@ -103,9 +103,92 @@
   border-radius: 50%;
 }
 
+.UserProfile-image.square {
+  border-radius: 0;
+  border: 3px dashed #C4C4C4;
+}
+
+.UserProfile-image-processing {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #26315E;
+  animation: imageProcessing 3s linear infinite;
+  color: white;
+}
+
+.UserProfile-file-label {
+  padding: 7px 12px;
+  background-color: #4D64BF;
+  display: flex;
+  color: white;
+  align-items: center;
+  border-radius: 3px;
+  width: 175px;
+}
+
+.UserProfile-file-label:hover {
+  background-color: #39498C;
+  cursor: pointer;
+}
+
+.UserProfile-file-label .UserProfile-file-label-icon {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.UserProfile-file-label h3 {
+  margin-left: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 75%;
+}
+
+.UserProfile-file-input {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+@keyframes imageProcessing {
+  0% { background-color: #26315E }
+  25% { background-color: #3F519C }
+  50% { background-color: #4D64BF }
+  75% { background-color: #3F519C }
+  100% { background-color: #26315E }
+}
+
 .UserProfile-image:hover .UserProfile-add-prompt {
   display: flex;
   cursor: pointer;
+}
+
+.UserProfile-image-submit {
+  padding: 5px 12px;
+  background-color: #1EBA57;
+  color: white;
+  border: none;
+  font-size: 1em;
+  margin-top: 20px;
+  border-radius: 3px;
+}
+
+.UserProfile-image-submit:hover {
+  cursor: pointer;
+  background-color: #16873F;
+}
+
+.UserProfile-image-submit:disabled {
+  opacity: 0.5;
+  cursor: default;
+  background-color: #1EBA57;
 }
 
 .UserProfile-add-prompt {
@@ -122,8 +205,6 @@
   background-color: black;
   opacity: 0.6;
 }
-
-
 
 .UserProfile-image .UserProfile-add-prompt.hide {
   display: none;
