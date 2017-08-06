@@ -163,21 +163,25 @@ class UserProfile extends React.Component {
                     <div className="UserProfile-top">
                       <div className="UserProfile-image-container">
                         <div className="UserProfile-image">
-                          <div
-                            className={
-                              this.state.addingPhoto ?
-                                'UserProfile-add-prompt hide'
-                                : 'UserProfile-add-prompt'
-                            }
-                            onClick={this.handleAddPhoto}>
-                            {
-                              this.props.targetUserProfile.cloudinaryUrl ?
-                                <h3>Change photo</h3>
-                              : <h3>Add photo</h3>
-                            }
-                          </div>
                           {
-                            this.state.addingPhoto ?
+                            this.props.currentUserId === this.props.targetUserId ?
+                              <div
+                                className={
+                                  this.state.addingPhoto ?
+                                  'UserProfile-add-prompt hide'
+                                  : 'UserProfile-add-prompt'
+                                }
+                                onClick={this.handleAddPhoto}>
+                                {
+                                  this.props.targetUserProfile.cloudinaryUrl ?
+                                  <h3>Change photo</h3>
+                                  : <h3>Add photo</h3>
+                                }
+                              </div>
+                            : null
+                          }
+                          {
+                            this.state.addingPhoto && this.props.currentUserId === this.props.targetUserId ?
                               <div>
                                 <form onSubmit={this.handleImageUpload}>
                                   <input type="file" onChange={this.handleFile} />

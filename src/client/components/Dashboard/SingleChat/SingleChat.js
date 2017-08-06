@@ -199,7 +199,7 @@ class SingleChat extends React.Component {
                     firstName={user.firstName}
                     lastName={user.lastName}
                     updateMain={this.props.updateMain}
-                    updateTargetUserId={this.updateTargetUserId}
+                    updateTargetUserId={this.props.updateTargetUserId}
                   />
           );
         }
