@@ -23,7 +23,7 @@ class UserProfile extends React.Component {
       photoChosen: false
     }
 
-    bindAll(this, 'handleMessageClick', 'handleBookmarksClick', 'handleAddPhoto', 'handleFile', 'handleImageUpload');
+    bindAll(this, 'handleMessageClick', 'handleBookmarksClick', 'handleAddPhoto', 'handleFile', 'handleImageUpload', 'handleExitAddPhoto');
   }
 
   componentWillMount() {
@@ -133,6 +133,16 @@ class UserProfile extends React.Component {
     reader.readAsDataURL(file);
   }
 
+  handleExitAddPhoto() {
+    this.setState({
+      addingPhoto: false,
+      data_uri: null,
+      filename: null,
+      filetype: null,
+      photoChose: false
+    });
+  }
+
   render() {
     return (
       <div className="UserProfile-container">
@@ -170,6 +180,14 @@ class UserProfile extends React.Component {
                     <div className="UserProfile-top">
                       <div className="UserProfile-image-container">
                         <div className={ this.state.addingPhoto || this.props.processingImage ? 'UserProfile-image square': 'UserProfile-image' }>
+                          {
+                            this.state.addingPhoto ?
+                              <FaClose
+                                className="UserProfile-exit-add-photo"
+                                onClick={this.handleExitAddPhoto} />
+                            : null
+                          }
+
                           {
                             this.props.currentUserId === this.props.targetUserId ?
                               <div

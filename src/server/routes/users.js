@@ -68,7 +68,6 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/', (req, res, next) => {
-  console.log(req.body);
   const { first_name, last_name, username, email} = decamelizeKeys(req.body);
 
   db('users')

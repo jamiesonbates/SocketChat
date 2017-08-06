@@ -40,8 +40,6 @@ router.get('/known/:userId', (req, res, next) => {
     .then((data) => {
       const contacts = data.rows;
 
-      console.log(contacts);
-
       res.send(camelizeKeys(contacts));
     })
     .catch((err) => {
@@ -55,6 +53,7 @@ router.post('/', (req, res, next) => {
 
   createContact(userId1, userId2)
     .then((contacts) => {
+      // TODO: connect this
       console.log(contacts);
     })
 })
