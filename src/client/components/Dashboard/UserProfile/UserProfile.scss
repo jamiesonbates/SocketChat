@@ -85,13 +85,41 @@
   box-sizing: border-box;
 }
 
-.UserProfile-user-icon {
-  background-color: #F7F7F7;
-  color: #3B3B3B;
+.UserProfile-image {
   padding: 40px;
   border-radius: 50%;
-  font-size: 200px;
+  background-color: #F7F7F7;
   margin-top: 5px;
+  position: relative;
+}
+
+.UserProfile-image:hover .UserProfile-add-prompt {
+  display: flex;
+  cursor: pointer;
+}
+
+.UserProfile-add-prompt {
+  border-radius: 50%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  top: 0;
+  left: 0;
+  background-color: black;
+  // opacity: 0.5;
+}
+
+.UserProfile-image .UserProfile-add-prompt.hide {
+  display: none;
+}
+
+.UserProfile-user-icon {
+  color: #3B3B3B;
+  font-size: 200px;
   box-sizing: border-box;
 }
 

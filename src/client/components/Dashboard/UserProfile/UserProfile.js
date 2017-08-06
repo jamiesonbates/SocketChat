@@ -7,13 +7,21 @@ import './UserProfile.scss';
 import passPropsByUser from '../../../containers/PassPropsByUser';
 import { exitUserProfileType, showEditProfileType, showUserProfileType } from '../../../state/actionTypes';
 import EditProfile from './EditProfile/EditProfile';
+import { bindAll } from 'lodash';
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleMessageClick = this.handleMessageClick.bind(this);
-    this.handleBookmarksClick = this.handleBookmarksClick.bind(this);
+    this.state = {
+      addingPhoto: false,
+      processing: false,
+      data_uri: null,
+      filename: null,
+      filetype: null
+    }
+
+    bindAll(this, 'handleMessageClick', 'handleBookmarksClick', 'handleAddPhoto', 'handleFile', 'handleImageUpload');
   }
 
   componentWillMount() {
@@ -87,6 +95,35 @@ class UserProfile extends React.Component {
     this.props.userSignOut();
   }
 
+  handleAddPhoto() {
+    this.setState({ addingPhoto: true });
+  }
+
+  handleImageUpload(e) {
+    e.preventDefault();
+
+    const { data_uri, filename, filetype } = this.state;
+
+    this.props.uploadImage({ data_uri, filename, filetype });
+  }
+
+  handleFile(e) {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    console.log(file);
+
+    reader.onload = (upload) => {
+      this.setState({
+        data_uri: upload.target.result,
+        filename: file.name,
+        filetype: file.type
+      })
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   render() {
     return (
       <div className="UserProfile-container">
@@ -123,7 +160,27 @@ class UserProfile extends React.Component {
                   <div className="UserProfile-main">
                     <div className="UserProfile-top">
                       <div className="UserProfile-image-container">
-                        <FaUser className="UserProfile-user-icon" />
+                        <div className="UserProfile-image">
+                          <div
+                            className={
+                              this.state.addingPhoto ?
+                                'UserProfile-add-prompt hide'
+                                : 'UserProfile-add-prompt'
+                            }
+                            onClick={this.handleAddPhoto}>
+                            <h3>Add photo</h3>
+                          </div>
+                          {
+                            this.state.addingPhoto ?
+                              <div>
+                                <form onSubmit={this.handleImageUpload}>
+                                  <input type="file" onChange={this.handleFile} />
+                                  <input disabled={this.state.processing} className="UserProfile-image-submit" type="submit" value="Upload" />
+                                </form>
+                              </div>
+                            : <FaUser className="UserProfile-user-icon" />
+                          }
+                        </div>
                       </div>
 
                       <div className="UserProfile-name">

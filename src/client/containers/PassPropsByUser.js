@@ -7,6 +7,7 @@ import { updateMain } from '../state/actions/dashControlActions';
 import { setBookmarks, unBookmarkMsg, resetBookmarks, updateCategoryPrivacy, addCategory, deleteCategory } from '../state/actions/bookmarkActions';
 import { resetTargetBookmarksId } from '../state/actions/uniqueUserActions';
 import { userSignOut } from '../state/actions/userActions';
+import { uploadImage } from '../state/actions/imageActions';
 
 export default function(ComposedClass) {
   class PassPropsByUser extends React.Component {
@@ -49,7 +50,8 @@ export default function(ComposedClass) {
       addCategory: (data) => dispatch(addCategory(data)),
       deleteCategory: (data) => dispatch(deleteCategory(data)),
       editUserProfile: (data) => dispatch(editUserProfile(data)),
-      userSignOut: () => dispatch(userSignOut())
+      userSignOut: () => dispatch(userSignOut()),
+      uploadImage: (data) => dispatch(uploadImage(data))
     }
   )
 

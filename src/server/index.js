@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/token', require('./routes/token'));
@@ -31,6 +31,7 @@ app.use('/api/online', require('./routes/online'));
 app.use('/api/contacts', require('./routes/contacts'));
 app.use('/api/bookmarks', require('./routes/bookmarks'));
 app.use('/api/categories', require('./routes/categories'));
+app.use('/api/images', require('./routes/images'));
 
 app.use(STATIC_PATH, express.static('public'));
 app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));

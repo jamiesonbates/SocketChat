@@ -10,6 +10,7 @@ router.get('/find/:searchTerm/:userId', (req, res, next) => {
   const { searchTerm, userId } = req.params;
   let clause = '';
 
+  // need to sterilize this
   if (searchTerm !== 'null') {
     clause = `AND (u.first_name LIKE '%${searchTerm}' OR u.last_name LIKE '%${searchTerm}%' OR u.username LIKE '%${searchTerm}%' OR u.email LIKE '%${searchTerm}%')`
   }
