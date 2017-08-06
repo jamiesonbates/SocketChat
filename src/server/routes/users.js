@@ -10,12 +10,12 @@ const util = require('./util');
 
 router.get('/', util.authorize, (req, res, next) => {
   let user;
-  console.log(req.claim.userId);
+
   db.raw(`
     SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.h_pw,
       (SELECT img.cloudinary_url
       FROM images as img
-      WHERE img.user_id = u.id)
+      WHERE img.user_id = u.id AND img.profile = true)
     FROM users as u
     WHERE (u.id = ${req.claim.userId})
   `)

@@ -15,14 +15,21 @@ router.post('/', (req, res, next) => {
   });
 
   cloudinary.uploader.upload(data_uri, (result) => {
+    let image;
     db('images')
       .insert({ profile: true, cloudinary_url: result.url, user_id: userId })
       .returning('*')
       .then((result) => {
-        const image = result[0];
-
+        image = result[0];
+        
+        return db('images').update('profile', false).where('user_id', userId).whereNot('id', image.id);
+      })
+      .then(() => {
         res.send(image);
-      });
+      })
+      .catch((err) => {
+        next(err);
+      })
   });
 });
 

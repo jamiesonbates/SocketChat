@@ -59,3 +59,4 @@ export const updateUserProfileType = 'UPDATE_USER_PROFILE';
 export const setOtherContactsType = 'SET_OTHER_CONTACTS';
 export const searchForOtherUsersType = 'SEARCH_FOR_OTHER_USERS';
 export const stopSearchForOtherUsersType = 'STOP_SEARCH_FOR_OTHER_USERS';
+export const updateProfilePicType = 'UPDATE_PROFILE_PIC';

@@ -19,7 +19,7 @@ router.get('/find/:searchTerm/:userId', (req, res, next) => {
     SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online,
       (SELECT img.cloudinary_url
       FROM images as img
-      WHERE img.user_id = uc.user_id2)
+      WHERE img.user_id = uc.user_id2 AND img.profile = true)
     FROM users as u
     WHERE u.id != ${userId}
     AND u.id NOT IN (

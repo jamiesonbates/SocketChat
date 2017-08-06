@@ -15,7 +15,7 @@ router.post('/', (req, res, next) => {
     SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.h_pw,
       (SELECT img.cloudinary_url
       FROM images as img
-      WHERE img.user_id = u.id)
+      WHERE img.user_id = u.id AND img.profile = true)
     FROM users as u
     WHERE (u.email = '${email}')
   `)

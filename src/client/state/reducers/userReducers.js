@@ -4,7 +4,8 @@ import {
   loginSuccess,
   signupSuccess,
   setUsersCategoriesType,
-  setRecentBookmarksType
+  setRecentBookmarksType,
+  updateProfilePicType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -57,6 +58,12 @@ export default function reducer(state={
       return {
         ...state,
         recentBookmarks: action.payload
+      }
+
+    case updateProfilePicType:
+      return {
+        ...state,
+        cloudinaryUrl: action.payload
       }
   }
 
