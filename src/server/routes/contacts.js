@@ -12,7 +12,7 @@ router.get('/find/:searchTerm/:userId', (req, res, next) => {
 
   // TODO: need to sterilize this
   if (searchTerm !== 'null') {
-    clause = `AND (u.first_name LIKE '%${searchTerm}' OR u.last_name LIKE '%${searchTerm}%' OR u.username LIKE '%${searchTerm}%' OR u.email LIKE '%${searchTerm}%')`
+    clause = `AND (u.first_name LIKE '%${searchTerm}%' OR u.last_name LIKE '%${searchTerm}%' OR u.username LIKE '%${searchTerm}%' OR u.email LIKE '%${searchTerm}%')`
   }
 
   db.raw(`
