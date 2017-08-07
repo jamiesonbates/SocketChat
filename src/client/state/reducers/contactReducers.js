@@ -2,7 +2,9 @@ import {
   updateContactsType,
   addNewGroupMemberType,
   setOtherContactsType,
-  stopSearchForOtherUsersType
+  stopSearchForOtherUsersType,
+  removeNewGroupMemberType,
+  resetNewGroupType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -32,6 +34,16 @@ export default function reducer(state={
       return {
         ...state,
         otherContacts: []
+      }
+    case removeNewGroupMemberType:
+      return {
+        ...state,
+        newGroup: action.payload
+      }
+    case resetNewGroupType:
+      return {
+        ...state,
+        newGroup: []
       }
   }
 

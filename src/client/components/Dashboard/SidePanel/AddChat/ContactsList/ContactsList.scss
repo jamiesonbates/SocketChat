@@ -18,6 +18,10 @@
   border-bottom: 2px solid #1D2547;
 }
 
+.ContactsList-contact:last-child {
+  border: none;
+}
+
 .ContactsList-contact:hover {
   background-color: #1D2547;
   cursor: pointer;

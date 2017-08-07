@@ -32,7 +32,7 @@ class ContactsList extends React.Component {
         <h3 className="ContactsList-header">{this.props.header}</h3>
         {
           this.filterContacts().length ?
-            <div>
+            <div className="ContactsList-list">
               {
                 this.filterContacts().map((contact, i) => (
                   <div

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateSide, updateMain } from '../state/actions/dashControlActions';
 import { fetchChats, setChat, createChat, updateChatSeen } from '../state/actions/chatActions';
 import { updateGroupName, updateSearchTerm } from '../state/actions/formActions';
-import { addNewGroupMember, findContacts } from '../state/actions/contactsActions';
+import { addNewGroupMember, findContacts, removeNewGroupMember, resetNewGroup } from '../state/actions/contactsActions';
 import { updateTargetUserId } from '../state/actions/uniqueUserActions';
 import { setBookmarks } from '../state/actions/bookmarkActions';
 
@@ -54,7 +54,9 @@ export default function(ComposedClass) {
       updateTargetUserId: (data) => dispatch(updateTargetUserId(data)),
       setBookmarks: (data) => dispatch(setBookmarks(data)),
       updateChatSeen: (data) => dispatch(updateChatSeen(data)),
-      findContacts: (data) => dispatch(findContacts(data))
+      findContacts: (data) => dispatch(findContacts(data)),
+      removeNewGroupMember: (data) => dispatch(removeNewGroupMember(data)),
+      resetNewGroup: () => dispatch(resetNewGroup())
     }
   )
 

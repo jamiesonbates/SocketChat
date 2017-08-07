@@ -5,17 +5,25 @@
   z-index: 1;
   min-height: 60px;
   box-sizing: border-box;
+  font-family: 'Lato';
+}
+
+.SideNav-header-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .SideNav-header {
-  color: white;
+  color: #E0E0E0;
   font-size: 20px;
-  margin-left: 10%;
-  font-family: Arial;
+  margin-left: 15px;
+  font-family: 'Lato';
 }
 
 .SideNav-icon {
-  color: white;
+  color: #E0E0E0;
   font-size: 25px;
   cursor: pointer;
 }
@@ -30,10 +38,6 @@
   justify-content: space-between;
   align-items: center;
   flex: 1;
-}
-
-.SideNav-container:hover {
-  background-color: #1D2547;
 }
 
 .SideNav-user-info {
@@ -64,4 +68,20 @@
 
 .SideNav-user-options {
   display: flex;
+}
+
+.SideNav-create-group {
+  font-size: 16px;
+  background-color: #1EBA57;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-family: 'Lato';
+}
+
+.SideNav-create-group:hover {
+  background-color: #1BA84F;
+  cursor: pointer;
 }

@@ -79,6 +79,56 @@ class SidePanel extends React.Component {
     this.handleNavToChats();
   }
 
+  handleCreateNewGroup() {
+    let chatId;
+    const newGroup = this.props.newGroup;
+
+    const chatExists = this.props.allChats.filter(chat => {
+      if (chat.users.length === newGroup.length + 1) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    })
+    .reduce((acc, chat) => {
+      const newGroup = this.props.newGroup;
+
+      const matchCount = newGroup.reduce((acc, userId) => {
+        for (const user of chat.users) {
+          if (userId.id === user.id) {
+            acc += 1;
+
+            return acc;
+          }
+        }
+
+        return acc;
+      }, 0);
+
+      if (matchCount === chat.users.length) {
+        acc = true;
+        chatId = chat.id;
+
+        return acc;
+      }
+
+      return acc;
+    }, false);
+
+    if (chatExists) {
+      this.props.setChat(chatId);
+    }
+    else {
+      let userGroup = [
+        ...this.props.newGroup
+      ]
+      .map(user => user.id);
+
+      this.props.createChat(userGroup);
+    }
+  }
+
   render() {
     return (
       <div className="SidePanel-container">
@@ -91,6 +141,7 @@ class SidePanel extends React.Component {
           handleNavToBookmarks={this.handleNavToBookmarks.bind(this)}
           handleNavToContacts={this.handleNavToContacts.bind(this)}
           handleNavToDefaultMain={this.handleNavToDefaultMain.bind(this)}
+          handleCreateNewGroup={this.handleCreateNewGroup.bind(this)}
         />
         {
           this.props.showChatsList ?

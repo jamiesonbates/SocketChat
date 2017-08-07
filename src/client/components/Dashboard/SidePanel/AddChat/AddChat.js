@@ -1,5 +1,4 @@
 import React from 'react';
-import FaCheck from 'react-icons/lib/md/check';
 import FaWaves from 'react-icons/lib/ti/waves-outline';
 import FaDown from 'react-icons/lib/ti/arrow-sorted-down';
 
@@ -28,54 +27,9 @@ class AddChat extends React.Component {
     this.props.addNewGroupMember(userId);
   }
 
-  handleCreateNewGroup() {
-    let chatId;
-    const newGroup = this.props.newGroup;
-
-    const chatExists = this.props.allChats.filter(chat => {
-      if (chat.users.length === newGroup.length + 1) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    })
-    .reduce((acc, chat) => {
-      const newGroup = this.props.newGroup;
-
-      const matchCount = newGroup.reduce((acc, userId) => {
-        for (const user of chat.users) {
-          if (userId.id === user.id) {
-            acc += 1;
-
-            return acc;
-          }
-        }
-
-        return acc;
-      }, 0);
-
-      if (matchCount === chat.users.length) {
-        acc = true;
-        chatId = chat.id;
-
-        return acc;
-      }
-
-      return acc;
-    }, false);
-
-    if (chatExists) {
-      this.props.setChat(chatId);
-    }
-    else {
-      let userGroup = [
-        ...this.props.newGroup
-      ]
-      .map(user => user.id);
-
-      this.props.createChat(userGroup);
-    }
+  componentWillUnmount() {
+    this.props.resetNewGroup();
+    this.props.updateSearchTerm('');
   }
 
   render() {
@@ -97,16 +51,17 @@ class AddChat extends React.Component {
             showGroupForm={this.props.showGroupForm}
             newGroup={this.props.newGroup}
             findContacts={this.props.findContacts}
+            removeNewGroupMember={this.props.removeNewGroupMember}
           />
 
-          {
+          {/* {
             this.props.showGroupForm ?
               <FaCheck
                 className="AddChat-icon-check"
                 onClick={this.handleCreateNewGroup.bind(this)}
               />
             : null
-          }
+          } */}
         </div>
         <div className="AddChat-contacts-container">
 

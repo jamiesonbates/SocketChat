@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { updateContactsType, addNewGroupMemberType, setOtherContactsType, stopSearchForOtherUsersType } from '../actionTypes';
+import { updateContactsType, addNewGroupMemberType, setOtherContactsType, stopSearchForOtherUsersType, removeNewGroupMemberType, resetNewGroupType } from '../actionTypes';
 
 export function getContacts() {
   return function(dispatch, getState) {
@@ -87,5 +87,21 @@ export function addNewGroupMember(userId) {
       type: addNewGroupMemberType,
       payload: nextNewGroup
     });
+  }
+}
+
+export function removeNewGroupMember(userId) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const newGroup = state.contacts.newGroup;
+    const nextNewGroup = newGroup.filter(user => user.id !== userId);
+
+    dispatch({ type: removeNewGroupMemberType, payload: nextNewGroup });
+  }
+}
+
+export function resetNewGroup() {
+  return function(dispatch) {
+    dispatch({ type: resetNewGroupType });
   }
 }

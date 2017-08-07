@@ -8,7 +8,7 @@ import FaHome from 'react-icons/lib/ti/home-outline';
 import './SideNav.scss';
 import FaBackArrow from 'react-icons/lib/md/arrow-back';
 
-const SideNav = ({ handleNavToChats, inAddChat, inGroupForm, userInfo, handleNavToProfile, handleNavToBookmarks, handleNavToContacts, handleNavToDefaultMain }) => (
+const SideNav = ({ handleNavToChats, inAddChat, inGroupForm, userInfo, handleNavToProfile, handleNavToBookmarks, handleNavToContacts, handleNavToDefaultMain, handleCreateNewGroup }) => (
   <div className="SideNav-container">
     {
       inAddChat ?
@@ -18,7 +18,15 @@ const SideNav = ({ handleNavToChats, inAddChat, inGroupForm, userInfo, handleNav
     {
       inAddChat ?
         inGroupForm ?
-          <h2 className="SideNav-header">New Group</h2>
+          <div className="SideNav-header-container">
+            <h2 className="SideNav-header">New Group</h2>
+
+            <button
+              className="SideNav-create-group"
+              onClick={handleCreateNewGroup}>
+              Create Group
+            </button>
+          </div>
         : <h2 className="SideNav-header">New Chat</h2>
       : <div className="SideNav-home">
           <div className="SideNav-user-info">

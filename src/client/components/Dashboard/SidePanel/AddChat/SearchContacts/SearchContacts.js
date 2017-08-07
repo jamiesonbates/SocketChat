@@ -1,11 +1,19 @@
 import React from 'react';
 import FaSearch from 'react-icons/lib/md/search';
+import FaClose from 'react-icons/lib/md/close';
+import { bindAll } from 'lodash';
 
 import './SearchContacts.scss';
 
 class SearchContacts extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      autoFocus: true
+    }
+
+    bindAll('removeContactFromGroup');
   }
 
   setSearchTerm() {
@@ -15,24 +23,18 @@ class SearchContacts extends React.Component {
     this.props.findContacts(term);
   }
 
-  componentWillUnmount() {
-    this.props.updateSearchTerm('');
+  removeContactFromGroup(userId) {
+    this.props.removeNewGroupMember(userId);
+  }
+
+  componentDidUpdate() {
+    this.refs.term.focus();
   }
 
   render() {
     return (
       <div className="SearchContacts-container">
         <FaSearch className="SearchContacts-icon-search" />
-
-        {
-          this.props.showGroupForm ?
-            this.props.newGroup.map((user, i) => (
-              <div key={i} className="SearchContacts-groupmember">
-                <p>{ user.firstName } { user.lastName }</p>
-              </div>
-            ))
-          : null
-        }
 
         <form name="searchTerm" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -43,6 +45,20 @@ class SearchContacts extends React.Component {
             value={this.props.searchTermVal}
           />
         </form>
+
+        {
+          this.props.showGroupForm ?
+            this.props.newGroup.map((user, i) => (
+              <div key={i} className="SearchContacts-groupmember">
+                <p>{ user.firstName } { user.lastName }</p>
+                <FaClose
+                  className="SearchContacts-exit"
+                  onClick={() => this.removeContactFromGroup(user.id)} />
+              </div>
+            ))
+          : null
+        }
+
       </div>
     )
   }

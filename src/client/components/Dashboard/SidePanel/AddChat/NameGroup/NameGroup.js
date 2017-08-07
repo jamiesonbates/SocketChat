@@ -18,11 +18,13 @@ class NameGroup extends React.Component {
     return (
       <div className="NameGroup-container">
         <FaGroup className="NameGroup-icon"/>
+
         <form name="groupNameForm" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             ref="groupName"
             placeholder="Name your group"
+            autoFocus={true}
             onChange={this.handleFormChange.bind(this)}
             value={this.props.groupNameVal}
           />
