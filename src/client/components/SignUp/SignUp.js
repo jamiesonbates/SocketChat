@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import FaWaves from 'react-icons/lib/ti/waves-outline';
 
-import './SignUp.css';
-import Nav from '../Nav/Nav';
+import './SignUp.scss';
 
 class SignUp extends React.Component {
   constructor() {

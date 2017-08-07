@@ -63,7 +63,7 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('disconnect', (data) => {
-    console.log('user disconnected');
+    console.log('user disconnected', data);
   });
 
   socket.on('join room', (data) => {
@@ -92,15 +92,19 @@ io.on('connection', (socket) => {
   });
 
   socket.on('user offline', (userId) => {
+    console.log(userId, 'user offline');
     dbActions.updateUserStatus(userId, null, false)
       .then(() => {
+        console.log('here');
         return dbActions.getContacts(userId);
       })
       .then((data) => {
         const users = data.rows;
+        console.log(users);
 
         for (const user of users) {
           if (user.online) {
+            console.log(user);
             socket.to(user.online).emit('common user now offline', userId);
           }
         }

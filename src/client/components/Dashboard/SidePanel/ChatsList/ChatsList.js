@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import FaNewChat from 'react-icons/lib/md/add-circle-outline';
 
-import './ChatsList.css';
+import './ChatsList.scss';
 import wrapSidePanel from '../../../../containers/WrapSidePanel';
 import ChatPeak from './ChatPeak/ChatPeak';
 import { showChatType, showAddChatType } from '../../../../state/actionTypes';

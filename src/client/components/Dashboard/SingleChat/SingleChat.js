@@ -5,7 +5,7 @@ import FaUsers from 'react-icons/lib/fa/user-plus';
 import FaUser from 'react-icons/lib/fa/user';
 import 'react-select/dist/react-select.css';
 
-import './SingleChat.css';
+import './SingleChat.scss';
 import wrapSingleChat from '../../../containers/WrapSingleChat';
 import { showUserProfileType } from '../../../state/actionTypes';
 import Message from './Message';

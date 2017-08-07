@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import FaWaves from 'react-icons/lib/ti/waves-outline';
 
-import './Login.css';
-import Nav from '../Nav/Nav';
+import './Login.scss';
 import { userLogin } from '../../state/actions/userActions';
 import { loginError } from '../../state/actions/errorActions';
 

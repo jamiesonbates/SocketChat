@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import './Dashboard.css';
+import './Dashboard.scss';
 import './shared.scss';
 import wrapDashboard from '../../containers/WrapDashboard';
 import wrapSingleChat from '../../containers/WrapSingleChat';

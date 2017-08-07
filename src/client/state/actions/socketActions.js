@@ -110,12 +110,13 @@ export function updateOnlineUsers(userId, isOnline) {
       })
     }
     else {
-      // TODO: what algo should I use here?
       const nextUsersOnline = usersOnline.filter(curUser => {
         if (curUser !== userId) {
           return curUser;
         }
       });
+
+      console.log(nextUsersOnline);
 
       return dispatch({
         type: userNowOffline,

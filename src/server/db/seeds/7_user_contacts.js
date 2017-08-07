@@ -33,6 +33,31 @@ exports.seed = function(knex) {
           id: 6,
           user_id1: 3,
           user_id2: 4
+        },
+        {
+          id: 7,
+          user_id1: 2,
+          user_id2: 1
+        },
+        {
+          id: 8,
+          user_id1: 3,
+          user_id2: 1
+        },
+        {
+          id: 9,
+          user_id1: 4,
+          user_id2: 1
+        },
+        {
+          id: 10,
+          user_id1: 3,
+          user_id2: 2
+        },
+        {
+          id: 11,
+          user_id1: 4,
+          user_id2: 3
         }
       ]);
     })
