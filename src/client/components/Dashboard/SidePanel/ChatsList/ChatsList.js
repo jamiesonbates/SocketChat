@@ -56,8 +56,8 @@ class ChatsList extends React.Component {
           />
         </div>
         {
-          this.props.allChats
-            ? this.props.allChats.map((chat, i) => (
+          this.props.allChats ?
+            this.props.allChats.map((chat, i) => (
                 <div
                   key={i}
                   className="ChatsList-chat"

@@ -14,7 +14,8 @@ import {
   resetSingleChatType,
   updateChatViewHistoryType,
   updateNewMessageCountType,
-  updateChatLastSeenType
+  updateChatLastSeenType,
+  setChatViewHistoryType
 } from '../actionTypes';
 
 import {
@@ -49,12 +50,31 @@ export function fetchChats({ shouldSetChat=false, chatId=null, onLoad=false }) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.userInfo.id;
+    const chatLastSeen = state.chats.chatLastSeen;
+    const chatNewMessages = state.chats.chatNewMessages;
+    console.log(chatLastSeen);
+    console.log(chatNewMessages);
 
     axios.get(`/api/chats/${userId}`)
       .then((res) => {
-        let allChats = res.data;
+        let nextAllChats = res.data;
 
-        dispatch({ type: chatsSuccess, payload: allChats });
+        const nextChatLastSeen = nextAllChats.map(chat => {
+          return { chatId: chat.id, lastSeen: chat.lastSeen };
+        });
+
+        const nextChatNewMessages = nextAllChats.map(chat => {
+          return { chatId: chat.id, count: chat.originalCount };
+        });
+
+        dispatch({ type: chatsSuccess, payload: nextAllChats });
+        dispatch({
+          type: setChatViewHistoryType,
+          payload: {
+            nextChatLastSeen,
+            nextChatNewMessages
+          }
+        });
 
         if (shouldSetChat) {
           dispatch(setChat(chatId));
@@ -77,13 +97,15 @@ export function updateNewMessageCount(chatId, lastSeen, onLoad=false) {
       if (history.chatId === chatId || onLoad) {
         const wholeChat = Utilities.findChat(allChats, history.chatId);
 
-        const count = wholeChat.messages.reduce((acc, msg) => {
-          if (moment(lastSeen).valueOf() < moment(msg.createdAt).valueOf()) {
-            acc += 1;
-          }
+        const count = wholeChat.messages ?
+          wholeChat.messages.reduce((acc, msg) => {
+            if (moment(lastSeen).valueOf() < moment(msg.createdAt).valueOf()) {
+              acc += 1;
+            }
 
-          return acc;
-        }, 0);
+              return acc;
+            }, 0)
+          : 0;
 
         history.count = count;
       }
