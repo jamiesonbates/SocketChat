@@ -28,7 +28,7 @@ class SingleChat extends React.Component {
   updateScroll() {
     const msgDiv = document.querySelector('.SingleChat-messages-container');
 
-    if (msgDiv && !this.state.bookmarkMsgId) {
+    if (msgDiv && !this.state.bookmarkMsgId && msgDiv.lastElementChild) {
       msgDiv.lastElementChild.scrollIntoView();
     }
   }
@@ -223,7 +223,6 @@ class SingleChat extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="SingleChat-container">
         <div className="SingleChat-header-container">

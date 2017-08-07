@@ -61,6 +61,7 @@ class SidePanel extends React.Component {
         if (user.id === userId) {
           chatId = chat.id;
           acc = true;
+
           return acc;
         }
       }
@@ -74,6 +75,8 @@ class SidePanel extends React.Component {
     else {
       this.props.createChat([userId]);
     }
+
+    this.handleNavToChats();
   }
 
   render() {

@@ -64,9 +64,6 @@ export function editUserProfile({ firstName, lastName, username, email, userId }
     const state = getState();
     const curUserId = state.userInfo.id;
     let nextUserProfile = { ...state.userInfo };
-    console.log(nextUserProfile);
-
-    console.log(userId, curUserId);
 
     if (userId !== curUserId) {
       return;
