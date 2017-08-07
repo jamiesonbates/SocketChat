@@ -33,12 +33,31 @@ export function findContacts(searchTerm) {
   }
 }
 
+export function createContact(userId1, userId2) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const usersContacts = state.contacts.usersContacts;
+
+    for (const contact of usersContacts) {
+      if (contact.id === userId2) {
+        return;
+      }
+    }
+
+    axios.post('/api/contacts/', { userId1, userId2 })
+      .then((res) => {
+        dispatch({ type: updateContactsType, payload: res.data });
+      });
+  }
+}
+
 export function addNewGroupMember(userId) {
   return function(dispatch, getState) {
     const state = getState();
     const newGroup = state.contacts.newGroup;
     const newGroupIds = [...newGroup].map(user => user.id);
     const usersContacts = state.contacts.usersContacts;
+    const otherContacts = state.contacts.otherContacts;
     let user;
 
     if (newGroupIds.includes(userId)) {
@@ -48,6 +67,14 @@ export function addNewGroupMember(userId) {
     for (const contact of usersContacts) {
       if (contact.id === userId) {
         user = contact;
+      }
+    }
+
+    if (!user) {
+      for (const contact of otherContacts) {
+        if (contact.id === userId) {
+          user = contact;
+        }
       }
     }
 

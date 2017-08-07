@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 
 import { getChatViews } from './chats/chatViews';
+import { createContact } from './contactsActions';
 
 import {
   chatsSuccess,
@@ -52,8 +53,6 @@ export function fetchChats({ shouldSetChat=false, chatId=null, onLoad=false }) {
     const userId = state.userInfo.id;
     const chatLastSeen = state.chats.chatLastSeen;
     const chatNewMessages = state.chats.chatNewMessages;
-    console.log(chatLastSeen);
-    console.log(chatNewMessages);
 
     axios.get(`/api/chats/${userId}`)
       .then((res) => {
@@ -152,9 +151,10 @@ export function updateChatSeen({ chatId, silent=null, from=null, next=false,  le
 }
 
 export function createChat(users) {
+  console.log(users);
   return function(dispatch, getState) {
     const state = getState();
-    const userId = state.userInfo.id;
+    const currentUserId = state.userInfo.id;
     const name = state.forms.groupName || null;
     const body = {
       chat: {
@@ -163,7 +163,11 @@ export function createChat(users) {
       users
     }
 
-    body.users.push(userId);
+    for (const userId of users) {
+      dispatch(createContact(currentUserId, userId));
+    }
+
+    body.users.push(currentUserId);
 
     axios.post('/api/chats', body)
       .then((res) => {

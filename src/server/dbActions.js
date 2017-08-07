@@ -37,17 +37,32 @@ function getContacts(userId) {
 }
 
 function createContact(userId1, userId2) {
-  return db('user_contacts').insert([
-    {
-      user_id1: userId1,
-      user_id2: userId2
-    },
-    {
-      user_id1: userId2,
-      user_id2: userId1
-    }
-  ])
-  .returning('*');
+  return db('user_contacts')
+    .insert([
+      {
+        user_id1: userId1,
+        user_id2: userId2
+      },
+      {
+        user_id1: userId2,
+        user_id2: userId1
+      }
+    ])
+    .then(() => {
+      return db.raw(`
+        SELECT u.id, u.first_name, u.last_name, u.email, u.username, u.online,
+          (SELECT img.cloudinary_url
+          FROM images as img
+          WHERE img.user_id = u.id)
+        FROM users as u
+        WHERE u.id IN (
+          SELECT uc.user_id2
+          FROM user_contacts as uc
+          WHERE uc.user_id1 = ${userId1}
+        )
+        AND NOT u.id = ${userId1}
+      `)
+    });
 }
 
 function updateChatActivity(chatId) {

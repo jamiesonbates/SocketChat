@@ -31,6 +31,7 @@ class AddChat extends React.Component {
   handleCreateNewGroup() {
     let chatId;
     const newGroup = this.props.newGroup;
+    console.log(newGroup);
 
     const chatExists = this.props.allChats.filter(chat => {
       if (chat.users.length === newGroup.length + 1) {
@@ -43,22 +44,19 @@ class AddChat extends React.Component {
     .reduce((acc, chat) => {
       const newGroup = this.props.newGroup;
 
-      const isMatch = newGroup.reduce((acc, userId) => {
+      const matchCount = newGroup.reduce((acc, userId) => {
         for (const user of chat.users) {
           if (userId.id === user.id) {
-            acc = true;
+            acc += 1;
 
             return acc;
-          }
-          else {
-            acc = false;
           }
         }
 
         return acc;
-      }, false);
+      }, 0);
 
-      if (isMatch) {
+      if (matchCount === chat.users.length) {
         acc = true;
         chatId = chat.id;
 
@@ -77,6 +75,7 @@ class AddChat extends React.Component {
       ]
       .map(user => user.id);
 
+      console.log(userGroup);
       this.props.createChat(userGroup);
     }
   }
