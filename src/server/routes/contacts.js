@@ -50,12 +50,9 @@ router.get('/known/:userId', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { userId1, userId2 } = req.body;
-  console.log(userId1, userId2);
 
   createContact(userId1, userId2)
     .then((result) => {
-      // TODO: connect this
-      console.log('post contact result', result.rows);
       res.send(camelizeKeys(result.rows));
     })
 })

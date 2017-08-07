@@ -151,7 +151,6 @@ export function updateChatSeen({ chatId, silent=null, from=null, next=false,  le
 }
 
 export function createChat(users) {
-  console.log(users);
   return function(dispatch, getState) {
     const state = getState();
     const currentUserId = state.userInfo.id;
