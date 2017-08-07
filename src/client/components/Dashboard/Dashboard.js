@@ -58,10 +58,10 @@ class Dashboard extends React.Component {
   determineChatHeader(chat) {
     if (chat.name) return chat.name;
 
-    const title = chat.users.reduce((acc, user, i, arr) => {
-      if (user.id === this.props.userId) return acc;
-
-      if (arr.length - 1 === i || arr.length < 3) {
+    const title = chat.users
+      .filter(user => user.id !== this.props.userId)
+      .reduce((acc, user, i, arr) => {
+      if (arr.length - 1 === i || arr.length < 2) {
         acc += `${user.firstName} ${user.lastName}`;
 
         return acc;

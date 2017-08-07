@@ -83,6 +83,7 @@ export default function(ComposedClass) {
       stoppedTyping: (data) => dispatch(stoppedTyping(data)),
       updateMain: (data) => dispatch(updateMain(data)),
       updateTargetUserId: (data) => dispatch(updateTargetUserId(data)),
+      updateUserProfile: (data) => dispatch(updateUserProfile(data)),
       bookmarkMsg: (data) => dispatch(bookmarkMsg(data)),
       updateChatSeen: (data) => dispatch(updateChatSeen(data)),
       resetSingleChat: () => dispatch(resetSingleChat())

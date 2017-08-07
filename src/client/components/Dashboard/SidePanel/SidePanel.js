@@ -20,6 +20,7 @@ class SidePanel extends React.Component {
     const userId = this.props.userId;
 
     this.props.updateTargetUserId(userId);
+    this.props.updateUserProfile(userId);
     this.props.updateMain(showUserProfileType);
   }
 

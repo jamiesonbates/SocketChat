@@ -247,7 +247,7 @@ class UserProfile extends React.Component {
                           {this.props.targetUserProfile.firstName} {this.props.targetUserProfile.lastName}
                         </h3>
                         {
-                          this.props.currentUserId === this.props.targetUserId ?
+                          this.props.currentUserId !== this.props.targetUserId ?
                             this.userIsOnline(this.props.targetUserId) ?
                               <div className="UserProfile-online"></div>
                             : <div className="UserProfile-not-online"></div>

@@ -278,6 +278,7 @@ class SingleChat extends React.Component {
                         lastName={user.lastName}
                         updateMain={this.props.updateMain}
                         updateTargetUserId={this.props.updateTargetUserId}
+                        updateUserProfile={this.props.updateUserProfile}
                       />
                       {
                         this.userIsOnline(user.id) ?

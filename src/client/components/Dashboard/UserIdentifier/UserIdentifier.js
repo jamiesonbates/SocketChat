@@ -10,6 +10,7 @@ class UserIdentifier extends React.Component {
 
   handleClickOnUser() {
     this.props.updateTargetUserId(this.props.userId);
+    this.props.updateUserProfile(this.props.userId);
     this.props.updateMain(showUserProfileType);
   }
 
