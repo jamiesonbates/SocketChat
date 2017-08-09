@@ -23,10 +23,11 @@ class SingleChat extends React.Component {
     this.state = {
       bookmarkMsgId: null,
       editingChatName: false,
-      newChatName: this.props.currentChat.name
+      newChatName: this.props.currentChat.name,
+      showUsers: true
     }
 
-    bindAll(this, 'handleTyping', 'handleEditChatName', 'handleChatNameChange', 'handleExitEditChatName', 'handleSubmitNameChange');
+    bindAll(this, 'handleTyping', 'handleEditChatName', 'handleChatNameChange', 'handleExitEditChatName', 'handleSubmitNameChange', 'toggleUsers');
   }
 
   updateScroll() {
@@ -229,6 +230,14 @@ class SingleChat extends React.Component {
     // this.setState({ editingChatName: false });
   }
 
+  toggleUsers() {
+    this.setState(prevState => {
+      return {
+        showUsers: !prevState.showUsers
+      }
+    });
+  }
+
   render() {
     return (
       <div className="SingleChat-container">
@@ -247,8 +256,9 @@ class SingleChat extends React.Component {
                     this.props.currentChatUsers.length < 3 ?
                       this.props.currentChat.users
                         .filter(user => user.id !== this.props.userId)
-                        .map(user =>
+                        .map((user, i) =>
                           <UserIdentifier
+                            key={i}
                             userId={user.id}
                             firstName={user.firstName}
                             lastName={user.lastName}
@@ -266,17 +276,19 @@ class SingleChat extends React.Component {
                                 autoFocus={true}
                                 type="text"
                                 value={this.state.newChatName} />
+
                               <button
                                 type="submit"
                                 className="SingleChat-edit-name-btn" >
                                 Update
                               </button>
+
                               <FaClose
                                 className="SingleChat-cancel-edit-name"
                                 onClick={this.handleExitEditChatName} />
                             </form>
                           </div>
-                        :  <div className="SingleChat-title">
+                        : <div className="SingleChat-title">
                             <h2>{this.props.currentChat.name}</h2>
                             <FaEdit
                               className="SingleChat-edit-title"
@@ -291,11 +303,13 @@ class SingleChat extends React.Component {
                                 autoFocus={true}
                                 type="text"
                                 placeholder="Name this chat"/>
+
                               <button
                                 className="SingleChat-edit-name-btn"
                                 type="submit">
                                 Create
                               </button>
+
                               <FaClose
                                 className="SingleChat-cancel-edit-name"
                                 onClick={this.handleExitEditChatName} />
@@ -303,6 +317,7 @@ class SingleChat extends React.Component {
                           </div>
                         : <div className="SingleChat-title">
                             <h2>Group Chat</h2>
+
                             <FaEdit
                               className="SingleChat-edit-title"
                               onClick={this.handleEditChatName} />
@@ -331,9 +346,23 @@ class SingleChat extends React.Component {
             }
           </div>
 
-          <div className="SingleChat-header-options">
-            {
-              this.props.currentChat && this.props.currentChatUsers.length > 2 ?
+          {
+            <div className="SingleChat-header-options">
+              {
+                this.state.showUsers ?
+                  <p
+                    className="SingleChat-users-toggle" onClick={this.toggleUsers}>
+                    Hide Users
+                  </p>
+                : <p
+                    className="SingleChat-users-toggle"
+                    onClick={this.toggleUsers}>
+                    Show Users
+                  </p>
+              }
+              
+              {
+                this.state.showUsers && this.props.currentChat && this.props.currentChatUsers.length > 2 ?
                 this.props.currentChatUsers
                   .sort((a, b) => {
                     const aOnline = this.userIsOnline(a.id);
@@ -358,26 +387,27 @@ class SingleChat extends React.Component {
                       <div
                         key={i}
                         className="SingleChat-user"
-                      >
-                        <UserIdentifier
-                          userId={user.id}
-                          firstName={user.firstName}
-                          lastName={user.lastName}
-                          updateMain={this.props.updateMain}
-                          updateTargetUserId={this.props.updateTargetUserId}
-                          updateUserProfile={this.props.updateUserProfile}
-                        />
-                        {
-                          this.userIsOnline(user.id) ?
+                        >
+                          <UserIdentifier
+                            userId={user.id}
+                            firstName={user.firstName}
+                            lastName={user.lastName}
+                            updateMain={this.props.updateMain}
+                            updateTargetUserId={this.props.updateTargetUserId}
+                            updateUserProfile={this.props.updateUserProfile}
+                          />
+                          {
+                            this.userIsOnline(user.id) ?
                             <div className="SingleChat-userIsOnline"></div>
-                          : <div className="SingleChat-userIsOffline"></div>
-                        }
-                      </div>
-                    )
-                })
-              : null
-            }
-          </div>
+                            : <div className="SingleChat-userIsOffline"></div>
+                          }
+                        </div>
+                      )
+                    })
+                : null
+              }
+            </div>
+          }
         </div>
 
         <div className="SingleChat-messages-container">

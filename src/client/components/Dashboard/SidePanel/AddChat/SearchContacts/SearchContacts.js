@@ -27,8 +27,10 @@ class SearchContacts extends React.Component {
     this.props.removeNewGroupMember(userId);
   }
 
-  componentDidUpdate() {
-    this.refs.term.focus();
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.newGroup.length > this.props.newGroup.length) {
+      this.refs.term.focus();
+    }
   }
 
   render() {

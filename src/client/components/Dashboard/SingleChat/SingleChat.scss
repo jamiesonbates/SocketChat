@@ -96,10 +96,42 @@
 }
 
 .SingleChat-header-options {
-  max-width: 40%;
+  max-width: 50%;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
+}
+
+.SingleChat-users-toggle {
+  display: inline-block;
+  font-size: 12px;
+  text-decoration: underline;
+  margin-right: 5px;
+}
+
+.SingleChat-users-toggle:hover {
+  color: #4D64BF;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .SingleChat-header-container {
+    flex-direction: column;
+    max-height: 20%;
+    max-width: 100%;
+  }
+
+  .SingleChat-header-options, .SingleChat-title-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .SingleChat-header-options {
+    margin-top: 5px;
+    flex-wrap: wrap;
+    overflow: scroll;
+    flex-direction: row-reverse;
+  }
 }
 
 .SingleChat-user {
