@@ -9,6 +9,7 @@
   border-left: 2px solid #D1D1D1;
   border-bottom: 2px solid #D1D1D1;
   min-height: 100vh;
+  max-height: 100vh;
 }
 
 .UserProfile-nav {
@@ -45,6 +46,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow: scroll;
 }
 
 .UserProfile-main {
