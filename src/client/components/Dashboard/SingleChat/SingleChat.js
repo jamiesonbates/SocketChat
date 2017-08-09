@@ -289,7 +289,8 @@ class SingleChat extends React.Component {
                                 className="SingleChat-edit-input"
                                 onChange={this.handleChatNameChange}
                                 autoFocus={true}
-                                type="text" />
+                                type="text"
+                                placeholder="Name this chat"/>
                               <button
                                 className="SingleChat-edit-name-btn"
                                 type="submit">
