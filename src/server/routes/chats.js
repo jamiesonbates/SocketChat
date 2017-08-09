@@ -4,6 +4,18 @@ const db = require('../db/connection');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 const router = require('express').Router();
 
+router.put('/name', (req, res, next) => {
+  db('chats')
+    .update('name', req.body.name)
+    .where('id', req.body.chatId)
+    .then((result) => {
+      res.send('Success');
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.get('/:userId', (req, res, next) => {
   return db.raw(`
     SELECT *

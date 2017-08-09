@@ -13,7 +13,8 @@ import {
   updateChatViewHistoryType,
   updateNewMessageCountType,
   setChatViewHistoryType,
-  updateChatLastSeenType
+  updateChatLastSeenType,
+  updateChatNameType
 } from '../actionTypes';
 
 export default function reducer(state={
@@ -100,6 +101,13 @@ export default function reducer(state={
       return {
         ...state,
         chatNewMessages: action.payload
+      }
+
+    case updateChatNameType:
+      return {
+        ...state,
+        allChats: action.payload.nextAllChats,
+        currentChat: action.payload.nextCurrentChat
       }
   }
 

@@ -20,37 +20,90 @@
   border-top-right-radius: 3px;
 }
 
-.SingleChat-icon {
+.SingleChat-chat-icon {
   font-size: 35px;
+  color: #323233;
+  margin-right: 10px;
+}
+
+.SingleChat-title-container {
+  display: flex;
+  align-items: center;
+  color: #323233;
+  max-width: 40%;
+  flex: 1;
 }
 
 .SingleChat-title {
   display: flex;
   align-items: center;
-  color: #575757;
-  max-width: 50%;
-  flex: 1;
 }
 
 .SingleChat-title h2 {
   font-size: 18px;
+  color: #323233;
 }
 
-.SingleChat-title div, .SingleChat-title svg {
-  margin: 0   3px;
+.SingleChat-edit-title {
+  font-size: 16px;
+  margin-left: 10px;
+  color: #676669;
+}
+
+.SingleChat-edit-title:hover {
+  color: #4D64BF;
+  cursor: pointer;
+}
+
+.SingleChat-edit-input {
+  border: none;
+  font-size: 14px;
+  border-bottom: 1px solid #676669;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.SingleChat-edit-input {
+  outline: none;
+}
+
+.SingleChat-edit-name-btn {
+  border: none;
+  background-color: #4D64BF;
+  margin-left: 7px;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 3px;
+  color: #F7F7F7;
+  font-family: 'Lato';
+}
+
+.SingleChat-edit-name-btn:hover {
+  background-color: #39498C;
+  cursor: pointer;
+}
+
+.SingleChat-cancel-edit-name {
+  font-size: 24px;
+  margin-left: 5px;
+  color: #676669;
+}
+
+.SingleChat-cancel-edit-name:hover {
+  cursor: pointer;
+  color: #1B1C1C;
 }
 
 .SingleChat-header-options {
-  max-width: 50%;
+  max-width: 40%;
   display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
-
 .SingleChat-user {
-  /*border: 1px solid #878784;*/
-  /*border-radius: 3px;*/
   box-sizing: border-box;
-  margin: 3px;
+  margin: 0 0 0 3px;
   display: flex;
   align-items: center;
   padding: 1px;
@@ -58,8 +111,12 @@
   color: #575757;
 }
 
+.SingleChat-user:first-child {
+  margin: 0;
+}
+
 .SingleChat-user p {
-  margin: 2px;
+  margin: 0 2px;
   white-space: nowrap;
 }
 

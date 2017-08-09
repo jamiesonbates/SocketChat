@@ -3,7 +3,10 @@ import moment from 'moment';
 import FaChat from 'react-icons/lib/ti/message';
 import FaUsers from 'react-icons/lib/fa/user-plus';
 import FaUser from 'react-icons/lib/fa/user';
+import FaEdit from 'react-icons/lib/go/pencil';
+import FaClose from 'react-icons/lib/md/close';
 import 'react-select/dist/react-select.css';
+import { bindAll } from 'lodash';
 
 import './SingleChat.scss';
 import wrapSingleChat from '../../../containers/WrapSingleChat';
@@ -18,11 +21,12 @@ class SingleChat extends React.Component {
     super(props);
 
     this.state = {
-      bookmarkMsgId: null
+      bookmarkMsgId: null,
+      editingChatName: false,
+      newChatName: this.props.currentChat.name
     }
 
-    this.handleTyping = this.handleTyping.bind(this);
-    this.determineChatHeader = this.determineChatHeader.bind(this);
+    bindAll(this, 'handleTyping', 'handleEditChatName', 'handleChatNameChange', 'handleExitEditChatName', 'handleSubmitNameChange');
   }
 
   updateScroll() {
@@ -173,6 +177,18 @@ class SingleChat extends React.Component {
       else {
         this.props.updateChatSeen({ chatId: nextProps.chatId, next: true });
       }
+
+      this.setState({
+        editingChatName: false,
+        newChatName: nextProps.currentChat.name
+      });
+    }
+
+    if (nextProps.currentChat.name !== this.props.currentChat.name) {
+      this.setState({
+        editingChatName: false,
+        newChatName: nextProps.currentChat.name
+      })
     }
   }
 
@@ -188,73 +204,128 @@ class SingleChat extends React.Component {
     this.setState({ bookmarkMsgId: null });
   }
 
-  determineChatHeader(chat) {
-    if (chat.name) return (<h2>{chat.name}</h2>);
+  handleEditChatName() {
+    this.setState({ editingChatName: true });
+  }
 
-    if (chat.users.length < 3) {
-      for (const user of chat.users) {
-        if (user.id !== this.props.userId) {
-          return (<UserIdentifier
-                    userId={user.id}
-                    firstName={user.firstName}
-                    lastName={user.lastName}
-                    updateMain={this.props.updateMain}
-                    updateTargetUserId={this.props.updateTargetUserId}
-                  />
-          );
-        }
-      }
-    }
+  handleChatNameChange(e) {
+    const newChatName = e.target.value;
 
-    const title = chat.users.reduce((acc, user, i, arr) => {
-      if (user.id === this.props.userId) return acc;
+    this.setState({ newChatName });
+  }
 
-      if (arr.length - 1 === i || arr.length < 3) {
-        acc += `${user.firstName} ${user.lastName}`;
-      }
-      else {
-        acc += `${user.firstName} ${user.lastName}, `;
-      }
+  handleExitEditChatName() {
+    this.setState({ editingChatName: false });
+  }
 
-      return acc;
-    }, '');
+  handleSubmitNameChange(e) {
+    e.preventDefault();
 
-    return (<h2>{title}</h2>);
+    this.props.changeChatName({
+      name: this.state.newChatName,
+      chatId: this.props.currentChat.id
+    });
+
+    // this.setState({ editingChatName: false });
   }
 
   render() {
     return (
       <div className="SingleChat-container">
         <div className="SingleChat-header-container">
-          <div className="SingleChat-title">
+          <div className="SingleChat-title-container">
             {
               this.props.currentChat ?
-                <FaChat className="SingleChat-icon" />
+                <FaChat className="SingleChat-chat-icon" />
               : null
             }
 
             {
               this.props.currentChat ?
                 <div className="SingleChat-header-title">
-                  {this.determineChatHeader(this.props.currentChat)}
+                  {
+                    this.props.currentChatUsers.length < 3 ?
+                      this.props.currentChat.users
+                        .filter(user => user.id !== this.props.userId)
+                        .map(user =>
+                          <UserIdentifier
+                            userId={user.id}
+                            firstName={user.firstName}
+                            lastName={user.lastName}
+                            updateMain={this.props.updateMain}
+                            updateTargetUserId={this.props.updateTargetUserId}
+                            updateUserProfile={this.props.updateUserProfile}
+                          />)
+                    : this.props.currentChat.name ?
+                        this.state.editingChatName ?
+                          <div>
+                            <form onSubmit={this.handleSubmitNameChange}>
+                              <input
+                                className="SingleChat-edit-input"
+                                onChange={this.handleChatNameChange}
+                                autoFocus={true}
+                                type="text"
+                                value={this.state.newChatName} />
+                              <button
+                                type="submit"
+                                className="SingleChat-edit-name-btn" >
+                                Update
+                              </button>
+                              <FaClose
+                                className="SingleChat-cancel-edit-name"
+                                onClick={this.handleExitEditChatName} />
+                            </form>
+                          </div>
+                        :  <div className="SingleChat-title">
+                            <h2>{this.props.currentChat.name}</h2>
+                            <FaEdit
+                              className="SingleChat-edit-title"
+                              onClick={this.handleEditChatName} />
+                          </div>
+                      : this.state.editingChatName ?
+                          <div>
+                            <form onSubmit={this.handleSubmitNameChange}>
+                              <input
+                                className="SingleChat-edit-input"
+                                onChange={this.handleChatNameChange}
+                                autoFocus={true}
+                                type="text" />
+                              <button
+                                className="SingleChat-edit-name-btn"
+                                type="submit">
+                                Create
+                              </button>
+                              <FaClose
+                                className="SingleChat-cancel-edit-name"
+                                onClick={this.handleExitEditChatName} />
+                            </form>
+                          </div>
+                        : <div className="SingleChat-title">
+                            <h2>Group Chat</h2>
+                            <FaEdit
+                              className="SingleChat-edit-title"
+                              onClick={this.handleEditChatName} />
+                          </div>
+                  }
                 </div>
               : null
             }
 
             {
               this.props.currentChat && this.props.currentChatUsers.length < 3 ?
-                this.props.currentChatUsers.map((user, i) => (
-                  this.userIsOnline(user.id) ?
-                    user.id !== this.props.userId ?
-                      <div key={i} className="SingleChat-userIsOnline-large">
-                      </div>
-                    : null
-                  : user.id !== this.props.userId ?
-                      <div key={i} className="SingleChat-userIsOffline-large">
-                      </div>
-                    : null
+                this.props.currentChatUsers
+                  .map((user, i) => (
+                    this.userIsOnline(user.id) ?
+                      user.id !== this.props.userId ?
+                        <div key={i} className="SingleChat-userIsOnline-large">
+                        </div>
+                      : null
+                    : user.id !== this.props.userId ?
+                        <div key={i} className="SingleChat-userIsOffline-large">
+                        </div>
+                      : null
 
-                ))
+                  ))
               : null
             }
           </div>
@@ -262,31 +333,46 @@ class SingleChat extends React.Component {
           <div className="SingleChat-header-options">
             {
               this.props.currentChat && this.props.currentChatUsers.length > 2 ?
-                this.props.currentChatUsers.map((user, i) => {
-                  if (user.id === this.props.userId) {
-                    return null;
-                  }
+                this.props.currentChatUsers
+                  .sort((a, b) => {
+                    const aOnline = this.userIsOnline(a.id);
+                    const bOnline = this.userIsOnline(b.id);
 
-                  return (
-                    <div
-                      key={i}
-                      className="SingleChat-user"
-                    >
-                      <UserIdentifier
-                        userId={user.id}
-                        firstName={user.firstName}
-                        lastName={user.lastName}
-                        updateMain={this.props.updateMain}
-                        updateTargetUserId={this.props.updateTargetUserId}
-                        updateUserProfile={this.props.updateUserProfile}
-                      />
-                      {
-                        this.userIsOnline(user.id) ?
-                          <div className="SingleChat-userIsOnline"></div>
-                        : <div className="SingleChat-userIsOffline"></div>
-                      }
-                    </div>
-                  )
+                    if (aOnline && !bOnline) {
+                      return -1;
+                    }
+                    else if (bOnline && !aOnline){
+                      return 1;
+                    }
+                    else {
+                      return 0;
+                    }
+                  })
+                  .map((user, i) => {
+                    if (user.id === this.props.userId) {
+                      return null;
+                    }
+
+                    return (
+                      <div
+                        key={i}
+                        className="SingleChat-user"
+                      >
+                        <UserIdentifier
+                          userId={user.id}
+                          firstName={user.firstName}
+                          lastName={user.lastName}
+                          updateMain={this.props.updateMain}
+                          updateTargetUserId={this.props.updateTargetUserId}
+                          updateUserProfile={this.props.updateUserProfile}
+                        />
+                        {
+                          this.userIsOnline(user.id) ?
+                            <div className="SingleChat-userIsOnline"></div>
+                          : <div className="SingleChat-userIsOffline"></div>
+                        }
+                      </div>
+                    )
                 })
               : null
             }

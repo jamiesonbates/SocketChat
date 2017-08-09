@@ -16,7 +16,8 @@ import {
   updateChatViewHistoryType,
   updateNewMessageCountType,
   updateChatLastSeenType,
-  setChatViewHistoryType
+  setChatViewHistoryType,
+  updateChatNameType
 } from '../actionTypes';
 
 import {
@@ -26,6 +27,41 @@ import {
 
 import Utilities from '../../utilities/Utilities';
 
+export function changeChatName({ name, chatId }) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const allChats = state.chats.allChats;
+    const currentChat = state.chats.currentChat;
+
+    axios.put('/api/chats/name', { chatId, name })
+      .then((res) => {
+        if (res.data !== 'Success') {
+          return;
+        }
+        
+        const nextAllChats = allChats.map(chat => {
+          if (chat.id === chatId) {
+            chat.name = name;
+          }
+
+          return chat;
+        });
+
+        const nextCurrentChat = {
+          ...currentChat,
+          name
+        }
+
+        dispatch({
+          type: updateChatNameType,
+          payload: {
+            nextAllChats,
+            nextCurrentChat
+          }
+        });
+      })
+  }
+}
 
 export function setChat(id) {
   return function(dispatch, getState) {

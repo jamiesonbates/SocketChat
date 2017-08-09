@@ -64,3 +64,4 @@ export const stopSearchForOtherUsersType = 'STOP_SEARCH_FOR_OTHER_USERS';
 export const updateProfilePicType = 'UPDATE_PROFILE_PIC';
 export const startProcessingImageType = 'START_PROCESSING_IMAGE';
 export const stopProcessingImageType = 'STOP_PROCESSING_IMAGE';
+export const updateChatNameType = 'UPDATE_CHAT_NAME';
