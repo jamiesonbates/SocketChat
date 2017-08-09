@@ -12,16 +12,16 @@
 
 .BookmarksPre-bookmark div:first-child {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .BookmarksPre-bookmark div:last-child p {
+  white-space: wrap;
   color: #7F7F7F;
-}
-
-.BookmarksPre-bookmark p {
-  padding-left: 5px;
 }
 
 .BookmarksPre-bookmark-icon {
   font-size: 20px;
+  flex-basis: 20px;
+  padding-right: 5px;
 }

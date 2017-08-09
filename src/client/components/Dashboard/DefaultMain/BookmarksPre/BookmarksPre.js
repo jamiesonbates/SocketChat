@@ -15,8 +15,8 @@ const BookmarksPre = ({ recentBookmarks, handleBookmarkClick }) => {
           recentBookmarks.map((bookmark, i) => (
             <div key={i} className="BookmarksPre-bookmark" onClick={handleBookmarkClick}>
               <div>
-                <FaBookmark className="BookmarksPre-bookmark-icon "/>
                 <p>
+                  <FaBookmark className="BookmarksPre-bookmark-icon "/>
                   {bookmark.first_name} {bookmark.last_name[0]}: {bookmark.message}
                 </p>
               </div>

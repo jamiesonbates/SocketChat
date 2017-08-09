@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 10px;
   box-sizing: border-box;
-  // background-color: white;
+  background-color: inherit;
 }
 
 .ChatsPre-chat:hover {
@@ -12,6 +12,7 @@
 }
 
 .ChatsPre-chat-top {
+  max-width: 100%;
   background-color: inherit;
   display: flex;
   position: relative;
@@ -19,16 +20,18 @@
 }
 
 .ChatsPre-chat-top div:first-child {
+  width: 100%;
   color: #242424;
+  flex: 1;
   display: flex;
   align-items: center;
 }
 
 .ChatsPre-chat-header {
-  max-width: 80%;
+  flex: 1;
   white-space: nowrap;
   text-overflow: clip;
-  overflow: auto;
+  overflow: hidden;
   padding-left: 5px;
 }
 
