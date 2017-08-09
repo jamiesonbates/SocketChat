@@ -323,8 +323,11 @@
 
 .SingleChat-time, .SingleChat-new {
   padding: 20px 0;
+  height: 20px;
+  box-sizing: border-box;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
   position: relative;
 }
@@ -344,6 +347,7 @@
   border-bottom: 1px solid #D1D1D1;
   position: absolute;
   top: 50%;
+  left: 0;
   width: 100%;
 }
 
