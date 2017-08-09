@@ -340,7 +340,6 @@ class SingleChat extends React.Component {
                         <div key={i} className="SingleChat-userIsOffline-large">
                         </div>
                       : null
-
                   ))
               : null
             }
@@ -349,18 +348,20 @@ class SingleChat extends React.Component {
           {
             <div className="SingleChat-header-options">
               {
-                this.state.showUsers ?
-                  <p
-                    className="SingleChat-users-toggle" onClick={this.toggleUsers}>
-                    Hide Users
-                  </p>
-                : <p
-                    className="SingleChat-users-toggle"
-                    onClick={this.toggleUsers}>
-                    Show Users
-                  </p>
+                this.props.currentChatUsers.length > 2 ?
+                  this.state.showUsers ?
+                    <p
+                      className="SingleChat-users-toggle" onClick={this.toggleUsers}>
+                      Hide Users
+                    </p>
+                  : <p
+                      className="SingleChat-users-toggle"
+                      onClick={this.toggleUsers}>
+                      Show Users
+                    </p>
+                : null
               }
-              
+
               {
                 this.state.showUsers && this.props.currentChat && this.props.currentChatUsers.length > 2 ?
                 this.props.currentChatUsers

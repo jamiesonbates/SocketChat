@@ -233,19 +233,20 @@
   border: none;
 }
 
-.SingleChat-title .SingleChat-userIsOnline-large {
+.SingleChat-title-container .SingleChat-userIsOnline-large {
   background-color: green;
-  height: 14px;
-  width: 14px;
+  height: 12px;
+  width: 12px;
   margin-left: 10px;
   border-radius: 50%;
 }
 
-.SingleChat-title .SingleChat-userIsOffline-large {
+.SingleChat-title-container .SingleChat-userIsOffline-large {
   margin-left: 10px;
   background-color: transparent;
-  height: 13px;
-  width: 13px;
+  box-sizing: border-box;
+  height: 11px;
+  width: 11px;
   border-radius: 50%;
   border: 1px solid #575757;
 }
@@ -304,12 +305,13 @@
 
 .SingleChat-typing-container {
   display: flex;
+  padding-left: 20px;
 }
 
 .SingleChat-typing {
   margin: 10px;
-  padding: 5px;
-  background-color: #333332;
+  padding: 8px;
+  background-color: #4D64BF;
   display: flex;
   box-sizing: border-box;
   border-radius: 5px;
@@ -317,8 +319,9 @@
 }
 
 .SingleChat-typing p {
-  font-size: 13px;
+  font-size: 16px;
   color: white;
+  font-family: 'Lato';
 }
 
 .SingleChat-time, .SingleChat-new {
