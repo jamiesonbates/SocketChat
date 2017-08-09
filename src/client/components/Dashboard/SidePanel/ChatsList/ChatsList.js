@@ -55,32 +55,35 @@ class ChatsList extends React.Component {
             onClick={() => this.props.updateSide(showAddChatType)}
           />
         </div>
-        {
-          this.props.allChats ?
-            this.props.allChats.map((chat, i) => (
-              <div
-                key={i}
-                className="ChatsList-chat"
-                onClick={() => this.openChat(chat.id)}>
-                {
-                  <ChatPeak
-                    chat={chat}
-                    chatNewMessages={Utilities.findChat(this.props.chatNewMessages, chat.id)}
-                    userId={this.props.userId}
-                    determineChatHeader={this.props.determineChatHeader}
-                    determineLastMessage={this.determineLastMessage.bind(this)}
-                    time={chat.messages ?
-                        chat.messages.length ?
-                          Utilities.timeDisplay(chat.messages[chat.messages.length - 1].createdAt)
+
+        <div className="ChatsList-list">
+          {
+            this.props.allChats ?
+              this.props.allChats.map((chat, i) => (
+                <div
+                  key={i}
+                  className="ChatsList-chat"
+                  onClick={() => this.openChat(chat.id)}>
+                  {
+                    <ChatPeak
+                      chat={chat}
+                      chatNewMessages={Utilities.findChat(this.props.chatNewMessages, chat.id)}
+                      userId={this.props.userId}
+                      determineChatHeader={this.props.determineChatHeader}
+                      determineLastMessage={this.determineLastMessage.bind(this)}
+                      time={chat.messages ?
+                          chat.messages.length ?
+                            Utilities.timeDisplay(chat.messages[chat.messages.length - 1].createdAt)
+                          : null
                         : null
-                      : null
-                    }
-                  />
-                }
-              </div>
-            ))
-          : null
-        }
+                      }
+                    />
+                  }
+                </div>
+              ))
+            : null
+          }
+        </div>
       </div>
     )
   }

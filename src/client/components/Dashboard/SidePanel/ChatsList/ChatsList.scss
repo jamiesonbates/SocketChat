@@ -3,7 +3,8 @@
   font-family: 'Lato';
   padding: 10px 0;
   background-color: inherit;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .ChatsList-header {
@@ -17,6 +18,11 @@
   color: #E0E0E0;
   font-size: 20px;
   font-family: 'Lato';
+}
+
+.ChatsList-list {
+  flex: 1;
+  overflow: scroll;
 }
 
 .ChatsList-chat {
