@@ -24,7 +24,7 @@ export default function(ComposedClass) {
   const mapStateToProps = state => {
     return {
       targetUserId: state.uniqueUserInfo.targetUserId,
-      targetUserProfile: state.uniqueUserInfo.userProfile,
+      userProfile: state.uniqueUserInfo.userProfile,
       targetBookmarksId: state.uniqueUserInfo.targetBookmarksId,
       bookmarks: state.bookmarks.bookmarks,
       usersOnline: state.chats.usersOnline,

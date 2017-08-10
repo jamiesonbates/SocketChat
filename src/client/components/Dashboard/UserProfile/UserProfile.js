@@ -27,7 +27,7 @@ class UserProfile extends React.Component {
   }
 
   componentWillMount() {
-    if (!this.props.targetUserProfile) {
+    if (!this.props.userProfile) {
       this.props.updateUserProfile(this.props.targetUserId);
     }
   }
@@ -175,7 +175,7 @@ class UserProfile extends React.Component {
             />
           : <div className="UserProfile-main-container">
               {
-                this.props.targetUserProfile ?
+                this.props.userProfile ?
                   <div className="UserProfile-main">
                     <div className="UserProfile-top">
                       <div className="UserProfile-image-container">
@@ -198,7 +198,7 @@ class UserProfile extends React.Component {
                                 }
                                 onClick={this.handleAddPhoto}>
                                 {
-                                  this.props.targetUserProfile.cloudinaryUrl ?
+                                  this.props.userProfile.cloudinaryUrl ?
                                     <h3>Change photo</h3>
                                   : <h3>Add photo</h3>
                                 }
@@ -235,8 +235,8 @@ class UserProfile extends React.Component {
                                     />
                                   </form>
                                 </div>
-                            : this.props.targetUserProfile.cloudinaryUrl ?
-                              Utilities.userIconMaker([this.props.userInfo], 'FOR_PROFILE')
+                            : this.props.userProfile.cloudinaryUrl ?
+                              Utilities.userIconMaker([this.props.userProfile], 'FOR_PROFILE')
                               : <FaUser className="UserProfile-user-icon" />
                           }
                         </div>
@@ -244,7 +244,7 @@ class UserProfile extends React.Component {
 
                       <div className="UserProfile-name">
                         <h3>
-                          {this.props.targetUserProfile.firstName} {this.props.targetUserProfile.lastName}
+                          {this.props.userProfile.firstName} {this.props.userProfile.lastName}
                         </h3>
                         {
                           this.props.currentUserId !== this.props.targetUserId ?
@@ -295,14 +295,14 @@ class UserProfile extends React.Component {
                         <div className="UserProfile-info">
                           <p className="UserProfile-title">Username</p>
                           <p className="UserProfile-data">
-                            {this.props.targetUserProfile.username}
+                            {this.props.userProfile.username}
                           </p>
                         </div>
 
                         <div className="UserProfile-info">
                           <p className="UserProfile-title">Email</p>
                           <p className="UserProfile-data">
-                            {this.props.targetUserProfile.email}
+                            {this.props.userProfile.email}
                           </p>
                         </div>
                       </div>

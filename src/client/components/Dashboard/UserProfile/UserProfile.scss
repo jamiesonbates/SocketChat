@@ -90,12 +90,11 @@
 .UserProfile-profile-image {
   height: 100%;
   border: 1px solid #D1D1D1;
-  border-radius: 50%;
 }
 
 .UserProfile-image {
-  height: 250px;
-  width: 250px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background-color: #F7F7F7;
   margin-top: 5px;
@@ -207,7 +206,6 @@
 }
 
 .UserProfile-add-prompt {
-  border-radius: 50%;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -217,8 +215,6 @@
   color: white;
   top: 0;
   left: 0;
-  background-color: black;
-  opacity: 0.6;
 }
 
 .UserProfile-image .UserProfile-add-prompt.hide {

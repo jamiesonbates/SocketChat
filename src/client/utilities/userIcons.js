@@ -4,7 +4,8 @@ import FaUser from 'react-icons/lib/ti/user';
 function userIconMaker(users, type) {
   switch(type) {
     case 'FOR_PROFILE':
-      const url = buildUrl(users[0].cloudinaryUrl);
+      const url = buildUrl(users[0].cloudinaryUrl, 'g_face,c_fill,r_max,h_300,w_300');
+      console.log(url);
 
       return (
         <img
@@ -16,7 +17,7 @@ function userIconMaker(users, type) {
       let chatUrl;
 
       if (users[0].cloudinaryUrl) {
-        chatUrl = buildUrl(users[0].cloudinaryUrl);
+        chatUrl = buildUrl(users[0].cloudinaryUrl, 'g_face,c_fill,r_max,h_300,w_300');
       }
 
       return users[0].cloudinaryUrl ?
@@ -30,7 +31,7 @@ function userIconMaker(users, type) {
       let contactUrl;
 
       if (users[0].cloudinaryUrl) {
-        contactUrl = buildUrl(users[0].cloudinaryUrl);
+        contactUrl = buildUrl(users[0].cloudinaryUrl, 'g_face,c_fill,r_max,h_300,w_300');
       }
 
       return users[0].cloudinaryUrl ?
@@ -47,7 +48,7 @@ function userIconMaker(users, type) {
         let url;
 
         if (users[0].cloudinaryUrl) {
-          url = buildUrl(users[0].cloudinaryUrl);
+          url = buildUrl(users[0].cloudinaryUrl, 'g_face,c_fill,r_max,h_300,w_300');
         }
 
         icon = users[0].cloudinaryUrl ?
@@ -97,7 +98,7 @@ function userIconMaker(users, type) {
                 let url;
 
                 if (user.cloudinaryUrl) {
-                  url = buildUrl(user.cloudinaryUrl);
+                  url = buildUrl(user.cloudinaryUrl, 'g_face,c_fill,r_max,h_300,w_300');
                 }
 
                 return user.cloudinaryUrl ?
@@ -121,14 +122,18 @@ function userIconMaker(users, type) {
   }
 }
 
-function buildUrl(url) {
+function buildUrl(url, specs) {
   url = url.split('/');
 
   url = [
     ...url.splice(0, url.indexOf('upload') + 1),
-    'g_face,c_fill,r_max,h_300,w_300',
+    specs,
     ...url.splice(url.indexOf('upload') + 1)
   ];
+
+  let extension = url[url.length - 1].slice(0, url[url.length - 1].length - 3) + 'png';
+
+  url[url.length - 1] = extension;
 
   return url;
 }

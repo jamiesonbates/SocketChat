@@ -5,6 +5,7 @@
   font-family: 'Lato';
   padding: 10px;
   min-height: 100vh;
+  max-height: 100vh;
   box-sizing: border-box;
 }
 
@@ -24,6 +25,7 @@
   // padding: 20px 0 0;
   display: flex;
   flex-wrap: wrap;
+  overflow: scroll;
 }
 
 .DefaultMain-recent {
