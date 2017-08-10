@@ -130,5 +130,16 @@ io.on('connection', (socket) => {
 
   socket.on('stopped typing', (chatId) => {
     socket.broadcast.to(chatId).emit('someone stopped typing', chatId);
-  })
+  });
+
+  socket.on('new chat created', (payload) => {
+    dbActions.getUsers(payload.users)
+      .then((users) => {
+        for (const user of users) {
+          if (!user.id !== payload.currentUserId && user.online) {
+            socket.to(user.online).emit('new chat', payload.chatId);
+          }
+        }
+      })
+  });
 });

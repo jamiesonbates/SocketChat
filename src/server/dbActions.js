@@ -36,6 +36,11 @@ function getContacts(userId) {
   `)
 }
 
+function getUsers(users) {
+  return db('users')
+    .whereIn('id', users)
+}
+
 function createContact(userId1, userId2) {
   return db('user_contacts')
     .insert([
@@ -77,5 +82,6 @@ module.exports = {
   updateUserStatus,
   getContacts,
   createContact,
-  updateChatActivity
+  updateChatActivity,
+  getUsers
 }

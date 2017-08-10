@@ -17,7 +17,8 @@ import {
   updateNewMessageCountType,
   updateChatLastSeenType,
   setChatViewHistoryType,
-  updateChatNameType
+  updateChatNameType,
+  newChatType
 } from '../actionTypes';
 
 import {
@@ -38,7 +39,7 @@ export function changeChatName({ name, chatId }) {
         if (res.data !== 'Success') {
           return;
         }
-        
+
         const nextAllChats = allChats.map(chat => {
           if (chat.id === chatId) {
             chat.name = name;
@@ -209,6 +210,7 @@ export function createChat(users) {
         const { chatId } = res.data;
 
         dispatch(fetchChats({ shouldSetChat: true, chatId }));
+        dispatch({ type: newChatType, payload: { currentUserId, chatId, users }});
       })
   }
 }

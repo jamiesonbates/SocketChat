@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-import { receiveMessage } from './state/actions/chatActions';
+import { receiveMessage, fetchChats } from './state/actions/chatActions';
 import {
   someoneStartedTyping,
   someoneStoppedTyping,
@@ -15,12 +15,21 @@ import {
   stoppedTypingType,
   someoneStartedTypingType,
   someoneStoppedTypingType,
-  notifyCommonUsersType
+  notifyCommonUsersType,
+  newChatType
 } from './state/actionTypes';
 
 const socketMiddleware = (function() {
   let socket = null;
   const typingTimeouts = [];
+
+  const onNewChat = (store, payload) => {
+    store.dispatch(fetchChats({}));
+  }
+
+  const onCreateNewChat = (ws, payload) => {
+    ws.emit('new chat created', payload);
+  }
 
   // good
   const onReceive = (store, payload) => {
@@ -90,6 +99,7 @@ const socketMiddleware = (function() {
         socket.on('someone stopped typing', (payload) => onSomeoneStoppedTyping(store, payload));
         socket.on('common user now online', (payload) => onUserOnline(store, payload));
         socket.on('common user now offline', (payload) => onUserOffline(store, payload));
+        socket.on('new chat', (payload) => onNewChat(store, payload));
 
         const state = store.getState();
         const userId = state.userInfo.id;
@@ -129,6 +139,8 @@ const socketMiddleware = (function() {
         onStopTyping(socket, action.payload);
 
         break;
+      case newChatType:
+        onCreateNewChat(socket, action.payload);
       default:
         return next(action);
     }

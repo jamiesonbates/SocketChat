@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
     this.props.getCommonUsers();
     this.props.getContacts();
     this.props.getCategories();
+    this.props.fetchChats({ onLoad: true });
   }
 
   componentDidMount() {
@@ -38,7 +39,7 @@ class Dashboard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.handleRooms(nextProps.allChats, 'join room');
+    // this.handleRooms(nextProps.allChats, 'join room');
   }
 
   componentWillUnmount() {
