@@ -60,6 +60,7 @@ const server = app.listen(WEB_PORT, () => {
 const io = socketIO().listen(server);
 
 io.on('connection', (socket) => {
+  console.log(socket);
   console.log('a user connected');
 
   socket.on('disconnect', (data) => {
