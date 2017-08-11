@@ -23,7 +23,8 @@ const socketMiddleware = (function() {
   let socket = null;
   const typingTimeouts = [];
 
-  const onNewChat = (store, payload) => {
+  const onNewChat = (ws, store, payload) => {
+    ws.emit('join room', payload);
     store.dispatch(fetchChats({}));
   }
 
@@ -99,7 +100,7 @@ const socketMiddleware = (function() {
         socket.on('someone stopped typing', (payload) => onSomeoneStoppedTyping(store, payload));
         socket.on('common user now online', (payload) => onUserOnline(store, payload));
         socket.on('common user now offline', (payload) => onUserOffline(store, payload));
-        socket.on('new chat', (payload) => onNewChat(store, payload));
+        socket.on('new chat', (payload) => onNewChat(socket, store, payload));
 
         const state = store.getState();
         const userId = state.userInfo.id;

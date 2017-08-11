@@ -28,20 +28,9 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.allChats === null) {
-      this.props.fetchChats({ onLoad: true });
-    }
-    else {
-      this.handleRooms(this.props.allChats, 'join room');
-    }
-
     this.props.notifyCommonUsers();
   }
-
-  componentWillReceiveProps(nextProps) {
-    // this.handleRooms(nextProps.allChats, 'join room');
-  }
-
+  
   componentWillUnmount() {
     this.handleRooms(this.props.allChats, 'leave room');
   }

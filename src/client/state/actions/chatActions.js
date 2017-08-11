@@ -4,6 +4,8 @@ import moment from 'moment';
 import { getChatViews } from './chats/chatViews';
 import { createContact } from './contactsActions';
 
+import { manageRoom } from './socketActions';
+
 import {
   chatsSuccess,
   newSingleChat,
@@ -114,10 +116,16 @@ export function fetchChats({ shouldSetChat=false, chatId=null, onLoad=false }) {
 
         if (shouldSetChat) {
           dispatch(setChat(chatId));
+
         }
 
         if (onLoad) {
           dispatch(getChatViews());
+          
+          for (const chat of nextAllChats) {
+            console.log(chat.id);
+            dispatch(manageRoom({ chatId: chat.id, event: 'join room' }));
+          }
         }
       })
   }
