@@ -12,10 +12,10 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 2,
-          first_name: 'Kaz',
-          last_name: 'Matthews',
-          username: 'katiematthizzle',
-          email: 'katherinematthews.polsci@gmail.com',
+          first_name: 'Kate',
+          last_name: 'Beth',
+          username: 'katebeth',
+          email: 'katebeth.polsci@gmail.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         },
         {
@@ -28,42 +28,42 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 4,
-          first_name: 'Reed',
-          last_name: 'Speegle',
-          username: 'reedspeegle',
-          email: 'reedspeegle@gmail.com',
+          first_name: 'Sammy',
+          last_name: 'Watkins',
+          username: 'Sammy',
+          email: 'sammy@gmail.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         },
         {
           id: 5,
-          first_name: 'Ian',
-          last_name: 'Bates',
-          username: 'ianbates',
-          email: 'ian@ianbates.com',
+          first_name: 'Eon',
+          last_name: 'Beads',
+          username: 'thebeads',
+          email: 'thebeads@gmail.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         },
         {
           id: 6,
-          first_name: 'Todd',
-          last_name: 'Bates',
-          username: 'toddbates',
-          email: 'todd@toddbates.com',
+          first_name: 'Toddster',
+          last_name: 'Roadster',
+          username: 'toddstertheroadseter',
+          email: 'toddio@gmail.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         },
         {
           id: 7,
-          first_name: 'Andrea',
-          last_name: 'Bates',
-          username: 'andreabates',
-          email: 'andrea@andreabates.com',
+          first_name: 'Andy',
+          last_name: 'Norm',
+          username: 'andynorm',
+          email: 'andy@gmail.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         },
         {
           id: 8,
-          first_name: 'Todd',
-          last_name: 'Bates',
-          username: 'toddbbates',
-          email: 'toddb@toddbbates.com',
+          first_name: 'Chris',
+          last_name: 'Tucker',
+          username: 'christucker',
+          email: 'christucker@christucker.com',
           h_pw: '$2a$12$enuFwD6k2m8uD9yN2OVcI.ExS1dWGdlTZ/YX2zmWTjS7X24Lo.Wye'
         },
         {

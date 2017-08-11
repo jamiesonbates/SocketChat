@@ -63,6 +63,7 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('disconnect', (data) => {
+    console.log('users socket: ', socket);
     console.log('a user disconnected');
   });
 
