@@ -106,7 +106,7 @@
   display: inline-block;
   font-size: 12px;
   text-decoration: underline;
-  margin-right: 5px;
+  margin: 0 5px;
 }
 
 .SingleChat-users-toggle:hover {
@@ -128,7 +128,7 @@
 
   .SingleChat-header-options {
     margin-top: 5px;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     overflow: scroll;
     flex-direction: row-reverse;
   }
