@@ -1,18 +1,5 @@
 {
-  "name": "socket-chat",
-  "scripts": {
-  },
   "env": {
-    "NPM_CONFIG_PRODUCTION": {
-      "required": true
-    }
-  },
-  "formation": {
-  },
-  "addons": [
-
-  ],
-  "buildpacks": [
-
-  ]
+    "NPM_CONFIG_PRODUCTION": "false"
+  }
 }
