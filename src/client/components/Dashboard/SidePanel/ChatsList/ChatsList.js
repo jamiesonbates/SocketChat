@@ -25,7 +25,7 @@ class ChatsList extends React.Component {
 
   determineLastMessage(chat) {
     if (!chat.messages || !chat.messages.length) {
-      return '';
+      return 'No messages yet.';
     }
 
     const lastMsgObj = chat.messages[chat.messages.length - 1];
@@ -59,28 +59,62 @@ class ChatsList extends React.Component {
         <div className="ChatsList-list">
           {
             this.props.allChats ?
-              this.props.allChats.map((chat, i) => (
-                <div
-                  key={i}
-                  className="ChatsList-chat"
-                  onClick={() => this.openChat(chat.id)}>
-                  {
-                    <ChatPeak
-                      chat={chat}
-                      chatNewMessages={Utilities.findChat(this.props.chatNewMessages, chat.id)}
-                      userId={this.props.userId}
-                      determineChatHeader={this.props.determineChatHeader}
-                      determineLastMessage={this.determineLastMessage.bind(this)}
-                      time={chat.messages ?
-                          chat.messages.length ?
-                            Utilities.timeDisplay(chat.messages[chat.messages.length - 1].createdAt)
-                          : null
-                        : null
-                      }
-                    />
+              this.props.allChats
+                .sort((a, b) => {
+                  if (!a.messages) {
+                    a.messages = [];
                   }
-                </div>
-              ))
+
+                  if (!b.messages) {
+                    b.messages = [];
+                  }
+
+                  if (a.messages.length && b.messages.length) {
+                    const aLast = a.messages[a.messages.length - 1].createdAt;
+                    const bLast = b.messages[b.messages.length - 1].createdAt;
+
+                    if (moment(aLast).valueOf() > moment(bLast).valueOf()) {
+                      return -1;
+                    }
+                    else if (moment(bLast).valueOf() > moment(aLast).valueOf()){
+                      return 1;
+                    }
+                    else {
+                      return 0;
+                    }
+                  }
+                  else if (a.messages.length && !b.messages.length) {
+                    return -1;
+                  }
+                  else if (b.messages.length && !a.messages.length) {
+                    return 1;
+                  }
+                  else {
+                    return 0;
+                  }
+                })
+                .map((chat, i) => (
+                  <div
+                    key={i}
+                    className="ChatsList-chat"
+                    onClick={() => this.openChat(chat.id)}>
+                    {
+                      <ChatPeak
+                        chat={chat}
+                        chatNewMessages={Utilities.findChat(this.props.chatNewMessages, chat.id)}
+                        userId={this.props.userId}
+                        determineChatHeader={this.props.determineChatHeader}
+                        determineLastMessage={this.determineLastMessage.bind(this)}
+                        time={chat.messages ?
+                            chat.messages.length ?
+                              Utilities.timeDisplay(chat.messages[chat.messages.length - 1].createdAt)
+                            : null
+                          : null
+                        }
+                      />
+                    }
+                  </div>
+                ))
             : null
           }
         </div>
