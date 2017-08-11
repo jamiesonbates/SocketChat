@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
   componentDidMount() {
     this.props.notifyCommonUsers();
   }
-  
+
   componentWillUnmount() {
     this.handleRooms(this.props.allChats, 'leave room');
   }
@@ -61,6 +61,7 @@ class Dashboard extends React.Component {
 
       return acc;
     }, '');
+    console.log('hi');
 
     return title;
   }

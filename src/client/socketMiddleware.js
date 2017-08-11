@@ -87,6 +87,10 @@ const socketMiddleware = (function() {
     ws.emit('user online', payload);
   }
 
+  const onLostInternet = (ws, payload) => {
+
+  }
+
   return store => next => action => {
     switch(action.type) {
       case connectType:
@@ -110,6 +114,7 @@ const socketMiddleware = (function() {
         }
 
         window.addEventListener('unload', onUserLogout);
+        window.addEventListener('offline', onUserLogout);
 
         break;
       case disconnectType:
