@@ -60,12 +60,10 @@ const server = app.listen(WEB_PORT, () => {
 const io = socketIO().listen(server);
 
 io.on('connection', (socket) => {
-  console.log(socket);
-  console.log('a user connected');
+  console.log('a user connected', socket.id);
 
   socket.on('disconnect', (data) => {
-    console.log('users socket: ', socket);
-    console.log('a user disconnected');
+    console.log('user disconnected: ', socket.id);
   });
 
   socket.on('join room', (data) => {
