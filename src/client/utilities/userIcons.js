@@ -5,7 +5,6 @@ function userIconMaker(users, type) {
   switch(type) {
     case 'FOR_PROFILE':
       const url = buildUrl(users[0].cloudinaryUrl, 'g_face,c_fill,r_max,h_300,w_300');
-      console.log(url);
 
       return (
         <img
