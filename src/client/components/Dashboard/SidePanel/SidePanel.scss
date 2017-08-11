@@ -3,13 +3,19 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: #26315E;
   min-width: 335px;
   position: relative;
-  padding-bottom: 5em;
   box-sizing: border-box;
   min-height: 100vh;
   max-height: 100vh;
+}
+
+.SidePanel-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .SidePanel-contacts-container {
@@ -25,8 +31,6 @@
   align-items: center;
   z-index: 99;
   box-sizing: border-box;
-  position: absolute;
-  bottom: 0;
 }
 
 .SidePanel-logo-icon {

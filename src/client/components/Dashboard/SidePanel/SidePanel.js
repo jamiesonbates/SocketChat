@@ -133,70 +133,72 @@ class SidePanel extends React.Component {
   render() {
     return (
       <div className="SidePanel-container">
-        <SideNav
-          handleNavToChats={this.handleNavToChats.bind(this)}
-          inAddChat={this.props.showAddChat}
-          inGroupForm={this.props.showGroupForm}
-          userInfo={this.props.userInfo}
-          handleNavToProfile={this.handleNavToProfile.bind(this)}
-          handleNavToBookmarks={this.handleNavToBookmarks.bind(this)}
-          handleNavToContacts={this.handleNavToContacts.bind(this)}
-          handleNavToDefaultMain={this.handleNavToDefaultMain.bind(this)}
-          handleCreateNewGroup={this.handleCreateNewGroup.bind(this)}
-        />
-        {
-          this.props.showChatsList ?
-            <ChatsList
-              determineChatHeader={this.props.determineChatHeader.bind(this)}
-            />
-          : this.props.showContactsList ?
-              <div className="SidePanel-contacts-container">
-                <SearchContacts
-                  updateSearchTerm={this.props.updateSearchTerm}
-                  searchTermVal={this.props.searchTerm}
-                  showGroupForm={false}
-                  findContacts={this.props.findContacts}
-                />
-                <ContactsList
-                  header={'Your Contacts'}
-                  contacts={this.props.usersContacts}
-                  searchTerm={this.props.searchTerm}
-                  handleContactClick={this.handleAddSingleChat.bind(this)}
-                />
-
-                {
-                  this.props.searchForOtherUsers ?
-                    <ContactsList
-                      header={'Other Users'}
-                      contacts={this.props.otherContacts}
-                      searchTerm={this.props.searchTerm}
-                      handleContactClick={this.handleAddSingleChat.bind(this)}
-                    />
-                  : null
-                }
-
-                {
-                  !this.props.searchForOtherUsers ?
-                    <div
-                      className="SidePanel-search-other-users"
-                      onClick={this.handleSearchForOtherUsers.bind(this)}>
-                      <div className="container">
-                        <FaWaves className="SidePanel-search-other-users-icon waves" />
-
-                        <p>Find new people</p>
-                      </div>
-
-                      <FaDown className="SidePanel-search-other-users-icon" />
-                    </div>
-                  : null
-                }
-              </div>
-            : <AddChat
-                handleSearchForOtherUsers={this.handleSearchForOtherUsers.bind(this)}
-                handleAddSingleChat={this.handleAddSingleChat.bind(this)}
+        <div className="SidePanel-main">
+          <SideNav
+            handleNavToChats={this.handleNavToChats.bind(this)}
+            inAddChat={this.props.showAddChat}
+            inGroupForm={this.props.showGroupForm}
+            userInfo={this.props.userInfo}
+            handleNavToProfile={this.handleNavToProfile.bind(this)}
+            handleNavToBookmarks={this.handleNavToBookmarks.bind(this)}
+            handleNavToContacts={this.handleNavToContacts.bind(this)}
+            handleNavToDefaultMain={this.handleNavToDefaultMain.bind(this)}
+            handleCreateNewGroup={this.handleCreateNewGroup.bind(this)}
+          />
+          {
+            this.props.showChatsList ?
+              <ChatsList
+                determineChatHeader={this.props.determineChatHeader.bind(this)}
               />
+            : this.props.showContactsList ?
+                <div className="SidePanel-contacts-container">
+                  <SearchContacts
+                    updateSearchTerm={this.props.updateSearchTerm}
+                    searchTermVal={this.props.searchTerm}
+                    showGroupForm={false}
+                    findContacts={this.props.findContacts}
+                  />
+                  <ContactsList
+                    header={'Your Contacts'}
+                    contacts={this.props.usersContacts}
+                    searchTerm={this.props.searchTerm}
+                    handleContactClick={this.handleAddSingleChat.bind(this)}
+                  />
 
-        }
+                  {
+                    this.props.searchForOtherUsers ?
+                      <ContactsList
+                        header={'Other Users'}
+                        contacts={this.props.otherContacts}
+                        searchTerm={this.props.searchTerm}
+                        handleContactClick={this.handleAddSingleChat.bind(this)}
+                      />
+                    : null
+                  }
+
+                  {
+                    !this.props.searchForOtherUsers ?
+                      <div
+                        className="SidePanel-search-other-users"
+                        onClick={this.handleSearchForOtherUsers.bind(this)}>
+                        <div className="container">
+                          <FaWaves className="SidePanel-search-other-users-icon waves" />
+
+                          <p>Find new people</p>
+                        </div>
+
+                        <FaDown className="SidePanel-search-other-users-icon" />
+                      </div>
+                    : null
+                  }
+                </div>
+              : <AddChat
+                  handleSearchForOtherUsers={this.handleSearchForOtherUsers.bind(this)}
+                  handleAddSingleChat={this.handleAddSingleChat.bind(this)}
+                />
+
+          }
+        </div>
 
         <div className="SidePanel-footer">
           <FaWaves className="SidePanel-logo-icon"/>
