@@ -37,9 +37,6 @@ app.use(STATIC_PATH, express.static('public'));
 app.use(STATIC_PATH, express.static(path.resolve(__dirname, '..', '..', 'dist')));
 
 app.get('*', (req, res) => {
-  console.log(__dirname);
-  console.log(path.resolve(__dirname, '..', '..', 'dist'));
-  console.log('here');
   res.send(renderApp(APP_NAME));
 });
 
@@ -66,11 +63,10 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('disconnect', (data) => {
-    console.log('user disconnected');
+    console.log('a user disconnected');
   });
 
   socket.on('join room', (data) => {
-    console.log(`user joined room ${data}`);
     socket.join(data);
   });
 

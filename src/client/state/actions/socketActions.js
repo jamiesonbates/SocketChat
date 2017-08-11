@@ -116,8 +116,6 @@ export function updateOnlineUsers(userId, isOnline) {
         }
       });
 
-      console.log(nextUsersOnline);
-
       return dispatch({
         type: userNowOffline,
         payload: nextUsersOnline
