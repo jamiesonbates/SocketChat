@@ -34,9 +34,12 @@ app.use('/api/categories', require('./routes/categories'));
 app.use('/api/images', require('./routes/images'));
 
 app.use(STATIC_PATH, express.static('public'));
-app.use(express.static(path.resolve(__dirname, '..', '..', 'dist')));
+app.use(STATIC_PATH, express.static(path.resolve(__dirname, '..', '..', 'dist')));
 
 app.get('*', (req, res) => {
+  console.log(__dirname);
+  console.log(path.resolve(__dirname, '..', '..', 'dist'));
+  console.log('here');
   res.send(renderApp(APP_NAME));
 });
 
