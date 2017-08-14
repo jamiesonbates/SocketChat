@@ -36,7 +36,7 @@ function getContacts(userId) {
   `)
 }
 
-function getUsers(users) {
+function getUserStatus(users) {
   return db('users')
     .whereIn('id', users)
 }
@@ -83,5 +83,5 @@ module.exports = {
   getContacts,
   createContact,
   updateChatActivity,
-  getUsers
+  getUserStatus
 }

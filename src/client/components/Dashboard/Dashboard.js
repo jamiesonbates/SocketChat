@@ -61,7 +61,6 @@ class Dashboard extends React.Component {
 
       return acc;
     }, '');
-    console.log('hi');
 
     return title;
   }

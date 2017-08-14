@@ -121,9 +121,8 @@ export function fetchChats({ shouldSetChat=false, chatId=null, onLoad=false }) {
 
         if (onLoad) {
           dispatch(getChatViews());
-          
+
           for (const chat of nextAllChats) {
-            console.log(chat.id);
             dispatch(manageRoom({ chatId: chat.id, event: 'join room' }));
           }
         }

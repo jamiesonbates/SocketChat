@@ -60,9 +60,10 @@ const server = app.listen(WEB_PORT, () => {
 const io = socketIO().listen(server);
 
 io.on('connection', (socket) => {
-  console.log('a user connected', socket.id);
-
   socket.on('disconnect', (data) => {
+    db.getUser(socket.id)
+      .then((user) => {
+      });
     console.log('user disconnected: ', socket.id);
   });
 
@@ -132,13 +133,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('new chat created', (payload) => {
-    dbActions.getUsers(payload.users)
-      .then((users) => {
-        for (const user of users) {
-          if (!user.id !== payload.currentUserId && user.online) {
-            socket.to(user.online).emit('new chat', payload.chatId);
-          }
-        }
-      })
+    // dbActions.getUsers(payload.users)
+    //   .then((users) => {
+    //     for (const user of users) {
+    //       if (!user.id !== payload.currentUserId && user.online) {
+    //         socket.to(user.online).emit('new chat', payload.chatId);
+    //       }
+    //     }
+    //   })
   });
 });

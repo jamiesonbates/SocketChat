@@ -131,6 +131,7 @@ class SidePanel extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="SidePanel-container">
         <div className="SidePanel-main">
@@ -154,7 +155,7 @@ class SidePanel extends React.Component {
                 <div className="SidePanel-contacts-container">
                   <SearchContacts
                     updateSearchTerm={this.props.updateSearchTerm}
-                    searchTermVal={this.props.searchTerm}
+                    searchTerm={this.props.searchTerm}
                     showGroupForm={false}
                     findContacts={this.props.findContacts}
                   />
@@ -173,23 +174,16 @@ class SidePanel extends React.Component {
                         searchTerm={this.props.searchTerm}
                         handleContactClick={this.handleAddSingleChat.bind(this)}
                       />
-                    : null
-                  }
-
-                  {
-                    !this.props.searchForOtherUsers ?
-                      <div
+                    : <div
                         className="SidePanel-search-other-users"
                         onClick={this.handleSearchForOtherUsers.bind(this)}>
                         <div className="container">
                           <FaWaves className="SidePanel-search-other-users-icon waves" />
-
                           <p>Find new people</p>
                         </div>
 
                         <FaDown className="SidePanel-search-other-users-icon" />
                       </div>
-                    : null
                   }
                 </div>
               : <AddChat
