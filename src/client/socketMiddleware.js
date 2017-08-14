@@ -32,33 +32,27 @@ const socketMiddleware = (function() {
     ws.emit('new chat created', payload);
   }
 
-  // good
   const onReceive = (store, payload) => {
     store.dispatch(receiveMessage(payload));
   }
 
-  // good
   const onManageRoom = (ws, payload) => {
     const { event, chatId } = payload;
     ws.emit(event, chatId);
   }
 
-  // good
   const onSendMessage = (ws, payload) => {
     ws.emit('msg', payload);
   }
 
-  // good
   const onStartTyping = (ws, payload) => {
     ws.emit('started typing', payload);
   }
 
-  // good
   const onStopTyping = (ws, payload) => {
     ws.emit('stopped typing', payload);
   }
 
-  // good
   const onSomeoneStartedTyping = (store, payload) => {
     for (const timeout of typingTimeouts) {
       clearTimeout(timeout);
@@ -104,7 +98,7 @@ const socketMiddleware = (function() {
 
         const state = store.getState();
         const userId = state.userInfo.id;
-        
+
         break;
       case disconnectType:
         if (socket != null) {

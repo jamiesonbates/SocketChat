@@ -149,6 +149,7 @@ class SidePanel extends React.Component {
             this.props.showChatsList ?
               <ChatsList
                 determineChatHeader={this.props.determineChatHeader.bind(this)}
+                handleNavToContacts={this.handleNavToContacts.bind(this)}
               />
             : this.props.showContactsList ?
                 <div className="SidePanel-contacts-container">

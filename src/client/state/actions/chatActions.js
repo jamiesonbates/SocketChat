@@ -97,6 +97,10 @@ export function fetchChats({ shouldSetChat=false, chatId=null, onLoad=false }) {
       .then((res) => {
         let nextAllChats = res.data;
 
+        if (!nextAllChats.length) {
+          return;
+        }
+
         const nextChatLastSeen = nextAllChats.map(chat => {
           return { chatId: chat.id, lastSeen: chat.lastSeen };
         });

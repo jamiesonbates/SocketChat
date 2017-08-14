@@ -8,7 +8,7 @@
 }
 
 .ChatsList-header {
-  padding: 10px 5px;
+  padding: 10px 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,5 +50,50 @@
 
 .ChatsList-newChat-btn:hover {
   color: white;
+  cursor: pointer;
+}
+
+.ChatsList-helper {
+  padding: 10px;
+  background-color: #1D2547;
+}
+
+.ChatsList-helper p {
+  color: #F7F7F7;
+  padding: 5px 0;
+}
+
+.ChatsList-helper-options {
+  margin-top: 15px;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ChatsList-option-icon {
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+.ChatsList-option-btn {
+  font-size: 16px;
+  background-color: #4D64BF;
+  color: #F7F7F7;
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-family: 'Lato';
+  display: flex;
+  align-items: center;
+  // margin-right: 10px;
+}
+
+.ChatsList-option-btn:focus {
+  outline: none;
+}
+
+.ChatsList-option-btn:hover {
+  background-color: #39498C;
   cursor: pointer;
 }

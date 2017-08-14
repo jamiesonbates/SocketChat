@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import FaNewChat from 'react-icons/lib/md/add-circle-outline';
+import FaContacts from 'react-icons/lib/ti/contacts';
 
 import './ChatsList.scss';
 import wrapSidePanel from '../../../../containers/WrapSidePanel';
@@ -115,7 +116,25 @@ class ChatsList extends React.Component {
                     }
                   </div>
                 ))
-            : null
+            : <div className="ChatsList-helper">
+                <p>You haven't started chatting yet.</p>
+
+                <div className="ChatsList-helper-options">
+                  <button
+                    className="ChatsList-option-btn"
+                    onClick={this.props.handleNavToContacts}>
+                    <FaContacts className="ChatsList-option-icon" />
+                    Find People
+                  </button>
+
+                  <button
+                    className="ChatsList-option-btn"
+                    onClick={() => this.props.updateSide(showAddChatType)}>
+                    <FaNewChat className="ChatsList-option-icon" />
+                    Create a Chat
+                  </button>
+                </div>
+              </div>
           }
         </div>
       </div>
