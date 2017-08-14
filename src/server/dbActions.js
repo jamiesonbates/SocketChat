@@ -36,9 +36,16 @@ function getContacts(userId) {
   `)
 }
 
-function getUserStatus(users) {
+function getUsers(users) {
   return db('users')
     .whereIn('id', users)
+}
+
+function getUserBySocketId(socketId) {
+  return db('users as u')
+    .where('u.online', socketId)
+    .select('id')
+    .first();
 }
 
 function createContact(userId1, userId2) {
@@ -83,5 +90,6 @@ module.exports = {
   getContacts,
   createContact,
   updateChatActivity,
-  getUserStatus
+  getUsers,
+  getUserBySocketId
 }

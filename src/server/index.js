@@ -60,11 +60,30 @@ const server = app.listen(WEB_PORT, () => {
 const io = socketIO().listen(server);
 
 io.on('connection', (socket) => {
+  console.log('a user connected', socket.id);
   socket.on('disconnect', (data) => {
-    // db.getUser(socket.id)
-    //   .then((user) => {
-    //   });
-    console.log('user disconnected: ', socket.id);
+    let user;
+
+    dbActions.getUserBySocketId(socket.id)
+      .then((result) => {
+        user = result;
+
+        return dbActions.updateUserStatus(user.id, socket.id, false)
+      })
+      .then(() => {
+        return dbActions.getContacts(user.id)
+      })
+      .then((data) => {
+        const contacts = data.rows;
+
+        for (const contact of contacts) {
+          if (contact.online) {
+            socket.to(contact.online).emit('common user now offline', user.id);
+          }
+        }
+
+        console.log('a user disconnected', socket.id);
+      })
   });
 
   socket.on('join room', (data) => {
@@ -91,21 +110,21 @@ io.on('connection', (socket) => {
       })
   });
 
-  socket.on('user offline', (userId) => {
-    dbActions.updateUserStatus(userId, null, false)
-      .then(() => {
-        return dbActions.getContacts(userId);
-      })
-      .then((data) => {
-        const users = data.rows;
-
-        for (const user of users) {
-          if (user.online) {
-            socket.to(user.online).emit('common user now offline', userId);
-          }
-        }
-      })
-  });
+  // socket.on('user offline', (userId) => {
+  //   dbActions.updateUserStatus(userId, null, false)
+  //     .then(() => {
+  //       return dbActions.getContacts(userId);
+  //     })
+  //     .then((data) => {
+  //       const users = data.rows;
+  //
+  //       for (const user of users) {
+  //         if (user.online) {
+  //           socket.to(user.online).emit('common user now offline', userId);
+  //         }
+  //       }
+  //     })
+  // });
 
   socket.on('msg', (data) => {
     let msg;
@@ -133,13 +152,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('new chat created', (payload) => {
-    // dbActions.getUsers(payload.users)
-    //   .then((users) => {
-    //     for (const user of users) {
-    //       if (!user.id !== payload.currentUserId && user.online) {
-    //         socket.to(user.online).emit('new chat', payload.chatId);
-    //       }
-    //     }
-    //   })
+    dbActions.getUsers(payload.users)
+      .then((users) => {
+        for (const user of users) {
+          if (!user.id !== payload.currentUserId && user.online) {
+            socket.to(user.online).emit('new chat', payload.chatId);
+          }
+        }
+      })
   });
 });
