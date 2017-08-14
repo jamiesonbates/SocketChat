@@ -61,6 +61,10 @@ export function getRecentBookmarks() {
 
     axios.get(`/api/categories/recent/${userId}`)
       .then(({ data }) => {
+        if (!data.length) {
+          return;
+        }
+        
         dispatch({ type: setRecentBookmarksType, payload: data });
       })
   }

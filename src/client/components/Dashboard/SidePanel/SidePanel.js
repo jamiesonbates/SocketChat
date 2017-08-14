@@ -84,6 +84,19 @@ class SidePanel extends React.Component {
     let chatId;
     const newGroup = this.props.newGroup;
 
+    if (this.props.newGroup.length < 2) {
+      return;
+    }
+
+    if (!this.allChats) {
+      let userGroup = [
+        ...this.props.newGroup
+      ]
+      .map(user => user.id);
+
+      this.props.createChat(userGroup);
+    }
+
     const chatExists = this.props.allChats.filter(chat => {
       if (chat.users.length === newGroup.length + 1) {
         return true;
@@ -164,6 +177,7 @@ class SidePanel extends React.Component {
                     contacts={this.props.usersContacts}
                     searchTerm={this.props.searchTerm}
                     handleContactClick={this.handleAddSingleChat.bind(this)}
+                    noContactsMessage={'You don\'t have any contacts yet.'}
                   />
 
                   {
