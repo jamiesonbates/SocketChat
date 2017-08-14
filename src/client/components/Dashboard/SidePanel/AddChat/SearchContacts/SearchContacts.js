@@ -31,7 +31,7 @@ class SearchContacts extends React.Component {
     if (!nextProps.newGroup) {
       return;
     }
-    
+
     if (nextProps.newGroup.length > this.props.newGroup.length) {
       this.refs.term.focus();
     }
@@ -49,6 +49,7 @@ class SearchContacts extends React.Component {
             autoFocus={true}
             onChange={this.setSearchTerm.bind(this)}
             value={this.props.searchTerm}
+            placeholder="Search by name, email, or username"
           />
         </form>
 

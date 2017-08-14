@@ -13,6 +13,7 @@
 .SearchContacts-container form {
   flex: 1;
   display: flex;
+  color: #E0E0E0;
 }
 
 .SearchContacts-container form input {
@@ -35,6 +36,7 @@
 .SearchContacts-container form input::placeholder {
   font-size: 15px;
   font-family: 'Lato';
+  color: #E0E0E0;
 }
 
 .SearchContacts-icon-search {

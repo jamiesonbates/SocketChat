@@ -53,16 +53,8 @@ class AddChat extends React.Component {
             findContacts={this.props.findContacts}
             removeNewGroupMember={this.props.removeNewGroupMember}
           />
-
-          {/* {
-            this.props.showGroupForm ?
-              <FaCheck
-                className="AddChat-icon-check"
-                onClick={this.handleCreateNewGroup.bind(this)}
-              />
-            : null
-          } */}
         </div>
+        
         <div className="AddChat-contacts-container">
 
           {

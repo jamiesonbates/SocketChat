@@ -61,9 +61,9 @@ const io = socketIO().listen(server);
 
 io.on('connection', (socket) => {
   socket.on('disconnect', (data) => {
-    db.getUser(socket.id)
-      .then((user) => {
-      });
+    // db.getUser(socket.id)
+    //   .then((user) => {
+    //   });
     console.log('user disconnected: ', socket.id);
   });
 
