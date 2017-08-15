@@ -49,6 +49,10 @@ class SidePanel extends React.Component {
   handleAddSingleChat(userId) {
     let chatId;
 
+    if (!this.props.allChats) {
+      this.props.createChat([userId]);
+    }
+
     const chatExists = this.props.allChats.filter(chat => {
       if (chat.users.length < 3) {
         return true;
