@@ -89,7 +89,6 @@ class SidePanel extends React.Component {
     const newGroup = [
       ...this.props.newGroup
     ].map(user => user.id);
-    console.log(newGroup);
 
     if (!this.props.newGroup.length) {
       return;
@@ -99,10 +98,7 @@ class SidePanel extends React.Component {
       this.props.createChat(newGroup);
     }
 
-    console.log(this.props.allChats);
-
     const matchingChat = this.props.allChats.filter(chat => {
-      console.log('1', chat.users.length, newGroup.length + 1);
       if (chat.users.length === newGroup.length + 1) {
         return true;
       }
@@ -183,12 +179,16 @@ class SidePanel extends React.Component {
                         contacts={this.props.otherContacts}
                         searchTerm={this.props.searchTerm}
                         handleContactClick={this.handleAddSingleChat.bind(this)}
+                        noContactsMessage={'No results. Try searching again.'}
                       />
                     : <div
                         className="SidePanel-search-other-users"
                         onClick={this.handleSearchForOtherUsers.bind(this)}>
                         <div className="container">
-                          <FaWaves className="SidePanel-search-other-users-icon waves" />
+                          <FaWaves
+                            className="SidePanel-search-other-users-icon waves"
+                          />
+
                           <p>Find new people</p>
                         </div>
 

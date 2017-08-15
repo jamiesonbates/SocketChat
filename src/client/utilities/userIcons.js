@@ -22,7 +22,7 @@ function userIconMaker(users, type) {
       return users[0].cloudinaryUrl ?
         <img src={chatUrl.join('/')} className="Chat-profile-image" />
       : <div className="UserIcon-chat icon">
-          <h3>{users[0].firstName[0]}</h3>
+          <h3>{users[0].firstName[0].toUpperCase()}</h3>
         </div>
     break;
 
@@ -36,7 +36,7 @@ function userIconMaker(users, type) {
       return users[0].cloudinaryUrl ?
         <img src={contactUrl.join('/')} className="Contact-profile-image" />
       : <div className="UserIcon-contact icon">
-          <h3>{users[0].firstName[0]}</h3>
+          <h3>{users[0].firstName[0].toUpperCase()}</h3>
         </div>
     break;
 
@@ -53,7 +53,7 @@ function userIconMaker(users, type) {
         icon = users[0].cloudinaryUrl ?
           <img src={url.join('/')} className="Side-profile-image" />
         : <div className="UserIcon-side icon">
-            <h3>{users[0].firstName[0]}</h3>
+            <h3>{users[0].firstName[0].toUpperCase()}</h3>
           </div>
 
       }
@@ -109,7 +109,7 @@ function userIconMaker(users, type) {
                 : <div
                     key={i}
                     className={i === 0 ? 'UserIcon-standard top' :'UserIcon-standard bottom'}>
-                    <h3>{user.firstName[0]}</h3>
+                    <h3>{user.firstName[0].toUpperCase()}</h3>
                   </div>
               })
             }

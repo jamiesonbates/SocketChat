@@ -54,7 +54,7 @@ class AddChat extends React.Component {
             removeNewGroupMember={this.props.removeNewGroupMember}
           />
         </div>
-        
+
         <div className="AddChat-contacts-container">
 
           {
@@ -64,12 +64,14 @@ class AddChat extends React.Component {
                 contacts={this.props.usersContacts}
                 searchTerm={this.props.searchTerm}
                 handleContactClick={this.handleAddMultiChat.bind(this)}
+                noContactsMessage={'You don\'t have any contacts yet.'}
               />
             : <ContactsList
                 header={'Your Contacts'}
                 contacts={this.props.usersContacts}
                 searchTerm={this.props.searchTerm}
                 handleContactClick={this.props.handleAddSingleChat}
+                noContactsMessage={'You don\'t have any contacts yet.'}
               />
           }
 
@@ -81,12 +83,14 @@ class AddChat extends React.Component {
                   contacts={this.props.otherContacts}
                   searchTerm={this.props.searchTerm}
                   handleContactClick={this.handleAddMultiChat.bind(this)}
+                  noContactsMessage={'No results. Try searching again.'}
                 />
               : <ContactsList
                   header={'Other Users'}
                   contacts={this.props.otherContacts}
                   searchTerm={this.props.searchTerm}
                   handleContactClick={this.props.handleAddSingleChat}
+                  noContactsMessage={'No results. Try searching again.'}
                 />
             : null
           }

@@ -18,6 +18,9 @@
   border-bottom: 2px solid #1D2547;
 }
 
+.ContactsList-contact:hover .UserIcon-contact {
+  background-color: #26315E;
+}
 .ContactsList-contact:last-child {
   border: none;
 }
