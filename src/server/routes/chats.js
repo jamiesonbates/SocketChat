@@ -59,7 +59,6 @@ router.get('/:userId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const { chat } = req.body;
   const { users } = req.body;
-  console.log(users);
   let chatId;
 
   db('chats')

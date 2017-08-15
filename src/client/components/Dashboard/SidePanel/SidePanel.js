@@ -82,22 +82,23 @@ class SidePanel extends React.Component {
 
   handleCreateNewGroup() {
     let chatId;
-    const newGroup = this.props.newGroup;
+    const newGroup = [
+      ...this.props.newGroup
+    ].map(user => user.id);
+    console.log(newGroup);
 
-    if (this.props.newGroup.length < 2) {
+    if (!this.props.newGroup.length) {
       return;
     }
 
-    if (!this.allChats) {
-      let userGroup = [
-        ...this.props.newGroup
-      ]
-      .map(user => user.id);
-
-      this.props.createChat(userGroup);
+    if (!this.props.allChats) {
+      this.props.createChat(newGroup);
     }
 
-    const chatExists = this.props.allChats.filter(chat => {
+    console.log(this.props.allChats);
+
+    const matchingChat = this.props.allChats.filter(chat => {
+      console.log('1', chat.users.length, newGroup.length + 1);
       if (chat.users.length === newGroup.length + 1) {
         return true;
       }
@@ -106,31 +107,22 @@ class SidePanel extends React.Component {
       }
     })
     .reduce((acc, chat) => {
-      const newGroup = this.props.newGroup;
+      let usersMatch = true;
 
-      const matchCount = newGroup.reduce((acc, userId) => {
-        for (const user of chat.users) {
-          if (userId.id === user.id) {
-            acc += 1;
-
-            return acc;
-          }
+      for (const user of chat.users) {
+        if (!newGroup.includes(user.id) && user.id !== this.props.userId) {
+          usersMatch = false;
         }
+      }
 
-        return acc;
-      }, 0);
-
-      if (matchCount === chat.users.length) {
-        acc = true;
-        chatId = chat.id;
-
-        return acc;
+      if (usersMatch) {
+        acc = chat;
       }
 
       return acc;
-    }, false);
+    }, null);
 
-    if (chatExists) {
+    if (matchingChat) {
       this.props.setChat(chatId);
     }
     else {
