@@ -66,3 +66,4 @@ export const startProcessingImageType = 'START_PROCESSING_IMAGE';
 export const stopProcessingImageType = 'STOP_PROCESSING_IMAGE';
 export const updateChatNameType = 'UPDATE_CHAT_NAME';
 export const newChatType = 'NEW_CHAT';
+export const updateCurrentChatType = 'UPDATE_CURRENT_CHAT';

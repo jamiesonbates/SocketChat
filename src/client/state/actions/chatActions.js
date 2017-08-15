@@ -20,7 +20,8 @@ import {
   updateChatLastSeenType,
   setChatViewHistoryType,
   updateChatNameType,
-  newChatType
+  newChatType,
+  updateCurrentChatType
 } from '../actionTypes';
 
 import {
@@ -237,20 +238,26 @@ export function receiveMessage(msg) {
 
     if (singleChat) {
       inChat = singleChat === msg.chatId;
+      console.log(inChat);
     }
 
     const nextChats = addMessageToChat(allChats, msg, inChat);
     const nextCurrentChat = { ...Utilities.findChat(nextChats, msg.chatId) };
 
-    dispatch({
-      type: addNewMessage,
-      payload: {
-        nextChats,
-        nextCurrentChat,
-        nextCurrentChatMessages: nextCurrentChat.messages,
-        nextCurrentChatUsers: nextCurrentChat.users
-      }
-    });
+    if (inChat) {
+      dispatch({ type: addNewMessage, payload: nextChats });
+      dispatch({
+        type: updateCurrentChatType,
+        payload: {
+          nextCurrentChat,
+          nextCurrentChatMessages: nextCurrentChat.messages,
+          nextCurrentChatUsers: nextCurrentChat.users
+        }
+      })
+    }
+    else {
+      dispatch({ type: addNewMessage, payload: nextChats });
+    }
 
     if (inChat && lastSeen.hadNewMessages) {
       dispatch(updateChatSeen({ chatId: msg.chatId, from: 'receiveMessage', next: true }));
