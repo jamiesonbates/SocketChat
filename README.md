@@ -15,4 +15,4 @@ Socket Chat is a fully-featured chatting app that harnesses the power of real-ti
 * Cloudinary
 
 ## Workflow
-Check out a part of my workflow on [Trello](https://trello.com/b/QtbJNewC/socket-chat).
+Check out much of my workflow on [Trello](https://trello.com/b/QtbJNewC/socket-chat).
