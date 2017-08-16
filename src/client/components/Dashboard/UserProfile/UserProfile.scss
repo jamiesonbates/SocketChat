@@ -6,19 +6,19 @@
   font-family: 'Lato';
   max-width: 350px;
   min-width: 350px;
-  border-left: 2px solid #D1D1D1;
-  border-bottom: 2px solid #D1D1D1;
+  border-left: 2px solid #BFBFBF;
+  border-bottom: 2px solid #BFBFBF;
   min-height: 100vh;
   max-height: 100vh;
 }
 
 .UserProfile-nav {
-  background-color: #F7F7F7;
+  background-color: #E0E0E0;
   padding: 10px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-bottom: 1px solid #D1D1D1;
+  border-bottom: 1px solid #BFBFBF;
   z-index: 1;
   box-sizing: border-box;
 }
@@ -61,8 +61,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // padding: 0 10px;
-  border-bottom: 4px solid #D1D1D1;
+  border-bottom: 4px solid #BFBFBF;
   box-sizing: border-box;
   min-height: 350px;
 }
@@ -71,7 +70,6 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  // align-items: center;
   justify-content: space-between;
   padding: 5% 0;
   box-sizing: border-box;
@@ -89,14 +87,14 @@
 
 .UserProfile-profile-image {
   height: 100%;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #BFBFBF;
 }
 
 .UserProfile-image {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: #F7F7F7;
+  background-color: #E0E0E0;
   margin-top: 5px;
   position: relative;
   display: flex;
@@ -181,6 +179,8 @@
 
 .UserProfile-image:hover .UserProfile-add-prompt {
   display: flex;
+  background-color: #3B3B3B;
+  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -223,7 +223,7 @@
 
 .UserProfile-user-icon {
   color: #3B3B3B;
-  font-size: 200px;
+  font-size: 150px;
   box-sizing: border-box;
 }
 
@@ -299,7 +299,6 @@
 
 .UserProfile-data {
   width: 70%;
-  // overflow-wrap: break-word;
 }
 
 .UserProfile-signout {

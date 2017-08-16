@@ -32,6 +32,18 @@ class UserProfile extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.targetUserId !== this.props.targetUserId) {
+      this.setState({
+        addingPhoto: false,
+        data_uri: null,
+        filename: null,
+        filetype: null,
+        photoChosen: false
+      });
+    }
+  }
+
   userIsOnline(userId) {
     const bool = this.props.usersOnline.reduce((acc, id) => {
       if (id === userId) {

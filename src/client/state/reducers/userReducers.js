@@ -17,7 +17,7 @@ export default function reducer(state={
   username: null,
   categories: null,
   recentBookmarks: null,
-  cloudinary_url: null
+  cloudinaryUrl: null
 }, action) {
   switch (action.type) {
     case loginSuccess:
