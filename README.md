@@ -13,3 +13,6 @@ Socket Chat is a fully-featured chatting app that harnesses the power of real-ti
 * Postgresql
 * Heroku
 * Cloudinary
+
+## Workflow
+Check out much of my workflow on [Trello](https://trello.com/b/QtbJNewC/socket-chat).
