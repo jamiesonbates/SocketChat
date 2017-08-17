@@ -1,6 +1,8 @@
 # Socket Chat
 A fully-featured chatting app that harnesses the power of real-time data through the use of web sockets. Users have the ability to chat one-on-one or in groups, bookmark notable messages, and view other users' profiles.
 
+Find me and send me a message!
+
 ## Personal Goals
 * Work with sockets and explore real-time data.
 * Handle building a web app with complex, changing state, using React and Redux.
